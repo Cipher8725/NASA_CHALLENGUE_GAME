@@ -1,0 +1,97 @@
+{
+  "descripcion": "Fotos reales de la superficie de Marte tomadas por el rover Perseverance de la NASA, descargadas del catalogo de imagenes de la NASA.",
+  "fuentes": [
+    "https://images.nasa.gov/",
+    "https://images-api.nasa.gov/search?q=perseverance+rover+mars+surface"
+  ],
+  "url_consulta": "https://images-api.nasa.gov/search?q=perseverance+mastcam+z+rock+surface&media_type=image&page_size=100",
+  "fecha_descarga": "2026-11-15",
+  "credito": "NASA/JPL-Caltech",
+  "nota": "El campo 'sol' y 'camara' se han extraido de la descripcion oficial de la imagen en el catalogo de la NASA. Si una foto no los trae, el campo queda vacio (no se inventa).",
+  "fotos": [
+    {
+      "archivo": "ai_assets/perseverance_fotos/PIA26401.jpg",
+      "nasa_id": "PIA26401",
+      "titulo": "Mastcam-Z Views the 'Cheyava Falls' Workspace",
+      "descripcion": "NASA's Perseverance Mars rover used its Mastcam-Z instrument to view this workspace around the sample collected from a rock nicknamed \"Cheyava Falls.\" A drill hole is visible (far left) where a sample was collected on July 21, 2024. At right is a rock nicknamed \"Steamboat Mountain.\" A circular white abrasion patch can be seen on each rock; these are where the rover used an abrasion tool to clear away the top surface, allowing instruments to study the rocks' composition.  The images that make up this composite were taken by the rover's Mastcam-Z instrument on July 23, 2024, the 1217th day, or sol, of the mission.  https://photojournal.jpl.nasa.gov/catalog/PIA26401",
+      "fecha": "2024-07-25",
+      "credito": "NASA/JPL-Caltech",
+      "centro": "JPL",
+      "album": "",
+      "url_original": "http://images-assets.nasa.gov/image/PIA26401/PIA26401~orig.jpg",
+      "url_consulta": "https://images-assets.nasa.gov/image/PIA26401/collection.json",
+      "sol": "",
+      "camara": "Mastcam-Z"
+    },
+    {
+      "archivo": "ai_assets/perseverance_fotos/PIA24445.jpg",
+      "nasa_id": "PIA24445",
+      "titulo": "How Mastcam-Z's 360-Degree Panorama Was Taken",
+      "descripcion": "This image shows the 142 images that make up Mastcam-Z's first 360-degree panorama. Mastcam-Z is a pair of zoomable cameras on the mast, or \"head,\" of NASA's Perseverance Mars rover.  Arizona State University in Tempe leads the operations of the Mastcam-Z instrument, working in collaboration with Malin Space Science Systems in San Diego.  A key objective for Perseverance's mission on Mars is astrobiology, including the search for signs of ancient microbial life. The rover will characterize the planet's geology and past climate, pave the way for human exploration of the Red Planet, and be the first mission to collect and cache Martian rock and regolith (broken rock and dust).  Subsequent NASA missions, in cooperation with ESA (European Space Agency), would send spacecraft to Mars to collect these sealed samples from the surface and return them to Earth for in-depth analysis.  https://photojournal.jpl.nasa.gov/catalog/PIA24445",
+      "fecha": "2021-03-04",
+      "credito": "NASA/JPL-Caltech",
+      "centro": "JPL",
+      "album": "",
+      "url_original": "http://images-assets.nasa.gov/image/PIA24445/PIA24445~orig.jpg",
+      "url_consulta": "https://images-assets.nasa.gov/image/PIA24445/collection.json",
+      "sol": "",
+      "camara": "Mastcam-Z"
+    },
+    {
+      "archivo": "ai_assets/perseverance_fotos/PIA25917.jpg",
+      "nasa_id": "PIA25917",
+      "titulo": "Perseverance Finds a Hollowed-Out Rock",
+      "descripcion": "NASA's Perseverance Mars rover spotted this hollowed-out rock in Jezero Crater using its Mastcam-Z instrument on June 26, 2023, the 836th Martian day, or sol, of the mission. Wind can erode all sorts of strange shapes by sandblasting rock surfaces over the course of eons.  Arizona State University leads the operations of the Mastcam-Z instrument, working in collaboration with Malin Space Science Systems in San Diego, on the design, fabrication, testing, and operation of the cameras, and in collaboration with the Niels Bohr Institute of the University of Copenhagen on the design, fabrication, and testing of the calibration targets.  A key objective for Perseverance's mission on Mars is astrobiology, including the search for signs of ancient microbial life. The rover will characterize the planet's geology and past climate, pave the way for human exploration of the Red Planet, and be the first mission to collect and cache Martian rock and regolith (broken rock and dust).  Subsequent NASA missions, in cooperation with ESA (European Space Agency), would send spacecraft to Mars to collect these sealed samples from the surface and return them to Earth for in-depth analysis.  The Mars 2020 Perseverance mission is part of NASA's Moon to Mars exploration approach, which includes Artemis missions to the Moon that will help prepare for human exploration of the Red Planet.  https://photojournal.jpl.nasa.gov/catalog/PIA25917",
+      "fecha": "2023-06-29",
+      "credito": "NASA/JPL-Caltech",
+      "centro": "JPL",
+      "album": "",
+      "url_original": "http://images-assets.nasa.gov/image/PIA25917/PIA25917~orig.jpg",
+      "url_consulta": "https://images-assets.nasa.gov/image/PIA25917/collection.json",
+      "sol": "836",
+      "camara": "Mastcam-Z"
+    },
+    {
+      "archivo": "ai_assets/perseverance_fotos/PIA26481.jpg",
+      "nasa_id": "PIA26481",
+      "titulo": "NASA's Perseverance Observes 'Observation Rock'",
+      "descripcion": "This natural-color, high-resolution mosaic showing \"Observation Rock\" was taken by the Mastcam-Z instrument on NASA's Perseverance as the rover climbed the western wall of Jezero Crater. The location is near an area the Perseverance science team is calling \"Curtis Ridge.\"  The 14 frames used to generate the mosaic were acquired on Oct. 18, 2024, the 1,302nd Martian day, or sol, of Perseverance's mission.  Arizona State University leads the operations of the Mastcam-Z instrument, working in collaboration with Malin Space Science Systems in San Diego, on the design, fabrication, testing, and operation of the cameras, and in collaboration with the Niels Bohr Institute of the University of Copenhagen on the design, fabrication, and testing of the calibration targets.  A key objective for Perseverance's mission on Mars is astrobiology, including the search for signs of ancient microbial life. The rover will characterize the planet's geology and past climate, pave the way for human exploration of the Red Planet, and be the first mission to collect and cache Martian rock and regolith (broken rock and dust).  Subsequent NASA missions, in cooperation with ESA (European Space Agency), would send spacecraft to Mars to collect these sealed samples from the surface and return them to Earth for in-depth analysis.  The Mars 2020 Perseverance mission is part of NASA's Moon to Mars exploration approach, which includes Artemis missions to the Moon that will help prepare for human exploration of the Red Planet.  https://photojournal.jpl.nasa.gov/catalog/PIA26481",
+      "fecha": "2024-11-07",
+      "credito": "NASA/JPL-Caltech",
+      "centro": "JPL",
+      "album": "",
+      "url_original": "http://images-assets.nasa.gov/image/PIA26481/PIA26481~orig.jpg",
+      "url_consulta": "https://images-assets.nasa.gov/image/PIA26481/collection.json",
+      "sol": "302",
+      "camara": "Mastcam-Z"
+    },
+    {
+      "archivo": "ai_assets/perseverance_fotos/PIA24423.jpg",
+      "nasa_id": "PIA24423",
+      "titulo": "Mastcam-Z Looks at Its Calibration Target",
+      "descripcion": "Mastcam-Z, a pair of zoomable cameras aboard NASA's Perseverance rover, imaged its calibration target for the first time on Feb. 20, 2021, the second Martian day, or sol, of Perseverance's mission. Visible in this natural-color composite are the Mastcam-Z primary-color and grayscale calibration target (the colorful circular object at right foreground) as well as the camera's secondary calibration target (the small colorful L-bracket just below the primary target). The Mastcam-Z team uses these targets to calibrate images of the Martian terrain to adjust for changes in brightness and dust in the atmosphere throughout the day.  The white square plate containing a grid of circular colored disks mounted farther to the aft on the rover is the calibration target for the SuperCam instrument. To the left of the image, the dusty and rocky Martian surface is visible at the Perseverance rover's landing site in Jezero crater. For more details about the Mastcam-Z calibration targets, see the article \"Mars in Full Color\" on the Mastcam-Z public web site, at https://mastcamz.asu.edu/mars-in-full-color.  A key objective for Perseverance's mission on Mars is astrobiology, including the search for signs of ancient microbial life. The rover will characterize the planet's geology and past climate, pave the way for human exploration of the Red Planet, and be the first mission to collect and cache Martian rock and regolith.  The Mars 2020 Perseverance mission is part of NASA's Moon to Mars exploration approach, which includes Artemis missions to the Moon that will help prepare for human exploration of the Red Planet.  Subsequent missions by NASA in cooperation with ESA (European Space Agency) would send spacecraft to Mars to collect these cached samples from the surface and return them to Earth for in-depth analysis.  https://photojournal.jpl.nasa.gov/catalog/PIA24423",
+      "fecha": "2021-02-22",
+      "credito": "NASA/JPL-Caltech",
+      "centro": "JPL",
+      "album": "",
+      "url_original": "http://images-assets.nasa.gov/image/PIA24423/PIA24423~orig.jpg",
+      "url_consulta": "https://images-assets.nasa.gov/image/PIA24423/collection.json",
+      "sol": "",
+      "camara": "Mastcam-Z"
+    },
+    {
+      "archivo": "ai_assets/perseverance_fotos/PIA24769.jpg",
+      "nasa_id": "PIA24769",
+      "titulo": "Side-by-side abrasion patches for Guilliamus and Bellegarde",
+      "descripcion": "These abrasion targets, nicknamed \"Guilliamus\" (left) and \"Bellegarde\" (right), are from the first and second rocks drilled by NASA's Perseverance Mars rover. These images were taken by the rover's Mastcam-Z camera system. The rover abrades rocks using a tool on its robotic arm before drilling them in order to clear away dust and weathering rinds, allowing other instruments to study the rocks and determine if scientists want to grab a sample of them.  Arizona State University in Tempe leads the operations of the Mastcam-Z instrument, working in collaboration with Malin Space Science Systems in San Diego.  A key objective for Perseverance's mission on Mars is astrobiology, including the search for signs of ancient microbial life. The rover will characterize the planet's geology and past climate, pave the way for human exploration of the Red Planet, and be the first mission to collect and cache Martian rock and regolith (broken rock and dust).  Subsequent NASA missions, in cooperation with ESA (European Space Agency), would send spacecraft to Mars to collect these sealed samples from the surface and return them to Earth for in-depth analysis.  The Mars 2020 Perseverance mission is part of NASA's Moon to Mars exploration approach, which includes Artemis missions to the Moon that will help prepare for human exploration of the Red Planet.  https://photojournal.jpl.nasa.gov/catalog/PIA24769",
+      "fecha": "2021-09-10",
+      "credito": "NASA/JPL-Caltech",
+      "centro": "JPL",
+      "album": "",
+      "url_original": "http://images-assets.nasa.gov/image/PIA24769/PIA24769~orig.jpg",
+      "url_consulta": "https://images-assets.nasa.gov/image/PIA24769/collection.json",
+      "sol": "",
+      "camara": "Mastcam-Z"
+    }
+  ]
+}

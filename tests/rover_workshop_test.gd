@@ -98,6 +98,19 @@ func _run() -> void:
 		workshop.place_piece(piece.id)
 	failures += _check("Evaluación sin errores da 3 estrellas", workshop.get_phase() == RoverWorkshop.Phase.DONE and workshop.get_stars() == 3)
 
+	# --- Foto real del Perseverance (NASA) ---
+	failures += _check("El taller tiene 6 fotos reales del Perseverance", workshop.get_photo_count() == 6)
+	failures += _check("Se muestra una foto real al terminar", workshop.show_rover_photo())
+	var foto: Dictionary = workshop.get_current_photo()
+	failures += _check("La foto tiene archivo, fecha y crédito", not str(foto.get("archivo", "")).is_empty() and not str(foto.get("fecha", "")).is_empty() and str(foto.get("credito", "")) == "NASA/JPL-Caltech")
+	failures += _check("El archivo de la foto existe", ResourceLoader.exists(str(foto.get("archivo", ""))))
+	var panel: Control = workshop.get_node("%PhotoPanel") as Control
+	var imagen: TextureRect = workshop.get_node("%PhotoImage") as TextureRect
+	var credito: Label = workshop.get_node("%PhotoCredit") as Label
+	failures += _check("El panel de la foto se ve", panel != null and panel.visible)
+	failures += _check("La imagen de la foto se carga", imagen != null and imagen.texture != null)
+	failures += _check("El credito de la foto es de la NASA", credito != null and credito.text.contains("NASA"))
+
 	_finish(failures)
 
 func _finish(failures: int) -> void:

@@ -448,6 +448,69 @@ theme_override_colors/font_color = Color(0.75, 0.78, 0.85, 0.85)
 theme_override_font_sizes/font_size = 12
 horizontal_alignment = 2
 
+; Panel con una foto real del Perseverance (NASA). Aparece al terminar
+; de armar el rover.
+[node name="PhotoPanel" type="PanelContainer" parent="UILayer/HUD"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = 110.0
+offset_right = 300.0
+offset_bottom = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_result")
+
+[node name="PhotoRow" type="HBoxContainer" parent="UILayer/HUD/PhotoPanel"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="PhotoImage" type="TextureRect" parent="UILayer/HUD/PhotoPanel/PhotoRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 190)
+layout_mode = 2
+size_flags_vertical = 4
+expand_mode = 1
+stretch_mode = 6
+
+[node name="PhotoBox" type="VBoxContainer" parent="UILayer/HUD/PhotoPanel/PhotoRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="PhotoCaption" type="Label" parent="UILayer/HUD/PhotoPanel/PhotoRow/PhotoBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.86, 0.45, 1)
+theme_override_font_sizes/font_size = 20
+text = "Así ve Marte el rover que acabas de armar"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="PhotoInfo" type="Label" parent="UILayer/HUD/PhotoPanel/PhotoRow/PhotoBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.93, 0.98, 1)
+theme_override_font_sizes/font_size = 15
+text = "Foto real de la superficie de Marte."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="PhotoCredit" type="Label" parent="UILayer/HUD/PhotoPanel/PhotoRow/PhotoBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.78, 0.85, 0.9)
+theme_override_font_sizes/font_size = 13
+text = "NASA/JPL-Caltech"
+horizontal_alignment = 1
+
 [connection signal="pressed" from="UILayer/HUD/ModePanel/ModeBox/GuidedButton" to="." method="_on_guided_pressed"]
 [connection signal="pressed" from="UILayer/HUD/ModePanel/ModeBox/EvaluationButton" to="." method="_on_evaluation_pressed"]
 [connection signal="pressed" from="UILayer/HUD/Buttons/RestartButton" to="." method="_on_restart_pressed"]
