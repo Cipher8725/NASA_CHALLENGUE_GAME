@@ -10,6 +10,9 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
 size = Vector3(8, 0.4, 8)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_corridor_wall"]
+size = Vector3(0.4693, 3.65, 7.97)
+
 [node name="corridor_module" type="Node3D" unique_id=1880699126]
 
 [node name="Floor" type="Node3D" parent="." unique_id=369011858]
@@ -48,6 +51,21 @@ omni_range = 11.0
 
 [node name="Corridor_1" parent="Shell" unique_id=232058607 instance=ExtResource("6_corridor_boundary_4x8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.09, 0, 0)
+
+; Colisión del pasillo: dos muros laterales que replican las caras
+; interiores de `Corridor_Boundary_4x8` (x = ±1,621 m). El paso central
+; (de -1,62 a +1,62 m) queda libre para el jugador.
+[node name="Body" type="StaticBody3D" parent="Shell/Corridor_1"]
+collision_layer = 1
+collision_mask = 1
+
+[node name="WallEast" type="CollisionShape3D" parent="Shell/Corridor_1/Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8557, 1.825, -0.0359)
+shape = SubResource("BoxShape3D_corridor_wall")
+
+[node name="WallWest" type="CollisionShape3D" parent="Shell/Corridor_1/Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8557, 1.825, -0.0359)
+shape = SubResource("BoxShape3D_corridor_wall")
 
 [node name="Props" type="Node3D" parent="." unique_id=94150315]
 

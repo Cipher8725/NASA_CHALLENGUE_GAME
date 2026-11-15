@@ -99,16 +99,30 @@ func _collect_doors(root: Node) -> Array[Dictionary]:
 			})
 	return doors
 
-## Dirección de salida: desde el centro de la sala hacia la puerta.
+## Dirección de salida: la perpendicular al muro de la puerta, apuntando
+## hacia fuera de la sala.
+##
+## No se usa el vector "centro de la sala -> puerta": cuando la puerta no
+## está en el centro del paño ese vector va en diagonal, el rayo se sale del
+## hueco y produce falsos positivos. Ejemplo: la puerta sur de
+## `IMG_sala_del_generador` está a 8 m del eje de la pared y su diagonal
+## rozaba el muro lateral del pasillo, que sí es un obstáculo real pero
+## está a 1,3 m de la puerta. La perpendicular es lo que recorre un
+## jugador al salir por la puerta.
 func _outward_direction(door: Node3D) -> Vector3:
 	var room: Node3D = _owning_room(door)
-	if room == null:
-		return -door.global_transform.basis.z
-	var direction: Vector3 = door.global_position - room.global_position
-	direction.y = 0.0
-	if direction.length_squared() < 0.001:
-		return -door.global_transform.basis.z
-	return direction.normalized()
+	var normal: Vector3 = -door.global_transform.basis.z
+	normal.y = 0.0
+	if normal.length_squared() < 0.001:
+		return Vector3.ZERO
+	normal = normal.normalized()
+	if room != null:
+		# El signo: la normal debe apuntar alejándose del centro de la sala.
+		var away: Vector3 = door.global_position - room.global_position
+		away.y = 0.0
+		if away.length_squared() > 0.001 and normal.dot(away) < 0.0:
+			normal = -normal
+	return normal
 
 ## Busca el nodo que contiene las paredes a las que pertenece la puerta.
 func _owning_room(door: Node3D) -> Node3D:
