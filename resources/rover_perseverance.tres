@@ -1,0 +1,269 @@
+[gd_resource type="Resource" script_class="RoverData" load_steps=36 format=3]
+
+[ext_resource type="Script" path="res://scripts/rover_data.gd" id="1_data"]
+[ext_resource type="Script" path="res://scripts/rover_piece_data.gd" id="2_piece"]
+[ext_resource type="PackedScene" path="res://ai_assets/models/perseverance/perseverance_ensamblado.glb" id="3_model"]
+[ext_resource type="Texture2D" path="res://ai_assets/models/perseverance/iconos/suspension_izquierda.png" id="icon_0"]
+[ext_resource type="Texture2D" path="res://ai_assets/models/perseverance/iconos/suspension_derecha.png" id="icon_1"]
+[ext_resource type="Texture2D" path="res://ai_assets/models/perseverance/iconos/suspension_centro.png" id="icon_2"]
+[ext_resource type="Texture2D" path="res://ai_assets/models/perseverance/iconos/ruedas_izquierda.png" id="icon_3"]
+[ext_resource type="Texture2D" path="res://ai_assets/models/perseverance/iconos/ruedas_derecha.png" id="icon_4"]
+[ext_resource type="Texture2D" path="res://ai_assets/models/perseverance/iconos/cuerpo.png" id="icon_5"]
+[ext_resource type="Texture2D" path="res://ai_assets/models/perseverance/iconos/sistema_muestras.png" id="icon_6"]
+[ext_resource type="Texture2D" path="res://ai_assets/models/perseverance/iconos/radar_rimfax.png" id="icon_7"]
+[ext_resource type="Texture2D" path="res://ai_assets/models/perseverance/iconos/mmrtg.png" id="icon_8"]
+[ext_resource type="Texture2D" path="res://ai_assets/models/perseverance/iconos/antena_alta_ganancia.png" id="icon_9"]
+[ext_resource type="Texture2D" path="res://ai_assets/models/perseverance/iconos/antenas_uhf_baja_ganancia.png" id="icon_10"]
+[ext_resource type="Texture2D" path="res://ai_assets/models/perseverance/iconos/mastil.png" id="icon_11"]
+[ext_resource type="Texture2D" path="res://ai_assets/models/perseverance/iconos/cabeza_supercam_mastcamz.png" id="icon_12"]
+[ext_resource type="Texture2D" path="res://ai_assets/models/perseverance/iconos/brazo_robotico.png" id="icon_13"]
+[ext_resource type="Texture2D" path="res://ai_assets/models/perseverance/iconos/torreta_taladro_sherloc_watson.png" id="icon_14"]
+[ext_resource type="Texture2D" path="res://ai_assets/models/perseverance/iconos/pixl.png" id="icon_15"]
+
+[sub_resource type="Resource" id="Piece_suspension_izquierda"]
+script = ExtResource("2_piece")
+id = &"suspension_izquierda"
+node_name = "suspension_izquierda"
+nombre = "Suspensión izquierda"
+nombre_en = "Left rocker-bogie"
+descripcion = "Las patas del rover. El sistema rocker-bogie deja que cada rueda suba y baje por separado, así el rover pasa sobre rocas sin volcarse."
+material = "Tubos de titanio, fabricados con el mismo proceso que se usa para los cuadros de bicicletas de alta gama."
+importancia = "Sin la suspensión el rover se volcaría o se quedaría atascado. Gracias a ella puede pasar sobre rocas y huecos del tamaño de una rueda (52,5 cm) y aguantar una inclinación de 45° sin caerse."
+dato = "Con esta suspensión, Perseverance puede pasar sobre rocas o pozos tan grandes como una de sus ruedas (52,5 cm)."
+conexion_mision = "Movilidad: si la suspensión falla, el rover no puede llegar a nuevos lugares."
+instruccion = "Coloca la suspensión izquierda: es la base del lado izquierdo del rover."
+orden = 1
+icono = ExtResource("icon_0")
+
+[sub_resource type="Resource" id="Piece_suspension_derecha"]
+script = ExtResource("2_piece")
+id = &"suspension_derecha"
+node_name = "suspension_derecha"
+nombre = "Suspensión derecha"
+nombre_en = "Right rocker-bogie"
+descripcion = "Igual que la izquierda, pero del otro lado. Los dos lados trabajan juntos como un sube y baja."
+material = "Tubos de titanio, igual que la suspensión izquierda."
+importancia = "Trabaja en pareja con la izquierda: si un lado sube por una roca, el otro ayuda a mantener el cuerpo casi derecho y estable."
+dato = "Perseverance está diseñado para inclinarse hasta 45 grados sin volcarse, aunque sus conductores evitan pasar de 30 grados."
+conexion_mision = "Movilidad: ambos lados deben estar bien para avanzar seguro."
+instruccion = "Coloca la suspensión derecha, igual que la izquierda pero del otro lado."
+orden = 2
+icono = ExtResource("icon_1")
+
+[sub_resource type="Resource" id="Piece_suspension_centro"]
+script = ExtResource("2_piece")
+id = &"suspension_centro"
+node_name = "suspension_centro"
+nombre = "Diferencial"
+nombre_en = "Differential bar"
+descripcion = "La barra de arriba que une la suspensión izquierda con la derecha. Cuando un lado sube, el otro baja y el cuerpo queda nivelado."
+material = "La NASA no publica el material exacto de esta pieza. Es parte del sistema rocker-bogie, que según los ingenieros de JPL usa titanio como material principal."
+importancia = "Une los dos lados. Cuando una pata sube, el diferencial hace que el cuerpo solo se incline la mitad, así las cámaras y los instrumentos se mantienen más estables."
+dato = "Es la barra larga que se ve sobre la parte de arriba del rover."
+conexion_mision = "Equilibrio: mantiene derechos los instrumentos mientras el rover se mueve."
+instruccion = "Une los dos lados con el diferencial: la barra va arriba, en el centro."
+orden = 3
+icono = ExtResource("icon_2")
+
+[sub_resource type="Resource" id="Piece_ruedas_izquierda"]
+script = ExtResource("2_piece")
+id = &"ruedas_izquierda"
+node_name = "ruedas_izquierda"
+nombre = "Ruedas izquierdas (3)"
+nombre_en = "Left wheels"
+descripcion = "Tres ruedas de aluminio con tacos para agarrarse al suelo y rayos curvos de titanio que funcionan como resortes."
+material = "Aluminio de grado de vuelo, tallado a partir de un bloque. Tiene 48 tacos (grousers) para agarrarse y rayos curvos de titanio que funcionan como resortes."
+importancia = "Son los pies del rover. Si una rueda se rompe, el rover no puede llegar a las rocas que debe estudiar. Por eso son más gruesas que las de Curiosity, cuyas ruedas se dañaron con piedras puntiagudas."
+dato = "Cada rueda mide 52,5 cm y tiene su propio motor. Las 4 ruedas de las esquinas también pueden girar para que el rover dé vuelta en su lugar."
+conexion_mision = "Energía: moverse gasta electricidad, así que cada viaje se planifica."
+instruccion = "Monta las tres ruedas izquierdas en los extremos de la suspensión izquierda."
+orden = 4
+icono = ExtResource("icon_3")
+
+[sub_resource type="Resource" id="Piece_ruedas_derecha"]
+script = ExtResource("2_piece")
+id = &"ruedas_derecha"
+node_name = "ruedas_derecha"
+nombre = "Ruedas derechas (3)"
+nombre_en = "Right wheels"
+descripcion = "Las otras tres ruedas. Son más angostas y más grandes que las de Curiosity, para gastarse menos con las rocas filosas."
+material = "Aluminio con tacos tallados y rayos curvos de titanio, igual que las del lado izquierdo. Miden 52,5 cm de diámetro."
+importancia = "Una vuelta completa de rueda, sin patinar, avanza 1,65 m. Las 6 ruedas juntas permiten que el rover maneje solo sobre arena y roca dura."
+dato = "En terreno plano y duro, Perseverance va a menos de 152 metros por hora: en Marte importa más llegar bien que llegar rápido."
+conexion_mision = "Energía: moverse gasta electricidad, así que cada viaje se planifica."
+instruccion = "Monta las tres ruedas derechas en la suspensión derecha."
+orden = 5
+icono = ExtResource("icon_4")
+
+[sub_resource type="Resource" id="Piece_cuerpo"]
+script = ExtResource("2_piece")
+id = &"cuerpo"
+node_name = "cuerpo"
+nombre = "Cuerpo (caja de electrónica)"
+nombre_en = "Warm Electronics Box (WEB)"
+descripcion = "La caja que protege el cerebro del rover (su computadora), la electrónica y los instrumentos, y los mantiene a buena temperatura. Tiene cámaras para evitar peligros adelante y atrás."
+material = "Paneles tipo sándwich con relleno de panal de abejas (honeycomb) y materiales compuestos de la empresa Toray, que también se usaron en Curiosity. Por dentro funciona como un termo que mantiene caliente la electrónica."
+importancia = "Protege el cerebro y el corazón del rover. En Marte las noches pueden bajar a unos -80 °C: sin esta caja aislada, la computadora y las baterías se congelarían."
+dato = "Adentro viajó MOXIE, un aparato del tamaño de una tostadora que fabricó 122 gramos de oxígeno con el aire de Marte entre 2021 y 2023."
+conexion_mision = "Oxígeno: MOXIE demostró que en el futuro se podría fabricar oxígeno en Marte para los astronautas."
+instruccion = "Baja el cuerpo (la caja de electrónica) sobre la suspensión."
+orden = 6
+icono = ExtResource("icon_5")
+
+[sub_resource type="Resource" id="Piece_sistema_muestras"]
+script = ExtResource("2_piece")
+id = &"sistema_muestras"
+node_name = "sistema_muestras"
+nombre = "Sistema de muestras"
+nombre_en = "Sample Caching System"
+descripcion = "La parte de adelante donde el rover cambia las brocas del taladro y guarda los tubos con rocas de Marte."
+material = "Los 43 tubos de muestra son principalmente de titanio y cada uno pesa menos de 57 g. Se limpiaron y esterilizaron en una sala ultralimpia."
+importancia = "Es la razón principal de la misión: guarda rocas de Marte selladas para que una misión futura pueda traerlas a la Tierra. Tiene más de 3000 piezas, más que un reloj suizo fino."
+dato = "Perseverance guarda pedacitos de roca del tamaño de una tiza en tubos muy limpios, para que algún día puedan estudiarse en la Tierra."
+conexion_mision = "Ciencia: cada muestra cuesta tiempo y energía, por eso se elige con cuidado dónde tomarla."
+instruccion = "Instala el sistema de muestras en la parte delantera del cuerpo."
+orden = 7
+icono = ExtResource("icon_6")
+
+[sub_resource type="Resource" id="Piece_radar_rimfax"]
+script = ExtResource("2_piece")
+id = &"radar_rimfax"
+node_name = "radar_rimfax"
+nombre = "Radar RIMFAX"
+nombre_en = "RIMFAX ground-penetrating radar"
+descripcion = "Un radar que mira bajo el suelo mientras el rover avanza, como una radiografía de la tierra."
+material = "La NASA no publica el material exacto de esta pieza. Su antena tiene forma de corbatín y está bajo la parte trasera del rover."
+importancia = "Es el primer radar que 've' bajo el suelo desde la superficie de Marte, hasta unos 10 m de profundidad. Muestra las capas de roca enterradas y ayuda a entender si hubo agua y por cuánto tiempo."
+dato = "Puede ver capas de roca, agua o hielo hasta 10 metros bajo la superficie. Mide cada 10 centímetros de camino."
+conexion_mision = "Recursos: encontrar hielo o agua bajo el suelo ayudaría a una futura base."
+instruccion = "Instala el radar RIMFAX debajo de la parte trasera."
+orden = 8
+icono = ExtResource("icon_7")
+
+[sub_resource type="Resource" id="Piece_mmrtg"]
+script = ExtResource("2_piece")
+id = &"mmrtg"
+node_name = "mmrtg"
+nombre = "Batería nuclear MMRTG"
+nombre_en = "Multi-Mission Radioisotope Thermoelectric Generator"
+descripcion = "La fuente de energía del rover. Convierte en electricidad el calor del plutonio-238, de día y de noche, sin depender del Sol."
+material = "4,8 kg de dióxido de plutonio (un tipo de cerámica) en 32 pastillas forradas con iridio, dentro de 8 módulos con grafito protector. 768 termopares de telururo de plomo y TAGS convierten el calor en electricidad, y aletas externas sueltan el calor sobrante."
+importancia = "Da energía de día y de noche, con polvo o sin sol, durante muchos años. Produce unos 110 W de electricidad al inicio y además calor para mantener tibio al rover. Es como una batería nuclear: sin ella el rover se apagaría."
+dato = "Da unos 110 vatios, más o menos lo que usa un foco grande. Por eso el rover tiene que repartir muy bien su energía."
+conexion_mision = "Energía: toda la misión depende de esta pieza. Si se usa mucha energía en una cosa, falta para otra."
+instruccion = "Conecta la batería nuclear MMRTG en la parte trasera: ahora el rover tiene energía."
+orden = 9
+icono = ExtResource("icon_8")
+
+[sub_resource type="Resource" id="Piece_antena_alta_ganancia"]
+script = ExtResource("2_piece")
+id = &"antena_alta_ganancia"
+node_name = "antena_alta_ganancia"
+nombre = "Antena de alta ganancia"
+nombre_en = "High-gain antenna"
+descripcion = "La antena con forma de hexágono. Apunta directo a la Tierra para mandar y recibir mensajes."
+material = "Antena plana de tecnología 'microstrip' fabricada por Airbus, protegida contra el polvo y probada entre -135 °C y +90 °C. Su mecanismo para apuntar lo hizo SENER."
+importancia = "Por ella llegan casi todas las órdenes desde la Tierra. Se puede girar para apuntar a la Tierra sin mover el rover, lo que ahorra energía."
+dato = "Un mensaje entre Marte y la Tierra tarda varios minutos en llegar, por eso el rover no se puede manejar como un auto a control remoto."
+conexion_mision = "Comunicación: hablar con la Tierra también gasta energía."
+instruccion = "Monta la antena de alta ganancia (el hexágono) sobre la cubierta."
+orden = 10
+icono = ExtResource("icon_9")
+
+[sub_resource type="Resource" id="Piece_antenas_uhf_baja_ganancia"]
+script = ExtResource("2_piece")
+id = &"antenas_uhf_baja_ganancia"
+node_name = "antenas_uhf_baja_ganancia"
+nombre = "Antenas UHF y de baja ganancia"
+nombre_en = "UHF and low-gain antennas"
+descripcion = "La antena UHF habla con las naves que orbitan Marte, que llevan los datos a la Tierra. La de baja ganancia sirve de respaldo."
+material = "La NASA no publica el material exacto de esta pieza. La antena UHF tiene forma de cilindro y la de baja ganancia parece una pieza de ajedrez."
+importancia = "El 99,9 % de los datos científicos viaja por la antena UHF hacia las naves que orbitan Marte (hasta 2 megabits por segundo), y ellas los mandan a la Tierra. La de baja ganancia sirve para emergencias."
+dato = "La mayoría de las fotos de Perseverance llegan a la Tierra pasando por un orbitador, no directo."
+conexion_mision = "Comunicación: depender de un orbitador obliga a esperar a que pase por encima."
+instruccion = "Monta las antenas UHF y de baja ganancia en la parte trasera de la cubierta."
+orden = 11
+icono = ExtResource("icon_10")
+
+[sub_resource type="Resource" id="Piece_mastil"]
+script = ExtResource("2_piece")
+id = &"mastil"
+node_name = "mastil"
+nombre = "Mástil de sensores"
+nombre_en = "Remote Sensing Mast"
+descripcion = "El cuello del rover. Levanta las cámaras y el láser para que vean lejos, como si el rover se parara en puntas de pie."
+material = "La NASA no publica el material exacto de esta pieza. Viajó doblado sobre la cubierta y se levantó después de aterrizar, hasta más de 2,2 m de altura."
+importancia = "Pone las cámaras a la altura de los ojos de una persona de 2 m, para ver lejos y elegir por dónde manejar. También lleva sensores del clima (MEDA)."
+dato = "Con el mástil arriba, Perseverance mide unos 2,2 metros de alto: tanto como un jugador de básquet."
+conexion_mision = "Exploración: ver lejos ayuda a elegir caminos seguros."
+instruccion = "Levanta el mástil de sensores en la esquina delantera derecha."
+orden = 12
+icono = ExtResource("icon_11")
+
+[sub_resource type="Resource" id="Piece_cabeza_supercam_mastcamz"]
+script = ExtResource("2_piece")
+id = &"cabeza_supercam_mastcamz"
+node_name = "cabeza_supercam_mastcamz"
+nombre = "Cabeza: SuperCam y Mastcam-Z"
+nombre_en = "SuperCam and Mastcam-Z head"
+descripcion = "La cabeza del rover. SuperCam dispara un láser a las rocas para saber de qué están hechas, y Mastcam-Z son dos cámaras con zoom que ven en 3D."
+material = "La NASA no publica el material exacto de esta pieza. La cabeza de SuperCam la construyeron Francia (CNES) y Estados Unidos."
+importancia = "Son los ojos del rover: eligen qué rocas vale la pena estudiar y permiten ver Marte en 3D, en color y con zoom."
+dato = "SuperCam puede analizar rocas a más de 7 metros de distancia. Mastcam-Z fue la primera cámara con zoom en un rover de Marte."
+conexion_mision = "Ciencia: estudiar rocas desde lejos ahorra viajes y energía."
+instruccion = "Coloca la cabeza con SuperCam y Mastcam-Z arriba del mástil."
+orden = 13
+icono = ExtResource("icon_12")
+
+[sub_resource type="Resource" id="Piece_brazo_robotico"]
+script = ExtResource("2_piece")
+id = &"brazo_robotico"
+node_name = "brazo_robotico"
+nombre = "Brazo robótico"
+nombre_en = "Robotic arm"
+descripcion = "Un brazo como el humano, con hombro, codo y muñeca, que acerca los instrumentos y el taladro a las rocas."
+material = "Titanio: es un brazo de 2 m con varios segmentos. Lo diseñó y construyó la empresa Motiv Space Systems."
+importancia = "Funciona como el brazo de un geólogo. Tiene hombro, codo y muñeca, y un sensor de fuerza que le avisa cuánto empuja. Sin él no se podrían usar el taladro ni los instrumentos de la mano."
+dato = "Mide 2,1 metros y tiene cinco articulaciones (motores que giran)."
+conexion_mision = "Ciencia: el brazo permite tocar y perforar rocas sin mover todo el rover."
+instruccion = "Instala el brazo robótico en el frente del rover."
+orden = 14
+icono = ExtResource("icon_13")
+
+[sub_resource type="Resource" id="Piece_torreta_taladro_sherloc_watson"]
+script = ExtResource("2_piece")
+id = &"torreta_taladro_sherloc_watson"
+node_name = "torreta_taladro_sherloc_watson"
+nombre = "Torreta: taladro, SHERLOC y WATSON"
+nombre_en = "Turret: coring drill, SHERLOC and WATSON"
+descripcion = "La mano del rover. Tiene un taladro que saca muestras de roca, SHERLOC, que busca compuestos orgánicos con un láser ultravioleta, y WATSON, una cámara para fotos muy de cerca."
+material = "La punta de las brocas es de carburo de tungsteno (grado K92 de Kennametal), un material duro para cortar roca. Las brocas abrasivas tienen 3 dientes de carburo de tungsteno."
+importancia = "Es la 'mano' del rover (unos 45 kg). Aquí se taladran las rocas: cada muestra mide 13 mm de ancho y 60 mm de largo. Sin la torreta no habría muestras para traer a la Tierra."
+dato = "WATSON puede mirar detalles de 30 micrómetros, más finos que un pelo."
+conexion_mision = "Ciencia: aquí empieza la búsqueda de señales de vida antigua."
+instruccion = "Pon la torreta con el taladro, SHERLOC y WATSON en la punta del brazo."
+orden = 15
+icono = ExtResource("icon_14")
+
+[sub_resource type="Resource" id="Piece_pixl"]
+script = ExtResource("2_piece")
+id = &"pixl"
+node_name = "pixl"
+nombre = "PIXL (rayos X)"
+nombre_en = "PIXL (Planetary Instrument for X-ray Lithochemistry)"
+descripcion = "Un instrumento de la mano del rover que usa rayos X para saber qué elementos químicos tiene una roca."
+material = "La NASA no publica el material exacto de esta pieza. Es del tamaño de una lonchera y se mueve con un hexápodo de 6 patas."
+importancia = "Su rayo X es tan fino que analiza zonas del tamaño de un grano de sal. Hace mapas químicos de las rocas para buscar huellas de microbios antiguos y elegir qué muestras guardar."
+dato = "Puede estudiar puntos tan pequeños como un grano de sal de mesa."
+conexion_mision = "Ciencia: conocer la química de las rocas dice si Marte tuvo agua y condiciones para la vida."
+instruccion = "Termina con PIXL, el último instrumento de la torreta. ¡Rover listo!"
+orden = 16
+icono = ExtResource("icon_15")
+
+[resource]
+script = ExtResource("1_data")
+nombre = "Perseverance"
+subtitulo = "Rover de la NASA · Activo en el cráter Jezero, Marte (noviembre de 2026)"
+credito = "Modelo 3D: NASA/JPL-Caltech (NASA 3D Resources). Dividido en piezas para NaSA-GAME."
+modelo = ExtResource("3_model")
+piezas = Array[ExtResource("2_piece")]([SubResource("Piece_suspension_izquierda"), SubResource("Piece_suspension_derecha"), SubResource("Piece_suspension_centro"), SubResource("Piece_ruedas_izquierda"), SubResource("Piece_ruedas_derecha"), SubResource("Piece_cuerpo"), SubResource("Piece_sistema_muestras"), SubResource("Piece_radar_rimfax"), SubResource("Piece_mmrtg"), SubResource("Piece_antena_alta_ganancia"), SubResource("Piece_antenas_uhf_baja_ganancia"), SubResource("Piece_mastil"), SubResource("Piece_cabeza_supercam_mastcamz"), SubResource("Piece_brazo_robotico"), SubResource("Piece_torreta_taladro_sherloc_watson"), SubResource("Piece_pixl")])

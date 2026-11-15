@@ -1,0 +1,206 @@
+{
+ "mision": "Apolo 8",
+ "fecha": "21 de diciembre de 1968",
+ "cohete": "Saturno V (AS-503)",
+ "nave": "Módulo de mando CM-103",
+ "tripulacion": [
+  "Frank Borman",
+  "Jim Lovell",
+  "Bill Anders"
+ ],
+ "nota_automatica": "En el Apolo 8 real, la computadora del cohete (la Unidad de Instrumentos) hacía estas maniobras sola y la tripulación las vigilaba. En esta simulación tú das las órdenes.",
+ "telemetria": [
+  {
+   "t": 0.0,
+   "altitud_km": 0.0,
+   "velocidad_kmh": 0.0,
+   "alcance_km": 0.0,
+   "inclinacion_deg": 0
+  },
+  {
+   "t": 0.67,
+   "altitud_km": 0.06,
+   "velocidad_kmh": 2,
+   "alcance_km": 0.0,
+   "inclinacion_deg": 0
+  },
+  {
+   "t": 61.45,
+   "altitud_km": 7.35,
+   "velocidad_kmh": 1181,
+   "alcance_km": 2.4,
+   "inclinacion_deg": 63
+  },
+  {
+   "t": 78.9,
+   "altitud_km": 13.43,
+   "velocidad_kmh": 1904,
+   "alcance_km": 6.6,
+   "inclinacion_deg": 60
+  },
+  {
+   "t": 125.93,
+   "altitud_km": 41.48,
+   "velocidad_kmh": 5552,
+   "alcance_km": 42.0,
+   "inclinacion_deg": 65.5
+  },
+  {
+   "t": 153.82,
+   "altitud_km": 65.75,
+   "velocidad_kmh": 8447,
+   "alcance_km": 89.5,
+   "inclinacion_deg": 69.3
+  },
+  {
+   "t": 154.47,
+   "altitud_km": 66.37,
+   "velocidad_kmh": 8479,
+   "alcance_km": 90.8,
+   "inclinacion_deg": 69.4
+  },
+  {
+   "t": 524.04,
+   "altitud_km": 191.54,
+   "velocidad_kmh": 23104,
+   "alcance_km": 1504.3,
+   "inclinacion_deg": 89.4
+  },
+  {
+   "t": 524.9,
+   "altitud_km": 191.61,
+   "velocidad_kmh": 23118,
+   "alcance_km": 1509.7,
+   "inclinacion_deg": 89.4
+  },
+  {
+   "t": 684.98,
+   "altitud_km": 191.36,
+   "velocidad_kmh": 26596,
+   "alcance_km": 2577.3,
+   "inclinacion_deg": 90
+  },
+  {
+   "t": 694.98,
+   "altitud_km": 191.36,
+   "velocidad_kmh": 26601,
+   "alcance_km": 2649.0,
+   "inclinacion_deg": 90
+  }
+ ],
+ "eventos": [
+  {
+   "id": "despegue",
+   "t": 0.0,
+   "accion": "¡DESPEGUE!",
+   "requiere_accion": true,
+   "etapa": "s_ic",
+   "titulo": "¡Despegue!",
+   "texto": "Los 5 motores F-1 de la 1.ª etapa (S-IC) queman queroseno y oxígeno líquido. El Saturno V mide 110,6 m: más alto que un edificio de 30 pisos.",
+   "pista": "Cuando la cuenta llegue a 0, pulsa ¡DESPEGUE!"
+  },
+  {
+   "id": "mach1",
+   "t": 61.45,
+   "requiere_accion": false,
+   "titulo": "Mach 1",
+   "texto": "A los 61 segundos el cohete ya va más rápido que el sonido."
+  },
+  {
+   "id": "maxq",
+   "t": 78.9,
+   "requiere_accion": false,
+   "titulo": "Máxima presión del aire (Max Q)",
+   "texto": "El aire empuja con más fuerza contra el cohete. Es el momento más duro para su estructura."
+  },
+  {
+   "id": "corte_central",
+   "t": 125.93,
+   "requiere_accion": false,
+   "titulo": "Se apaga el motor central",
+   "texto": "El motor F-1 del centro se apaga antes que los otros cuatro para que la aceleración no sea demasiado fuerte."
+  },
+  {
+   "id": "separar_sic",
+   "t": 153.82,
+   "accion": "SEPARAR 1.ª ETAPA",
+   "requiere_accion": true,
+   "etapa": "s_ii",
+   "quitar": "s_ic",
+   "titulo": "Separación de la 1.ª etapa",
+   "texto": "La S-IC ya gastó su combustible y cae al océano Atlántico. Se encienden los 5 motores J-2 de la 2.ª etapa (S-II), que usan hidrógeno y oxígeno líquidos. Frank Borman contó que el cambio de etapa los lanzó hacia adelante contra los cinturones.",
+   "pista": "Cuando se apaguen los motores F-1 (a los 2 min 34 s), separa la 1.ª etapa."
+  },
+  {
+   "id": "torre",
+   "t": 188.6,
+   "accion": "EXPULSAR TORRE DE ESCAPE",
+   "requiere_accion": true,
+   "quitar": "torre_escape",
+   "ventanas": true,
+   "titulo": "Torre de escape expulsada",
+   "texto": "La torre de escape ya no hace falta. Al soltarla, también se va la cubierta que tapaba las ventanas: ¡la cabina se llena de luz! Bill Anders vio la Tierra desde el espacio por primera vez.",
+   "pista": "A los 3 min 9 s expulsa la torre de escape para destapar las ventanas."
+  },
+  {
+   "id": "separar_sii",
+   "t": 524.04,
+   "accion": "SEPARAR 2.ª ETAPA",
+   "requiere_accion": true,
+   "etapa": "s_ivb",
+   "quitar": "s_ii",
+   "titulo": "Separación de la 2.ª etapa",
+   "texto": "La S-II se apaga a 191 km de altura. Ahora trabaja la 3.ª etapa (S-IVB) con un solo motor J-2. Borman la llamó «el viaje más suave del mundo».",
+   "pista": "A los 8 min 44 s se apaga la S-II: sepárala."
+  },
+  {
+   "id": "apagar_sivb",
+   "t": 684.98,
+   "accion": "APAGAR MOTOR S-IVB",
+   "requiere_accion": true,
+   "etapa": "",
+   "titulo": "Motor S-IVB apagado",
+   "texto": "Ya van a más de 26 000 km/h. El motor se apaga, pero la S-IVB se queda unida: más tarde se volverá a encender para ir hacia la Luna.",
+   "pista": "A los 11 min 25 s, con la velocidad de órbita, apaga el motor S-IVB."
+  },
+  {
+   "id": "orbita",
+   "t": 694.98,
+   "requiere_accion": false,
+   "fin": true,
+   "titulo": "¡En órbita alrededor de la Tierra!",
+   "texto": "Apolo 8 entró en una órbita de unos 181 × 191 km. Una vuelta a la Tierra tarda 88 minutos. Desde aquí partieron hacia la Luna: ¡fueron los primeros humanos en orbitarla!"
+  }
+ ],
+ "etapas": {
+  "s_ic": {
+   "nombre": "1.ª etapa S-IC",
+   "motores": "5 motores F-1",
+   "combustible": "Queroseno (RP-1) y oxígeno líquido",
+   "vibracion": 1.0
+  },
+  "s_ii": {
+   "nombre": "2.ª etapa S-II",
+   "motores": "5 motores J-2",
+   "combustible": "Hidrógeno y oxígeno líquidos",
+   "vibracion": 0.45
+  },
+  "s_ivb": {
+   "nombre": "3.ª etapa S-IVB",
+   "motores": "1 motor J-2",
+   "combustible": "Hidrógeno y oxígeno líquidos",
+   "vibracion": 0.15
+  }
+ },
+ "fuentes": [
+  "https://www.nasa.gov/wp-content/uploads/static/history/SP-4029/Apollo_08d_Ascent_Phase.htm",
+  "https://www.nasa.gov/wp-content/uploads/static/history/afj/ap08fj/pdf/a08-postlaunch-rep.pdf",
+  "https://www.nasa.gov/wp-content/uploads/static/history/afj/ap08fj/pdf/a08-missionreport.pdf",
+  "https://www.nasa.gov/history/50-years-ago-apollo-8-you-are-go-for-tli",
+  "https://www.thisdayinaviation.com/tag/bill-anders/",
+  "https://www.thisdayinaviation.com/tag/as-503/",
+  "https://www.americaspace.com/2018/12/23/he-lost-his-record-remembering-apollo-8-50-years-on-part-2/",
+  "https://nassp.space/index.php/Saturn_V"
+ ],
+ "nota_inclinacion": "inclinacion_deg es aproximada (para animar el cohete en 3D), derivada del ángulo de trayectoria de la tabla NASA SP-4029."
+}

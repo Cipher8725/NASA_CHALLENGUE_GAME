@@ -1,0 +1,502 @@
+[gd_scene load_steps=20 format=3]
+
+; Biblioteca de estudio: 9 libros en 3 estantes (Básico, Intermedio, Avanzado) y lector de libro abierto.
+; Textos en res://resources/biblioteca/catalogo.json (cada libro: 3 páginas + fuentes NASA).
+; Los libros se crean desde %BookTemplate; posiciones de la maqueta (columnas x 454/616/779, filas y 165/316/470).
+
+[ext_resource type="Script" path="res://scripts/library.gd" id="1_r"]
+[ext_resource type="Texture2D" path="res://ai_assets/ui/biblioteca/fondo_biblioteca.png" id="2_r"]
+[ext_resource type="Texture2D" path="res://ai_assets/ui/biblioteca/boton_volver.png" id="3_r"]
+[ext_resource type="Texture2D" path="res://ai_assets/ui/biblioteca/etiqueta_nivel.png" id="4_r"]
+[ext_resource type="Texture2D" path="res://ai_assets/ui/lector/fondo.png" id="5_r"]
+[ext_resource type="Texture2D" path="res://ai_assets/ui/lector/libro_abierto.png" id="6_r"]
+[ext_resource type="Texture2D" path="res://ai_assets/ui/lector/boton_normal.png" id="7_r"]
+[ext_resource type="Texture2D" path="res://ai_assets/ui/lector/boton_hover.png" id="8_r"]
+[ext_resource type="Texture2D" path="res://ai_assets/ui/lector/boton_pressed.png" id="9_r"]
+[ext_resource type="Texture2D" path="res://ai_assets/ui/lector/boton_disabled.png" id="10_r"]
+[ext_resource type="Texture2D" path="res://ai_assets/ui/lector/icono_izquierda.png" id="11_r"]
+[ext_resource type="Texture2D" path="res://ai_assets/ui/lector/icono_derecha.png" id="12_r"]
+[ext_resource type="Texture2D" path="res://ai_assets/ui/lector/icono_cerrar.png" id="13_r"]
+
+[sub_resource type="StyleBoxTexture" id="Style_n"]
+texture = ExtResource("7_r")
+texture_margin_left = 24.0
+texture_margin_top = 18.0
+texture_margin_right = 24.0
+texture_margin_bottom = 18.0
+content_margin_left = 18.0
+content_margin_right = 18.0
+
+[sub_resource type="StyleBoxTexture" id="Style_h"]
+texture = ExtResource("8_r")
+texture_margin_left = 24.0
+texture_margin_top = 18.0
+texture_margin_right = 24.0
+texture_margin_bottom = 18.0
+content_margin_left = 18.0
+content_margin_right = 18.0
+
+[sub_resource type="StyleBoxTexture" id="Style_p"]
+texture = ExtResource("9_r")
+texture_margin_left = 24.0
+texture_margin_top = 18.0
+texture_margin_right = 24.0
+texture_margin_bottom = 18.0
+content_margin_left = 18.0
+content_margin_right = 18.0
+
+[sub_resource type="StyleBoxTexture" id="Style_d"]
+texture = ExtResource("10_r")
+texture_margin_left = 24.0
+texture_margin_top = 18.0
+texture_margin_right = 24.0
+texture_margin_bottom = 18.0
+content_margin_left = 18.0
+content_margin_right = 18.0
+
+[sub_resource type="StyleBoxTexture" id="Style_v"]
+texture = ExtResource("3_r")
+texture_margin_left = 24.0
+texture_margin_top = 18.0
+texture_margin_right = 24.0
+texture_margin_bottom = 18.0
+content_margin_left = 18.0
+content_margin_right = 18.0
+
+[sub_resource type="StyleBoxFlat" id="Style_card"]
+content_margin_left = 18.0
+content_margin_top = 10.0
+content_margin_right = 18.0
+content_margin_bottom = 10.0
+bg_color = Color(0.04, 0.08, 0.15, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.35, 0.8, 1, 0.8)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[node name="Library" type="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_r")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Screen" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+mouse_filter = 2
+
+[node name="Title" type="Label" parent="Screen"]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 22.0
+offset_right = 840.0
+offset_bottom = 78.0
+theme_override_colors/font_color = Color(0.97, 0.99, 1, 1)
+theme_override_colors/font_outline_color = Color(0.02, 0.06, 0.14, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 40
+text = "Biblioteca"
+horizontal_alignment = 1
+
+[node name="BackButton" type="Button" parent="Screen"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 18.0
+offset_top = 18.0
+offset_right = 254.0
+offset_bottom = 70.0
+theme_override_colors/font_color = Color(0.85, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("Style_v")
+theme_override_styles/hover = SubResource("Style_h")
+theme_override_styles/pressed = SubResource("Style_p")
+theme_override_styles/focus = SubResource("Style_h")
+mouse_default_cursor_shape = 2
+text = "‹  Volver al menú"
+
+[node name="Level0" type="TextureRect" parent="Screen"]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 205.0
+offset_right = 420.0
+offset_bottom = 249.0
+mouse_filter = 2
+texture = ExtResource("4_r")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Screen/Level0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.85, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 19
+text = "Básico"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Level1" type="TextureRect" parent="Screen"]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 356.0
+offset_right = 420.0
+offset_bottom = 400.0
+mouse_filter = 2
+texture = ExtResource("4_r")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Screen/Level1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.85, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 19
+text = "Intermedio"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Level2" type="TextureRect" parent="Screen"]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 510.0
+offset_right = 420.0
+offset_bottom = 554.0
+mouse_filter = 2
+texture = ExtResource("4_r")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Screen/Level2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.85, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 19
+text = "Avanzado"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Shelf" type="Control" parent="Screen"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+
+[node name="BookTemplate" type="TextureButton" parent="Screen/Shelf"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 97.0
+offset_bottom = 118.0
+pivot_offset = Vector2(48, 118)
+mouse_default_cursor_shape = 2
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="BookInfo" type="PanelContainer" parent="Screen"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 390.0
+offset_top = 616.0
+offset_right = 890.0
+offset_bottom = 692.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("Style_card")
+
+[node name="BookInfoText" type="Label" parent="Screen/BookInfo"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.96, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "Elige un libro para leerlo"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Reader" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ReaderBackground" type="TextureRect" parent="Reader"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_r")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="ReaderDim" type="ColorRect" parent="Reader"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.01, 0.02, 0.05, 0.35)
+
+[node name="ReaderScreen" type="Control" parent="Reader"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+mouse_filter = 2
+
+[node name="ReaderTitle" type="Label" parent="Reader/ReaderScreen"]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 8.0
+offset_right = 840.0
+offset_bottom = 58.0
+theme_override_colors/font_color = Color(0.97, 0.99, 1, 1)
+theme_override_colors/font_outline_color = Color(0.02, 0.06, 0.14, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 32
+text = "Biblioteca"
+horizontal_alignment = 1
+
+[node name="CloseButton" type="Button" parent="Reader/ReaderScreen"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1062.0
+offset_top = 12.0
+offset_right = 1262.0
+offset_bottom = 58.0
+theme_override_colors/font_color = Color(0.85, 0.95, 1, 1)
+theme_override_colors/font_disabled_color = Color(0.5, 0.58, 0.66, 1)
+theme_override_font_sizes/font_size = 19
+theme_override_styles/normal = SubResource("Style_n")
+theme_override_styles/hover = SubResource("Style_h")
+theme_override_styles/pressed = SubResource("Style_p")
+theme_override_styles/disabled = SubResource("Style_d")
+theme_override_styles/focus = SubResource("Style_h")
+mouse_default_cursor_shape = 2
+text = "Cerrar libro"
+icon = ExtResource("13_r")
+expand_icon = true
+
+[node name="Book" type="TextureRect" parent="Reader/ReaderScreen"]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 60.0
+offset_right = 1100.0
+offset_bottom = 664.0
+mouse_filter = 2
+texture = ExtResource("6_r")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LeftPage" type="VBoxContainer" parent="Reader/ReaderScreen"]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 96.0
+offset_right = 608.0
+offset_bottom = 628.0
+theme_override_constants/separation = 10
+
+[node name="LeftTitle" type="Label" parent="Reader/ReaderScreen/LeftPage"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1, 0.13, 0.24, 1)
+theme_override_font_sizes/font_size = 26
+autowrap_mode = 3
+
+[node name="LeftRule" type="ColorRect" parent="Reader/ReaderScreen/LeftPage"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.1, 0.13, 0.24, 0.6)
+
+[node name="LeftImage" type="TextureRect" parent="Reader/ReaderScreen/LeftPage"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 230)
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LeftText" type="RichTextLabel" parent="Reader/ReaderScreen/LeftPage"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0.12, 0.13, 0.18, 1)
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+
+[node name="RightPage" type="VBoxContainer" parent="Reader/ReaderScreen"]
+layout_mode = 0
+offset_left = 672.0
+offset_top = 96.0
+offset_right = 1032.0
+offset_bottom = 628.0
+theme_override_constants/separation = 10
+
+[node name="RightTitle" type="Label" parent="Reader/ReaderScreen/RightPage"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1, 0.13, 0.24, 1)
+theme_override_font_sizes/font_size = 26
+autowrap_mode = 3
+
+[node name="RightRule" type="ColorRect" parent="Reader/ReaderScreen/RightPage"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.1, 0.13, 0.24, 0.6)
+
+[node name="RightImage" type="TextureRect" parent="Reader/ReaderScreen/RightPage"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 230)
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RightText" type="RichTextLabel" parent="Reader/ReaderScreen/RightPage"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0.12, 0.13, 0.18, 1)
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+
+[node name="ActivityButton" type="Button" parent="Reader/ReaderScreen/RightPage"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.95, 1, 1)
+theme_override_colors/font_disabled_color = Color(0.5, 0.58, 0.66, 1)
+theme_override_font_sizes/font_size = 19
+theme_override_styles/normal = SubResource("Style_n")
+theme_override_styles/hover = SubResource("Style_h")
+theme_override_styles/pressed = SubResource("Style_p")
+theme_override_styles/disabled = SubResource("Style_d")
+theme_override_styles/focus = SubResource("Style_h")
+mouse_default_cursor_shape = 2
+text = "Practicar"
+
+[node name="PrevButton" type="Button" parent="Reader/ReaderScreen"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 420.0
+offset_top = 664.0
+offset_right = 600.0
+offset_bottom = 710.0
+theme_override_colors/font_color = Color(0.85, 0.95, 1, 1)
+theme_override_colors/font_disabled_color = Color(0.5, 0.58, 0.66, 1)
+theme_override_font_sizes/font_size = 19
+theme_override_styles/normal = SubResource("Style_n")
+theme_override_styles/hover = SubResource("Style_h")
+theme_override_styles/pressed = SubResource("Style_p")
+theme_override_styles/disabled = SubResource("Style_d")
+theme_override_styles/focus = SubResource("Style_h")
+mouse_default_cursor_shape = 2
+text = "Anterior"
+icon = ExtResource("11_r")
+expand_icon = true
+
+[node name="PageLabel" type="Label" parent="Reader/ReaderScreen"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 600.0
+offset_top = 664.0
+offset_right = 680.0
+offset_bottom = 710.0
+theme_override_colors/font_color = Color(0.95, 0.98, 1, 1)
+theme_override_colors/font_outline_color = Color(0.02, 0.06, 0.14, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 20
+text = "1 / 3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NextButton" type="Button" parent="Reader/ReaderScreen"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 680.0
+offset_top = 664.0
+offset_right = 860.0
+offset_bottom = 710.0
+theme_override_colors/font_color = Color(0.85, 0.95, 1, 1)
+theme_override_colors/font_disabled_color = Color(0.5, 0.58, 0.66, 1)
+theme_override_font_sizes/font_size = 19
+theme_override_styles/normal = SubResource("Style_n")
+theme_override_styles/hover = SubResource("Style_h")
+theme_override_styles/pressed = SubResource("Style_p")
+theme_override_styles/disabled = SubResource("Style_d")
+theme_override_styles/focus = SubResource("Style_h")
+mouse_default_cursor_shape = 2
+text = "Siguiente"
+icon = ExtResource("12_r")
+icon_alignment = 2
+expand_icon = true
+
+[connection signal="pressed" from="Screen/BackButton" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Reader/ReaderScreen/CloseButton" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="Reader/ReaderScreen/PrevButton" to="." method="_on_prev_pressed"]
+[connection signal="pressed" from="Reader/ReaderScreen/NextButton" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="Reader/ReaderScreen/RightPage/ActivityButton" to="." method="_on_activity_pressed"]
+[connection signal="meta_clicked" from="Reader/ReaderScreen/LeftPage/LeftText" to="." method="_on_link_clicked"]
+[connection signal="meta_clicked" from="Reader/ReaderScreen/RightPage/RightText" to="." method="_on_link_clicked"]

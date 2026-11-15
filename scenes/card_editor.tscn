@@ -1,0 +1,203 @@
+[gd_scene load_steps=6 format=3]
+
+; Pantalla "MI CARNET": crear y guardar el carnet del astronauta.
+
+[ext_resource type="Script" path="res://scripts/card_editor.gd" id="1_editor"]
+[ext_resource type="PackedScene" path="res://scenes/ui/astronaut_card_view.tscn" id="2_view"]
+[ext_resource type="PackedScene" path="res://scenes/ui/photo_booth.tscn" id="3_booth"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+content_margin_left = 22.0
+content_margin_top = 18.0
+content_margin_right = 22.0
+content_margin_bottom = 18.0
+bg_color = Color(0.05, 0.08, 0.15, 0.92)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.45, 0.72, 1, 0.55)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button"]
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+bg_color = Color(0.12, 0.2, 0.34, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45, 0.72, 1, 0.7)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[node name="CardEditor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_editor")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.04, 0.05, 0.1, 1)
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 24.0
+offset_right = 1240.0
+offset_bottom = 74.0
+theme_override_colors/font_color = Color(1, 0.86, 0.45, 1)
+theme_override_font_sizes/font_size = 36
+text = "MI CARNET DE ASTRONAUTA"
+
+[node name="FormPanel" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 96.0
+offset_right = 540.0
+offset_bottom = 690.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="Form" type="VBoxContainer" parent="FormPanel"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="NameTitle" type="Label" parent="FormPanel/Form"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.78, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "1. Escribe tu nombre"
+
+[node name="NameEdit" type="LineEdit" parent="FormPanel/Form"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+placeholder_text = "Tu nombre de astronauta"
+
+[node name="AvatarTitle" type="Label" parent="FormPanel/Form"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.78, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "2. Tómate una foto o elige un dibujo"
+
+[node name="AvatarGrid" type="GridContainer" parent="FormPanel/Form"]
+layout_mode = 2
+columns = 1
+
+[node name="AvatarRow" type="HBoxContainer" parent="FormPanel/Form/AvatarGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="AvatarTemplate" type="Button" parent="FormPanel/Form/AvatarGrid/AvatarRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(66, 66)
+layout_mode = 2
+expand_icon = true
+
+[node name="PhotoRow" type="HBoxContainer" parent="FormPanel/Form"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="PhotoButton" type="Button" parent="FormPanel/Form/PhotoRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button")
+text = "TOMAR MI FOTO"
+
+[node name="RemovePhotoButton" type="Button" parent="FormPanel/Form/PhotoRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button")
+disabled = true
+text = "QUITAR FOTO"
+
+[node name="SaveTitle" type="Label" parent="FormPanel/Form"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.78, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "3. Guarda tu carnet"
+
+[node name="SaveButton" type="Button" parent="FormPanel/Form"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button")
+text = "GUARDAR MI CARNET"
+
+[node name="TryButton" type="Button" parent="FormPanel/Form"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button")
+text = "PROBAR MI CARNET EN LAS PUERTAS"
+
+[node name="BackButton" type="Button" parent="FormPanel/Form"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button")
+text = "VOLVER AL MENÚ"
+
+[node name="MessageLabel" type="Label" parent="FormPanel/Form"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.95, 0.7, 1)
+theme_override_font_sizes/font_size = 16
+autowrap_mode = 3
+
+[node name="CardPreview" parent="." instance=ExtResource("2_view")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 590.0
+offset_top = 150.0
+offset_right = 1230.0
+offset_bottom = 554.0
+
+[connection signal="text_changed" from="FormPanel/Form/NameEdit" to="." method="_on_name_changed"]
+[connection signal="pressed" from="FormPanel/Form/SaveButton" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="FormPanel/Form/TryButton" to="." method="_on_try_pressed"]
+[connection signal="pressed" from="FormPanel/Form/BackButton" to="." method="_on_back_pressed"]
+
+[node name="PhotoBooth" parent="." instance=ExtResource("3_booth")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="FormPanel/Form/PhotoRow/PhotoButton" to="." method="_on_photo_pressed"]
+[connection signal="pressed" from="FormPanel/Form/PhotoRow/RemovePhotoButton" to="." method="_on_remove_photo_pressed"]
+[connection signal="photo_taken" from="PhotoBooth" to="." method="_on_photo_taken"]

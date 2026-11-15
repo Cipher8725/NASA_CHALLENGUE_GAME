@@ -1,0 +1,600 @@
+[gd_scene load_steps=24 format=3]
+
+; Simulación de despegue del Apolo 8 (Saturno V), con datos reales en res://resources/apolo8/ascenso.json.
+; Capas: %Sky (shader del cielo, se ve por las ventanas transparentes) → %Cockpit (cabina, 4 vistas) → interfaz en %Screen.
+; El jugador da las órdenes: despegue, separar 1.ª etapa, soltar torre de escape, separar 2.ª etapa y apagar la S-IVB.
+
+[ext_resource type="Script" path="res://scripts/launch_simulation.gd" id="1_r"]
+[ext_resource type="Shader" path="res://resources/shaders/cielo_despegue.gdshader" id="2_r"]
+[ext_resource type="Texture2D" path="res://ai_assets/apolo8/cabina_000_frente.png" id="3_r"]
+[ext_resource type="Texture2D" path="res://ai_assets/apolo8/etapas/torre_escape.png" id="4_r"]
+[ext_resource type="Texture2D" path="res://ai_assets/apolo8/etapas/capsula_csm.png" id="5_r"]
+[ext_resource type="Texture2D" path="res://ai_assets/apolo8/etapas/adaptador_sla.png" id="6_r"]
+[ext_resource type="Texture2D" path="res://ai_assets/apolo8/etapas/s_ivb.png" id="7_r"]
+[ext_resource type="Texture2D" path="res://ai_assets/apolo8/etapas/s_ii.png" id="8_r"]
+[ext_resource type="Texture2D" path="res://ai_assets/apolo8/etapas/s_ic.png" id="9_r"]
+[ext_resource type="Texture2D" path="res://ai_assets/ui/lector/boton_normal.png" id="10_r"]
+[ext_resource type="Texture2D" path="res://ai_assets/ui/lector/boton_hover.png" id="11_r"]
+[ext_resource type="Texture2D" path="res://ai_assets/ui/lector/boton_pressed.png" id="12_r"]
+[ext_resource type="Texture2D" path="res://ai_assets/ui/lector/boton_disabled.png" id="13_r"]
+[ext_resource type="Texture2D" path="res://ai_assets/ui/lector/icono_izquierda.png" id="14_r"]
+[ext_resource type="Texture2D" path="res://ai_assets/ui/lector/icono_derecha.png" id="15_r"]
+
+[sub_resource type="ShaderMaterial" id="Sky_mat"]
+shader = ExtResource("2_r")
+shader_parameter/altitude_km = 0.0
+shader_parameter/covered = 1.0
+shader_parameter/time_s = 0.0
+
+[sub_resource type="StyleBoxTexture" id="Style_n"]
+texture = ExtResource("10_r")
+texture_margin_left = 24.0
+texture_margin_top = 18.0
+texture_margin_right = 24.0
+texture_margin_bottom = 18.0
+content_margin_left = 16.0
+content_margin_right = 16.0
+
+[sub_resource type="StyleBoxTexture" id="Style_h"]
+texture = ExtResource("11_r")
+texture_margin_left = 24.0
+texture_margin_top = 18.0
+texture_margin_right = 24.0
+texture_margin_bottom = 18.0
+content_margin_left = 16.0
+content_margin_right = 16.0
+
+[sub_resource type="StyleBoxTexture" id="Style_p"]
+texture = ExtResource("12_r")
+texture_margin_left = 24.0
+texture_margin_top = 18.0
+texture_margin_right = 24.0
+texture_margin_bottom = 18.0
+content_margin_left = 16.0
+content_margin_right = 16.0
+
+[sub_resource type="StyleBoxTexture" id="Style_d"]
+texture = ExtResource("13_r")
+texture_margin_left = 24.0
+texture_margin_top = 18.0
+texture_margin_right = 24.0
+texture_margin_bottom = 18.0
+content_margin_left = 16.0
+content_margin_right = 16.0
+
+[sub_resource type="StyleBoxFlat" id="Style_card"]
+content_margin_left = 16.0
+content_margin_top = 10.0
+content_margin_right = 16.0
+content_margin_bottom = 10.0
+bg_color = Color(0.03, 0.06, 0.12, 0.88)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.35, 0.8, 1, 0.75)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="Style_go"]
+content_margin_left = 16.0
+content_margin_right = 16.0
+bg_color = Color(0.85, 0.33, 0.1, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.82, 0.5, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="Style_go_h"]
+content_margin_left = 16.0
+content_margin_right = 16.0
+bg_color = Color(0.97, 0.45, 0.15, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.92, 0.7, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[node name="LaunchSimulation" type="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r")
+
+[node name="Backdrop" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.03, 0.04, 0.07, 1)
+
+[node name="ShakeRoot" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+mouse_filter = 2
+
+[node name="CockpitFrame" type="AspectRatioContainer" parent="ShakeRoot"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 132.0
+offset_right = 1076.0
+offset_bottom = 670.0
+mouse_filter = 2
+ratio = 2.0
+
+[node name="Sky" type="ColorRect" parent="ShakeRoot/CockpitFrame"]
+unique_name_in_owner = true
+material = SubResource("Sky_mat")
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Cockpit" type="TextureRect" parent="ShakeRoot/CockpitFrame"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+pivot_offset = Vector2(538, 269)
+texture = ExtResource("3_r")
+expand_mode = 1
+stretch_mode = 0
+
+[node name="Screen" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+mouse_filter = 2
+
+[node name="TopCard" type="PanelContainer" parent="Screen"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 8.0
+offset_right = 574.0
+offset_bottom = 124.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("Style_card")
+
+[node name="TopBox" type="VBoxContainer" parent="Screen/TopCard"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="TitleLabel" type="Label" parent="Screen/TopCard/TopBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.84, 0.4, 1)
+theme_override_font_sizes/font_size = 22
+text = "SIMULACIÓN DE DESPEGUE · APOLO 8"
+autowrap_mode = 3
+
+[node name="TelemetryBox" type="HBoxContainer" parent="Screen/TopCard/TopBox"]
+layout_mode = 2
+theme_override_constants/separation = 22
+
+[node name="ClockLabel" type="Label" parent="Screen/TopCard/TopBox/TelemetryBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 1, 0.75, 1)
+theme_override_font_sizes/font_size = 24
+text = "T− 00:00:10"
+
+[node name="AltitudeLabel" type="Label" parent="Screen/TopCard/TopBox/TelemetryBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.96, 1, 1)
+theme_override_font_sizes/font_size = 19
+text = "Altura: 0 km"
+vertical_alignment = 1
+
+[node name="SpeedLabel" type="Label" parent="Screen/TopCard/TopBox/TelemetryBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.96, 1, 1)
+theme_override_font_sizes/font_size = 19
+text = "Velocidad: 0 km/h"
+vertical_alignment = 1
+
+[node name="StageLabel" type="Label" parent="Screen/TopCard/TopBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.84, 0.4, 1)
+theme_override_font_sizes/font_size = 17
+text = "Etapa: —"
+autowrap_mode = 3
+
+[node name="EnginesLabel" type="Label" parent="Screen/TopCard/TopBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.85, 0.95, 1)
+theme_override_font_sizes/font_size = 15
+text = ""
+autowrap_mode = 3
+
+[node name="ViewCard" type="PanelContainer" parent="Screen"]
+layout_mode = 0
+offset_left = 590.0
+offset_top = 12.0
+offset_right = 1070.0
+offset_bottom = 68.0
+theme_override_styles/panel = SubResource("Style_card")
+
+[node name="ViewBox" type="HBoxContainer" parent="Screen/ViewCard"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ViewLeft" type="Button" parent="Screen/ViewCard/ViewBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 36)
+layout_mode = 2
+flat = true
+focus_mode = 0
+icon = ExtResource("14_r")
+expand_icon = true
+mouse_default_cursor_shape = 2
+
+[node name="ViewLabel" type="Label" parent="Screen/ViewCard/ViewBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.96, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "Vista: Frente (1/4)"
+autowrap_mode = 3
+size_flags_horizontal = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ViewRight" type="Button" parent="Screen/ViewCard/ViewBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 36)
+layout_mode = 2
+flat = true
+focus_mode = 0
+icon = ExtResource("15_r")
+expand_icon = true
+mouse_default_cursor_shape = 2
+
+[node name="MenuButton" type="Button" parent="Screen"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 590.0
+offset_top = 76.0
+offset_right = 826.0
+offset_bottom = 120.0
+theme_override_colors/font_color = Color(0.85, 0.95, 1, 1)
+theme_override_colors/font_disabled_color = Color(0.5, 0.58, 0.66, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("Style_n")
+theme_override_styles/hover = SubResource("Style_h")
+theme_override_styles/pressed = SubResource("Style_p")
+theme_override_styles/disabled = SubResource("Style_d")
+theme_override_styles/focus = SubResource("Style_h")
+mouse_default_cursor_shape = 2
+focus_mode = 0
+text = "Volver al menú"
+
+[node name="FastButton" type="Button" parent="Screen"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 834.0
+offset_top = 76.0
+offset_right = 1070.0
+offset_bottom = 120.0
+theme_override_colors/font_color = Color(0.85, 0.95, 1, 1)
+theme_override_colors/font_disabled_color = Color(0.5, 0.58, 0.66, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("Style_n")
+theme_override_styles/hover = SubResource("Style_h")
+theme_override_styles/pressed = SubResource("Style_p")
+theme_override_styles/disabled = SubResource("Style_d")
+theme_override_styles/focus = SubResource("Style_h")
+mouse_default_cursor_shape = 2
+focus_mode = 0
+toggle_mode = true
+text = "Avance rápido ×20"
+
+[node name="RocketCard" type="PanelContainer" parent="Screen"]
+layout_mode = 0
+offset_left = 1084.0
+offset_top = 12.0
+offset_right = 1268.0
+offset_bottom = 708.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("Style_card")
+
+[node name="RocketBox" type="VBoxContainer" parent="Screen/RocketCard"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="RocketTitle" type="Label" parent="Screen/RocketCard/RocketBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.84, 0.4, 1)
+theme_override_font_sizes/font_size = 17
+text = "SATURNO V"
+autowrap_mode = 3
+horizontal_alignment = 1
+
+[node name="Stack" type="VBoxContainer" parent="Screen/RocketCard/RocketBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="torre_escape" type="TextureRect" parent="Screen/RocketCard/RocketBox/Stack"]
+custom_minimum_size = Vector2(0, 47)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("4_r")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="capsula_csm" type="TextureRect" parent="Screen/RocketCard/RocketBox/Stack"]
+custom_minimum_size = Vector2(0, 63)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("5_r")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="adaptador_sla" type="TextureRect" parent="Screen/RocketCard/RocketBox/Stack"]
+custom_minimum_size = Vector2(0, 38)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("6_r")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="s_ivb" type="TextureRect" parent="Screen/RocketCard/RocketBox/Stack"]
+custom_minimum_size = Vector2(0, 86)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("7_r")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="s_ii" type="TextureRect" parent="Screen/RocketCard/RocketBox/Stack"]
+custom_minimum_size = Vector2(0, 123)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("8_r")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="s_ic" type="TextureRect" parent="Screen/RocketCard/RocketBox/Stack"]
+custom_minimum_size = Vector2(0, 247)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("9_r")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="StageHint" type="Label" parent="Screen/RocketCard/RocketBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.85, 0.95, 1)
+theme_override_font_sizes/font_size = 13
+text = "La etapa que empuja brilla."
+autowrap_mode = 3
+horizontal_alignment = 1
+
+[node name="InfoCard" type="PanelContainer" parent="Screen"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 520.0
+offset_right = 574.0
+offset_bottom = 708.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("Style_card")
+
+[node name="InfoBox" type="VBoxContainer" parent="Screen/InfoCard"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="InfoTitle" type="Label" parent="Screen/InfoCard/InfoBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.84, 0.4, 1)
+theme_override_font_sizes/font_size = 20
+text = ""
+autowrap_mode = 3
+
+[node name="InfoText" type="Label" parent="Screen/InfoCard/InfoBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.96, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = ""
+autowrap_mode = 3
+
+[node name="HintCard" type="PanelContainer" parent="Screen"]
+layout_mode = 0
+offset_left = 590.0
+offset_top = 566.0
+offset_right = 1070.0
+offset_bottom = 624.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("Style_card")
+
+[node name="HintLabel" type="Label" parent="Screen/HintCard"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = ""
+autowrap_mode = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ActionButton" type="Button" parent="Screen"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 590.0
+offset_top = 632.0
+offset_right = 1070.0
+offset_bottom = 708.0
+pivot_offset = Vector2(240, 38)
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("Style_go")
+theme_override_styles/hover = SubResource("Style_go_h")
+theme_override_styles/pressed = SubResource("Style_go")
+text = "INICIAR CUENTA REGRESIVA"
+
+[node name="FeedbackLabel" type="Label" parent="Screen"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 240.0
+offset_top = 300.0
+offset_right = 1040.0
+offset_bottom = 370.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.55, 1, 0.7, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 36
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="IntroPanel" type="PanelContainer" parent="Screen"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 300.0
+offset_top = 140.0
+offset_right = 980.0
+offset_bottom = 550.0
+theme_override_styles/panel = SubResource("Style_card")
+
+[node name="IntroBox" type="VBoxContainer" parent="Screen/IntroPanel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="IntroTitle" type="Label" parent="Screen/IntroPanel/IntroBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.84, 0.4, 1)
+theme_override_font_sizes/font_size = 28
+text = "Misión Apolo 8"
+autowrap_mode = 3
+
+[node name="IntroText" type="Label" parent="Screen/IntroPanel/IntroBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.96, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = ""
+autowrap_mode = 3
+
+[node name="ResultPanel" type="PanelContainer" parent="Screen"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 300.0
+offset_top = 130.0
+offset_right = 980.0
+offset_bottom = 560.0
+theme_override_styles/panel = SubResource("Style_card")
+
+[node name="ResultBox" type="VBoxContainer" parent="Screen/ResultPanel"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="ResultTitle" type="Label" parent="Screen/ResultPanel/ResultBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.84, 0.4, 1)
+theme_override_font_sizes/font_size = 32
+text = "¡En órbita!"
+autowrap_mode = 3
+horizontal_alignment = 1
+
+[node name="ResultStars" type="Label" parent="Screen/ResultPanel/ResultBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.2, 1)
+theme_override_font_sizes/font_size = 54
+text = "★★★"
+autowrap_mode = 3
+horizontal_alignment = 1
+
+[node name="ResultText" type="Label" parent="Screen/ResultPanel/ResultBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.96, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = ""
+autowrap_mode = 3
+
+[node name="ResultButtons" type="HBoxContainer" parent="Screen/ResultPanel/ResultBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="RetryButton" type="Button" parent="Screen/ResultPanel/ResultBox/ResultButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 52)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.95, 1, 1)
+theme_override_colors/font_disabled_color = Color(0.5, 0.58, 0.66, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("Style_n")
+theme_override_styles/hover = SubResource("Style_h")
+theme_override_styles/pressed = SubResource("Style_p")
+theme_override_styles/disabled = SubResource("Style_d")
+theme_override_styles/focus = SubResource("Style_h")
+mouse_default_cursor_shape = 2
+focus_mode = 0
+text = "Volver a despegar"
+
+[node name="ResultMenuButton" type="Button" parent="Screen/ResultPanel/ResultBox/ResultButtons"]
+custom_minimum_size = Vector2(240, 52)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.95, 1, 1)
+theme_override_colors/font_disabled_color = Color(0.5, 0.58, 0.66, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("Style_n")
+theme_override_styles/hover = SubResource("Style_h")
+theme_override_styles/pressed = SubResource("Style_p")
+theme_override_styles/disabled = SubResource("Style_d")
+theme_override_styles/focus = SubResource("Style_h")
+mouse_default_cursor_shape = 2
+focus_mode = 0
+text = "Volver al menú"
+
+[connection signal="pressed" from="Screen/ActionButton" to="." method="_on_action_pressed"]
+[connection signal="pressed" from="Screen/MenuButton" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="Screen/ResultPanel/ResultBox/ResultButtons/ResultMenuButton" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="Screen/ResultPanel/ResultBox/ResultButtons/RetryButton" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="Screen/ViewCard/ViewBox/ViewLeft" to="." method="_on_view_left"]
+[connection signal="pressed" from="Screen/ViewCard/ViewBox/ViewRight" to="." method="_on_view_right"]
+[connection signal="toggled" from="Screen/FastButton" to="." method="_on_fast_toggled"]

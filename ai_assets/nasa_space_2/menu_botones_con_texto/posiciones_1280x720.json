@@ -1,0 +1,56 @@
+{
+  "jugar": {
+    "x": 146,
+    "y": 259,
+    "ancho": 286,
+    "alto": 69
+  },
+  "biblioteca": {
+    "x": 147,
+    "y": 354,
+    "ancho": 286,
+    "alto": 69
+  },
+  "salir": {
+    "x": 148,
+    "y": 448,
+    "ancho": 285,
+    "alto": 67
+  },
+  "base_lunar": {
+    "x": 501,
+    "y": 180,
+    "ancho": 397,
+    "alto": 85
+  },
+  "armado_del_rover": {
+    "x": 501,
+    "y": 282,
+    "ancho": 397,
+    "alto": 82
+  },
+  "simulacion_de_despegue": {
+    "x": 501,
+    "y": 377,
+    "ancho": 397,
+    "alto": 83
+  },
+  "exploracion_lunar": {
+    "x": 501,
+    "y": 471,
+    "ancho": 397,
+    "alto": 84
+  },
+  "encabezado_menu_de_juego": {
+    "x": 517,
+    "y": 92,
+    "ancho": 361,
+    "alto": 60
+  },
+  "panel_semifondo": {
+    "x": 477,
+    "y": 102,
+    "ancho": 442,
+    "alto": 470
+  }
+}

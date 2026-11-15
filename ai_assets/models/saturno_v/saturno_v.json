@@ -1,0 +1,35 @@
+{
+ "escala": 8.516330863614636,
+ "piezas": {
+  "s_ic": {
+   "base_m": 0.0,
+   "tope_m": 42.08,
+   "tris": 32174
+  },
+  "s_ii": {
+   "base_m": 42.08,
+   "tope_m": 67.2,
+   "tris": 960
+  },
+  "s_ivb": {
+   "base_m": 67.2,
+   "tope_m": 88.58,
+   "tris": 680
+  },
+  "adaptador_sla": {
+   "base_m": 88.58,
+   "tope_m": 94.96,
+   "tris": 120
+  },
+  "csm": {
+   "base_m": 94.96,
+   "tope_m": 100.5,
+   "tris": 880
+  },
+  "torre_escape": {
+   "base_m": 100.5,
+   "tope_m": 110.6,
+   "tris": 400
+  }
+ }
+}

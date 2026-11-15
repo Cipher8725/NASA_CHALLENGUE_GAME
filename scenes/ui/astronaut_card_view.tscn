@@ -1,0 +1,303 @@
+[gd_scene load_steps=10 format=3]
+
+; Carnet del astronauta (vista). Llamar a `show_card(card)` para llenarlo.
+; Es un carnet DE JUEGO: no imita ningún documento oficial real.
+
+[ext_resource type="Script" path="res://scripts/astronaut_card_view.gd" id="1_view"]
+[ext_resource type="Script" path="res://scripts/card_barcode.gd" id="2_barcode"]
+[ext_resource type="Texture2D" path="res://ai_assets/textures/avatares/avatar_1.png" id="3_avatar"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
+bg_color = Color(0.94, 0.96, 0.99, 1)
+border_width_left = 10
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.13, 0.33, 0.62, 1)
+corner_radius_top_left = 22
+corner_radius_top_right = 22
+corner_radius_bottom_right = 22
+corner_radius_bottom_left = 22
+shadow_color = Color(0, 0, 0, 0.35)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_header"]
+content_margin_left = 18.0
+content_margin_top = 10.0
+content_margin_right = 18.0
+content_margin_bottom = 10.0
+bg_color = Color(0.06, 0.12, 0.26, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_photo"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.13, 0.33, 0.62, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_level"]
+content_margin_left = 14.0
+content_margin_top = 6.0
+content_margin_right = 14.0
+content_margin_bottom = 6.0
+bg_color = Color(0.25, 0.65, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_chip"]
+bg_color = Color(0.86, 0.7, 0.3, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.55, 0.42, 0.12, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="Gradient" id="Gradient_holo"]
+offsets = PackedFloat32Array(0, 0.25, 0.5, 0.75, 1)
+colors = PackedColorArray(0.55, 0.85, 1, 0.9, 0.85, 0.6, 1, 0.9, 0.6, 1, 0.75, 0.9, 1, 0.9, 0.55, 0.9, 0.55, 0.85, 1, 0.9)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_holo"]
+gradient = SubResource("Gradient_holo")
+width = 128
+height = 16
+fill_to = Vector2(1, 1)
+
+[node name="AstronautCardView" type="PanelContainer"]
+custom_minimum_size = Vector2(640, 404)
+offset_right = 640.0
+offset_bottom = 404.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+script = ExtResource("1_view")
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="Rows" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+
+[node name="Header" type="PanelContainer" parent="Margin/Rows"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_header")
+
+[node name="HeaderBox" type="VBoxContainer" parent="Margin/Rows/Header"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="Title" type="Label" parent="Margin/Rows/Header/HeaderBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.84, 0.4, 1)
+theme_override_font_sizes/font_size = 26
+text = "CARNET DE ASTRONAUTA"
+
+[node name="Subtitle" type="Label" parent="Margin/Rows/Header/HeaderBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 13
+text = "Base Lunar Selene · Programa de entrenamiento NaSA-GAME"
+
+[node name="Body" type="HBoxContainer" parent="Margin/Rows"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="PhotoFrame" type="PanelContainer" parent="Margin/Rows/Body"]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_photo")
+
+[node name="Photo" type="TextureRect" parent="Margin/Rows/Body/PhotoFrame"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(170, 196)
+layout_mode = 2
+texture = ExtResource("3_avatar")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Fields" type="GridContainer" parent="Margin/Rows/Body"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 4
+columns = 2
+
+[node name="NameKey" type="Label" parent="Margin/Rows/Body/Fields"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.46, 0.56, 1)
+theme_override_font_sizes/font_size = 12
+text = "NOMBRE"
+
+[node name="NameValue" type="Label" parent="Margin/Rows/Body/Fields"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.06, 0.1, 0.2, 1)
+theme_override_font_sizes/font_size = 20
+text = "NOMBRE"
+autowrap_mode = 3
+
+[node name="NumberKey" type="Label" parent="Margin/Rows/Body/Fields"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.46, 0.56, 1)
+theme_override_font_sizes/font_size = 12
+text = "Nº DE CARNET"
+
+[node name="NumberValue" type="Label" parent="Margin/Rows/Body/Fields"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.06, 0.1, 0.2, 1)
+theme_override_font_sizes/font_size = 17
+text = "SEL-0000-0000"
+
+[node name="RankKey" type="Label" parent="Margin/Rows/Body/Fields"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.46, 0.56, 1)
+theme_override_font_sizes/font_size = 12
+text = "RANGO"
+
+[node name="RankValue" type="Label" parent="Margin/Rows/Body/Fields"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.06, 0.1, 0.2, 1)
+theme_override_font_sizes/font_size = 17
+text = "Cadete astronauta"
+
+[node name="BaseKey" type="Label" parent="Margin/Rows/Body/Fields"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.46, 0.56, 1)
+theme_override_font_sizes/font_size = 12
+text = "BASE"
+
+[node name="BaseValue" type="Label" parent="Margin/Rows/Body/Fields"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.06, 0.1, 0.2, 1)
+theme_override_font_sizes/font_size = 17
+text = "Base Lunar Selene"
+
+[node name="IssuedKey" type="Label" parent="Margin/Rows/Body/Fields"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.46, 0.56, 1)
+theme_override_font_sizes/font_size = 12
+text = "EMITIDO"
+
+[node name="IssuedValue" type="Label" parent="Margin/Rows/Body/Fields"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.06, 0.1, 0.2, 1)
+theme_override_font_sizes/font_size = 17
+text = "2026-01-01"
+
+[node name="ExpiresKey" type="Label" parent="Margin/Rows/Body/Fields"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.46, 0.56, 1)
+theme_override_font_sizes/font_size = 12
+text = "VENCE"
+
+[node name="ExpiresValue" type="Label" parent="Margin/Rows/Body/Fields"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.06, 0.1, 0.2, 1)
+theme_override_font_sizes/font_size = 17
+text = "2027-01-01"
+
+[node name="AccessKey" type="Label" parent="Margin/Rows/Body/Fields"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.46, 0.56, 1)
+theme_override_font_sizes/font_size = 12
+text = "ACCESO"
+
+[node name="LevelBadge" type="PanelContainer" parent="Margin/Rows/Body/Fields"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_level")
+
+[node name="LevelValue" type="Label" parent="Margin/Rows/Body/Fields/LevelBadge"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "NIVEL 1"
+
+[node name="Footer" type="HBoxContainer" parent="Margin/Rows"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 14
+
+[node name="Chip" type="Panel" parent="Margin/Rows/Footer"]
+custom_minimum_size = Vector2(54, 42)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_chip")
+
+[node name="BarcodeBox" type="VBoxContainer" parent="Margin/Rows/Footer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="Barcode" type="Control" parent="Margin/Rows/Footer/BarcodeBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 36)
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("2_barcode")
+
+[node name="BarcodeText" type="Label" parent="Margin/Rows/Footer/BarcodeBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.25, 0.32, 1)
+theme_override_font_sizes/font_size = 11
+text = "SEL 0000 0000"
+horizontal_alignment = 1
+
+[node name="Side" type="VBoxContainer" parent="Margin/Rows/Footer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+alignment = 1
+
+[node name="Holo" type="TextureRect" parent="Margin/Rows/Footer/Side"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_holo")
+expand_mode = 1
+
+[node name="Note" type="Label" parent="Margin/Rows/Footer/Side"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.46, 0.56, 1)
+theme_override_font_sizes/font_size = 11
+text = "Carnet de juego · no es un documento oficial"
+horizontal_alignment = 2

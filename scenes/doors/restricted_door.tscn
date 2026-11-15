@@ -1,0 +1,95 @@
+[gd_scene load_steps=9 format=3]
+
+; Puerta RESTRINGIDA: solo se abre al pasar un carnet con nivel suficiente por el lector (tecla E).
+; Modelo 3D en res://ai_assets/models/puerta/. Medidas: 1,7 m x 2,2 m por defecto. CAMBIA EL TAMAÑO en el Inspector: grupo "Tamaño (ajustable)".
+; Al abrirse la hoja sube su propia altura (o se desliza de lado si slide_direction = IZQUIERDA/DERECHA, para techos bajos).
+; Colisiones: marco (StaticBody3D, capa 1) y hoja (se desactiva al abrir).
+; Áreas: capa 0, máscara 2 (el jugador está en la capa 2 y en el grupo "player").
+
+[ext_resource type="Script" path="res://scripts/sliding_door.gd" id="1_door"]
+[ext_resource type="PackedScene" path="res://ai_assets/models/puerta/puerta_restringida.glb" id="2_model"]
+[ext_resource type="PackedScene" path="res://ai_assets/models/puerta/lector_carnet.glb" id="3_reader"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_post"]
+resource_local_to_scene = true
+size = Vector3(0.23, 2.2, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_top"]
+resource_local_to_scene = true
+size = Vector3(1.7, 0.25, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_leaf"]
+resource_local_to_scene = true
+size = Vector3(1.26, 1.96, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_detect"]
+resource_local_to_scene = true
+size = Vector3(3, 2.4, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_reader"]
+resource_local_to_scene = true
+size = Vector3(1.6, 2.2, 1.8)
+
+[node name="RestrictedDoor" type="Node3D"]
+script = ExtResource("1_door")
+required_access_level = 2
+
+[node name="Model" parent="." instance=ExtResource("2_model")]
+unique_name_in_owner = true
+
+[node name="FrameBody" type="StaticBody3D" parent="."]
+
+[node name="LeftPost" type="CollisionShape3D" parent="FrameBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.735, 1.1, 0)
+shape = SubResource("BoxShape3D_post")
+
+[node name="RightPost" type="CollisionShape3D" parent="FrameBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.735, 1.1, 0)
+shape = SubResource("BoxShape3D_post")
+
+[node name="Top" type="CollisionShape3D" parent="FrameBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.075, 0)
+shape = SubResource("BoxShape3D_top")
+
+[node name="LeafBody" type="StaticBody3D" parent="."]
+
+[node name="LeafCollision" type="CollisionShape3D" parent="LeafBody"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.98, -0.05)
+shape = SubResource("BoxShape3D_leaf")
+
+[node name="DetectArea" type="Area3D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="DetectShape" type="CollisionShape3D" parent="DetectArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+shape = SubResource("BoxShape3D_detect")
+
+[node name="StatusLabel" type="Label3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.95, 0.25)
+billboard = 1
+no_depth_test = true
+modulate = Color(1, 0.9, 0.55, 1)
+font_size = 30
+pixel_size = 0.004
+outline_size = 8
+width = 600.0
+autowrap_mode = 3
+outline_modulate = Color(0, 0, 0, 1)
+
+[node name="CardReader" parent="." instance=ExtResource("3_reader")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15, 1.0, 0.2)
+
+[node name="ReaderArea" type="Area3D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="ReaderShape" type="CollisionShape3D" parent="ReaderArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15, 1.1, 1.0)
+shape = SubResource("BoxShape3D_reader")
