@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3]
+
+; Herramienta de desarrollo: captura las pantallas de las funciones nuevas
+; del Hito 20 (Recursos de la NASA y la CSA) en docs/capturas/.
+;
+; Godot --path . --rendering-driver opengl3 res://tools/capturas/capturar_nasa.tscn
+
+[ext_resource type="Script" path="res://tools/capturas/capturar_nasa.gd" id="1_captura"]
+
+[node name="CapturarNasa" type="Node"]
+script = ExtResource("1_captura")

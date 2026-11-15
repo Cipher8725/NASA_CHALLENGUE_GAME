@@ -1,0 +1,14 @@
+[gd_scene format=3]
+
+; Consola del DOMO: hereda de console.tscn (mismo modelo, luz, etiqueta y
+; zona de interacción) y cambia el script por scripts/dome_console.gd, que
+; desvía TODA la energía de la estación al escudo del domo.
+
+[ext_resource type="PackedScene" path="res://scenes/console.tscn" id="1_console"]
+[ext_resource type="Script" path="res://scripts/dome_console.gd" id="2_dome"]
+
+[node name="DomeConsole" instance=ExtResource("1_console")]
+script = ExtResource("2_dome")
+resource_type = &"shield"
+display_name = "DOMO: DESVIAR ENERGÍA"
+console_color = Color(0.35, 0.75, 1, 1)

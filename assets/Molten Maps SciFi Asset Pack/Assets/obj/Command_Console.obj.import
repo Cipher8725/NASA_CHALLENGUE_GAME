@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bpatg3wqo43be"
+path="res://.godot/imported/Command_Console.obj-d27642c137e51ada6de93afe1639747e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Command_Console.obj-d27642c137e51ada6de93afe1639747e.mesh"]
+
+source_file="res://assets/Molten Maps SciFi Asset Pack/Assets/obj/Command_Console.obj"
+dest_files=["res://.godot/imported/Command_Console.obj-d27642c137e51ada6de93afe1639747e.mesh", "res://.godot/imported/Command_Console.obj-d27642c137e51ada6de93afe1639747e.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

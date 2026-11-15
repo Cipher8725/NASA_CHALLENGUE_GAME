@@ -1,0 +1,2009 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: en\n"
+"Project-Id-Version: NaSA-GAME\n"
+
+msgid "Rover"
+msgstr "Rover"
+
+msgid "EMPEZAR DE NUEVO"
+msgstr "START OVER"
+
+msgid "VOLVER AL MENÚ"
+msgstr "BACK TO MENU"
+
+msgid "PROCEDIMIENTO DE ENSAMBLAJE"
+msgstr "ASSEMBLY PROCEDURE"
+
+msgid "1. Pieza"
+msgstr "1. Part"
+
+msgid "Entrenamiento: arma el rover"
+msgstr "Training: build the rover"
+
+msgid "Las 16 piezas del rover están separadas en la mesa. Arrástralas con el ratón hasta su lugar siguiendo el procedimiento, de abajo hacia arriba. Haz clic en una pieza para ver para qué sirve."
+msgstr "The rover's 16 parts are laid out on the table. Drag each one into place with the mouse, following the procedure from the bottom up. Click a part to see what it does."
+
+msgid "ENTRENAMIENTO GUIADO (con silueta de ayuda)"
+msgstr "GUIDED TRAINING (with a helper silhouette)"
+
+msgid "EVALUACIÓN (sin ayuda, con cronómetro)"
+msgstr "EVALUATION (no help, timed)"
+
+msgid "CERRAR"
+msgstr "CLOSE"
+
+msgid "Así ve Marte el rover que acabas de armar (foto real):"
+msgstr "This is how the rover you just built sees Mars (real photo):"
+
+msgid "OXÍGENO"
+msgstr "OXYGEN"
+
+msgid "ENERGÍA"
+msgstr "ENERGY"
+
+msgid "AGUA"
+msgstr "WATER"
+
+msgid "ESCUDO"
+msgstr "SHIELD"
+
+msgid "COMIDA"
+msgstr "FOOD"
+
+msgid "ESTADO: PREPARANDO"
+msgstr "STATUS: GETTING READY"
+
+msgid "TIEMPO"
+msgstr "TIME"
+
+msgid "PUNTOS: 0"
+msgstr "POINTS: 0"
+
+msgid "¡ALERTA!"
+msgstr "ALERT!"
+
+msgid "WASD moverse  ·  Ratón mirar  ·  E interactuar  ·  R reiniciar  ·  ESC pausa"
+msgstr "WASD move  ·  Mouse look  ·  E interact  ·  R restart  ·  ESC pause"
+
+msgid "MISIÓN FALLIDA"
+msgstr "MISSION FAILED"
+
+msgid "Motivo de la derrota"
+msgstr "Reason for failure"
+
+msgid "Pulsa  R  para volver a jugar"
+msgstr "Press  R  to play again"
+
+msgid "SIMULACIÓN DE DESPEGUE · APOLO 8"
+msgstr "LAUNCH SIMULATION · APOLLO 8"
+
+msgid "T− 00:00:10"
+msgstr "T− 00:00:10"
+
+msgid "Altura: 0 km"
+msgstr "Altitude: 0 km"
+
+msgid "Velocidad: 0 km/h"
+msgstr "Speed: 0 km/h"
+
+msgid "Etapa: —"
+msgstr "Stage: —"
+
+msgid "Vista: Exterior"
+msgstr "View: Outside"
+
+msgid "Volver al menú"
+msgstr "Back to menu"
+
+msgid "Avance rápido ×20"
+msgstr "Fast forward ×20"
+
+msgid "SATURNO V"
+msgstr "SATURN V"
+
+msgid "La etapa que empuja brilla."
+msgstr "The stage that is firing glows."
+
+msgid "INICIAR CUENTA REGRESIVA"
+msgstr "START COUNTDOWN"
+
+msgid "Misión Apolo 8"
+msgstr "Apollo 8 Mission"
+
+msgid "¡En órbita!"
+msgstr "In orbit!"
+
+msgid "Volver a despegar"
+msgstr "Launch again"
+
+msgid "Biblioteca"
+msgstr "Library"
+
+msgid "‹  Volver al menú"
+msgstr "‹  Back to menu"
+
+msgid "Básico"
+msgstr "Basic"
+
+msgid "Intermedio"
+msgstr "Intermediate"
+
+msgid "Avanzado"
+msgstr "Advanced"
+
+msgid "Elige un libro para leerlo"
+msgstr "Choose a book to read"
+
+msgid "Cerrar libro"
+msgstr "Close book"
+
+msgid "Practicar"
+msgstr "Practice"
+
+msgid "Anterior"
+msgstr "Previous"
+
+msgid "Siguiente"
+msgstr "Next"
+
+msgid "CONSOLA"
+msgstr "CONSOLE"
+
+msgid "MI CARNET DE ASTRONAUTA"
+msgstr "MY ASTRONAUT ID CARD"
+
+msgid "1. Escribe tu nombre"
+msgstr "1. Type your name"
+
+msgid "Tu nombre de astronauta"
+msgstr "Your astronaut name"
+
+msgid "2. Tómate una foto o elige un dibujo"
+msgstr "2. Take a photo or choose a drawing"
+
+msgid "TOMAR MI FOTO"
+msgstr "TAKE MY PHOTO"
+
+msgid "QUITAR FOTO"
+msgstr "REMOVE PHOTO"
+
+msgid "3. Guarda tu carnet"
+msgstr "3. Save your ID card"
+
+msgid "GUARDAR MI CARNET"
+msgstr "SAVE MY ID CARD"
+
+msgid "PROBAR MI CARNET EN LAS PUERTAS"
+msgstr "TRY MY ID CARD ON THE DOORS"
+
+msgid "Vista: Frente (1/4)"
+msgstr "View: Front (1/4)"
+
+msgid "ZONA COMÚN"
+msgstr "COMMON AREA"
+
+msgid "LABORATORIO · RESTRINGIDO"
+msgstr "LABORATORY · RESTRICTED"
+
+msgid "Clic para mirar con el ratón · WASD para caminar · Esc para soltar el ratón\nIzquierda: puerta automática (acércate). Derecha: zona restringida (pulsa E en el lector)."
+msgstr "Click to look with the mouse · WASD to walk · Esc to release the mouse\nLeft: automatic door (walk up to it). Right: restricted area (press E at the reader)."
+
+msgid "NaSA-GAME"
+msgstr "NaSA-GAME"
+
+msgid "Entrenamiento de astronautas"
+msgstr "Astronaut training"
+
+msgid "Mi carnet"
+msgstr "My ID card"
+
+msgid "English"
+msgstr "English"
+
+msgid "PRÓXIMAMENTE"
+msgstr "COMING SOON"
+
+msgid "NASA Space Apps 2026 · Junior Astronaut Mission Trainer"
+msgstr "NASA Space Apps 2026 · Junior Astronaut Mission Trainer"
+
+msgid "CARNET DE ASTRONAUTA"
+msgstr "ASTRONAUT ID CARD"
+
+msgid "Base Lunar Selene · Programa de entrenamiento NaSA-GAME"
+msgstr "Selene Lunar Base · NaSA-GAME training program"
+
+msgid "NOMBRE"
+msgstr "NAME"
+
+msgid "Nº DE CARNET"
+msgstr "CARD No."
+
+msgid "SEL-0000-0000"
+msgstr "SEL-0000-0000"
+
+msgid "RANGO"
+msgstr "RANK"
+
+msgid "Cadete astronauta"
+msgstr "Astronaut cadet"
+
+msgid "BASE"
+msgstr "BASE"
+
+msgid "Base Lunar Selene"
+msgstr "Selene Lunar Base"
+
+msgid "EMITIDO"
+msgstr "ISSUED"
+
+msgid "VENCE"
+msgstr "EXPIRES"
+
+msgid "ACCESO"
+msgstr "ACCESS"
+
+msgid "NIVEL 1"
+msgstr "LEVEL 1"
+
+msgid "SEL 0000 0000"
+msgstr "SEL 0000 0000"
+
+msgid "Carnet de juego · no es un documento oficial"
+msgstr "Game ID card · not an official document"
+
+msgid "REPARACIÓN DE OXÍGENO"
+msgstr "OXYGEN REPAIR"
+
+msgid "Pulsa ESPACIO o el botón cuando la aguja del manómetro esté en la zona verde."
+msgstr "Press SPACE or the button when the gauge needle is in the green zone."
+
+msgid "PRESIÓN"
+msgstr "PRESSURE"
+
+msgid "20.0 s"
+msgstr "20.0 s"
+
+msgid "Pulsa el botón cuando la aguja esté en la zona verde."
+msgstr "Press the button when the needle is in the green zone."
+
+msgid "PULSA (ESPACIO)"
+msgstr "PRESS (SPACE)"
+
+msgid "REPARACIÓN COMPLETADA"
+msgstr "REPAIR COMPLETE"
+
+msgid "Sistema restablecido."
+msgstr "System restored."
+
+msgid "REPARACIÓN DE ENERGÍA"
+msgstr "ENERGY REPAIR"
+
+msgid "Pulsa un cable y después el conector que lleva la misma letra."
+msgstr "Click a cable, then the connector with the same letter."
+
+msgid "CABLES"
+msgstr "CABLES"
+
+msgid "A"
+msgstr "A"
+
+msgid "B"
+msgstr "B"
+
+msgid "C"
+msgstr "C"
+
+msgid "D"
+msgstr "D"
+
+msgid "CONECTORES"
+msgstr "CONNECTORS"
+
+msgid "CIRCUITO"
+msgstr "CIRCUIT"
+
+msgid "25.0 s"
+msgstr "25.0 s"
+
+msgid "Selecciona un cable y después su conector."
+msgstr "Select a cable, then its connector."
+
+msgid "Circuito restablecido."
+msgstr "Circuit restored."
+
+msgid "CABINA DE FOTOS"
+msgstr "PHOTO BOOTH"
+
+msgid "Buscando tu cámara..."
+msgstr "Looking for your camera..."
+
+msgid "Ponerme el casco de astronauta"
+msgstr "Put on my astronaut helmet"
+
+msgid "TOMAR FOTO  (3, 2, 1...)"
+msgstr "TAKE PHOTO  (3, 2, 1...)"
+
+msgid "USAR ESTA FOTO"
+msgstr "USE THIS PHOTO"
+
+msgid "REPETIR"
+msgstr "RETAKE"
+
+msgid "SUBIR UNA FOTO"
+msgstr "UPLOAD A PHOTO"
+
+msgid "CANCELAR"
+msgstr "CANCEL"
+
+msgid "Tu foto se guarda solo en esta computadora. No se envía a internet. Puedes quitarla cuando quieras."
+msgstr "Your photo is saved only on this computer. It is never sent over the internet. You can remove it whenever you want."
+
+msgid "HUERTO HIDROPÓNICO"
+msgstr "HYDROPONIC GARDEN"
+
+msgid "Cultivo"
+msgstr "Crop"
+
+msgid "1 · LUZ ROJA (90:10)"
+msgstr "1 · RED LIGHT (90:10)"
+
+msgid "2 · LUZ AZUL (50:50)"
+msgstr "2 · BLUE LIGHT (50:50)"
+
+msgid "HUMEDAD"
+msgstr "MOISTURE"
+
+msgid "Zona buena: entre 35 % y 80 %. Cada riego gasta agua de la base; la luz gasta energía."
+msgstr "Good zone: between 35 % and 80 %. Each watering uses the base's water; the light uses energy."
+
+msgid "Día 0"
+msgstr "Day 0"
+
+msgid "COSECHA"
+msgstr "HARVEST"
+
+msgid "30.0 s"
+msgstr "30.0 s"
+
+msgid "Elige la luz del huerto."
+msgstr "Choose the garden light."
+
+msgid "REGAR (ESPACIO)"
+msgstr "WATER (SPACE)"
+
+msgid "Cosecha lista."
+msgstr "Harvest ready."
+
+msgid "ESCUDO ANTIRRADIACIÓN"
+msgstr "RADIATION SHIELD"
+
+msgid "HUERTO"
+msgstr "GARDEN"
+
+msgid "Arrastra «%s» hasta su lugar en el rover."
+msgstr "Drag “%s” to its place on the rover."
+
+msgid "Todavía no va «%s». Antes hay que instalar: %s"
+msgstr "“%s” doesn't go yet. First you need to install: %s"
+
+msgid "Elige un modo para empezar el entrenamiento."
+msgstr "Choose a mode to start training."
+
+msgid "¡Instalado! Siguiente paso: %s"
+msgstr "Installed! Next step: %s"
+
+msgid "¡Evaluación aprobada! %s está listo."
+msgstr "Evaluation passed! %s is ready."
+
+msgid "%s\nTiempo: %s   ·   Errores: %d"
+msgstr "%s\nTime: %s   ·   Mistakes: %d"
+
+msgid "¡Entrenamiento completo! Armaste a %s."
+msgstr "Training complete! You built %s."
+
+msgid "%s   ·   Errores: %d\nAhora prueba el modo EVALUACIÓN, sin ayuda."
+msgstr "%s   ·   Mistakes: %d\nNow try EVALUATION mode, with no help."
+
+msgid "Rover completo. Pulsa EMPEZAR DE NUEVO para practicar otra vez."
+msgstr "Rover complete. Press START OVER to practice again."
+
+msgid "sol %d, %s"
+msgstr "sol %d, %s"
+
+msgid "%s\nMastcam-Z, %s · Crédito: %s (%s)"
+msgstr "%s\nMastcam-Z, %s · Credit: %s (%s)"
+
+msgid "Crea tu carnet en el menú para ganar acceso al laboratorio."
+msgstr "Create your ID card in the menu to earn access to the laboratory."
+
+msgid "¡Tu carnet subió a nivel %d: %s!"
+msgstr "Your ID card went up to level %d: %s!"
+
+msgid "De qué está hecho: "
+msgstr "What it's made of: "
+
+msgid "Por qué es importante: "
+msgstr "Why it matters: "
+
+msgid "Dato real: "
+msgstr "Real fact: "
+
+msgid "En la misión: "
+msgstr "On the mission: "
+
+msgid "ENTRENAMIENTO DE ENSAMBLAJE"
+msgstr "ASSEMBLY TRAINING"
+
+msgid "%d piezas separadas en la mesa"
+msgstr "%d parts laid out on the table"
+
+msgid "MODO ENTRENAMIENTO GUIADO"
+msgstr "GUIDED TRAINING MODE"
+
+msgid "Paso %d de %d   ·   Errores: %d"
+msgstr "Step %d of %d   ·   Mistakes: %d"
+
+msgid "MODO EVALUACIÓN"
+msgstr "EVALUATION MODE"
+
+msgid "Paso %d de %d   ·   Errores: %d   ·   Tiempo: %s"
+msgstr "Step %d of %d   ·   Mistakes: %d   ·   Time: %s"
+
+msgid "¡ROVER ARMADO!"
+msgstr "ROVER BUILT!"
+
+msgid "%d de %d piezas   ·   Errores: %d"
+msgstr "%d of %d parts   ·   Mistakes: %d"
+
+msgid "ACCESO CONCEDIDO"
+msgstr "ACCESS GRANTED"
+
+msgid "¡PULSO CORRECTO!  (%d%%)"
+msgstr "GOOD PULSE!  (%d%%)"
+
+msgid "Sistema de oxígeno restablecido."
+msgstr "Oxygen system restored."
+
+msgid "¡Fuera de zona!  -%.1f s"
+msgstr "Out of the zone!  -%.1f s"
+
+msgid "SIN NOMBRE"
+msgstr "NO NAME"
+
+msgid "NIVEL %d"
+msgstr "LEVEL %d"
+
+msgid "¡Todavía no! Espera a que la cuenta llegue a 0."
+msgstr "Not yet! Wait for the countdown to reach 0."
+
+msgid "¡Despegue!"
+msgstr "Liftoff!"
+
+msgid "¡AHORA! Pulsa ¡DESPEGUE!"
+msgstr "NOW! Press LIFTOFF!"
+
+msgid "La computadora encendió los motores por ti."
+msgstr "The computer started the engines for you."
+
+msgid "Fecha: %s · Cohete: %s\nTripulación: %s\n\nPrimera misión con personas en ir hasta la Luna. Tú das las órdenes del despegue hasta llegar a la órbita de la Tierra: sigue las pistas y pulsa el botón naranja en el momento justo.\n\n%s\n\nMira alrededor de la cabina con las flechas (o Q y E)."
+msgstr "Date: %s · Rocket: %s\nCrew: %s\n\nThe first crewed mission to travel all the way to the Moon. You give the launch commands until you reach Earth orbit: follow the hints and press the orange button at the right moment.\n\n%s\n\nLook around the cabin with the arrow keys (or Q and E)."
+
+msgid "Antes del despegue"
+msgstr "Before liftoff"
+
+msgid "Las ventanas están tapadas por una cubierta protectora. Se destapan al soltar la torre de escape."
+msgstr "The windows are covered by a protective cover. It comes off when the escape tower is jettisoned."
+
+msgid "Pulsa el botón naranja para empezar."
+msgstr "Press the orange button to begin."
+
+msgid "La computadora hizo la maniobra por ti."
+msgstr "The computer performed the maneuver for you."
+
+msgid "¡AHORA! "
+msgstr "NOW! "
+
+msgid "¡Todavía no! Espera la próxima maniobra."
+msgstr "Not yet! Wait for the next maneuver."
+
+msgid "¡Muy pronto! Mira la pista y el reloj."
+msgstr "Too early! Check the hint and the clock."
+
+msgid "¡Perfecto! "
+msgstr "Perfect! "
+
+msgid "EN CAMINO A LA ÓRBITA..."
+msgstr "ON THE WAY TO ORBIT..."
+
+msgid "Espera unos segundos."
+msgstr "Wait a few seconds."
+
+msgid "¡Apolo 8 en órbita!"
+msgstr "Apollo 8 in orbit!"
+
+msgid "Errores: %d\n\nLlegaste a %d km de altura y %s km/h, como el Apolo 8 real, en 11 minutos y 35 segundos de vuelo.\n\nFuentes: tabla de ascenso del Apolo 8 (NASA SP-4029) e informe de la misión."
+msgstr "Mistakes: %d\n\nYou reached %d km of altitude and %s km/h, just like the real Apollo 8, after 11 minutes and 35 seconds of flight.\n\nSources: Apollo 8 ascent table (NASA SP-4029) and the mission report."
+
+msgid "¡MISIÓN CUMPLIDA!"
+msgstr "MISSION ACCOMPLISHED!"
+
+msgid "Altura: %s km"
+msgstr "Altitude: %s km"
+
+msgid "Velocidad: %s km/h"
+msgstr "Speed: %s km/h"
+
+msgid "Empuja: "
+msgstr "Thrust from: "
+
+msgid "Motores apagados"
+msgstr "Engines off"
+
+msgid "En la plataforma 39A"
+msgstr "On Launch Pad 39A"
+
+msgid "Vista: %s (%d/%d)"
+msgstr "View: %s (%d/%d)"
+
+msgid "Frente"
+msgstr "Front"
+
+msgid "Derecha"
+msgstr "Right"
+
+msgid "Atrás"
+msgstr "Back"
+
+msgid "Izquierda"
+msgstr "Left"
+
+msgid "SIN CARNET\nCrea tu carnet en el menú"
+msgstr "NO ID CARD\nCreate your ID card in the menu"
+
+msgid "ACCESO DENEGADO\nSe necesita nivel %d (%s)"
+msgstr "ACCESS DENIED\nLevel %d required (%s)"
+
+msgid "ACCESO CONCEDIDO\n%s · Nivel %d"
+msgstr "ACCESS GRANTED\n%s · Level %d"
+
+msgid "ZONA RESTRINGIDA\nPulsa E para pasar tu carnet"
+msgstr "RESTRICTED AREA\nPress E to swipe your ID card"
+
+msgid "ZONA RESTRINGIDA\nNivel %d · Usa el lector"
+msgstr "RESTRICTED AREA\nLevel %d · Use the reader"
+
+msgid "Tormenta solar clase %s (DONKI, %s)"
+msgstr "Class %s solar flare (DONKI, %s)"
+
+msgid "Vista: Cabina (C)"
+msgstr "View: Cabin (C)"
+
+msgid "Vista: Exterior (C)"
+msgstr "View: Outside (C)"
+
+msgid "Se agotó el tiempo de reparación."
+msgstr "Repair time ran out."
+
+msgid "Reparación cancelada por el jugador."
+msgstr "Repair canceled by the player."
+
+msgid "REPARACIÓN FALLIDA"
+msgstr "REPAIR FAILED"
+
+msgid "PUNTOS: %d"
+msgstr "POINTS: %d"
+
+msgid "ESTADO: EN CURSO"
+msgstr "STATUS: IN PROGRESS"
+
+msgid "ESTADO: CRÍTICO"
+msgstr "STATUS: CRITICAL"
+
+msgid "ESTADO: FALLIDO"
+msgstr "STATUS: FAILED"
+
+msgid "ESTADO: COMPLETADO"
+msgstr "STATUS: COMPLETE"
+
+msgid "¡%s EN NIVEL CRÍTICO!"
+msgstr "%s AT CRITICAL LEVEL!"
+
+msgid "¡%s AGOTADO!"
+msgstr "%s DEPLETED!"
+
+msgid "¡%s! Revisa el escudo."
+msgstr "%s! Check the shield."
+
+msgid "EMERGENCIA: %s"
+msgstr "EMERGENCY: %s"
+
+msgid "RADIACIÓN ALTA: %d µGy/h medidos en la ISS (RadLab)"
+msgstr "HIGH RADIATION: %d µGy/h measured on the ISS (RadLab)"
+
+msgid "Dato real: un astronauta en la ISS recibió unos %d µGy en un día (RadLab, NASA)."
+msgstr "Real fact: an astronaut on the ISS received about %d µGy in one day (RadLab, NASA)."
+
+msgid "%s\n\nPuntuación: %d\n\n%s"
+msgstr "%s\n\nScore: %d\n\n%s"
+
+msgid "MISIÓN COMPLETADA"
+msgstr "MISSION COMPLETE"
+
+msgid "¡Has sobrevivido al hábitat!\n\nPuntuación final: %d\n\n%s"
+msgstr "You survived the habitat!\n\nFinal score: %d\n\n%s"
+
+msgid "MICROMETEORITO"
+msgstr "MICROMETEOROID"
+
+msgid "SOBRECARGA DE ENERGÍA"
+msgstr "POWER OVERLOAD"
+
+msgid "CAÍDA DE PRESIÓN"
+msgstr "PRESSURE DROP"
+
+msgid "FUGA DE AGUA"
+msgstr "WATER LEAK"
+
+msgid "No encontramos una cámara. Pulsa SUBIR UNA FOTO para elegir una imagen tuya."
+msgstr "We couldn't find a camera. Press UPLOAD A PHOTO to choose a picture of yourself."
+
+msgid "Mira a la cámara, sonríe y pulsa TOMAR FOTO."
+msgstr "Look at the camera, smile and press TAKE PHOTO."
+
+msgid "No se pudo abrir esa imagen. Prueba con un archivo PNG o JPG."
+msgstr "That image couldn't be opened. Try a PNG or JPG file."
+
+msgid "Otra vez: mira a la cámara y pulsa TOMAR FOTO."
+msgstr "Once more: look at the camera and press TAKE PHOTO."
+
+msgid "¿Te gusta? Pulsa USAR ESTA FOTO o REPETIR."
+msgstr "Do you like it? Press USE THIS PHOTO or RETAKE."
+
+msgid "Elige la luz: 1 = roja (90:10)   2 = azul (50:50)"
+msgstr "Choose the light: 1 = red (90:10)   2 = blue (50:50)"
+
+msgid "¡Se secó la almohadilla! Riega más seguido."
+msgstr "The grow pillow dried out! Water more often."
+
+msgid "¡Cosecha lista! %s a los %d días, como en la ISS (%s)."
+msgstr "Harvest ready! %s at %d days, just like on the ISS (%s)."
+
+msgid "Luz %s encendida. Riega con ESPACIO y mantén la humedad en verde."
+msgstr "%s light on. Water with SPACE and keep the moisture in the green."
+
+msgid "roja 90:10"
+msgstr "Red 90:10"
+
+msgid "azul 50:50 (+15 % energía)"
+msgstr "Blue 50:50 (+15 % energy)"
+
+msgid "¡Demasiada agua! Las raíces necesitan aire."
+msgstr "Too much water! The roots need air."
+
+msgid "¡COSECHA LISTA!"
+msgstr "HARVEST READY!"
+
+msgid "COSECHA PERDIDA"
+msgstr "HARVEST LOST"
+
+msgid "%s  (errores: %d/%d)"
+msgstr "%s  (mistakes: %d/%d)"
+
+msgid "Se perdió la cosecha. En la ISS también pasó: en VEG-04A el exceso de fertilizante dañó las plantas."
+msgstr "The harvest was lost. It happened on the ISS too: in VEG-04A, too much fertilizer damaged the plants."
+
+msgid "Día %d de %d"
+msgstr "Day %d of %d"
+
+msgid "%s  ·  Nivel %s  ·  %d páginas"
+msgstr "%s  ·  %s level  ·  %d pages"
+
+msgid "[b]Nivel %s[/b]\n\n%d páginas para leer. Usa [b]Siguiente[/b] para avanzar."
+msgstr "[b]%s level[/b]\n\n%d pages to read. Use [b]Next[/b] to move forward."
+
+msgid "Fuentes"
+msgstr "Sources"
+
+msgid "Este libro se escribió con información de la NASA:\n\n"
+msgstr "This book was written with information from NASA:\n\n"
+
+msgid "¡Libro terminado!"
+msgstr "Book finished!"
+
+msgid "Leíste «%s». Vuelve a la estantería para elegir otro libro."
+msgstr "You read “%s”. Go back to the shelf to pick another book."
+
+msgid "Sin acceso"
+msgstr "No access"
+
+msgid "Técnico de rover"
+msgstr "Rover technician"
+
+msgid "Comandante de base"
+msgstr "Base commander"
+
+msgid "¡COSECHA LISTA! COMIDA +%.0f"
+msgstr "HARVEST READY! FOOD +%.0f"
+
+msgid "¡REPARACIÓN COMPLETADA! %s (+%.0f)"
+msgstr "REPAIR COMPLETE! %s (+%.0f)"
+
+msgid "SE PERDIÓ LA COSECHA"
+msgstr "THE HARVEST WAS LOST"
+
+msgid "REPARACIÓN FALLIDA: %s"
+msgstr "REPAIR FAILED: %s"
+
+msgid "Primero selecciona un cable."
+msgstr "Select a cable first."
+
+msgid "¡Línea %s conectada!  (%d%%)"
+msgstr "Line %s connected!  (%d%%)"
+
+msgid "Circuito eléctrico restablecido."
+msgstr "Electrical circuit restored."
+
+msgid "¡Conexión incorrecta!  -%.1f s"
+msgstr "Wrong connection!  -%.1f s"
+
+msgid "Escribe tu nombre, elige tu foto y pulsa GUARDAR."
+msgstr "Type your name, choose your photo and press SAVE."
+
+msgid "Este es tu carnet. Puedes cambiar tu nombre o tu foto."
+msgstr "This is your ID card. You can change your name or your photo."
+
+msgid "¡Foto lista! Pulsa GUARDAR para ponerla en tu carnet."
+msgstr "Photo ready! Press SAVE to put it on your ID card."
+
+msgid "No se pudo guardar la foto."
+msgstr "The photo couldn't be saved."
+
+msgid "Foto quitada. Ahora se usa tu dibujo. Pulsa GUARDAR."
+msgstr "Photo removed. Your drawing is used now. Press SAVE."
+
+msgid "Falta tu nombre: escríbelo arriba."
+msgstr "Your name is missing: type it above."
+
+msgid "¡Carnet guardado! Nivel %d: %s. Aprueba la EVALUACIÓN del Taller del Rover para subir a nivel 2."
+msgstr "ID card saved! Level %d: %s. Pass the Rover Workshop EVALUATION to reach level 2."
+
+msgid "No se pudo guardar el carnet."
+msgstr "The ID card couldn't be saved."
+
+msgid "Recurso agotado: %s"
+msgstr "Resource depleted: %s"
+
+msgid "oxígeno"
+msgstr "oxygen"
+
+msgid "energía"
+msgstr "energy"
+
+msgid "escudo antirradiación"
+msgstr "radiation shield"
+
+msgid "¡DESPEGUE!"
+msgstr "LIFTOFF!"
+
+msgid "El sistema solar"
+msgstr "The Solar System"
+
+msgid "Nuestra dirección cósmica"
+msgstr "Our cosmic address"
+
+msgid "La Tierra es un planeta del sistema solar. El Sol es la estrella de ese sistema, que a su vez forma parte de la galaxia Vía Láctea. Una luna es un satélite natural que orbita un planeta u otro cuerpo."
+msgstr "Earth is a planet in the solar system. The Sun is the star of that system, which in turn is part of the Milky Way galaxy. A moon is a natural satellite that orbits a planet or another body."
+
+msgid "Los planetas"
+msgstr "The planets"
+
+msgid "Mercurio, Venus, Tierra y Marte son rocosos. Júpiter y Saturno son gigantes gaseosos. Urano y Neptuno son gigantes helados. Plutón es un planeta enano."
+msgstr "Mercury, Venus, Earth and Mars are rocky. Jupiter and Saturn are gas giants. Uranus and Neptune are ice giants. Pluto is a dwarf planet."
+
+msgid "Cuerpos pequeños"
+msgstr "Small bodies"
+
+msgid "Muchos asteroides son rocosos o metálicos. Los cometas contienen hielos y polvo. Cuando un cometa se acerca al Sol, parte de sus hielos se transforma en gas y puede producir una cola."
+msgstr "Many asteroids are rocky or metallic. Comets contain ices and dust. When a comet gets close to the Sun, some of its ice turns into gas and can form a tail."
+
+msgid "La Tierra y la Luna"
+msgstr "Earth and the Moon"
+
+msgid "Rotación y órbita"
+msgstr "Rotation and orbit"
+
+msgid "El giro de la Tierra sobre su eje explica el ciclo habitual de día y noche. La Luna gira sobre su eje en aproximadamente el mismo tiempo que tarda en orbitar la Tierra. Por eso vemos casi siempre la misma cara lunar."
+msgstr "Earth spinning on its axis explains the usual cycle of day and night. The Moon spins on its axis in about the same time it takes to orbit Earth. That is why we almost always see the same side of the Moon."
+
+msgid "Fases y eclipses"
+msgstr "Phases and eclipses"
+
+msgid "Las fases dependen de cuánto vemos de la mitad iluminada por el Sol. En un eclipse solar, la Luna se interpone entre la Tierra y el Sol. En un eclipse lunar, la Luna pasa por la sombra de la Tierra."
+msgstr "The phases depend on how much of the half lit by the Sun we can see. In a solar eclipse, the Moon passes between Earth and the Sun. In a lunar eclipse, the Moon passes through Earth's shadow."
+
+msgid "El entorno lunar"
+msgstr "The lunar environment"
+
+msgid "La gravedad en la superficie lunar es aproximadamente una sexta parte de la terrestre. Tu masa se mantiene y tu peso disminuye. La Luna tiene una exosfera extremadamente tenue y está cubierta por polvo y fragmentos rocosos llamados regolito."
+msgstr "Gravity on the Moon's surface is about one sixth of Earth's. Your mass stays the same and your weight goes down. The Moon has an extremely thin exosphere and is covered by dust and rock fragments called regolith."
+
+msgid "Vivir en el espacio"
+msgstr "Living in Space"
+
+msgid "Por qué flotan"
+msgstr "Why they float"
+
+msgid "En órbita, la nave y sus ocupantes caen juntos alrededor de la Tierra. Esa caída compartida produce la sensación de ingravidez. Se usa el término microgravedad porque todavía hay pequeñas aceleraciones y perturbaciones."
+msgstr "In orbit, the spacecraft and the people inside fall around Earth together. That shared fall creates the feeling of weightlessness. The term microgravity is used because small accelerations and disturbances are still present."
+
+msgid "Cuidar el cuerpo"
+msgstr "Taking care of the body"
+
+msgid "Con poca carga física, los músculos y los huesos pueden debilitarse. La tripulación usa ejercicios de resistencia y ejercicio aeróbico para reducir esos efectos."
+msgstr "With little physical load, muscles and bones can weaken. The crew uses resistance exercise and aerobic exercise to reduce those effects."
+
+msgid "Trabajar en equipo"
+msgstr "Teamwork"
+
+msgid "El horario asigna tiempo a mantenimiento, experimentos, comidas, ejercicio y descanso. La tripulación asegura equipos y herramientas para evitar que floten y usa procedimientos escritos para coordinar el trabajo."
+msgstr "The schedule sets aside time for maintenance, experiments, meals, exercise and rest. The crew secures equipment and tools so they don't float away and uses written procedures to coordinate the work."
+
+msgid "Practicar: Base lunar"
+msgstr "Practice: Lunar Base"
+
+msgid "Del despegue a la órbita"
+msgstr "From Launch to Orbit"
+
+msgid "Empuje y peso"
+msgstr "Thrust and weight"
+
+msgid "Un cohete expulsa masa a alta velocidad y recibe empuje en la dirección opuesta. Para iniciar un ascenso vertical, el empuje debe superar el peso. Durante el vuelo, la gravedad y la resistencia del aire afectan la trayectoria."
+msgstr "A rocket pushes out mass at high speed and receives thrust in the opposite direction. To start a vertical climb, the thrust must be greater than the weight. During flight, gravity and air resistance affect the path."
+
+msgid "Las etapas"
+msgstr "The stages"
+
+msgid "Una etapa incluye su propio sistema de propulsión y propelente. Al terminar de usarla, algunos cohetes la separan para que las etapas siguientes aceleren con menos masa. La carga útil es lo que se quiere transportar."
+msgstr "A stage has its own propulsion system and propellant. When it is used up, some rockets drop it so the next stages can speed up with less mass. The payload is what the rocket is meant to carry."
+
+msgid "Alcanzar una órbita"
+msgstr "Reaching orbit"
+
+msgid "Además de ganar altura, el vehículo debe adquirir suficiente velocidad lateral. La gravedad curva su trayectoria. Con la velocidad adecuada a esa altura, la nave sigue cayendo alrededor de la Tierra."
+msgstr "Besides gaining altitude, the vehicle must build up enough sideways speed. Gravity bends its path. With the right speed at that altitude, the spacecraft keeps falling around Earth."
+
+msgid "Practicar: Simulación de despegue"
+msgstr "Practice: Launch Simulation"
+
+msgid "Anatomía de un rover"
+msgstr "Anatomy of a Rover"
+
+msgid "Moverse por el terreno"
+msgstr "Moving across the ground"
+
+msgid "El chasis sostiene el equipo. Las ruedas transmiten al suelo la fuerza de los motores. En Perseverance, una suspensión articulada ayuda a mantener las ruedas en contacto cuando el terreno cambia de altura."
+msgstr "The chassis holds the equipment. The wheels pass the motors' force to the ground. On Perseverance, a jointed suspension helps keep the wheels in contact when the ground changes height."
+
+msgid "Observar y medir"
+msgstr "Observing and measuring"
+
+msgid "Las cámaras de navegación muestran el terreno; los instrumentos científicos estudian materiales o el entorno. En Perseverance, un brazo coloca instrumentos cerca de las rocas y ayuda a recolectar muestras."
+msgstr "Navigation cameras show the terrain; science instruments study materials or the surroundings. On Perseverance, an arm places instruments close to the rocks and helps collect samples."
+
+msgid "Energía y comunicación"
+msgstr "Power and communication"
+
+msgid "Un rover necesita electricidad para moverse, procesar datos y comunicarse. Perseverance usa un generador termoeléctrico y baterías. Puede enviar datos directamente a la Tierra o a través de orbitadores, según el enlace."
+msgstr "A rover needs electricity to move, process data and communicate. Perseverance uses a thermoelectric generator and batteries. It can send data straight to Earth or through orbiters, depending on the link."
+
+msgid "Practicar: Armado del rover"
+msgstr "Practice: Rover Assembly"
+
+msgid "Soporte vital"
+msgstr "Life Support"
+
+msgid "Un ambiente respirable"
+msgstr "Breathable air"
+
+msgid "La cabina necesita presión adecuada y una mezcla respirable de gases. Los sensores miden el ambiente. La ventilación mueve el aire y los equipos de purificación retiran dióxido de carbono y otros contaminantes."
+msgstr "The cabin needs the right pressure and a breathable mix of gases. Sensors measure the environment. Ventilation moves the air, and purification equipment removes carbon dioxide and other contaminants."
+
+msgid "Recuperar agua y producir oxígeno"
+msgstr "Recovering water and making oxygen"
+
+msgid "En la Estación Espacial Internacional, se recupera agua de la humedad y de aguas residuales, se purifica y se verifica su calidad. La electrólisis puede separar agua en oxígeno e hidrógeno; el oxígeno puede alimentar la cabina."
+msgstr "On the International Space Station, water is recovered from humidity and wastewater, purified and checked for quality. Electrolysis can split water into oxygen and hydrogen; the oxygen can supply the cabin."
+
+msgid "Dependencias"
+msgstr "Dependencies"
+
+msgid "Bombas, ventiladores, calentadores y sensores necesitan electricidad. Los sistemas también controlan la temperatura. Una pérdida eléctrica puede afectar varios equipos, por lo que importan las reservas y los sistemas de respaldo."
+msgstr "Pumps, fans, heaters and sensors need electricity. The systems also control temperature. A power loss can affect several pieces of equipment, which is why reserves and backup systems matter."
+
+msgid "Tu cuerpo en el espacio"
+msgstr "Your Body in Space"
+
+msgid "Comer bien lejos de la Tierra"
+msgstr "Eating well far from Earth"
+
+msgid "Tu cuerpo necesita energía y nutrientes también en el espacio. Los menús de los astronautas tienen entre 1900 y 3200 calorías al día. La Estación Espacial recibe comida fresca cada pocos meses, pero en la Luna o en Marte habrá que cultivarla."
+msgstr "Your body needs energy and nutrients in space too. Astronaut menus have between 1,900 and 3,200 calories a day. The Space Station gets fresh food every few months, but on the Moon or Mars it will have to be grown."
+
+msgid "Lechugas en la Estación"
+msgstr "Lettuce on the Station"
+
+msgid "En el huerto Veggie de la ISS crecieron lechugas romanas rojas. Se cosecharon a los 33 días. Los científicos no encontraron microbios peligrosos para las personas y vieron que tenían tantos antioxidantes como las de la Tierra. Los astronautas se comieron parte de la cosecha (estudio OSD-745)."
+msgstr "Red romaine lettuce grew in the ISS Veggie garden. It was harvested after 33 days. Scientists found no microbes harmful to people and saw that it had as many antioxidants as lettuce grown on Earth. The astronauts ate part of the harvest (study OSD-745)."
+
+msgid "Luz roja o luz azul"
+msgstr "Red light or blue light"
+
+msgid "En 2019 se cultivó mizuna con dos tipos de luz: 90 % roja y 10 % azul, o mitad y mitad. La cosecha y su química cambiaron según la luz. En el primer intento el fertilizante fue demasiado fuerte y dañó las plantas; en el segundo se redujo y salió mejor (estudios OSD-780 y OSD-655)."
+msgstr "In 2019, mizuna was grown under two kinds of light: 90 % red and 10 % blue, or half and half. The harvest and its chemistry changed with the light. On the first try the fertilizer was too strong and damaged the plants; on the second it was reduced and worked better (studies OSD-780 and OSD-655)."
+
+msgid "Practicar: Base lunar (huerto)"
+msgstr "Practice: Lunar Base (garden)"
+
+msgid "Exploración lunar"
+msgstr "Lunar Exploration"
+
+msgid "Después del aterrizaje"
+msgstr "After landing"
+
+msgid "La tripulación confirma el estado del vehículo y sus comunicaciones, revisa el tiempo y los recursos disponibles y evalúa el terreno antes de una salida. Cada vehículo y misión tienen sus propias listas de comprobación."
+msgstr "The crew checks the state of the vehicle and its communications, reviews the time and resources available and assesses the terrain before going out. Each vehicle and mission has its own checklists."
+
+msgid "Planear el recorrido"
+msgstr "Planning the route"
+
+msgid "Los desniveles, las sombras profundas y el regolito influyen en la movilidad y en la visibilidad. El recorrido debe incluir puntos de referencia, un plan de vuelta y margen de tiempo y consumibles."
+msgstr "Slopes, deep shadows and regolith affect mobility and visibility. The route must include landmarks, a plan to return, and spare time and consumables."
+
+msgid "Documentar una muestra"
+msgstr "Documenting a sample"
+
+msgid "La posición, las fotografías y las observaciones del entorno dan contexto a una roca. Una identificación única vincula la muestra con ese registro. El almacenamiento protege la muestra y ayuda a evitar contaminación o mezclas."
+msgstr "The position, photographs and notes about the surroundings give context to a rock. A unique ID links the sample to that record. Storage protects the sample and helps prevent contamination or mix-ups."
+
+msgid "Control de misión"
+msgstr "Mission Control"
+
+msgid "Leer la telemetría"
+msgstr "Reading telemetry"
+
+msgid "La telemetría transmite medidas como presión, temperatura y tensión eléctrica. Cada valor se interpreta con su unidad, la hora de lectura, la tendencia y el intervalo esperado para esa fase de la misión."
+msgstr "Telemetry sends measurements such as pressure, temperature and voltage. Each value is read with its unit, the time of the reading, its trend and the range expected for that phase of the mission."
+
+msgid "Relacionar alarmas"
+msgstr "Connecting alarms"
+
+msgid "Varias alertas pueden tener una causa común. Si coinciden una caída de tensión y avisos de equipos conectados a ella, se contrasta la secuencia con otras lecturas y con el estado de los sistemas de respaldo."
+msgstr "Several alerts can share a common cause. If a voltage drop and warnings from equipment connected to it happen together, the sequence is checked against other readings and the state of the backup systems."
+
+msgid "Comunicar lo observado"
+msgstr "Reporting what you see"
+
+msgid "Un informe conciso identifica el equipo, el momento, los valores observados y lo que se ha confirmado. La coordinación entre tripulación y especialistas ayuda a decidir con base en procedimientos y datos compartidos."
+msgstr "A concise report identifies the equipment, the moment, the values observed and what has been confirmed. Coordination between the crew and specialists helps decisions rest on shared procedures and data."
+
+msgid "Trajes espaciales"
+msgstr "Spacesuits"
+
+msgid "Un hábitat portátil"
+msgstr "A wearable habitat"
+
+msgid "Un traje de actividad extravehicular mantiene presión alrededor del cuerpo y suministra oxígeno. También necesita retirar el dióxido de carbono que exhala el astronauta y mantener la circulación del aire."
+msgstr "An extravehicular activity suit keeps pressure around the body and supplies oxygen. It also needs to remove the carbon dioxide the astronaut breathes out and keep the air circulating."
+
+msgid "Calor, protección y movilidad"
+msgstr "Heat, protection and movement"
+
+msgid "El esfuerzo genera calor. Un traje puede usar una prenda con agua circulante para ayudar a extraerlo. Las capas externas y el visor protegen al astronauta; las articulaciones permiten moverse con el traje presurizado."
+msgstr "Effort produces heat. A suit can use a garment with circulating water to help remove it. The outer layers and the visor protect the astronaut; the joints allow movement while the suit is pressurized."
+
+msgid "El margen de regreso"
+msgstr "The return margin"
+
+msgid "La batería, el oxígeno y otros consumibles limitan el tiempo fuera. Las comunicaciones y el seguimiento del estado del traje permiten a la tripulación ajustar el recorrido y preservar una reserva para el regreso."
+msgstr "The battery, oxygen and other consumables limit the time outside. Communications and monitoring of the suit's condition let the crew adjust the route and keep a reserve for the return trip."
+
+msgid "El clima del espacio"
+msgstr "Space Weather"
+
+msgid "Erupciones solares"
+msgstr "Solar flares"
+
+msgid "El Sol lanza destellos de energía llamados erupciones. Se clasifican con letras: C, M y X, y cada letra es 10 veces más fuerte que la anterior. El 1 de febrero de 2026 la región activa 14366 del Sol produjo una erupción X8.1, registrada por la base de datos DONKI de la NASA."
+msgstr "The Sun releases bursts of energy called flares. They are classified with letters: C, M and X, and each letter is 10 times stronger than the one before. On February 1, 2026, the Sun's active region 14366 produced an X8.1 flare, recorded by NASA's DONKI database."
+
+msgid "Radiación medida en la ISS"
+msgstr "Radiation measured on the ISS"
+
+msgid "Los detectores DosTel de la Estación Espacial midieron la radiación el 1 de abril de 2022. En 24 horas, un astronauta recibió entre 250 y 290 microgray. Casi siempre la tasa estaba cerca de 4 microgray por hora, pero varias veces al día subió a cientos (RadLab, NASA)."
+msgstr "The DosTel detectors on the Space Station measured radiation on April 1, 2022. In 24 hours, an astronaut received between 250 and 290 microgray. The rate was almost always close to 4 microgray per hour, but several times a day it rose into the hundreds (RadLab, NASA)."
+
+msgid "Vigilar el Sol"
+msgstr "Watching the Sun"
+
+msgid "Cuando ocurre una erupción fuerte, DONKI envía un aviso con la hora, la clase y la región del Sol, y advierte si pueden llegar más protones energéticos. En la Base lunar, esas mismas erupciones reales dañan el escudo y tú decides cuándo repararlo."
+msgstr "When a strong flare happens, DONKI sends an alert with the time, the class and the region of the Sun, and warns whether more energetic protons may arrive. In the Lunar Base, those same real flares damage the shield and you decide when to repair it."
+
+msgid "21 de diciembre de 1968"
+msgstr "December 21, 1968"
+
+msgid "Saturno V (AS-503)"
+msgstr "Saturn V (AS-503)"
+
+msgid "En el Apolo 8 real, la computadora del cohete (la Unidad de Instrumentos) hacía estas maniobras sola y la tripulación las vigilaba. En esta simulación tú das las órdenes."
+msgstr "On the real Apollo 8, the rocket's computer (the Instrument Unit) performed these maneuvers on its own while the crew monitored them. In this simulation, you give the commands."
+
+msgid "Los 5 motores F-1 de la 1.ª etapa (S-IC) queman queroseno y oxígeno líquido. El Saturno V mide 110,6 m: más alto que un edificio de 30 pisos."
+msgstr "The 5 F-1 engines of the 1st stage (S-IC) burn kerosene and liquid oxygen. The Saturn V is 110.6 m tall: taller than a 30-story building."
+
+msgid "Cuando la cuenta llegue a 0, pulsa ¡DESPEGUE!"
+msgstr "When the countdown reaches 0, press LIFTOFF!"
+
+msgid "Mach 1"
+msgstr "Mach 1"
+
+msgid "A los 61 segundos el cohete ya va más rápido que el sonido."
+msgstr "At 61 seconds the rocket is already flying faster than sound."
+
+msgid "Máxima presión del aire (Max Q)"
+msgstr "Maximum dynamic pressure (Max Q)"
+
+msgid "El aire empuja con más fuerza contra el cohete. Es el momento más duro para su estructura."
+msgstr "The air pushes hardest against the rocket. It is the toughest moment for its structure."
+
+msgid "Se apaga el motor central"
+msgstr "Center engine shuts down"
+
+msgid "El motor F-1 del centro se apaga antes que los otros cuatro para que la aceleración no sea demasiado fuerte."
+msgstr "The center F-1 engine shuts down before the other four so the acceleration doesn't get too strong."
+
+msgid "Separación de la 1.ª etapa"
+msgstr "1st stage separation"
+
+msgid "La S-IC ya gastó su combustible y cae al océano Atlántico. Se encienden los 5 motores J-2 de la 2.ª etapa (S-II), que usan hidrógeno y oxígeno líquidos. Frank Borman contó que el cambio de etapa los lanzó hacia adelante contra los cinturones."
+msgstr "The S-IC has used up its fuel and falls into the Atlantic Ocean. The 5 J-2 engines of the 2nd stage (S-II) ignite, burning liquid hydrogen and oxygen. Frank Borman said the stage change threw them forward against their harnesses."
+
+msgid "SEPARAR 1.ª ETAPA"
+msgstr "SEPARATE 1st STAGE"
+
+msgid "Cuando se apaguen los motores F-1 (a los 2 min 34 s), separa la 1.ª etapa."
+msgstr "When the F-1 engines shut down (at 2 min 34 s), separate the 1st stage."
+
+msgid "Torre de escape expulsada"
+msgstr "Escape tower jettisoned"
+
+msgid "La torre de escape ya no hace falta. Al soltarla, también se va la cubierta que tapaba las ventanas: ¡la cabina se llena de luz! Bill Anders vio la Tierra desde el espacio por primera vez."
+msgstr "The escape tower is no longer needed. When it is released, the cover over the windows goes with it: the cabin fills with light! Bill Anders saw Earth from space for the first time."
+
+msgid "EXPULSAR TORRE DE ESCAPE"
+msgstr "JETTISON ESCAPE TOWER"
+
+msgid "A los 3 min 9 s expulsa la torre de escape para destapar las ventanas."
+msgstr "At 3 min 9 s, jettison the escape tower to uncover the windows."
+
+msgid "Separación de la 2.ª etapa"
+msgstr "2nd stage separation"
+
+msgid "La S-II se apaga a 191 km de altura. Ahora trabaja la 3.ª etapa (S-IVB) con un solo motor J-2. Borman la llamó «el viaje más suave del mundo»."
+msgstr "The S-II shuts down at 191 km of altitude. Now the 3rd stage (S-IVB) takes over with a single J-2 engine. Borman called it “the smoothest ride in the world.”"
+
+msgid "SEPARAR 2.ª ETAPA"
+msgstr "SEPARATE 2nd STAGE"
+
+msgid "A los 8 min 44 s se apaga la S-II: sepárala."
+msgstr "At 8 min 44 s the S-II shuts down: separate it."
+
+msgid "Motor S-IVB apagado"
+msgstr "S-IVB engine off"
+
+msgid "Ya van a más de 26 000 km/h. El motor se apaga, pero la S-IVB se queda unida: más tarde se volverá a encender para ir hacia la Luna."
+msgstr "They are already going faster than 26,000 km/h. The engine shuts down, but the S-IVB stays attached: later it will fire again to head for the Moon."
+
+msgid "APAGAR MOTOR S-IVB"
+msgstr "SHUT DOWN S-IVB ENGINE"
+
+msgid "A los 11 min 25 s, con la velocidad de órbita, apaga el motor S-IVB."
+msgstr "At 11 min 25 s, at orbital speed, shut down the S-IVB engine."
+
+msgid "¡En órbita alrededor de la Tierra!"
+msgstr "In orbit around Earth!"
+
+msgid "Apolo 8 entró en una órbita de unos 181 × 191 km. Una vuelta a la Tierra tarda 88 minutos. Desde aquí partieron hacia la Luna: ¡fueron los primeros humanos en orbitarla!"
+msgstr "Apollo 8 entered an orbit of about 181 × 191 km. One trip around Earth takes 88 minutes. From here they set off for the Moon: they were the first humans to orbit it!"
+
+msgid "1.ª etapa S-IC"
+msgstr "1st stage S-IC"
+
+msgid "5 motores F-1"
+msgstr "5 F-1 engines"
+
+msgid "Queroseno (RP-1) y oxígeno líquido"
+msgstr "Kerosene (RP-1) and liquid oxygen"
+
+msgid "2.ª etapa S-II"
+msgstr "2nd stage S-II"
+
+msgid "5 motores J-2"
+msgstr "5 J-2 engines"
+
+msgid "Hidrógeno y oxígeno líquidos"
+msgstr "Liquid hydrogen and oxygen"
+
+msgid "3.ª etapa S-IVB"
+msgstr "3rd stage S-IVB"
+
+msgid "1 motor J-2"
+msgstr "1 J-2 engine"
+
+msgid "Lechuga romana roja 'Outredgeous'"
+msgstr "Red romaine lettuce 'Outredgeous'"
+
+msgid "Huerto Veggie de la ISS (VEG-01A, VEG-01B, VEG-03A; 2014 y 2016)"
+msgstr "ISS Veggie garden (VEG-01A, VEG-01B, VEG-03A; 2014 and 2016)"
+
+msgid "Mizuna (mostaza japonesa)"
+msgstr "Mizuna (Japanese mustard greens)"
+
+msgid "Huerto Veggie de la ISS (VEG-04A y VEG-04B, 2019)"
+msgstr "ISS Veggie garden (VEG-04A and VEG-04B, 2019)"
+
+msgid "Tomate (Tomatosphere)"
+msgstr "Tomato (Tomatosphere)"
+
+msgid "Programa escolar Tomatosphere (CSA y Let's Talk Science): semillas que estuvieron en el espacio o en condiciones parecidas, sembradas en aulas"
+msgstr "Tomatosphere school program (CSA and Let's Talk Science): seeds that were in space or in similar conditions, planted in classrooms"
+
+msgid "Primera panorámica de 360° de Mastcam-Z: 142 fotos unidas en la Tierra. Se ve el propio rover en el cráter Jezero, su lugar de aterrizaje."
+msgstr "Mastcam-Z's first 360° panorama: 142 photos stitched together on Earth. You can see the rover itself in Jezero Crater, its landing site."
+
+msgid "«Kodiak», una colina de cima plana a 2,2 km del rover y 250 m de ancho. Sus capas de roca cuentan que allí hubo un delta de río. Color realzado."
+msgstr "“Kodiak,” a flat-topped hill 2.2 km from the rover and 250 m wide. Its rock layers show that a river delta was once there. Enhanced color."
+
+msgid "Un núcleo de roca del afloramiento «Berea» dentro del taladro: del tamaño de una tiza, 13 mm de ancho y 60 mm de largo."
+msgstr "A rock core from the “Berea” outcrop inside the drill: the size of a piece of chalk, 13 mm wide and 60 mm long."
+
+msgid "Una roca hueca en el cráter Jezero. El viento la fue desgastando, como un chorro de arena, durante muchísimo tiempo."
+msgstr "A hollowed-out rock in Jezero Crater. The wind wore it away, like a sandblaster, over a very long time."
+
+msgid "Campo de rocas en «Mount Washburn» (mosaico de 18 fotos en color natural). La roca clara «Atoko Point» es de piroxeno, según SuperCam y Mastcam-Z."
+msgstr "Boulder field on “Mount Washburn” (a mosaic of 18 natural-color photos). The light-toned rock “Atoko Point” is made of pyroxene, according to SuperCam and Mastcam-Z."
+
+msgid "Subiendo al borde del cráter Jezero: la foto muestra lo empinadas que son algunas laderas."
+msgstr "Climbing to the rim of Jezero Crater: the photo shows how steep some of the slopes are."
+
+msgid "Suspensión izquierda"
+msgstr "Left suspension"
+
+msgid "Las patas del rover. El sistema rocker-bogie deja que cada rueda suba y baje por separado, así el rover pasa sobre rocas sin volcarse."
+msgstr "The rover's legs. The rocker-bogie system lets each wheel go up and down on its own, so the rover can drive over rocks without tipping over."
+
+msgid "Tubos de titanio, fabricados con el mismo proceso que se usa para los cuadros de bicicletas de alta gama."
+msgstr "Titanium tubing, made with the same process used for high-end bicycle frames."
+
+msgid "Sin la suspensión el rover se volcaría o se quedaría atascado. Gracias a ella puede pasar sobre rocas y huecos del tamaño de una rueda (52,5 cm) y aguantar una inclinación de 45° sin caerse."
+msgstr "Without the suspension the rover would tip over or get stuck. Thanks to it, the rover can cross rocks and holes as big as a wheel (52.5 cm) and handle a 45° tilt without falling over."
+
+msgid "Con esta suspensión, Perseverance puede pasar sobre rocas o pozos tan grandes como una de sus ruedas (52,5 cm)."
+msgstr "With this suspension, Perseverance can drive over rocks or pits as big as one of its wheels (52.5 cm)."
+
+msgid "Movilidad: si la suspensión falla, el rover no puede llegar a nuevos lugares."
+msgstr "Mobility: if the suspension fails, the rover can't reach new places."
+
+msgid "Coloca la suspensión izquierda: es la base del lado izquierdo del rover."
+msgstr "Place the left suspension: it is the base of the rover's left side."
+
+msgid "Suspensión derecha"
+msgstr "Right suspension"
+
+msgid "Igual que la izquierda, pero del otro lado. Los dos lados trabajan juntos como un sube y baja."
+msgstr "Just like the left one, but on the other side. The two sides work together like a seesaw."
+
+msgid "Tubos de titanio, igual que la suspensión izquierda."
+msgstr "Titanium tubing, just like the left suspension."
+
+msgid "Trabaja en pareja con la izquierda: si un lado sube por una roca, el otro ayuda a mantener el cuerpo casi derecho y estable."
+msgstr "It works as a pair with the left side: if one side climbs a rock, the other helps keep the body nearly level and stable."
+
+msgid "Perseverance está diseñado para inclinarse hasta 45 grados sin volcarse, aunque sus conductores evitan pasar de 30 grados."
+msgstr "Perseverance is designed to tilt up to 45 degrees without tipping over, although its drivers avoid going past 30 degrees."
+
+msgid "Movilidad: ambos lados deben estar bien para avanzar seguro."
+msgstr "Mobility: both sides must be in good shape to move forward safely."
+
+msgid "Coloca la suspensión derecha, igual que la izquierda pero del otro lado."
+msgstr "Place the right suspension, just like the left one but on the other side."
+
+msgid "Diferencial"
+msgstr "Differential"
+
+msgid "La barra de arriba que une la suspensión izquierda con la derecha. Cuando un lado sube, el otro baja y el cuerpo queda nivelado."
+msgstr "The bar on top that joins the left and right suspension. When one side goes up, the other goes down and the body stays level."
+
+msgid "La NASA no publica el material exacto de esta pieza. Es parte del sistema rocker-bogie, que según los ingenieros de JPL usa titanio como material principal."
+msgstr "NASA doesn't publish the exact material of this part. It is part of the rocker-bogie system, which according to JPL engineers uses titanium as its main material."
+
+msgid "Une los dos lados. Cuando una pata sube, el diferencial hace que el cuerpo solo se incline la mitad, así las cámaras y los instrumentos se mantienen más estables."
+msgstr "It joins the two sides. When one leg goes up, the differential makes the body tilt only half as much, so the cameras and instruments stay steadier."
+
+msgid "Es la barra larga que se ve sobre la parte de arriba del rover."
+msgstr "It's the long bar you can see across the top of the rover."
+
+msgid "Equilibrio: mantiene derechos los instrumentos mientras el rover se mueve."
+msgstr "Balance: it keeps the instruments level while the rover moves."
+
+msgid "Une los dos lados con el diferencial: la barra va arriba, en el centro."
+msgstr "Join the two sides with the differential: the bar goes on top, in the center."
+
+msgid "Ruedas izquierdas (3)"
+msgstr "Left wheels (3)"
+
+msgid "Tres ruedas de aluminio con tacos para agarrarse al suelo y rayos curvos de titanio que funcionan como resortes."
+msgstr "Three aluminum wheels with treads to grip the ground and curved titanium spokes that work like springs."
+
+msgid "Aluminio de grado de vuelo, tallado a partir de un bloque. Tiene 48 tacos (grousers) para agarrarse y rayos curvos de titanio que funcionan como resortes."
+msgstr "Flight-grade aluminum, machined from a single block. It has 48 treads (grousers) for grip and curved titanium spokes that work like springs."
+
+msgid "Son los pies del rover. Si una rueda se rompe, el rover no puede llegar a las rocas que debe estudiar. Por eso son más gruesas que las de Curiosity, cuyas ruedas se dañaron con piedras puntiagudas."
+msgstr "They are the rover's feet. If a wheel breaks, the rover can't reach the rocks it needs to study. That's why they are thicker than Curiosity's, whose wheels were damaged by sharp rocks."
+
+msgid "Cada rueda mide 52,5 cm y tiene su propio motor. Las 4 ruedas de las esquinas también pueden girar para que el rover dé vuelta en su lugar."
+msgstr "Each wheel is 52.5 cm across and has its own motor. The 4 corner wheels can also steer so the rover can turn in place."
+
+msgid "Energía: moverse gasta electricidad, así que cada viaje se planifica."
+msgstr "Energy: moving uses electricity, so every drive is planned."
+
+msgid "Monta las tres ruedas izquierdas en los extremos de la suspensión izquierda."
+msgstr "Mount the three left wheels at the ends of the left suspension."
+
+msgid "Ruedas derechas (3)"
+msgstr "Right wheels (3)"
+
+msgid "Las otras tres ruedas. Son más angostas y más grandes que las de Curiosity, para gastarse menos con las rocas filosas."
+msgstr "The other three wheels. They are narrower and larger than Curiosity's, so they wear down less on sharp rocks."
+
+msgid "Aluminio con tacos tallados y rayos curvos de titanio, igual que las del lado izquierdo. Miden 52,5 cm de diámetro."
+msgstr "Aluminum with machined treads and curved titanium spokes, just like the ones on the left side. They are 52.5 cm in diameter."
+
+msgid "Una vuelta completa de rueda, sin patinar, avanza 1,65 m. Las 6 ruedas juntas permiten que el rover maneje solo sobre arena y roca dura."
+msgstr "One full turn of a wheel, without slipping, moves the rover 1.65 m. Together, the 6 wheels let the rover drive itself over sand and hard rock."
+
+msgid "En terreno plano y duro, Perseverance va a menos de 152 metros por hora: en Marte importa más llegar bien que llegar rápido."
+msgstr "On flat, hard ground, Perseverance goes less than 152 meters per hour: on Mars, arriving safely matters more than arriving fast."
+
+msgid "Monta las tres ruedas derechas en la suspensión derecha."
+msgstr "Mount the three right wheels on the right suspension."
+
+msgid "Cuerpo (caja de electrónica)"
+msgstr "Body (electronics box)"
+
+msgid "La caja que protege el cerebro del rover (su computadora), la electrónica y los instrumentos, y los mantiene a buena temperatura. Tiene cámaras para evitar peligros adelante y atrás."
+msgstr "The box that protects the rover's brain (its computer), the electronics and the instruments, and keeps them at a good temperature. It has cameras to avoid hazards in front and behind."
+
+msgid "Paneles tipo sándwich con relleno de panal de abejas (honeycomb) y materiales compuestos de la empresa Toray, que también se usaron en Curiosity. Por dentro funciona como un termo que mantiene caliente la electrónica."
+msgstr "Sandwich panels with a honeycomb core and composite materials from the company Toray, also used on Curiosity. Inside, it works like a thermos that keeps the electronics warm."
+
+msgid "Protege el cerebro y el corazón del rover. En Marte las noches pueden bajar a unos -80 °C: sin esta caja aislada, la computadora y las baterías se congelarían."
+msgstr "It protects the rover's brain and heart. On Mars, nights can drop to about -80 °C: without this insulated box, the computer and batteries would freeze."
+
+msgid "Adentro viajó MOXIE, un aparato del tamaño de una tostadora que fabricó 122 gramos de oxígeno con el aire de Marte entre 2021 y 2023."
+msgstr "MOXIE traveled inside it, a toaster-sized device that made 122 grams of oxygen from the Martian air between 2021 and 2023."
+
+msgid "Oxígeno: MOXIE demostró que en el futuro se podría fabricar oxígeno en Marte para los astronautas."
+msgstr "Oxygen: MOXIE showed that in the future oxygen could be made on Mars for astronauts."
+
+msgid "Baja el cuerpo (la caja de electrónica) sobre la suspensión."
+msgstr "Lower the body (the electronics box) onto the suspension."
+
+msgid "Sistema de muestras"
+msgstr "Sample handling system"
+
+msgid "La parte de adelante donde el rover cambia las brocas del taladro y guarda los tubos con rocas de Marte."
+msgstr "The front section where the rover swaps drill bits and stores the tubes with Mars rocks."
+
+msgid "Los 43 tubos de muestra son principalmente de titanio y cada uno pesa menos de 57 g. Se limpiaron y esterilizaron en una sala ultralimpia."
+msgstr "The 43 sample tubes are mostly titanium and each weighs less than 57 g. They were cleaned and sterilized in an ultraclean room."
+
+msgid "Es la razón principal de la misión: guarda rocas de Marte selladas para que una misión futura pueda traerlas a la Tierra. Tiene más de 3000 piezas, más que un reloj suizo fino."
+msgstr "It is the main reason for the mission: it stores sealed Mars rocks so a future mission can bring them back to Earth. It has more than 3,000 parts, more than a fine Swiss watch."
+
+msgid "Perseverance guarda pedacitos de roca del tamaño de una tiza en tubos muy limpios, para que algún día puedan estudiarse en la Tierra."
+msgstr "Perseverance stores chalk-sized pieces of rock in very clean tubes, so that one day they can be studied on Earth."
+
+msgid "Ciencia: cada muestra cuesta tiempo y energía, por eso se elige con cuidado dónde tomarla."
+msgstr "Science: each sample costs time and energy, so the place to take it is chosen carefully."
+
+msgid "Instala el sistema de muestras en la parte delantera del cuerpo."
+msgstr "Install the sample handling system at the front of the body."
+
+msgid "Radar RIMFAX"
+msgstr "RIMFAX radar"
+
+msgid "Un radar que mira bajo el suelo mientras el rover avanza, como una radiografía de la tierra."
+msgstr "A radar that looks underground as the rover moves, like an X-ray of the ground."
+
+msgid "La NASA no publica el material exacto de esta pieza. Su antena tiene forma de corbatín y está bajo la parte trasera del rover."
+msgstr "NASA doesn't publish the exact material of this part. Its antenna is shaped like a bow tie and sits under the back of the rover."
+
+msgid "Es el primer radar que 've' bajo el suelo desde la superficie de Marte, hasta unos 10 m de profundidad. Muestra las capas de roca enterradas y ayuda a entender si hubo agua y por cuánto tiempo."
+msgstr "It is the first radar to 'see' underground from the surface of Mars, down to about 10 m deep. It shows buried rock layers and helps scientists understand whether there was water and for how long."
+
+msgid "Puede ver capas de roca, agua o hielo hasta 10 metros bajo la superficie. Mide cada 10 centímetros de camino."
+msgstr "It can see layers of rock, water or ice down to 10 meters below the surface. It takes a reading every 10 centimeters of the drive."
+
+msgid "Recursos: encontrar hielo o agua bajo el suelo ayudaría a una futura base."
+msgstr "Resources: finding ice or water underground would help a future base."
+
+msgid "Instala el radar RIMFAX debajo de la parte trasera."
+msgstr "Install the RIMFAX radar under the back of the rover."
+
+msgid "Batería nuclear MMRTG"
+msgstr "MMRTG nuclear power source"
+
+msgid "La fuente de energía del rover. Convierte en electricidad el calor del plutonio-238, de día y de noche, sin depender del Sol."
+msgstr "The rover's power source. It turns the heat from plutonium-238 into electricity, day and night, without depending on the Sun."
+
+msgid "4,8 kg de dióxido de plutonio (un tipo de cerámica) en 32 pastillas forradas con iridio, dentro de 8 módulos con grafito protector. 768 termopares de telururo de plomo y TAGS convierten el calor en electricidad, y aletas externas sueltan el calor sobrante."
+msgstr "4.8 kg of plutonium dioxide (a kind of ceramic) in 32 iridium-clad pellets, inside 8 modules with protective graphite. 768 lead telluride and TAGS thermocouples turn the heat into electricity, and outer fins release the extra heat."
+
+msgid "Da energía de día y de noche, con polvo o sin sol, durante muchos años. Produce unos 110 W de electricidad al inicio y además calor para mantener tibio al rover. Es como una batería nuclear: sin ella el rover se apagaría."
+msgstr "It provides power day and night, with dust or without sun, for many years. It makes about 110 W of electricity at the start, plus heat to keep the rover warm. It's like a nuclear battery: without it the rover would shut down."
+
+msgid "Da unos 110 vatios, más o menos lo que usa un foco grande. Por eso el rover tiene que repartir muy bien su energía."
+msgstr "It provides about 110 watts, roughly what a large light bulb uses. That's why the rover has to share out its energy very carefully."
+
+msgid "Energía: toda la misión depende de esta pieza. Si se usa mucha energía en una cosa, falta para otra."
+msgstr "Energy: the whole mission depends on this part. If a lot of energy goes to one thing, there is less for another."
+
+msgid "Conecta la batería nuclear MMRTG en la parte trasera: ahora el rover tiene energía."
+msgstr "Connect the MMRTG nuclear power source at the back: now the rover has power."
+
+msgid "Antena de alta ganancia"
+msgstr "High-gain antenna"
+
+msgid "La antena con forma de hexágono. Apunta directo a la Tierra para mandar y recibir mensajes."
+msgstr "The hexagon-shaped antenna. It points straight at Earth to send and receive messages."
+
+msgid "Antena plana de tecnología 'microstrip' fabricada por Airbus, protegida contra el polvo y probada entre -135 °C y +90 °C. Su mecanismo para apuntar lo hizo SENER."
+msgstr "A flat 'microstrip' antenna made by Airbus, protected against dust and tested between -135 °C and +90 °C. Its pointing mechanism was made by SENER."
+
+msgid "Por ella llegan casi todas las órdenes desde la Tierra. Se puede girar para apuntar a la Tierra sin mover el rover, lo que ahorra energía."
+msgstr "Almost all the commands from Earth arrive through it. It can turn to point at Earth without moving the rover, which saves energy."
+
+msgid "Un mensaje entre Marte y la Tierra tarda varios minutos en llegar, por eso el rover no se puede manejar como un auto a control remoto."
+msgstr "A message between Mars and Earth takes several minutes to arrive, which is why the rover can't be driven like a remote-control car."
+
+msgid "Comunicación: hablar con la Tierra también gasta energía."
+msgstr "Communication: talking to Earth also uses energy."
+
+msgid "Monta la antena de alta ganancia (el hexágono) sobre la cubierta."
+msgstr "Mount the high-gain antenna (the hexagon) on the deck."
+
+msgid "Antenas UHF y de baja ganancia"
+msgstr "UHF and low-gain antennas"
+
+msgid "La antena UHF habla con las naves que orbitan Marte, que llevan los datos a la Tierra. La de baja ganancia sirve de respaldo."
+msgstr "The UHF antenna talks to the spacecraft orbiting Mars, which carry the data to Earth. The low-gain antenna is a backup."
+
+msgid "La NASA no publica el material exacto de esta pieza. La antena UHF tiene forma de cilindro y la de baja ganancia parece una pieza de ajedrez."
+msgstr "NASA doesn't publish the exact material of this part. The UHF antenna is shaped like a cylinder and the low-gain antenna looks like a chess piece."
+
+msgid "El 99,9 % de los datos científicos viaja por la antena UHF hacia las naves que orbitan Marte (hasta 2 megabits por segundo), y ellas los mandan a la Tierra. La de baja ganancia sirve para emergencias."
+msgstr "99.9 % of the science data travels through the UHF antenna to the spacecraft orbiting Mars (up to 2 megabits per second), and they send it on to Earth. The low-gain antenna is for emergencies."
+
+msgid "La mayoría de las fotos de Perseverance llegan a la Tierra pasando por un orbitador, no directo."
+msgstr "Most of Perseverance's photos reach Earth by way of an orbiter, not directly."
+
+msgid "Comunicación: depender de un orbitador obliga a esperar a que pase por encima."
+msgstr "Communication: relying on an orbiter means waiting for it to pass overhead."
+
+msgid "Monta las antenas UHF y de baja ganancia en la parte trasera de la cubierta."
+msgstr "Mount the UHF and low-gain antennas at the back of the deck."
+
+msgid "Mástil de sensores"
+msgstr "Remote sensing mast"
+
+msgid "El cuello del rover. Levanta las cámaras y el láser para que vean lejos, como si el rover se parara en puntas de pie."
+msgstr "The rover's neck. It raises the cameras and the laser so they can see far away, as if the rover were standing on tiptoe."
+
+msgid "La NASA no publica el material exacto de esta pieza. Viajó doblado sobre la cubierta y se levantó después de aterrizar, hasta más de 2,2 m de altura."
+msgstr "NASA doesn't publish the exact material of this part. It traveled folded on the deck and was raised after landing, to more than 2.2 m high."
+
+msgid "Pone las cámaras a la altura de los ojos de una persona de 2 m, para ver lejos y elegir por dónde manejar. También lleva sensores del clima (MEDA)."
+msgstr "It puts the cameras at the eye height of a 2 m tall person, to see far away and choose where to drive. It also carries weather sensors (MEDA)."
+
+msgid "Con el mástil arriba, Perseverance mide unos 2,2 metros de alto: tanto como un jugador de básquet."
+msgstr "With the mast up, Perseverance is about 2.2 meters tall: as tall as a basketball player."
+
+msgid "Exploración: ver lejos ayuda a elegir caminos seguros."
+msgstr "Exploration: seeing far away helps choose safe paths."
+
+msgid "Levanta el mástil de sensores en la esquina delantera derecha."
+msgstr "Raise the remote sensing mast at the front right corner."
+
+msgid "Cabeza: SuperCam y Mastcam-Z"
+msgstr "Head: SuperCam and Mastcam-Z"
+
+msgid "La cabeza del rover. SuperCam dispara un láser a las rocas para saber de qué están hechas, y Mastcam-Z son dos cámaras con zoom que ven en 3D."
+msgstr "The rover's head. SuperCam fires a laser at rocks to find out what they are made of, and Mastcam-Z is a pair of zoom cameras that see in 3D."
+
+msgid "La NASA no publica el material exacto de esta pieza. La cabeza de SuperCam la construyeron Francia (CNES) y Estados Unidos."
+msgstr "NASA doesn't publish the exact material of this part. The SuperCam head was built by France (CNES) and the United States."
+
+msgid "Son los ojos del rover: eligen qué rocas vale la pena estudiar y permiten ver Marte en 3D, en color y con zoom."
+msgstr "They are the rover's eyes: they choose which rocks are worth studying and let us see Mars in 3D, in color and with zoom."
+
+msgid "SuperCam puede analizar rocas a más de 7 metros de distancia. Mastcam-Z fue la primera cámara con zoom en un rover de Marte."
+msgstr "SuperCam can analyze rocks more than 7 meters away. Mastcam-Z was the first zoom camera on a Mars rover."
+
+msgid "Ciencia: estudiar rocas desde lejos ahorra viajes y energía."
+msgstr "Science: studying rocks from a distance saves drives and energy."
+
+msgid "Coloca la cabeza con SuperCam y Mastcam-Z arriba del mástil."
+msgstr "Place the head with SuperCam and Mastcam-Z on top of the mast."
+
+msgid "Brazo robótico"
+msgstr "Robotic arm"
+
+msgid "Un brazo como el humano, con hombro, codo y muñeca, que acerca los instrumentos y el taladro a las rocas."
+msgstr "An arm like a human one, with a shoulder, elbow and wrist, that brings the instruments and the drill up to the rocks."
+
+msgid "Titanio: es un brazo de 2 m con varios segmentos. Lo diseñó y construyó la empresa Motiv Space Systems."
+msgstr "Titanium: it is a 2 m arm with several segments. It was designed and built by the company Motiv Space Systems."
+
+msgid "Funciona como el brazo de un geólogo. Tiene hombro, codo y muñeca, y un sensor de fuerza que le avisa cuánto empuja. Sin él no se podrían usar el taladro ni los instrumentos de la mano."
+msgstr "It works like a geologist's arm. It has a shoulder, elbow and wrist, and a force sensor that tells it how hard it is pushing. Without it, the drill and the hand instruments couldn't be used."
+
+msgid "Mide 2,1 metros y tiene cinco articulaciones (motores que giran)."
+msgstr "It is 2.1 meters long and has five joints (motors that rotate)."
+
+msgid "Ciencia: el brazo permite tocar y perforar rocas sin mover todo el rover."
+msgstr "Science: the arm makes it possible to touch and drill rocks without moving the whole rover."
+
+msgid "Instala el brazo robótico en el frente del rover."
+msgstr "Install the robotic arm at the front of the rover."
+
+msgid "Torreta: taladro, SHERLOC y WATSON"
+msgstr "Turret: drill, SHERLOC and WATSON"
+
+msgid "La mano del rover. Tiene un taladro que saca muestras de roca, SHERLOC, que busca compuestos orgánicos con un láser ultravioleta, y WATSON, una cámara para fotos muy de cerca."
+msgstr "The rover's hand. It has a drill that takes rock samples, SHERLOC, which looks for organic compounds with an ultraviolet laser, and WATSON, a camera for very close-up photos."
+
+msgid "La punta de las brocas es de carburo de tungsteno (grado K92 de Kennametal), un material duro para cortar roca. Las brocas abrasivas tienen 3 dientes de carburo de tungsteno."
+msgstr "The drill bit tips are made of tungsten carbide (Kennametal grade K92), a hard material for cutting rock. The abrading bits have 3 tungsten carbide teeth."
+
+msgid "Es la 'mano' del rover (unos 45 kg). Aquí se taladran las rocas: cada muestra mide 13 mm de ancho y 60 mm de largo. Sin la torreta no habría muestras para traer a la Tierra."
+msgstr "It is the rover's 'hand' (about 45 kg). This is where rocks are drilled: each sample is 13 mm wide and 60 mm long. Without the turret there would be no samples to bring back to Earth."
+
+msgid "WATSON puede mirar detalles de 30 micrómetros, más finos que un pelo."
+msgstr "WATSON can see details of 30 micrometers, finer than a hair."
+
+msgid "Ciencia: aquí empieza la búsqueda de señales de vida antigua."
+msgstr "Science: this is where the search for signs of ancient life begins."
+
+msgid "Pon la torreta con el taladro, SHERLOC y WATSON en la punta del brazo."
+msgstr "Put the turret with the drill, SHERLOC and WATSON at the tip of the arm."
+
+msgid "PIXL (rayos X)"
+msgstr "PIXL (X-rays)"
+
+msgid "Un instrumento de la mano del rover que usa rayos X para saber qué elementos químicos tiene una roca."
+msgstr "An instrument on the rover's hand that uses X-rays to find out which chemical elements a rock contains."
+
+msgid "La NASA no publica el material exacto de esta pieza. Es del tamaño de una lonchera y se mueve con un hexápodo de 6 patas."
+msgstr "NASA doesn't publish the exact material of this part. It is the size of a lunch box and moves on a 6-legged hexapod."
+
+msgid "Su rayo X es tan fino que analiza zonas del tamaño de un grano de sal. Hace mapas químicos de las rocas para buscar huellas de microbios antiguos y elegir qué muestras guardar."
+msgstr "Its X-ray beam is so thin that it analyzes spots the size of a grain of salt. It makes chemical maps of rocks to look for traces of ancient microbes and to choose which samples to keep."
+
+msgid "Puede estudiar puntos tan pequeños como un grano de sal de mesa."
+msgstr "It can study spots as small as a grain of table salt."
+
+msgid "Ciencia: conocer la química de las rocas dice si Marte tuvo agua y condiciones para la vida."
+msgstr "Science: knowing the chemistry of the rocks tells us whether Mars had water and conditions for life."
+
+msgid "Termina con PIXL, el último instrumento de la torreta. ¡Rover listo!"
+msgstr "Finish with PIXL, the last instrument on the turret. Rover ready!"
+
+msgid "Perseverance"
+msgstr "Perseverance"
+
+msgid "Rover de la NASA · Activo en Marte desde 2021 · Récord: 45,22 km recorridos (11/10/2026)"
+msgstr "NASA rover · Active on Mars since 2021 · Record: 45.22 km driven (Oct. 11, 2026)"
+
+msgid "Modelo 3D: NASA/JPL-Caltech (NASA 3D Resources). Dividido en piezas para NaSA-GAME."
+msgstr "3D model: NASA/JPL-Caltech (NASA 3D Resources). Split into parts for NaSA-GAME."
+
+msgid "agua"
+msgstr "water"
+
+msgid "comida"
+msgstr "food"
+
+msgid "Lechuga"
+msgstr "Lettuce"
+
+msgid "Cable %s seleccionado: busca su conector."
+msgstr "Cable %s selected: find its connector."
+
+msgid "¿Cómo quieres vivir el despegue?"
+msgstr "How do you want to experience the launch?"
+
+msgid "Versión 3D"
+msgstr "3D version"
+
+msgid "Mira el Saturno V desde afuera y desde la cabina (tecla C)."
+msgstr "Watch the Saturn V from outside and from the cabin (C key)."
+
+msgid "Versión 2D clásica"
+msgstr "Classic 2D version"
+
+msgid "Dentro de la cabina del Apolo, con sus paneles y relojes. Más ligera: ideal si la computadora es lenta."
+msgstr "Inside the Apollo cabin, with its panels and dials. Lighter: great for slower computers."
+
+msgid "Cancelar"
+msgstr "Cancel"
+
+msgid "NaSA-GAME · BASE LUNAR SELENE"
+msgstr "NaSA-GAME · SELENE LUNAR BASE"
+
+msgid "CERTIFICADO DE ASTRONAUTA JUNIOR"
+msgstr "JUNIOR ASTRONAUT CERTIFICATE"
+
+msgid "Se otorga a"
+msgstr "Awarded to"
+
+msgid "Carnet"
+msgstr "Card"
+
+msgid "por completar el entrenamiento de astronauta: mantener con vida la Base Lunar Selene, armar el rover Perseverance y llevar el Apolo 8 a la órbita, con datos reales de la NASA."
+msgstr "for completing astronaut training: keeping Selene Lunar Base alive, assembling the Perseverance rover and taking Apollo 8 to orbit, with real NASA data."
+
+msgid "Módulo"
+msgstr "Module"
+
+msgid "Oro"
+msgstr "Gold"
+
+msgid "Fecha"
+msgstr "Date"
+
+msgid "Control de Misión · NaSA-GAME"
+msgstr "Mission Control · NaSA-GAME"
+
+msgid "NASA Space Apps Challenge 2026 · Diploma del juego, no es un documento oficial de la NASA."
+msgstr "NASA Space Apps Challenge 2026 · In-game diploma, not an official NASA document."
+
+msgid "Volver"
+msgstr "Back"
+
+msgid "Guardar imagen"
+msgstr "Save image"
+
+msgid "Base Lunar"
+msgstr "Lunar Base"
+
+msgid "Taller del Rover"
+msgstr "Rover Workshop"
+
+msgid "Despegue"
+msgstr "Launch"
+
+msgid "VER CERTIFICADO"
+msgstr "VIEW CERTIFICATE"
+
+msgid "Gana medalla en Base, Rover y Despegue."
+msgstr "Earn a medal in Base, Rover and Launch."
+
+msgid "PAUSA"
+msgstr "PAUSED"
+
+msgid "Continuar"
+msgstr "Continue"
+
+msgid "Cómo jugar"
+msgstr "How to play"
+
+msgid "Música"
+msgstr "Music"
+
+msgid "Efectos"
+msgstr "Effects"
+
+msgid "Volver al menú principal"
+msgstr "Back to main menu"
+
+msgid "¡Medalla!"
+msgstr "Medal!"
+
+msgid "CONTROL DE MISIÓN · 1 / 5"
+msgstr "MISSION CONTROL · 1 / 5"
+
+msgid "Título"
+msgstr "Title"
+
+msgid "Texto"
+msgstr "Text"
+
+msgid "Saltar"
+msgstr "Skip"
+
+msgid "¡Bienvenido a la Base Lunar Selene!"
+msgstr "Welcome to Selene Lunar Base!"
+
+msgid "Eres un [b]astronauta junior[/b] y hoy estás a cargo de la base.\n\nTu misión: mantener a la tripulación con vida durante [b]%d minutos[/b], hasta que llegue el relevo desde la Tierra.\n\nCada dato que verás (radiación, tormentas solares, cultivos) viene de estudios reales de la NASA."
+msgstr "You are a [b]junior astronaut[/b] and today you are in charge of the base.\n\nYour mission: keep the crew alive for [b]%d minutes[/b], until the relief crew arrives from Earth.\n\nEvery piece of data you will see (radiation, solar storms, crops) comes from real NASA studies."
+
+msgid "Controles"
+msgstr "Controls"
+
+msgid "[b]W A S D[/b]: caminar\n[b]Ratón[/b]: mirar\n[b]E[/b]: usar una consola\n[b]ESPACIO[/b]: saltar · acción en los minijuegos\n[b]R[/b]: reiniciar la misión\n[b]ESC[/b]: pausa (continuar, cómo jugar, idioma y volumen)"
+msgstr "[b]W A S D[/b]: walk\n[b]Mouse[/b]: look around\n[b]E[/b]: use a console\n[b]SPACE[/b]: jump · action in the minigames\n[b]R[/b]: restart the mission\n[b]ESC[/b]: pause (continue, how to play, language and volume)"
+
+msgid "Los recursos de la base"
+msgstr "The base resources"
+
+msgid "Arriba a la izquierda ves cinco barras:\n\n[color=#4fc2f7]■ OXÍGENO[/color]   [color=#ffc947]■ ENERGÍA[/color]   [color=#47dbbf]■ AGUA[/color]\n[color=#c28cff]■ ESCUDO ANTIRRADIACIÓN[/color]   [color=#8ce04d]■ COMIDA[/color]\n\nTodas bajan con el tiempo. Si [b]una llega a cero[/b], la misión falla. Cuando una barra se pone roja, ¡corre a repararla!"
+msgstr "At the top left you will see five bars:\n\n[color=#4fc2f7]■ OXYGEN[/color]   [color=#ffc947]■ ENERGY[/color]   [color=#47dbbf]■ WATER[/color]\n[color=#c28cff]■ RADIATION SHIELD[/color]   [color=#8ce04d]■ FOOD[/color]\n\nThey all go down over time. If [b]any of them reaches zero[/b], the mission fails. When a bar turns red, run and fix it!"
+
+msgid "Consolas y reparaciones"
+msgstr "Consoles and repairs"
+
+msgid "Cada recurso tiene su consola en una sala. Acércate y pulsa [b]E[/b].\n\n• [b]Oxígeno[/b]: purga la presión cuando la aguja del manómetro esté en la zona verde.\n• [b]Energía[/b]: conecta cada cable con su letra.\n• [b]Huerto[/b]: elige la luz, riega y cosecha como en la ISS.\n• [b]Agua y escudo[/b]: se reparan al instante."
+msgstr "Each resource has its console in a room. Walk up to it and press [b]E[/b].\n\n• [b]Oxygen[/b]: vent the pressure when the gauge needle is in the green zone.\n• [b]Energy[/b]: plug each cable into its letter.\n• [b]Garden[/b]: choose the light, water and harvest like on the ISS.\n• [b]Water and shield[/b]: they are repaired instantly."
+
+msgid "Emergencias"
+msgstr "Emergencies"
+
+msgid "La base puede sufrir [b]tormentas solares[/b] (llamaradas reales registradas por la NASA), micrometeoritos, fugas de agua y sobrecargas.\n\nLee las alertas en rojo: te dicen qué recurso se dañó. Mantén el escudo alto para soportar la radiación.\n\n[b]¡Suerte, astronauta![/b]"
+msgstr "The base can suffer [b]solar storms[/b] (real flares recorded by NASA), micrometeoroids, water leaks and power overloads.\n\nRead the red alerts: they tell you which resource was damaged. Keep the shield high to withstand the radiation.\n\n[b]Good luck, astronaut![/b]"
+
+msgid "CONTROL DE MISIÓN · %d / %d"
+msgstr "MISSION CONTROL · %d / %d"
+
+msgid "¡A la misión!"
+msgstr "To the mission!"
+
+msgid "Astronauta"
+msgstr "Astronaut"
+
+msgid "Carnet N.º %s"
+msgstr "Card No. %s"
+
+msgid "Fecha: %s"
+msgstr "Date: %s"
+
+msgid "Aún te falta completar algún módulo para ganar el certificado."
+msgstr "You still need to complete a module to earn the certificate."
+
+msgid "Guardado en: %s"
+msgstr "Saved to: %s"
+
+msgid "No se pudo guardar la imagen."
+msgstr "Could not save the image."
+
+msgid "¡Ganaste el Certificado de Astronauta Junior! Míralo en «Mi carnet»."
+msgstr "You earned the Junior Astronaut Certificate! See it in “My ID card”."
+
+msgid "¡Felicidades, astronauta!"
+msgstr "Congratulations, astronaut!"
+
+msgid "Falta: %s"
+msgstr "Missing: %s"
+
+msgid "Despegue del Apolo 8"
+msgstr "Apollo 8 Launch"
+
+msgid "Sin medalla"
+msgstr "No medal"
+
+msgid "Bronce"
+msgstr "Bronze"
+
+msgid "Plata"
+msgstr "Silver"
+
+msgid "¡Medalla de bronce!"
+msgstr "Bronze medal!"
+
+msgid "¡Medalla de plata!"
+msgstr "Silver medal!"
+
+msgid "¡Medalla de oro!"
+msgstr "Gold medal!"
+
+msgid "TUTORIAL · 1 / 5"
+msgstr "TUTORIAL · 1 / 5"
+
+msgid "Saltar tutorial"
+msgstr "Skip tutorial"
+
+msgid "Las [b]16 piezas[/b] del rover Perseverance están separadas en la mesa. Tu trabajo: armarlo en el orden correcto, como los ingenieros de la NASA."
+msgstr "The rover Perseverance's [b]16 parts[/b] are laid out on the table. Your job: assemble it in the right order, like NASA engineers."
+
+msgid "Elige un modo"
+msgstr "Choose a mode"
+
+msgid "[b]Guiado[/b]: una silueta te muestra dónde va cada pieza (ideal la primera vez).\n[b]Evaluación[/b]: sin ayuda y con cronómetro. Te da de 1 a 3 estrellas y tu medalla."
+msgstr "[b]Guided[/b]: a silhouette shows you where each part goes (great for your first time).\n[b]Evaluation[/b]: no help and with a timer. It gives you 1 to 3 stars and your medal."
+
+msgid "Qué pieza sigue"
+msgstr "Which part is next"
+
+msgid "Aquí ves la instrucción del paso actual."
+msgstr "Here you see the instruction for the current step."
+
+msgid "El procedimiento"
+msgstr "The procedure"
+
+msgid "La lista de pasos en orden: se arma [b]de abajo hacia arriba[/b]. Si pones una pieza antes de tiempo, cuenta como error."
+msgstr "The list of steps in order: the rover is built [b]from the bottom up[/b]. Placing a part too early counts as a mistake."
+
+msgid "Arrastra las piezas"
+msgstr "Drag the parts"
+
+msgid "Con el [b]botón izquierdo[/b] arrastra la pieza desde la mesa hasta el rover.\n[b]Botón derecho[/b]: girar la cámara · [b]Rueda[/b]: acercar o alejar."
+msgstr "Use the [b]left button[/b] to drag a part from the table to the rover.\n[b]Right button[/b]: rotate the camera · [b]Wheel[/b]: zoom in or out."
+
+msgid "Aprende de cada pieza"
+msgstr "Learn from each part"
+
+msgid "Al instalarla (o al hacer clic en ella) verás una tarjeta: de qué está hecha, para qué sirve y un dato real de la misión."
+msgstr "When you install it (or click on it) you will see a card: what it is made of, what it does and a real mission fact."
+
+msgid "Reparar el oxígeno"
+msgstr "Fix the oxygen"
+
+msgid "Este es el [b]puesto de oxígeno[/b]: el tanque, la válvula y el [b]manómetro[/b]. La aguja roja sube y baja sola."
+msgstr "This is the [b]oxygen station[/b]: the tank, the valve and the [b]pressure gauge[/b]. The red needle moves up and down on its own."
+
+msgid "La zona verde"
+msgstr "The green zone"
+
+msgid "Pulsa [b]ESPACIO[/b] o el botón cuando la aguja esté [b]dentro de la zona verde[/b]. La barra de abajo muestra lo mismo que el manómetro."
+msgstr "Press [b]SPACE[/b] or the button when the needle is [b]inside the green zone[/b]. The bar below shows the same as the gauge."
+
+msgid "Presión y tiempo"
+msgstr "Pressure and time"
+
+msgid "Cada acierto sube la [b]presión[/b]. Llénala antes de que se acabe el [b]tiempo[/b]. Si fallas, pierdes unos segundos."
+msgstr "Each hit raises the [b]pressure[/b]. Fill it before the [b]time[/b] runs out. If you miss, you lose a few seconds."
+
+msgid "¡Tu turno!"
+msgstr "Your turn!"
+
+msgid "Puedes usar este botón o la tecla [b]ESPACIO[/b]. [b]ESC[/b] cierra la reparación."
+msgstr "You can use this button or the [b]SPACE[/b] key. [b]ESC[/b] closes the repair."
+
+msgid "Vas a vivir el despegue del [b]21 de diciembre de 1968[/b], con la altura, la velocidad y los tiempos [b]reales[/b] de la NASA."
+msgstr "You are about to live the launch of [b]December 21, 1968[/b], with NASA's [b]real[/b] altitude, speed and timings."
+
+msgid "El botón de acción"
+msgstr "The action button"
+
+msgid "Cuando el control de misión te dé una orden, pulsa este botón (o [b]ESPACIO[/b]) [b]en el momento justo[/b]: encender motores, soltar etapas… Si llegas tarde, cuenta como error."
+msgstr "When mission control gives you an order, press this button (or [b]SPACE[/b]) [b]at the right moment[/b]: ignite engines, drop stages… If you are late, it counts as a mistake."
+
+msgid "Los datos del vuelo"
+msgstr "Flight data"
+
+msgid "Reloj de misión, altura, velocidad, etapa y motores, como en la telemetría real del Saturno V."
+msgstr "Mission clock, altitude, speed, stage and engines, like the real Saturn V telemetry."
+
+msgid "Qué está pasando"
+msgstr "What is happening"
+
+msgid "Aquí se explica cada fase del vuelo. Al final recibes de 1 a 3 estrellas y tu medalla."
+msgstr "Each phase of the flight is explained here. At the end you get 1 to 3 stars and your medal."
+
+msgid "Cambia la vista"
+msgstr "Change the view"
+
+msgid "Con la tecla [b]C[/b] o las flechas pasas de la vista exterior del cohete a la cabina."
+msgstr "Use the [b]C[/b] key or the arrows to switch between the outside view of the rocket and the cabin."
+
+msgid "¡Hola, futuro astronauta!"
+msgstr "Hello, future astronaut!"
+
+msgid "Bienvenido a [b]NaSA-GAME[/b], el entrenamiento para astronautas junior. Te mostramos el menú en unos pasos. Puedes [b]saltar el tutorial[/b] cuando quieras."
+msgstr "Welcome to [b]NaSA-GAME[/b], the training for junior astronauts. We will show you the menu in a few steps. You can [b]skip the tutorial[/b] at any time."
+
+msgid "Jugar"
+msgstr "Play"
+
+msgid "Aquí están las misiones: [b]Base Lunar[/b], [b]Armado del rover[/b] y [b]Simulación de despegue[/b]."
+msgstr "Here are the missions: [b]Lunar Base[/b], [b]Rover Assembly[/b] and [b]Launch Simulation[/b]."
+
+msgid "Libros con datos reales de la NASA, en tres niveles. Leer libros también da medalla."
+msgstr "Books with real NASA data, in three levels. Reading books also earns a medal."
+
+msgid "Crea tu carnet de astronauta con tu nombre y tu foto. Ahí verás tus [b]medallas[/b] y tu [b]certificado[/b]."
+msgstr "Create your astronaut ID card with your name and photo. There you will see your [b]medals[/b] and your [b]certificate[/b]."
+
+msgid "Idioma"
+msgstr "Language"
+
+msgid "Cambia entre español e inglés en cualquier momento."
+msgstr "Switch between Spanish and English at any time."
+
+msgid "Cuida la base durante la misión: recursos, consolas, minijuegos y emergencias reales. [b]Empieza por aquí.[/b]"
+msgstr "Take care of the base during the mission: resources, consoles, minigames and real emergencies. [b]Start here.[/b]"
+
+msgid "Armado del rover"
+msgstr "Rover Assembly"
+
+msgid "Arma el rover [b]Perseverance[/b] pieza por pieza y aprende para qué sirve cada una."
+msgstr "Assemble the [b]Perseverance[/b] rover part by part and learn what each one does."
+
+msgid "Simulación de despegue"
+msgstr "Launch Simulation"
+
+msgid "Vive el despegue del [b]Apolo 8[/b] con datos reales: puedes elegir la versión 3D o la 2D."
+msgstr "Live the launch of [b]Apollo 8[/b] with real data: you can choose the 3D or the 2D version."
+
+msgid "Tu certificado"
+msgstr "Your certificate"
+
+msgid "Gana una medalla en [b]Base, Rover y Despegue[/b] para conseguir el [b]Certificado de Astronauta Junior[/b]."
+msgstr "Earn a medal in [b]Base, Rover and Launch[/b] to get the [b]Junior Astronaut Certificate[/b]."
+
+msgid "TUTORIAL · %d / %d"
+msgstr "TUTORIAL · %d / %d"
+
+msgid "¡Entendido!"
+msgstr "Got it!"
+
+msgid "El huerto hidropónico"
+msgstr "The hydroponic garden"
+
+msgid "Aquí cultivas comida como en la [b]ISS[/b] (cámara Veggie de la NASA). Las plantas crecen sin tierra, con luz LED y agua."
+msgstr "Here you grow food like on the [b]ISS[/b] (NASA's Veggie chamber). Plants grow without soil, with LED light and water."
+
+msgid "1. Elige la luz"
+msgstr "1. Choose the light"
+
+msgid "[b]Roja (90:10)[/b] o [b]azul (50:50)[/b], como en los estudios reales. La luz gasta energía de la base."
+msgstr "[b]Red (90:10)[/b] or [b]blue (50:50)[/b], like in the real studies. The light uses the base's energy."
+
+msgid "2. Mantén la humedad"
+msgstr "2. Keep the moisture"
+
+msgid "Riega con [b]ESPACIO[/b] o con el botón. La humedad debe quedar en la [b]zona buena (35 % a 80 %)[/b]: ni seca ni encharcada."
+msgstr "Water with [b]SPACE[/b] or the button. Moisture must stay in the [b]good zone (35 % to 80 %)[/b]: not dry, not flooded."
+
+msgid "3. Cosecha"
+msgstr "3. Harvest"
+
+msgid "Cuida las plantas hasta que la cosecha llegue al 100 %. Cada día del juego es un día real del experimento."
+msgstr "Look after the plants until the harvest reaches 100 %. Each game day is a real day of the experiment."
+
+msgid "La biblioteca espacial"
+msgstr "The space library"
+
+msgid "Libros con [b]datos reales[/b] de la NASA y la CSA, ordenados por nivel: [b]Inicial, Intermedio y Avanzado[/b]."
+msgstr "Books with [b]real data[/b] from NASA and the CSA, sorted by level: [b]Beginner, Intermediate and Advanced[/b]."
+
+msgid "Elige un libro"
+msgstr "Choose a book"
+
+msgid "Pasa el ratón sobre un libro para ver de qué trata y haz clic para abrirlo. Leer libros hasta el final te da [b]medalla[/b] (1, 4 y 8 libros)."
+msgstr "Hover over a book to see what it is about and click to open it. Reading books to the end earns you a [b]medal[/b] (1, 4 and 8 books)."
+
+msgid "Con este botón regresas al menú."
+msgstr "This button takes you back to the menu."
+
+msgid "Pasa las páginas"
+msgstr "Turn the pages"
+
+msgid "Usa estas flechas para avanzar o retroceder. Llega a la [b]última página[/b] para que el libro cuente como leído."
+msgstr "Use these arrows to go forward or back. Reach the [b]last page[/b] so the book counts as read."
+
+msgid "Actividad"
+msgstr "Activity"
+
+msgid "Algunos libros tienen una actividad para practicar lo que aprendiste."
+msgstr "Some books have an activity to practice what you learned."
+
+msgid "Cerrar el libro"
+msgstr "Close the book"
+
+msgid "Vuelve a la estantería para elegir otro."
+msgstr "Go back to the shelf to choose another one."
+
+msgid "Eres un [b]astronauta junior[/b] y hoy estás a cargo de la base.\n\nTu misión: mantener a la tripulación con vida durante [b]%d minutos[/b], hasta que llegue el relevo desde la Tierra."
+msgstr "You are a [b]junior astronaut[/b] and today you are in charge of the base.\n\nYour mission: keep the crew alive for [b]%d minutes[/b], until the relief crew arrives from Earth."
+
+msgid "Tus cinco recursos"
+msgstr "Your five resources"
+
+msgid "[b]Oxígeno, energía, agua, escudo antirradiación y comida[/b].\n\nTodos bajan con el tiempo. Si [b]uno llega a cero[/b], la misión falla. Cuando una barra se pone roja, ¡corre a repararla!"
+msgstr "[b]Oxygen, energy, water, radiation shield and food[/b].\n\nThey all go down over time. If [b]any of them reaches zero[/b], the mission fails. When a bar turns red, run and fix it!"
+
+msgid "Tiempo y puntos"
+msgstr "Time and points"
+
+msgid "Aquí ves el estado de la misión, [b]cuánto tiempo falta[/b] para el relevo y tus [b]puntos[/b]. Mientras mejor cuides la base, más puntos y mejor medalla."
+msgstr "Here you see the mission status, [b]how much time is left[/b] until the relief crew arrives and your [b]points[/b]. The better you look after the base, the more points and the better the medal."
+
+msgid "Cómo moverte"
+msgstr "How to move"
+
+msgid "[b]W A S D[/b]: caminar · [b]Ratón[/b]: mirar\n[b]E[/b]: usar una consola · [b]R[/b]: reiniciar\n[b]ESC[/b]: pausa\n\nLas puertas se abren solas cuando te acercas."
+msgstr "[b]W A S D[/b]: walk · [b]Mouse[/b]: look around\n[b]E[/b]: use a console · [b]R[/b]: restart\n[b]ESC[/b]: pause\n\nDoors open on their own when you get close."
+
+msgid "Las consolas"
+msgstr "The consoles"
+
+msgid "Cada recurso tiene su [b]consola[/b] en una sala. Acércate y pulsa [b]E[/b].\n\n• [b]Oxígeno, energía y huerto[/b] abren un minijuego (la primera vez te explicamos cómo se juega).\n• [b]Agua y escudo[/b] se reparan al instante."
+msgstr "Each resource has its [b]console[/b] in a room. Walk up to it and press [b]E[/b].\n\n• [b]Oxygen, energy and garden[/b] open a minigame (the first time we explain how to play).\n• [b]Water and shield[/b] are repaired instantly."
+
+msgid "Pueden llegar [b]tormentas solares[/b] (llamaradas reales registradas por la NASA), micrometeoritos o fugas. La alerta roja aparece aquí y te dice qué recurso se dañó."
+msgstr "[b]Solar storms[/b] (real flares recorded by NASA), micrometeoroids or leaks can happen. The red alert appears here and tells you which resource was damaged."
+
+msgid "Si te pierdes, pulsa [b]ESC[/b] y elige [b]Cómo jugar[/b] para ver este tutorial otra vez.\n\n[b]¡Suerte, astronauta![/b]"
+msgstr "If you get lost, press [b]ESC[/b] and choose [b]How to play[/b] to see this tutorial again.\n\n[b]Good luck, astronaut![/b]"
+
+msgid "¡Tu primera emergencia!"
+msgstr "Your first emergency!"
+
+msgid "Lee la [b]alerta roja[/b]: dice qué pasó y qué recurso bajó. Busca la consola de ese recurso y repáralo antes de que llegue a cero."
+msgstr "Read the [b]red alert[/b]: it tells you what happened and which resource went down. Find that resource's console and fix it before it reaches zero."
+
+msgid "¡Un recurso está muy bajo!"
+msgstr "A resource is very low!"
+
+msgid "Esta barra está en rojo. Ve a su consola y pulsa [b]E[/b] para repararla. ¡Si llega a cero, la misión falla!"
+msgstr "This bar is red. Go to its console and press [b]E[/b] to fix it. If it reaches zero, the mission fails!"
+
+msgid "Reparar la energía"
+msgstr "Fix the energy"
+
+msgid "Este es el [b]gabinete eléctrico[/b]. Hay que volver a enchufar los 4 cables, cada uno en la toma con [b]su letra[/b]."
+msgstr "This is the [b]electrical cabinet[/b]. You have to plug the 4 cables back in, each one into the socket with [b]its letter[/b]."
+
+msgid "1. Elige un cable"
+msgstr "1. Choose a cable"
+
+msgid "Pulsa un cable de esta columna (A, B, C o D). Su enchufe se levanta en el gabinete."
+msgstr "Press a cable in this column (A, B, C or D). Its plug lifts up in the cabinet."
+
+msgid "2. Elige su toma"
+msgstr "2. Choose its socket"
+
+msgid "Ahora pulsa la toma con la [b]misma letra[/b]. ¡Ojo! Las tomas cambian de orden en cada partida. Si te equivocas saltan chispas y pierdes tiempo."
+msgstr "Now press the socket with the [b]same letter[/b]. Careful! The sockets change order every game. If you get it wrong, sparks fly and you lose time."
+
+msgid "Circuito y tiempo"
+msgstr "Circuit and time"
+
+msgid "Conecta los 4 cables antes de que se acabe el tiempo para restablecer la energía de la base."
+msgstr "Connect the 4 cables before the time runs out to restore the base's power."
+
+msgid "1. Tu nombre"
+msgstr "1. Your name"
+
+msgid "Escribe tu nombre de astronauta."
+msgstr "Type your astronaut name."
+
+msgid "2. Tu foto"
+msgstr "2. Your photo"
+
+msgid "Elige un dibujo o pulsa [b]TOMAR MI FOTO[/b] para usar la cámara."
+msgstr "Choose a drawing or press [b]TAKE MY PHOTO[/b] to use the camera."
+
+msgid "Tu carnet"
+msgstr "Your ID card"
+
+msgid "Así queda tu carnet. Pulsa [b]GUARDAR MI CARNET[/b] para conservarlo: abre las puertas de la base y sube de nivel cuando completas misiones."
+msgstr "This is how your card looks. Press [b]SAVE MY ID CARD[/b] to keep it: it opens the base doors and levels up when you complete missions."
+
+msgid "Medallas y certificado"
+msgstr "Medals and certificate"
+
+msgid "Aquí aparecen tus medallas de cada misión. Con medalla en Base, Rover y Despegue se desbloquea tu [b]Certificado de Astronauta Junior[/b]."
+msgstr "Your medals from each mission appear here. With a medal in Base, Rover and Launch you unlock your [b]Junior Astronaut Certificate[/b]."

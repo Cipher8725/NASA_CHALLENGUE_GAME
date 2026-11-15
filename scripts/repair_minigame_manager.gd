@@ -12,7 +12,7 @@ extends CanvasLayer
 ## hasta ahora; se les puede añadir minijuego más adelante sin tocar este
 ## script: basta con registrar la escena en `_scene_for()`.
 
-## Ruta de la escena del minijuego de oxígeno (pulsar un botón).
+## Ruta de la escena del minijuego de oxígeno (mantener la presión).
 const SCENE_OXYGEN: String = "res://scenes/ui/minigame_oxygen.tscn"
 ## Ruta de la escena del minijuego de energía (conectar cables).
 const SCENE_ENERGY: String = "res://scenes/ui/minigame_cables.tscn"
@@ -56,6 +56,8 @@ func open_minigame(console: ResourceConsole) -> bool:
 	_current = instance
 	instance.begin()
 	_set_player_input(false)
+	# La primera vez que se abre cada minijuego se explica paso a paso (con el juego en pausa).
+	GuideOverlay.start(self, instance.guide_id(), instance.guide_steps(), true)
 	return true
 
 # --- Métodos privados ---
@@ -79,11 +81,20 @@ func _on_minigame_finished(success: bool) -> void:
 	var game: GameManager = GameManager.get_instance()
 	if instance != null and game != null:
 		if success:
+			# Reparar la energía también arregla un corto circuito pendiente:
+			# primero se cierra el circuito y después se repone la carga.
+			if instance.resource_type == GameManager.RESOURCE_ENERGY:
+				game.repair_short_circuit()
 			var amount: float = game.restore_resource(
 				instance.resource_type, game.config.console_restore_amount)
-			_notify_hud("¡REPARACIÓN COMPLETADA: %s (+%.0f)" % [instance.display_name, amount], 3.0)
+			if instance.resource_type == GameManager.RESOURCE_FOOD:
+				_notify_hud(tr("¡COSECHA LISTA! COMIDA +%.0f") % amount, 3.0)
+			else:
+				_notify_hud(tr("¡REPARACIÓN COMPLETADA! %s (+%.0f)") % [tr(instance.display_name), amount], 3.0)
+		elif instance.resource_type == GameManager.RESOURCE_FOOD:
+			_notify_hud(tr("SE PERDIÓ LA COSECHA"), 3.0)
 		else:
-			_notify_hud("REPARACIÓN FALLIDA: %s" % instance.display_name, 3.0)
+			_notify_hud(tr("REPARACIÓN FALLIDA: %s") % tr(instance.display_name), 3.0)
 	if instance != null and is_instance_valid(instance):
 		instance.queue_free()
 	_set_player_input(true)

@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://dsm7gg42kclnd" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/End_Table.glb" id="10_end_table"]
 [ext_resource type="PackedScene" uid="uid://bnmmub4arpbae" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/3D_Chess_Board.glb" id="11_3d_chess_board"]
 [ext_resource type="PackedScene" uid="uid://q8ym1vbxnct2" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Wall_Display_Blue.glb" id="12_wall_display_blue"]
-[ext_resource type="PackedScene" uid="uid://bcm0ecaa35w2g" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Plant_1.glb" id="13_plant_1"]
 [ext_resource type="PackedScene" uid="uid://bnwrd0xppx06s" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Floor_Medbay_Large.glb" id="14_floor_medbay_large"]
 [ext_resource type="PackedScene" uid="uid://dfbi13b0jbbgw" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Wall_Glass_Clear.glb" id="16_shaga"]
 [ext_resource type="PackedScene" path="res://scenes/doors/auto_door.tscn" id="17_auto_door"]
@@ -34,6 +33,30 @@ size = Vector3(1.6, 1.7, 0.65)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_door_top_2"]
 size = Vector3(1.2, 1.7, 2.15)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prop_0"]
+size = Vector3(2.573, 0.933, 1.541)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prop_1"]
+size = Vector3(1.583, 0.933, 2.598)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prop_2"]
+size = Vector3(2.651, 1.513, 1.998)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prop_3"]
+size = Vector3(0.832, 1.775, 1.01)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prop_4"]
+size = Vector3(0.832, 1.772, 1.01)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prop_5"]
+size = Vector3(0.836, 0.921, 0.828)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prop_6"]
+size = Vector3(0.7, 0.487, 0.698)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prop_7"]
+size = Vector3(0.194, 2.456, 1.544)
 
 [node name="room_medbay" type="Node3D" unique_id=960738248]
 
@@ -330,9 +353,6 @@ transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 9.15, 0, -5)
 [node name="Display_1" parent="Props" unique_id=1909593345 instance=ExtResource("12_wall_display_blue")]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -9.15, 0, -5)
 
-[node name="Plant_0" parent="Props" unique_id=1019085621 instance=ExtResource("13_plant_1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
-
 [node name="Collision" type="StaticBody3D" parent="." unique_id=741102886]
 
 [node name="FloorShape" type="CollisionShape3D" parent="Collision" unique_id=596591192]
@@ -490,3 +510,64 @@ transform = Transform3D(-4.645693e-08, 1.0998092, -4.371139e-08, 0, -4.8074185e-
 
 [node name="Wall_East_5" parent="." unique_id=910336282 instance=ExtResource("16_shaga")]
 transform = Transform3D(-4.645693e-08, 1.0998092, -4.371139e-08, 0, -4.8074185e-08, -1, -1.0628107, -4.8074185e-08, 1.9106855e-15, 5.6692257, 3.8268428, 0.0031661987)
+
+; Colisiones de los adornos: una caja por cada nodo de Props, ajustada a la
+; AABB de su malla en el espacio de la escena (los giros son de 90°, así que
+; la caja alineada a los ejes queda ceñida). Capa 1, como suelo y paredes.
+[node name="PropsCollision" type="StaticBody3D" parent="."]
+
+[node name="Bed_N0" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.185, 0.475, 8.194)
+shape = SubResource("BoxShape3D_prop_0")
+
+[node name="Bed_N1" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.585, 0.475, 8.194)
+shape = SubResource("BoxShape3D_prop_0")
+
+[node name="Bed_N2" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.548, 0.475, 5.463)
+shape = SubResource("BoxShape3D_prop_1")
+
+[node name="Bed_N3" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.614, 0.475, 8.194)
+shape = SubResource("BoxShape3D_prop_0")
+
+[node name="Bed_N4" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.214, 0.475, 8.194)
+shape = SubResource("BoxShape3D_prop_0")
+
+[node name="Bed_S0" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.184, 0.756, -8.203)
+shape = SubResource("BoxShape3D_prop_2")
+
+[node name="Bed_S1" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.585, 0.756, -8.203)
+shape = SubResource("BoxShape3D_prop_2")
+
+[node name="BioMonitor_0" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.774, 0.892, 4.979)
+shape = SubResource("BoxShape3D_prop_3")
+
+[node name="BioMonitor_1" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.798, 0.886, 3)
+shape = SubResource("BoxShape3D_prop_4")
+
+[node name="EndTable_0" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.7, 0.461, 0)
+shape = SubResource("BoxShape3D_prop_5")
+
+[node name="EndTable_1" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.7, 0.461, -6)
+shape = SubResource("BoxShape3D_prop_5")
+
+[node name="ChessBoard" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.699, 1.167, 0.002)
+shape = SubResource("BoxShape3D_prop_6")
+
+[node name="Display_0" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.124, 1.933, -5)
+shape = SubResource("BoxShape3D_prop_7")
+
+[node name="Display_1" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.124, 1.933, -5)
+shape = SubResource("BoxShape3D_prop_7")

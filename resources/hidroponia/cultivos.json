@@ -64,7 +64,7 @@
  "uso_en_juego": {
   "nota": "aproximado (juego): los días reales hasta la cosecha se comprimen en unos segundos de minijuego (1 día = 0,5 s).",
   "segundos_por_dia": 0.5,
-  "agua_por_riego": 3.0,
+  "agua_por_riego": 2.0,
   "energia_luz_roja_por_segundo": 0.35,
   "energia_luz_azul_por_segundo": 0.4,
   "nota_energia": "La luz azul gasta 15 % más energía que la roja, como en VEG-04 (dato real); la cantidad base por segundo es aproximada (juego)."

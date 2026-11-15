@@ -14,6 +14,8 @@ signal book_opened(book_id: String)
 signal book_closed
 
 const CATALOG_PATH: String = "res://resources/biblioteca/catalogo.json"
+## Catálogo en inglés: mismos `id`, con título, páginas, fuentes y portada en inglés.
+const CATALOG_EN_PATH: String = "res://resources/biblioteca/catalogo_en.json"
 const MENU_SCENE: String = "res://scenes/main_menu.tscn"
 ## Columnas y filas de la estantería (esquina superior izquierda de cada libro).
 ## Cuatro columnas: la cuarta (x 942) entra en el mismo estante sin tapar otros libros.
@@ -43,11 +45,15 @@ var _spread: int = 0
 @onready var _page_label: Label = %PageLabel
 
 func _ready() -> void:
+	AudioManager.music(&"menu")
 	if DisplayServer.get_name() != "headless":
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	_books = load_catalog(CATALOG_PATH)
+	if Lang.is_english():
+		_books = localize_catalog(_books, load_catalog(CATALOG_EN_PATH))
 	_build_shelf()
 	_reader.visible = false
+	show_guide.call_deferred(false)
 
 ## Lee el catálogo JSON. Devuelve una lista vacía si no existe o está mal escrito.
 static func load_catalog(path: String) -> Array[Dictionary]:
@@ -60,6 +66,28 @@ static func load_catalog(path: String) -> Array[Dictionary]:
 		for item: Variant in data:
 			if item is Dictionary:
 				result.append(item as Dictionary)
+	return result
+
+## Pasa el catálogo al otro idioma libro a libro (se emparejan por `id`).
+## Del catálogo traducido se toman título, páginas, fuentes y portada (si la
+## imagen existe); el `nivel` y la actividad se conservan del original porque
+## la estantería y las escenas dependen de ellos (el nivel y el texto de la
+## actividad se traducen al mostrarse). Un libro sin traducción queda igual.
+static func localize_catalog(books: Array[Dictionary], translated: Array[Dictionary]) -> Array[Dictionary]:
+	var by_id: Dictionary = {}
+	for book: Dictionary in translated:
+		by_id[str(book.get("id", ""))] = book
+	var result: Array[Dictionary] = []
+	for book: Dictionary in books:
+		var copy: Dictionary = book.duplicate(true)
+		var other: Dictionary = by_id.get(str(book.get("id", "")), {}) as Dictionary
+		for key: String in ["titulo", "paginas", "fuentes"]:
+			if other.has(key):
+				copy[key] = other[key]
+		var cover: String = str(other.get("portada", ""))
+		if not cover.is_empty() and ResourceLoader.exists(cover):
+			copy["portada"] = cover
+		result.append(copy)
 	return result
 
 # --- API pública (la usan las pruebas) ---
@@ -89,6 +117,7 @@ func open_book(book_id: String) -> bool:
 			_spreads = _build_spreads(book)
 			_spread = 0
 			_reader.visible = true
+			show_reader_guide.call_deferred(false)
 			_show_spread()
 			book_opened.emit(book_id)
 			return true
@@ -103,11 +132,16 @@ func next_spread() -> void:
 	if _spread < _spreads.size() - 1:
 		_spread += 1
 		_show_spread()
+		AudioManager.sfx(&"page")
+		# Llegar a la última página cuenta como libro leído (medalla de la biblioteca).
+		if _spread == _spreads.size() - 1 and not _book.is_empty():
+			PlayerProgress.mark_book_read(str(_book.get("id", "")))
 
 func prev_spread() -> void:
 	if _spread > 0:
 		_spread -= 1
 		_show_spread()
+		AudioManager.sfx(&"page")
 
 # --- Estantería ---
 
@@ -124,9 +158,9 @@ func _build_shelf() -> void:
 		var button: TextureButton = _template.duplicate() as TextureButton
 		button.name = "Book_" + str(book["id"])
 		button.visible = true
-		button.texture_normal = load(str(book["portada"])) as Texture2D
+		button.texture_normal = load(Localization.localized_path(str(book["portada"]))) as Texture2D
 		button.position = Vector2(SHELF_COLUMNS[column], int(SHELF_ROWS[level]))
-		button.tooltip_text = str(book["titulo"])
+		button.tooltip_text = tr(str(book["titulo"]))
 		button.pressed.connect(open_book.bind(str(book["id"])))
 		button.mouse_entered.connect(_on_book_hover.bind(button, book, true))
 		button.mouse_exited.connect(_on_book_hover.bind(button, book, false))
@@ -136,9 +170,9 @@ func _build_shelf() -> void:
 func _on_book_hover(button: TextureButton, book: Dictionary, entered: bool) -> void:
 	create_tween().tween_property(button, "scale", Vector2.ONE * (HOVER_SCALE if entered else 1.0), 0.12)
 	if entered:
-		_book_info.text = "%s  ·  Nivel %s  ·  %d páginas" % [book["titulo"], book["nivel"], (book["paginas"] as Array).size()]
+		_book_info.text = tr("%s  ·  Nivel %s  ·  %d páginas") % [tr(str(book["titulo"])), tr(str(book["nivel"])), (book["paginas"] as Array).size()]
 	else:
-		_book_info.text = "Elige un libro para leerlo"
+		_book_info.text = tr("Elige un libro para leerlo")
 
 # --- Lector ---
 
@@ -147,8 +181,8 @@ func _build_spreads(book: Dictionary) -> Array[Dictionary]:
 	var spreads: Array[Dictionary] = []
 	var cover: Dictionary = {
 		"titulo": str(book["titulo"]),
-		"texto": "[b]Nivel %s[/b]\n\n%d páginas para leer. Usa [b]Siguiente[/b] para avanzar." % [book["nivel"], pages.size()],
-		"imagen": str(book["portada"]),
+		"texto": tr("[b]Nivel %s[/b]\n\n%d páginas para leer. Usa [b]Siguiente[/b] para avanzar.") % [tr(str(book["nivel"])), pages.size()],
+		"imagen": Localization.localized_path(str(book["portada"])),
 	}
 	var flat: Array[Dictionary] = [cover]
 	for page: Variant in pages:
@@ -156,8 +190,8 @@ func _build_spreads(book: Dictionary) -> Array[Dictionary]:
 	var links: PackedStringArray = []
 	for url: Variant in book.get("fuentes", []) as Array:
 		links.append("• [url=%s]%s[/url]" % [url, url])
-	flat.append({"titulo": "Fuentes", "texto": "Este libro se escribió con información de la NASA:\n\n" + "\n".join(links)})
-	flat.append({"titulo": "¡Libro terminado!", "texto": "Leíste «%s». Vuelve a la estantería para elegir otro libro." % book["titulo"], "final": true})
+	flat.append({"titulo": tr("Fuentes"), "texto": tr("Este libro se escribió con información de la NASA:\n\n") + "\n".join(links)})
+	flat.append({"titulo": tr("¡Libro terminado!"), "texto": tr("Leíste «%s». Vuelve a la estantería para elegir otro libro.") % tr(str(book["titulo"])), "final": true})
 	for i: int in range(0, flat.size(), 2):
 		spreads.append({"izquierda": flat[i], "derecha": flat[i + 1] if i + 1 < flat.size() else {}})
 	return spreads
@@ -170,17 +204,17 @@ func _show_spread() -> void:
 	var activity: Dictionary = _book.get("actividad", {}) as Dictionary
 	_activity_button.visible = bool(right.get("final", false)) and not activity.is_empty()
 	if _activity_button.visible:
-		_activity_button.text = str(activity.get("texto", "Practicar"))
+		_activity_button.text = tr(str(activity.get("texto", "Practicar")))
 	_prev_button.disabled = _spread == 0
 	_next_button.disabled = _spread >= _spreads.size() - 1
 	_page_label.text = "%d / %d" % [_spread + 1, _spreads.size()]
 
 func _fill_page(page: Dictionary, title: Label, image: TextureRect, text: RichTextLabel) -> void:
-	title.text = str(page.get("titulo", ""))
+	title.text = tr(str(page.get("titulo", "")))
 	var image_path: String = str(page.get("imagen", ""))
-	image.texture = load(image_path) as Texture2D if not image_path.is_empty() else null
+	image.texture = load(Localization.localized_path(image_path)) as Texture2D if not image_path.is_empty() else null
 	image.visible = image.texture != null
-	text.text = str(page.get("texto", ""))
+	text.text = tr(str(page.get("texto", "")))
 
 # --- Botones ---
 
@@ -216,3 +250,29 @@ func _unhandled_input(event: InputEvent) -> void:
 	else:
 		return
 	get_viewport().set_input_as_handled()
+
+# --- Tutoriales ---
+
+## Tutorial de la estantería.
+func show_guide(force: bool = true) -> GuideOverlay:
+	if _reader.visible:
+		return show_reader_guide(force)
+	return GuideOverlay.start(self, "biblioteca", [
+		GuideOverlay.step(tr("La biblioteca espacial"),
+			tr("Libros con [b]datos reales[/b] de la NASA y la CSA, ordenados por nivel: [b]Inicial, Intermedio y Avanzado[/b]."), %Shelf),
+		GuideOverlay.step(tr("Elige un libro"),
+			tr("Pasa el ratón sobre un libro para ver de qué trata y haz clic para abrirlo. Leer libros hasta el final te da [b]medalla[/b] (1, 4 y 8 libros)."), %BookInfo),
+		GuideOverlay.step(tr("Volver"),
+			tr("Con este botón regresas al menú."), %BackButton),
+	], false, force)
+
+## Tutorial del lector (la primera vez que se abre un libro).
+func show_reader_guide(force: bool = true) -> GuideOverlay:
+	return GuideOverlay.start(self, "biblioteca_lector", [
+		GuideOverlay.step(tr("Pasa las páginas"),
+			tr("Usa estas flechas para avanzar o retroceder. Llega a la [b]última página[/b] para que el libro cuente como leído."), %NextButton),
+		GuideOverlay.step(tr("Actividad"),
+			tr("Algunos libros tienen una actividad para practicar lo que aprendiste."), %ActivityButton),
+		GuideOverlay.step(tr("Cerrar el libro"),
+			tr("Vuelve a la estantería para elegir otro."), %CloseButton),
+	], false, force)

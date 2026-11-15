@@ -58,7 +58,7 @@ func get_captured() -> Image:
 
 ## Busca una cámara y la enciende. Devuelve true si hay imagen en vivo.
 func start_camera() -> bool:
-	_status.text = "Buscando tu cámara..."
+	_status.text = tr("Buscando tu cámara...")
 	CameraServer.monitoring_feeds = true
 	var waited: float = 0.0
 	while CameraServer.get_feed_count() == 0 and waited < camera_wait_seconds and is_inside_tree():
@@ -67,14 +67,14 @@ func start_camera() -> bool:
 	if CameraServer.get_feed_count() == 0:
 		_feed = null
 		_shoot_button.disabled = true
-		_status.text = "No encontramos una cámara. Pulsa SUBIR UNA FOTO para elegir una imagen tuya."
+		_status.text = tr("No encontramos una cámara. Pulsa SUBIR UNA FOTO para elegir una imagen tuya.")
 		return false
 	_feed = _pick_front_feed()
 	_choose_format(_feed)
 	_feed.feed_is_active = true
 	_connect_preview(_feed)
 	_shoot_button.disabled = false
-	_status.text = "Mira a la cámara, sonríe y pulsa TOMAR FOTO."
+	_status.text = tr("Mira a la cámara, sonríe y pulsa TOMAR FOTO.")
 	return true
 
 func stop_camera() -> void:
@@ -112,7 +112,7 @@ func _on_upload_pressed() -> void:
 func _on_file_selected(path: String) -> void:
 	var image: Image = Image.load_from_file(path)
 	if image == null or image.is_empty():
-		_status.text = "No se pudo abrir esa imagen. Prueba con un archivo PNG o JPG."
+		_status.text = tr("No se pudo abrir esa imagen. Prueba con un archivo PNG o JPG.")
 		return
 	use_image(image)
 
@@ -128,7 +128,7 @@ func _on_retry_pressed() -> void:
 	_captured = null
 	_show_live_mode()
 	if _feed:
-		_status.text = "Otra vez: mira a la cámara y pulsa TOMAR FOTO."
+		_status.text = tr("Otra vez: mira a la cámara y pulsa TOMAR FOTO.")
 
 func _on_cancel_pressed() -> void:
 	stop_camera()
@@ -151,7 +151,7 @@ func _set_captured(image: Image) -> void:
 	_use_button.visible = true
 	_retry_button.visible = true
 	_shoot_button.visible = false
-	_status.text = "¿Te gusta? Pulsa USAR ESTA FOTO o REPETIR."
+	_status.text = tr("¿Te gusta? Pulsa USAR ESTA FOTO o REPETIR.")
 
 func _show_live_mode() -> void:
 	_result.visible = false

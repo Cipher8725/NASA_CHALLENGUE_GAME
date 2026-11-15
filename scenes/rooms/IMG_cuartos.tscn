@@ -21,7 +21,7 @@
 [ext_resource type="PackedScene" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Chair_1.glb" id="11_chair_1"]
 [ext_resource type="PackedScene" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Wall_Display_Off.glb" id="12_wall_display_off"]
 [ext_resource type="PackedScene" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Wall_Light_White.glb" id="13_wall_light_white"]
-[ext_resource type="PackedScene" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Plant_1.glb" id="14_plant_1"]
+[ext_resource type="PackedScene" path="res://scenes/props/potted_plant.tscn" id="14_plant_1"]
 [ext_resource type="PackedScene" path="res://scenes/doors/auto_door.tscn" id="16_auto_door"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_floor"]

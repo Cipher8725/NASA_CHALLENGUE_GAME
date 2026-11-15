@@ -1,0 +1,44 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://cw4yglanybdco"
+path.s3tc="res://.godot/imported/escotilla_3d_escotilla_3d_orm.png-8be349087a2e4d0c53ef58cbc208a30a.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "75d013d680ed68b9f08934376667caca"
+}
+
+[deps]
+
+source_file="res://ai_assets/models/cabina_apolo8/escotilla_3d_escotilla_3d_orm.png"
+dest_files=["res://.godot/imported/escotilla_3d_escotilla_3d_orm.png-8be349087a2e4d0c53ef58cbc208a30a.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/channel_remap/red=0
+process/channel_remap/green=1
+process/channel_remap/blue=2
+process/channel_remap/alpha=3
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

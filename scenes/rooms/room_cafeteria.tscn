@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Cafeteria_Table.glb" id="8_cafeteria_table"]
 [ext_resource type="PackedScene" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Table_Light.glb" id="9_table_light"]
 [ext_resource type="PackedScene" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/End_Table.glb" id="10_end_table"]
-[ext_resource type="PackedScene" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Plant_1.glb" id="11_plant_1"]
+[ext_resource type="PackedScene" path="res://scenes/props/potted_plant.tscn" id="11_plant_1"]
 [ext_resource type="PackedScene" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Floor_Lamp.glb" id="12_floor_lamp"]
 [ext_resource type="PackedScene" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Wall_Display_Blue.glb" id="13_wall_display_blue"]
 [ext_resource type="PackedScene" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Wall_Display_Orange.glb" id="14_wall_display_orange"]

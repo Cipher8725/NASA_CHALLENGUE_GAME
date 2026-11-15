@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://c5fuc6rewy46m" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Command_Console.glb" id="8_command_console"]
 [ext_resource type="PackedScene" uid="uid://d3hesabppt0km" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Wall_Display_Off.glb" id="9_wall_display_off"]
 [ext_resource type="PackedScene" uid="uid://bu16emg1m2unb" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Railing_Flat.glb" id="10_railing_flat"]
-[ext_resource type="PackedScene" uid="uid://bcm0ecaa35w2g" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Plant_1.glb" id="12_plant_1"]
 [ext_resource type="PackedScene" uid="uid://ds3lui4vkxm5g" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Chair_1.glb" id="13_chair_1"]
 [ext_resource type="PackedScene" uid="uid://d1vr36ri1ecl4" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Battery_Green.glb" id="14_battery_green"]
 [ext_resource type="PackedScene" path="res://scenes/doors/auto_door.tscn" id="16_auto_door"]
@@ -32,6 +31,27 @@ size = Vector3(1.6, 1.7, 0.65)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_door_top_2"]
 size = Vector3(1.2, 1.7, 2.15)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prop_0"]
+size = Vector3(0.985, 2.735, 3.104)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prop_1"]
+size = Vector3(2.838, 0.735, 2.196)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prop_2"]
+size = Vector3(1.544, 2.456, 0.194)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prop_3"]
+size = Vector3(0.174, 1.093, 3.924)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prop_4"]
+size = Vector3(0.827, 1.414, 0.963)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prop_5"]
+size = Vector3(0.904, 0.834, 0.67)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prop_6"]
+size = Vector3(0.904, 0.858, 0.67)
 
 [node name="IMG_vestibulo" type="Node3D" unique_id=1387140030]
 
@@ -290,12 +310,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.15)
 [node name="Railing" parent="Props" unique_id=1200272990 instance=ExtResource("10_railing_flat")]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 8.8, 0, -3.6593227)
 
-[node name="Plant_0" parent="Props" unique_id=1619000252 instance=ExtResource("12_plant_1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 6)
-
-[node name="Plant_1" parent="Props" unique_id=1578087123 instance=ExtResource("12_plant_1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 6)
-
 [node name="Chair_0" parent="Props" unique_id=2098202445 instance=ExtResource("13_chair_1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -4)
 
@@ -482,3 +496,68 @@ transform = Transform3D(-4.645693e-08, 1.0998092, -4.371139e-08, 0, -4.8074185e-
 
 [node name="Wall_East_5" parent="." unique_id=249177289 instance=ExtResource("6_wall_glass_clear")]
 transform = Transform3D(-4.645693e-08, 1.0998092, -4.371139e-08, 0, -4.8074185e-08, -1, -1.0628107, -4.8074185e-08, 1.9106855e-15, 5.6692257, 3.8268428, 0.0031661987)
+
+; Colisiones de los adornos: una caja por cada nodo de Props, ajustada a la
+; AABB de su malla en el espacio de la escena (los giros son de 90°, así que
+; la caja alineada a los ejes queda ceñida). Capa 1, como suelo y paredes.
+[node name="PropsCollision" type="StaticBody3D" parent="."]
+
+[node name="BigScreen" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.741, 1.367, -2)
+shape = SubResource("BoxShape3D_prop_0")
+
+[node name="Desk" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.367, -5.679)
+shape = SubResource("BoxShape3D_prop_1")
+
+[node name="Display" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.933, 9.124)
+shape = SubResource("BoxShape3D_prop_2")
+
+[node name="Railing" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.797, 0.546, -3.679)
+shape = SubResource("BoxShape3D_prop_3")
+
+[node name="Chair_0" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.002, 0.707, -4.046)
+shape = SubResource("BoxShape3D_prop_4")
+
+[node name="Chair_1" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.002, 0.707, -2.046)
+shape = SubResource("BoxShape3D_prop_4")
+
+[node name="Battery_0_0" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.6, 0.417, 8.5)
+shape = SubResource("BoxShape3D_prop_5")
+
+[node name="Battery_0_1" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.6, 1.275, 8.5)
+shape = SubResource("BoxShape3D_prop_6")
+
+[node name="Battery_0_2" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.6, 2.145, 8.5)
+shape = SubResource("BoxShape3D_prop_6")
+
+[node name="Battery_1_0" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.4, 0.417, 8.5)
+shape = SubResource("BoxShape3D_prop_5")
+
+[node name="Battery_1_1" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.4, 1.275, 8.5)
+shape = SubResource("BoxShape3D_prop_6")
+
+[node name="Battery_1_2" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.4, 2.145, 8.5)
+shape = SubResource("BoxShape3D_prop_6")
+
+[node name="Battery_2_0" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2, 0.417, 8.5)
+shape = SubResource("BoxShape3D_prop_5")
+
+[node name="Battery_2_1" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2, 1.275, 8.5)
+shape = SubResource("BoxShape3D_prop_6")
+
+[node name="Battery_2_2" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2, 2.145, 8.5)
+shape = SubResource("BoxShape3D_prop_6")

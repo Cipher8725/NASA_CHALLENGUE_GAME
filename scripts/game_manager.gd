@@ -4,7 +4,7 @@ extends Node
 ## Gestor global de la misión (registrado como Autoload con el nombre "Game").
 ##
 ## Responsabilidades:
-## - Mantener el estado de los recursos vitales (oxígeno, energía, agua, escudo radioactivo y comida).
+## - Mantener el estado de los recursos vitales (oxígeno, energía, agua, escudo contra la radiación y comida).
 ## - Emitir señales para que la UI y el mundo observen el estado (nunca al revés).
 ## - Controlar la máquina de estados de la misión.
 ## - Persistir y recuperar partidas guardadas.
@@ -34,6 +34,10 @@ signal mission_state_changed(new_state: MissionState)
 signal mission_failed(reason: String)
 ## Emitida cuando la misión se completa con éxito.
 signal mission_completed(final_score: float)
+## Emitida al empezar (true) o al reparar (false) un corto circuito.
+signal short_circuit_changed(active: bool)
+## Emitida al desviar la energía al domo: energía gastada y escudo ganado.
+signal energy_diverted_to_dome(energy_used: float, shield_gained: float)
 
 # --- Constantes ---
 
@@ -59,6 +63,23 @@ const EMERGENCY_PRESSURE: StringName = &"caida_presion"
 const EMERGENCY_WATER_LEAK: StringName = &"fuga_agua"
 ## Tormenta solar real tomada de DONKI (ver RadiationData).
 const EMERGENCY_SOLAR_STORM: StringName = &"tormenta_solar"
+## Corto circuito: toda la energía cae a cero y los paneles dejan de cargar
+## hasta que se repara la consola de energía (dentro del generador).
+const EMERGENCY_SHORT_CIRCUIT: StringName = &"corto_circuito"
+
+## Recursos cuyo agotamiento NO termina la misión. La energía puede llegar a 0
+## por diseño (corto circuito o al desviarla toda al domo) y se recupera con
+## los paneles solares.
+const NON_FATAL_RESOURCES: Array[StringName] = [RESOURCE_ENERGY]
+
+## Nombres en español de cada recurso, para los mensajes que ve el jugador.
+const RESOURCE_NAMES: Dictionary = {
+	&"oxygen": "oxígeno",
+	&"energy": "energía",
+	&"water": "agua",
+	&"shield": "escudo antirradiación",
+	&"food": "comida",
+}
 
 const SAVE_PATH_FORMAT: String = "user://nasa_save_%d.json"
 
@@ -91,8 +112,14 @@ var _missions_completed: int = 0
 var _notification_accumulator: float = 0.0
 ## Última erupción solar real aplicada (datos de DONKI), para el HUD.
 var _last_solar_flare: Dictionary = {}
+## Hay un corto circuito sin reparar.
+var _short_circuit: bool = false
+## Contador de partidas: invalida la cuenta atrás de una misión abandonada.
+var _mission_run: int = 0
 
 func _ready() -> void:
+	# Idioma guardado por el jugador (español o inglés).
+	Localization.apply_saved_language()
 	# Se publica la instancia estática para que otros scripts puedan acceder al
 	# gestor sin depender del identificador global del Autoload.
 	instance = self
@@ -136,14 +163,27 @@ func _physics_process(delta: float) -> void:
 
 ## Inicia la cuenta atrás y luego la fase activa de la mission.
 func start_mission() -> void:
+	_mission_run += 1
+	var run: int = _mission_run
 	_reset_resources()
 	_elapsed_mission_time = 0.0
 	_score = 0.0
 	_set_state(MissionState.BRIEFING)
-	await get_tree().create_timer(config.briefing_duration).timeout
-	if _state != MissionState.BRIEFING:
+	# process_always = false: la cuenta atrás se detiene si el juego está en pausa.
+	await get_tree().create_timer(config.briefing_duration, false).timeout
+	# Si entretanto se abandonó o se reinició la misión, esta espera ya no vale.
+	if _state != MissionState.BRIEFING or run != _mission_run:
 		return
 	_set_state(MissionState.ACTIVE)
+
+## Abandona la misión en curso (p. ej. al volver al menú desde la pausa):
+## los recursos vuelven al inicio y dejan de consumirse.
+func abort_mission() -> void:
+	_mission_run += 1
+	_reset_resources()
+	_elapsed_mission_time = 0.0
+	_score = 0.0
+	_set_state(MissionState.BRIEFING)
 
 ## Estado actual de la misión.
 func get_mission_state() -> MissionState:
@@ -226,6 +266,13 @@ func trigger_emergency(emergency_type: StringName, severity: float) -> void:
 			_apply_damage(RESOURCE_WATER, clamped_severity * 12.0)
 		EMERGENCY_SOLAR_STORM:
 			_apply_damage(RESOURCE_SHIELD, clamped_severity * RadiationData.shield_damage_per_severity())
+		EMERGENCY_SHORT_CIRCUIT:
+			# Un segundo corto con el primero sin reparar no añade nada.
+			if _short_circuit:
+				return
+			_short_circuit = true
+			_apply_damage(RESOURCE_ENERGY, get_resource_level(RESOURCE_ENERGY))
+			short_circuit_changed.emit(true)
 		_:
 			push_warning("GameManager: tipo de emergencia desconocido: %s" % emergency_type)
 			return
@@ -241,10 +288,42 @@ func trigger_solar_flare(flare: Dictionary) -> void:
 func get_last_solar_flare() -> Dictionary:
 	return _last_solar_flare
 
-## Fracción de la misión transcurrida (0-1).
+## ¿Hay un corto circuito pendiente de reparar?
+func is_short_circuit_active() -> bool:
+	return _short_circuit
+
+## Repara el corto circuito: los paneles vuelven a cargar. Devuelve true si
+## había uno activo.
+func repair_short_circuit() -> bool:
+	if not _short_circuit:
+		return false
+	_short_circuit = false
+	short_circuit_changed.emit(false)
+	return true
+
+## Desvía una fracción de la energía al domo (1.0 = toda): se convierte en
+## escudo (con la eficiencia de la configuración) y se descuenta de la
+## energía. Si el escudo ya está lleno o no hay energía no se gasta nada.
+## Devuelve el escudo ganado.
+func divert_energy_to_dome(fraction: float = 1.0) -> float:
+	var energy: float = get_resource_level(RESOURCE_ENERGY) * clampf(fraction, 0.0, 1.0)
+	if energy <= 0.0:
+		return 0.0
+	var missing: float = get_resource_max(RESOURCE_SHIELD) - get_resource_level(RESOURCE_SHIELD)
+	if missing <= 0.0:
+		return 0.0
+	var gained: float = restore_resource(RESOURCE_SHIELD, energy * config.dome_transfer_efficiency)
+	_apply_damage(RESOURCE_ENERGY, energy)
+	energy_diverted_to_dome.emit(energy, gained)
+	return gained
+
+## Fracción de la misión transcurrida (0-1). En misión sin fin es la fracción
+## del ciclo de radiación actual (el día de RadLab se repite).
 func get_mission_progress() -> float:
 	if config == null or config.mission_duration <= 0.0:
 		return 0.0
+	if config.endless_mission:
+		return fposmod(_elapsed_mission_time, config.mission_duration) / config.mission_duration
 	return clampf(_elapsed_mission_time / config.mission_duration, 0.0, 1.0)
 
 ## Tasa de radiación real (µGy/h, RadLab) que corresponde al momento actual.
@@ -319,11 +398,19 @@ func _reset_resources() -> void:
 	_critical_latched = {}
 	_depleted_latched = {}
 	_notification_accumulator = 0.0
+	_short_circuit = false
 
 ## Aplica el decaimiento continuo de los cuatro recursos.
 func _apply_decay(delta: float) -> void:
-	_decay_resource(RESOURCE_OXYGEN, config.oxygen_decay_rate, delta)
+	# Con un corto circuito el soporte vital va con la reserva: más gasto de O2.
+	var oxygen_rate: float = config.oxygen_decay_rate
+	if _short_circuit:
+		oxygen_rate *= config.short_circuit_oxygen_multiplier
+	_decay_resource(RESOURCE_OXYGEN, oxygen_rate, delta)
 	_decay_resource(RESOURCE_ENERGY, config.energy_decay_rate, delta)
+	# Los paneles solares cargan poco a poco, salvo con el circuito cortado.
+	if not _short_circuit:
+		_charge_resource(RESOURCE_ENERGY, config.solar_charge_rate, delta)
 	_decay_resource(RESOURCE_WATER, config.water_decay_rate, delta)
 	# El escudo se gasta según la radiación real medida en la ISS (RadLab):
 	# más rápido en los picos del día, más lento el resto del tiempo.
@@ -336,6 +423,13 @@ func _decay_resource(resource_type: StringName, rate: float, delta: float) -> vo
 		return
 	var maximum: float = get_resource_max(resource_type)
 	_levels[resource_type] = clampf(get_resource_level(resource_type) - (rate * delta), 0.0, maximum)
+
+## Carga un recurso de forma continua (sin superar su máximo).
+func _charge_resource(resource_type: StringName, rate: float, delta: float) -> void:
+	if rate <= 0.0:
+		return
+	var maximum: float = get_resource_max(resource_type)
+	_levels[resource_type] = clampf(get_resource_level(resource_type) + (rate * delta), 0.0, maximum)
 
 ## Acumula tiempo y notifica los cambios a la UI a frecuencia limitada.
 func _accumulate_notifications(delta: float) -> void:
@@ -374,11 +468,15 @@ func _evaluate_resource_state(resource_type: StringName) -> void:
 		_critical_latched[resource_type] = false
 		_exit_critical_state()
 
-	if value <= 0.0:
-		if not bool(_depleted_latched.get(resource_type, false)):
-			_depleted_latched[resource_type] = true
-			resource_depleted.emit(resource_type)
-			fail_mission("Recurso agotado: %s" % resource_type)
+	# La energía puede volver a cargarse tras llegar a 0: el aviso de agotado
+	# se rearma cuando el recurso vuelve a subir.
+	if value > 0.0:
+		_depleted_latched[resource_type] = false
+	elif not bool(_depleted_latched.get(resource_type, false)):
+		_depleted_latched[resource_type] = true
+		resource_depleted.emit(resource_type)
+		if not NON_FATAL_RESOURCES.has(resource_type):
+			fail_mission(tr("Recurso agotado: %s") % tr(String(RESOURCE_NAMES.get(resource_type, resource_type))))
 
 ## Cambia el estado de la misión y notifica a los observadores.
 func _set_state(new_state: MissionState) -> void:
@@ -401,8 +499,11 @@ func _exit_critical_state() -> void:
 			return
 	_set_state(MissionState.ACTIVE)
 
-## Evalúa la victoria por tiempo y la derrota por recursos agotados.
+## Evalúa la victoria por tiempo (solo si la misión tiene límite). La derrota
+## por recursos agotados se decide en `_evaluate_resource_state`.
 func _check_mission_objectives() -> void:
+	if config.endless_mission:
+		return
 	if _elapsed_mission_time >= config.mission_duration:
 		_complete_mission()
 

@@ -84,6 +84,9 @@ func _run() -> void:
 	failures += _check("Armar en orden acepta todas las piezas", all_ok)
 	failures += _check("El rover queda armado", workshop.get_phase() == RoverWorkshop.Phase.DONE)
 	failures += _check("Con 1 error se ganan 2 estrellas", workshop.get_stars() == 2)
+	var photo_id: String = workshop.get_shown_photo_id()
+	failures += _check("Al terminar se muestra una foto real de Marte (%s)" % photo_id, photo_id.begins_with("PIA") and (workshop.get_node("%MarsPhoto") as TextureRect).texture != null)
+	failures += _check("La foto lleva su crédito de la NASA", (workshop.get_node("%MarsPhotoCaption") as Label).text.contains("NASA/JPL-Caltech"))
 
 	# --- Reinicio y evaluación ---
 	workshop.restart()

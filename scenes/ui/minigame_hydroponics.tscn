@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=9 format=3]
 
 ; Minijuego de la hidroponía: cultivar comida fresca como en el huerto Veggie de la ISS.
 ;
@@ -7,6 +7,7 @@
 ; Datos: resources/hidroponia/cultivos.json (NASA OSDR y Agencia Espacial Canadiense).
 
 [ext_resource type="Script" path="res://scripts/minigame_hydroponics.gd" id="1_hydro"]
+[ext_resource type="Script" path="res://scripts/hydroponics_garden_3d.gd" id="2_garden"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
 bg_color = Color(0.04, 0.06, 0.11, 0.94)
@@ -97,22 +98,22 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -360.0
-offset_top = -250.0
-offset_right = 360.0
-offset_bottom = 250.0
+offset_left = -390.0
+offset_top = -350.0
+offset_right = 390.0
+offset_bottom = 350.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
 [node name="Body" type="VBoxContainer" parent="Panel"]
 layout_mode = 2
-theme_override_constants/separation = 12
+theme_override_constants/separation = 8
 
 [node name="TitleLabel" type="Label" parent="Panel/Body"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 28
 text = "HUERTO HIDROPÓNICO"
 horizontal_alignment = 1
 
@@ -123,6 +124,22 @@ theme_override_colors/font_color = Color(0.72, 0.95, 0.6, 1)
 text = "Cultivo"
 horizontal_alignment = 1
 autowrap_mode = 3
+
+[node name="GardenView" type="SubViewportContainer" parent="Panel/Body"]
+custom_minimum_size = Vector2(740, 270)
+layout_mode = 2
+stretch = true
+
+[node name="GardenViewport" type="SubViewport" parent="Panel/Body/GardenView"]
+own_world_3d = true
+handle_input_locally = false
+msaa_3d = 2
+size = Vector2i(740, 270)
+render_target_update_mode = 4
+
+[node name="Garden" type="Node3D" parent="Panel/Body/GardenView/GardenViewport"]
+unique_name_in_owner = true
+script = ExtResource("2_garden")
 
 [node name="LightRow" type="HBoxContainer" parent="Panel/Body"]
 layout_mode = 2

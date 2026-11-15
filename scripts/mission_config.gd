@@ -5,7 +5,12 @@ extends Resource
 ## Todos los valores ajustables del juego viven aquí (regla "gameplay.md": sin números mágicos).
 
 @export_group("Objetivo de misión")
-## Duración de la misión en segundos. Sobrevivir este tiempo = victoria.
+## Si es true, la misión no tiene límite de tiempo: se juega hasta que un
+## recurso vital se agota y la puntuación premia lo que se aguante.
+@export var endless_mission: bool = true
+## Duración de la misión en segundos (victoria por tiempo si `endless_mission`
+## es false). En misión sin fin es la duración de un ciclo de radiación: el
+## perfil real de 24 h de RadLab se repite cada `mission_duration` segundos.
 @export var mission_duration: float = 240.0
 ## Segundos que debe durar el estado BRIEFING antes de iniciar la mission activa.
 @export var briefing_duration: float = 3.0
@@ -25,6 +30,16 @@ extends Resource
 @export var shield_decay_rate: float = 0.1
 ## La tripulación come: la comida baja poco a poco (aproximado, juego).
 @export var food_decay_rate: float = 0.12
+
+@export_group("Energía, paneles solares y domo")
+## Energía que cargan los paneles solares por segundo (subida lenta: de 0 a
+## 100 tarda unos 5 minutos y medio con 0,3).
+@export var solar_charge_rate: float = 0.3
+## Multiplicador del gasto de oxígeno durante un corto circuito (el soporte
+## vital funciona con la reserva de emergencia).
+@export var short_circuit_oxygen_multiplier: float = 2.0
+## Fracción de la energía desviada que llega al escudo del domo.
+@export_range(0.0, 1.0, 0.05) var dome_transfer_efficiency: float = 1.0
 
 @export_group("Emergencias")
 ## Segundos mínimos y máximos entre eventos de emergencia.

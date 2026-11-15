@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cyq8gblodi36g"]
 
-[ext_resource type="Material" path="res://resources/station_platform_material.tres" id="1_grey"]
+[ext_resource type="Material" uid="uid://bxncfkoqmuowq" path="res://resources/station_platform_material.tres" id="1_grey"]
 [ext_resource type="PackedScene" uid="uid://bi85ykjaobl0u" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Catwalk_1.glb" id="2_catwalk"]
 [ext_resource type="PackedScene" uid="uid://bu16emg1m2unb" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Railing_Flat.glb" id="3_railing"]
 [ext_resource type="PackedScene" uid="uid://bn3e2qjpxagmx" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Corridor_Boundary_4x8.glb" id="4_module"]
@@ -15,12 +15,48 @@
 [ext_resource type="PackedScene" uid="uid://cemyanyx8is3x" path="res://assets/KayKit_Space_Base_Bits_1.0_FREE/Assets/gltf/structure_low.gltf" id="13_structure"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_platform"]
-size = Vector3(84, 4.3388977, 160)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_51fql"]
+size = Vector3(170, 4.3388977, 282)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_platform"]
-size = Vector3(84, 4.4888977, 160)
+size = Vector3(170, 4.488898, 282)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_col_2_catwalk"]
+size = Vector3(2, 1.416, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_col_3_railing"]
+size = Vector3(3.924, 1.13, 0.174)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_col_4_module"]
+size = Vector3(4.18, 4.081, 8.137)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_col_5_depot_a"]
+size = Vector3(2.072, 1.12, 2.082)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_col_6_depot_b"]
+size = Vector3(2.083, 1.02, 2.178)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_col_7_cargo"]
+size = Vector3(1.02, 1.021, 1.02)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_col_8_truck"]
+size = Vector3(0.505, 0.685, 1.028)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_col_9_solar"]
+size = Vector3(0.9, 0.371, 0.45)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_col_13_structure"]
+size = Vector3(1.75, 1, 1.75)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_col_10_pad"]
+size = Vector3(2.5, 0.5, 2.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_col_11_lander"]
+size = Vector3(1.372, 1.192, 1.422)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_col_12_light"]
+size = Vector3(0.68, 0.998, 0.68)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_51fql"]
 
 [node name="StationPlatform" type="Node3D" unique_id=1673998559]
 
@@ -29,18 +65,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.3194485, 37)
 mesh = SubResource("BoxMesh_platform")
 surface_material_override/0 = ExtResource("1_grey")
 
-; Colisión del bloque base. La malla visual tiene la cara superior en
-; y = -0,15 (bajo las baldosas, sin z-fighting), pero la COLISIÓN llega hasta
-; y = 0,0, la misma altura que el suelo de las salas: si quedara 0,15 m más
-; baja, ese escalón frena la cápsula del jugador (contacto a ~51°, más que
-; los 45° de `floor_max_angle`) y no se puede volver a entrar en la estación
-; desde fuera ("muro invisible"). Caja 0,15 m más alta y subida 0,075 m: el
-; fondo no cambia y la cara superior pasa de -0,15 a 0,0.
-[node name="Collision" type="StaticBody3D" parent="BaseCube"]
-collision_layer = 1
-collision_mask = 1
+[node name="Collision" type="StaticBody3D" parent="BaseCube" unique_id=654207592]
 
-[node name="Shape" type="CollisionShape3D" parent="BaseCube/Collision"]
+[node name="Shape" type="CollisionShape3D" parent="BaseCube/Collision" unique_id=1062950656]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.075, 0)
 shape = SubResource("BoxShape3D_platform")
 
@@ -49,83 +76,1089 @@ shape = SubResource("BoxShape3D_platform")
 [node name="Catwalk_Left" parent="ViewDeck" unique_id=1812449436 instance=ExtResource("2_catwalk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.15, -40.5)
 
+[node name="Collision" type="StaticBody3D" parent="ViewDeck/Catwalk_Left" unique_id=739190796]
+
+[node name="Shape" type="CollisionShape3D" parent="ViewDeck/Catwalk_Left/Collision" unique_id=611091822]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.418, 0)
+shape = SubResource("BoxShape3D_col_2_catwalk")
+
 [node name="Catwalk_Center" parent="ViewDeck" unique_id=1622350925 instance=ExtResource("2_catwalk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, -40.5)
+
+[node name="Collision" type="StaticBody3D" parent="ViewDeck/Catwalk_Center" unique_id=499043582]
+
+[node name="Shape" type="CollisionShape3D" parent="ViewDeck/Catwalk_Center/Collision" unique_id=153202766]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.418, 0)
+shape = SubResource("BoxShape3D_col_2_catwalk")
 
 [node name="Catwalk_Right" parent="ViewDeck" unique_id=1873918695 instance=ExtResource("2_catwalk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.15, -40.5)
 
+[node name="Collision" type="StaticBody3D" parent="ViewDeck/Catwalk_Right" unique_id=1170518121]
+
+[node name="Shape" type="CollisionShape3D" parent="ViewDeck/Catwalk_Right/Collision" unique_id=1287576329]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.418, 0)
+shape = SubResource("BoxShape3D_col_2_catwalk")
+
 [node name="Railing_Front_Left" parent="ViewDeck" unique_id=1685567869 instance=ExtResource("3_railing")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.15, -42.9)
+
+[node name="Collision" type="StaticBody3D" parent="ViewDeck/Railing_Front_Left" unique_id=142635646]
+
+[node name="Shape" type="CollisionShape3D" parent="ViewDeck/Railing_Front_Left/Collision" unique_id=1835255199]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, 0.529, -0.003)
+shape = SubResource("BoxShape3D_col_3_railing")
 
 [node name="Railing_Front_Right" parent="ViewDeck" unique_id=45933302 instance=ExtResource("3_railing")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.15, -42.9)
 
+[node name="Collision" type="StaticBody3D" parent="ViewDeck/Railing_Front_Right" unique_id=332145133]
+
+[node name="Shape" type="CollisionShape3D" parent="ViewDeck/Railing_Front_Right/Collision" unique_id=1107518750]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, 0.529, -0.003)
+shape = SubResource("BoxShape3D_col_3_railing")
+
 [node name="Railing_Side_Left" parent="ViewDeck" unique_id=1641614426 instance=ExtResource("3_railing")]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -3.15, 0.15, -40.5)
 
+[node name="Collision" type="StaticBody3D" parent="ViewDeck/Railing_Side_Left" unique_id=2119922645]
+
+[node name="Shape" type="CollisionShape3D" parent="ViewDeck/Railing_Side_Left/Collision" unique_id=324130395]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, 0.529, -0.003)
+shape = SubResource("BoxShape3D_col_3_railing")
+
 [node name="Railing_Side_Right" parent="ViewDeck" unique_id=151950578 instance=ExtResource("3_railing")]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 3.15, 0.15, -40.5)
+
+[node name="Collision" type="StaticBody3D" parent="ViewDeck/Railing_Side_Right" unique_id=1474625568]
+
+[node name="Shape" type="CollisionShape3D" parent="ViewDeck/Railing_Side_Right/Collision" unique_id=96750975]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, 0.529, -0.003)
+shape = SubResource("BoxShape3D_col_3_railing")
 
 [node name="SideModules" type="Node3D" parent="." unique_id=777295466]
 
 [node name="Module_Left" parent="SideModules" unique_id=147348572 instance=ExtResource("4_module")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, -0.15, 40)
 
+[node name="Collision" type="StaticBody3D" parent="SideModules/Module_Left" unique_id=257805132]
+
+[node name="Shape" type="CollisionShape3D" parent="SideModules/Module_Left/Collision" unique_id=498655101]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.039, -0.038)
+shape = SubResource("BoxShape3D_col_4_module")
+
 [node name="Module_Right" parent="SideModules" unique_id=2088533278 instance=ExtResource("4_module")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.5, -0.15, 40)
+
+[node name="Collision" type="StaticBody3D" parent="SideModules/Module_Right" unique_id=1041030495]
+
+[node name="Shape" type="CollisionShape3D" parent="SideModules/Module_Right/Collision" unique_id=810153830]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.039, -0.038)
+shape = SubResource("BoxShape3D_col_4_module")
 
 [node name="Exterior" type="Node3D" parent="." unique_id=1266551670]
 
 [node name="CargoDepot_A" parent="Exterior" unique_id=2067701330 instance=ExtResource("5_depot_a")]
 transform = Transform3D(2.445369, 0, -0.519779, 0, 2.5, 0, 0.519779, 0, 2.445369, -12, -0.15, -34)
 
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoDepot_A" unique_id=656246479]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoDepot_A/Collision" unique_id=506053379]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.036, 0.56, -0.031)
+shape = SubResource("BoxShape3D_col_5_depot_a")
+
 [node name="CargoDepot_B" parent="Exterior" unique_id=964812465 instance=ExtResource("6_depot_b")]
 transform = Transform3D(1.993877, 0, 0.92976, 0, 2.2, 0, -0.92976, 0, 1.993877, -4, -0.15, -36)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoDepot_B" unique_id=33758518]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoDepot_B/Collision" unique_id=1231823344]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.031, 0.51, -0.017)
+shape = SubResource("BoxShape3D_col_6_depot_b")
 
 [node name="CargoStack_0" parent="Exterior" unique_id=629448791 instance=ExtResource("7_cargo")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 5, -0.15, -34)
 
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_0" unique_id=948632510]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_0/Collision" unique_id=1955006107]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
 [node name="CargoStack_1" parent="Exterior" unique_id=571013395 instance=ExtResource("7_cargo")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 9, -0.15, -34)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_1" unique_id=1938720120]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_1/Collision" unique_id=1267141252]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
 
 [node name="CargoStack_2" parent="Exterior" unique_id=490762894 instance=ExtResource("7_cargo")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 5, -0.15, -30)
 
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_2" unique_id=922073220]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_2/Collision" unique_id=817393197]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
 [node name="CargoStack_3" parent="Exterior" unique_id=1399585094 instance=ExtResource("7_cargo")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 9, -0.15, -30)
 
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_3" unique_id=1416149545]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_3/Collision" unique_id=1490614659]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
 [node name="SpaceTruck" parent="Exterior" unique_id=900279540 instance=ExtResource("8_truck")]
-transform = Transform3D(2, 0, -3.46, 0, 4, 0, 3.46, 0, 2, 13, -0.15, -25)
+transform = Transform3D(4.503999, 0, -7.7919188, 0, 9.009, 0, 7.7919188, 0, 4.503999, 52.84289, 0.8600768, -1.0591497)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/SpaceTruck" unique_id=1235872408]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/SpaceTruck/Collision" unique_id=1266224790]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.209, -0.058)
+shape = SubResource("BoxShape3D_col_8_truck")
+
+[node name="SpaceTruck2" parent="Exterior" unique_id=1422007192 instance=ExtResource("8_truck")]
+transform = Transform3D(-6.241457, 0, 6.4841514, 0, 9.009, 0, -6.4841514, 0, -6.241457, -46.811314, 0.8600768, 113.24297)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/SpaceTruck2" unique_id=1361197290]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/SpaceTruck2/Collision" unique_id=1364958787]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.209, -0.058)
+shape = SubResource("BoxShape3D_col_8_truck")
 
 [node name="SolarArray" type="Node3D" parent="Exterior" unique_id=785859093]
 
 [node name="Solar_0" parent="Exterior/SolarArray" unique_id=518939248 instance=ExtResource("9_solar")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -38, -0.15, -40)
 
+[node name="Collision" type="StaticBody3D" parent="Exterior/SolarArray/Solar_0" unique_id=1847726516]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/SolarArray/Solar_0/Collision" unique_id=1722254546]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.185, 0)
+shape = SubResource("BoxShape3D_col_9_solar")
+
 [node name="Solar_1" parent="Exterior/SolarArray" unique_id=1896477916 instance=ExtResource("9_solar")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -38, -0.15, -37.3)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/SolarArray/Solar_1" unique_id=688198629]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/SolarArray/Solar_1/Collision" unique_id=856953225]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.185, 0)
+shape = SubResource("BoxShape3D_col_9_solar")
 
 [node name="Solar_2" parent="Exterior/SolarArray" unique_id=816200159 instance=ExtResource("9_solar")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -38, -0.15, -34.6)
 
+[node name="Collision" type="StaticBody3D" parent="Exterior/SolarArray/Solar_2" unique_id=1873485049]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/SolarArray/Solar_2/Collision" unique_id=516706596]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.185, 0)
+shape = SubResource("BoxShape3D_col_9_solar")
+
 [node name="Solar_3" parent="Exterior/SolarArray" unique_id=1469636911 instance=ExtResource("9_solar")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -38, -0.15, -31.9)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/SolarArray/Solar_3" unique_id=1546304669]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/SolarArray/Solar_3/Collision" unique_id=282122784]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.185, 0)
+shape = SubResource("BoxShape3D_col_9_solar")
 
 [node name="Outpost" parent="Exterior" unique_id=1020107284 instance=ExtResource("13_structure")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -24, -0.15, 60)
 
+[node name="Collision" type="StaticBody3D" parent="Exterior/Outpost" unique_id=2020448122]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/Outpost/Collision" unique_id=1485534020]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_13_structure")
+
 [node name="LandingPad" parent="Exterior" unique_id=362467440 instance=ExtResource("10_pad")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 19, -0.15, 15)
+transform = Transform3D(9, 0, 0, 0, 9, 0, 0, 0, 9, 44.86253, -0.48581827, 85.07843)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/LandingPad" unique_id=1054595892]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/LandingPad/Collision" unique_id=1343941523]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_col_10_pad")
 
 [node name="Lander" parent="Exterior" unique_id=340199806 instance=ExtResource("11_lander")]
-transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 19, 1.35, 15)
+transform = Transform3D(9, 0, 0, 0, 9, 0, 0, 0, 9, 44.86253, 1.0141816, 85.07843)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/Lander" unique_id=582242270]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/Lander/Collision" unique_id=1948295360]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014, 0.596, 0.039)
+shape = SubResource("BoxShape3D_col_11_lander")
 
 [node name="PadLight_Left" parent="Exterior" unique_id=1416499135 instance=ExtResource("12_light")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 13, -0.15, 19)
 
+[node name="Collision" type="StaticBody3D" parent="Exterior/PadLight_Left" unique_id=149147402]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/PadLight_Left/Collision" unique_id=842247948]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.499, 0)
+shape = SubResource("BoxShape3D_col_12_light")
+
 [node name="PadLight_Right" parent="Exterior" unique_id=1750011189 instance=ExtResource("12_light")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 25, -0.15, 19)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/PadLight_Right" unique_id=901459107]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/PadLight_Right/Collision" unique_id=431811968]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.499, 0)
+shape = SubResource("BoxShape3D_col_12_light")
+
+[node name="PadLight_Back_Left" parent="Exterior" unique_id=587979435 instance=ExtResource("12_light")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 13, -0.15, 11)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/PadLight_Back_Left" unique_id=1620971951]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/PadLight_Back_Left/Collision" unique_id=525651019]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.499, 0)
+shape = SubResource("BoxShape3D_col_12_light")
+
+[node name="PadLight_Back_Right" parent="Exterior" unique_id=1139723677 instance=ExtResource("12_light")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 25, -0.15, 11)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/PadLight_Back_Right" unique_id=1092334831]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/PadLight_Back_Right/Collision" unique_id=842583578]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.499, 0)
+shape = SubResource("BoxShape3D_col_12_light")
+
+[node name="PathLight_East_0" parent="Exterior" unique_id=1986957711 instance=ExtResource("12_light")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 48, -0.15, 20)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/PathLight_East_0" unique_id=1796386780]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/PathLight_East_0/Collision" unique_id=490531615]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.499, 0)
+shape = SubResource("BoxShape3D_col_12_light")
+
+[node name="PathLight_East_1" parent="Exterior" unique_id=352324523 instance=ExtResource("12_light")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 48, -0.15, 40)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/PathLight_East_1" unique_id=450505753]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/PathLight_East_1/Collision" unique_id=1199440651]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.499, 0)
+shape = SubResource("BoxShape3D_col_12_light")
+
+[node name="PathLight_East_2" parent="Exterior" unique_id=1499396146 instance=ExtResource("12_light")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 48, -0.15, 60)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/PathLight_East_2" unique_id=729525590]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/PathLight_East_2/Collision" unique_id=1954772787]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.499, 0)
+shape = SubResource("BoxShape3D_col_12_light")
+
+[node name="PathLight_East_3" parent="Exterior" unique_id=1414478950 instance=ExtResource("12_light")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 48, -0.15, 80)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/PathLight_East_3" unique_id=449191022]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/PathLight_East_3/Collision" unique_id=915381422]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.499, 0)
+shape = SubResource("BoxShape3D_col_12_light")
+
+[node name="PathLight_East_4" parent="Exterior" unique_id=26445463 instance=ExtResource("12_light")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 48, -0.15, 100)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/PathLight_East_4" unique_id=1757642054]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/PathLight_East_4/Collision" unique_id=1860109721]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.499, 0)
+shape = SubResource("BoxShape3D_col_12_light")
+
+[node name="PathLight_West_0" parent="Exterior" unique_id=1455435365 instance=ExtResource("12_light")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -48, -0.15, 30)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/PathLight_West_0" unique_id=465547758]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/PathLight_West_0/Collision" unique_id=1797634623]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.499, 0)
+shape = SubResource("BoxShape3D_col_12_light")
+
+[node name="PathLight_West_1" parent="Exterior" unique_id=435545208 instance=ExtResource("12_light")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -48, -0.15, 50)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/PathLight_West_1" unique_id=1383936590]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/PathLight_West_1/Collision" unique_id=1752368266]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.499, 0)
+shape = SubResource("BoxShape3D_col_12_light")
+
+[node name="PathLight_West_2" parent="Exterior" unique_id=1272981058 instance=ExtResource("12_light")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -48, -0.15, 70)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/PathLight_West_2" unique_id=415545596]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/PathLight_West_2/Collision" unique_id=1339406000]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.499, 0)
+shape = SubResource("BoxShape3D_col_12_light")
+
+[node name="PathLight_West_3" parent="Exterior" unique_id=1672220415 instance=ExtResource("12_light")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -48, -0.15, 90)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/PathLight_West_3" unique_id=990668864]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/PathLight_West_3/Collision" unique_id=1783781846]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.499, 0)
+shape = SubResource("BoxShape3D_col_12_light")
+
+[node name="PathLight_West_4" parent="Exterior" unique_id=1979204088 instance=ExtResource("12_light")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -48, -0.15, 110)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/PathLight_West_4" unique_id=36125704]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/PathLight_West_4/Collision" unique_id=1766776407]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.499, 0)
+shape = SubResource("BoxShape3D_col_12_light")
+
+[node name="CargoLight_0" parent="Exterior" unique_id=1017420534 instance=ExtResource("12_light")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 1, -0.15, -38)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoLight_0" unique_id=945070188]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoLight_0/Collision" unique_id=403583704]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.499, 0)
+shape = SubResource("BoxShape3D_col_12_light")
+
+[node name="CargoLight_1" parent="Exterior" unique_id=856728757 instance=ExtResource("12_light")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 17, -0.15, -38)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoLight_1" unique_id=1300838424]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoLight_1/Collision" unique_id=1358702819]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.499, 0)
+shape = SubResource("BoxShape3D_col_12_light")
+
+[node name="CargoStack_4" parent="Exterior" unique_id=497005694 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 13, -0.15, -34)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_4" unique_id=272604484]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_4/Collision" unique_id=1170627045]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_5" parent="Exterior" unique_id=1367585758 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 13, -0.15, -30)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_5" unique_id=1827670796]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_5/Collision" unique_id=1454667631]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_6" parent="Exterior" unique_id=1329543687 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 5, -0.15, -38)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_6" unique_id=1634933019]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_6/Collision" unique_id=1675369213]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_7" parent="Exterior" unique_id=1302018648 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 9, -0.15, -38)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_7" unique_id=1991220165]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_7/Collision" unique_id=2102343750]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_8" parent="Exterior" unique_id=2142776259 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 13, -0.15, -38)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_8" unique_id=1181126400]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_8/Collision" unique_id=111090680]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_Top_0" parent="Exterior" unique_id=1631365029 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 5, 2.88, -34)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_Top_0" unique_id=1796310658]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_Top_0/Collision" unique_id=1603879792]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_Top_1" parent="Exterior" unique_id=1445752556 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 9, 2.88, -30)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_Top_1" unique_id=1935709870]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_Top_1/Collision" unique_id=1905166419]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_9" parent="Exterior" unique_id=818595952 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 13, -0.15, -34)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_9" unique_id=2142635003]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_9/Collision" unique_id=105213827]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_10" parent="Exterior" unique_id=1385318740 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 13, -0.15, -30)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_10" unique_id=925153085]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_10/Collision" unique_id=1892541934]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_11" parent="Exterior" unique_id=544209066 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 5, -0.15, -38)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_11" unique_id=1814578698]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_11/Collision" unique_id=1129793314]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_12" parent="Exterior" unique_id=186064865 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 9, -0.15, -38)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_12" unique_id=303647161]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_12/Collision" unique_id=963749613]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_13" parent="Exterior" unique_id=1215909342 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 13, -0.15, -38)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_13" unique_id=60767045]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_13/Collision" unique_id=1696493338]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_Top_2" parent="Exterior" unique_id=1335721217 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 5, 2.88, -34)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_Top_2" unique_id=618957018]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_Top_2/Collision" unique_id=1823399683]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_Top_3" parent="Exterior" unique_id=2119826538 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 9, 2.88, -30)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_Top_3" unique_id=196192513]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_Top_3/Collision" unique_id=2143122554]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_14" parent="Exterior" unique_id=199934590 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 5, -0.15, -34)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_14" unique_id=1743787190]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_14/Collision" unique_id=1440614931]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_15" parent="Exterior" unique_id=1737642645 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 9, -0.15, -34)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_15" unique_id=268511123]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_15/Collision" unique_id=838310642]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_16" parent="Exterior" unique_id=206907748 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 5, -0.15, -30)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_16" unique_id=1213028178]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_16/Collision" unique_id=206584497]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_17" parent="Exterior" unique_id=72964610 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 9, -0.15, -30)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_17" unique_id=72688370]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_17/Collision" unique_id=1465453718]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoLight_2" parent="Exterior" unique_id=1147507691 instance=ExtResource("12_light")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 1, -0.15, -38)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoLight_2" unique_id=8512512]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoLight_2/Collision" unique_id=574963673]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.499, 0)
+shape = SubResource("BoxShape3D_col_12_light")
+
+[node name="CargoLight_3" parent="Exterior" unique_id=1280183119 instance=ExtResource("12_light")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 17, -0.15, -38)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoLight_3" unique_id=1529686634]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoLight_3/Collision" unique_id=940299122]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.499, 0)
+shape = SubResource("BoxShape3D_col_12_light")
+
+[node name="CargoStack_18" parent="Exterior" unique_id=260148613 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 13, -0.15, -34)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_18" unique_id=846791091]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_18/Collision" unique_id=1833486564]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_19" parent="Exterior" unique_id=504324373 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 13, -0.15, -30)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_19" unique_id=714764849]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_19/Collision" unique_id=414044384]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_20" parent="Exterior" unique_id=1790424634 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 5, -0.15, -38)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_20" unique_id=1344155836]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_20/Collision" unique_id=1393594294]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_21" parent="Exterior" unique_id=1451670838 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 9, -0.15, -38)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_21" unique_id=1132379006]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_21/Collision" unique_id=1413833573]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_22" parent="Exterior" unique_id=628176134 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 13, -0.15, -38)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_22" unique_id=2004603192]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_22/Collision" unique_id=209825068]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_Top_4" parent="Exterior" unique_id=693084922 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 5, 2.88, -34)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_Top_4" unique_id=376459799]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_Top_4/Collision" unique_id=2135729879]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_Top_5" parent="Exterior" unique_id=465375356 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 9, 2.88, -30)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_Top_5" unique_id=995226504]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_Top_5/Collision" unique_id=936823776]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_23" parent="Exterior" unique_id=966569644 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 13, -0.15, -34)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_23" unique_id=2095872052]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_23/Collision" unique_id=966574950]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_24" parent="Exterior" unique_id=222734738 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 13, -0.15, -30)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_24" unique_id=1241538884]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_24/Collision" unique_id=315731941]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_25" parent="Exterior" unique_id=1930157144 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 5, -0.15, -38)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_25" unique_id=42750961]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_25/Collision" unique_id=117296169]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_26" parent="Exterior" unique_id=1522378261 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 9, -0.15, -38)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_26" unique_id=857805740]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_26/Collision" unique_id=1070118983]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_27" parent="Exterior" unique_id=1506968918 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 13, -0.15, -38)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_27" unique_id=132726294]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_27/Collision" unique_id=1590302662]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_28" parent="Exterior" unique_id=1361674960 instance=ExtResource("7_cargo")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 31.66841, -0.15, 116.85965)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_28" unique_id=619566332]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_28/Collision" unique_id=487112782]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_29" parent="Exterior" unique_id=1384587983 instance=ExtResource("7_cargo")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 29.434284, -0.15, 113.54172)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_29" unique_id=230666673]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_29/Collision" unique_id=919595968]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_30" parent="Exterior" unique_id=674635217 instance=ExtResource("7_cargo")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 34.986343, -0.15, 114.62553)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_30" unique_id=1422757326]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_30/Collision" unique_id=1161225057]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_31" parent="Exterior" unique_id=240618076 instance=ExtResource("7_cargo")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 32.75222, -0.15, 111.307594)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_31" unique_id=1551811603]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_31/Collision" unique_id=1528554616]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoLight_4" parent="Exterior" unique_id=1963294413 instance=ExtResource("12_light")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 30.584599, -0.15, 122.41171)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoLight_4" unique_id=1686880491]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoLight_4/Collision" unique_id=1082833927]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.499, 0)
+shape = SubResource("BoxShape3D_col_12_light")
+
+[node name="CargoLight_5" parent="Exterior" unique_id=1281398081 instance=ExtResource("12_light")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 21.648102, -0.15, 109.13997)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoLight_5" unique_id=768080921]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoLight_5/Collision" unique_id=1001115227]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.499, 0)
+shape = SubResource("BoxShape3D_col_12_light")
+
+[node name="CargoStack_32" parent="Exterior" unique_id=1156428063 instance=ExtResource("7_cargo")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 27.200161, -0.15, 110.223785)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_32" unique_id=1667281165]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_32/Collision" unique_id=1135564717]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_33" parent="Exterior" unique_id=824661208 instance=ExtResource("7_cargo")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 30.518095, -0.15, 107.989655)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_33" unique_id=2030588750]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_33/Collision" unique_id=548820734]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_34" parent="Exterior" unique_id=1593015756 instance=ExtResource("7_cargo")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 28.350475, -0.15, 119.09377)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_34" unique_id=1899713858]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_34/Collision" unique_id=1402605390]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_35" parent="Exterior" unique_id=345650139 instance=ExtResource("7_cargo")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 26.11635, -0.15, 115.77584)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_35" unique_id=1482741488]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_35/Collision" unique_id=1624846133]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_36" parent="Exterior" unique_id=269679596 instance=ExtResource("7_cargo")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 23.882225, -0.15, 112.45791)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_36" unique_id=1087204247]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_36/Collision" unique_id=373992720]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_Top_8" parent="Exterior" unique_id=1810173277 instance=ExtResource("7_cargo")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 31.66841, 2.88, 116.85965)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_Top_8" unique_id=1573851567]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_Top_8/Collision" unique_id=74424736]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_Top_9" parent="Exterior" unique_id=1804947366 instance=ExtResource("7_cargo")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 32.75222, 2.88, 111.307594)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_Top_9" unique_id=1918825533]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_Top_9/Collision" unique_id=1002912923]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_37" parent="Exterior" unique_id=1961225418 instance=ExtResource("7_cargo")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 27.200161, -0.15, 110.223785)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_37" unique_id=1647007959]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_37/Collision" unique_id=480153779]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_38" parent="Exterior" unique_id=2093901186 instance=ExtResource("7_cargo")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 30.518095, -0.15, 107.989655)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_38" unique_id=1788790300]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_38/Collision" unique_id=1495089684]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_39" parent="Exterior" unique_id=177279870 instance=ExtResource("7_cargo")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 28.350475, -0.15, 119.09377)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_39" unique_id=739622185]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_39/Collision" unique_id=1246134743]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_40" parent="Exterior" unique_id=724858666 instance=ExtResource("7_cargo")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 26.11635, -0.15, 115.77584)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_40" unique_id=556254314]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_40/Collision" unique_id=2041751389]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_41" parent="Exterior" unique_id=1739152961 instance=ExtResource("7_cargo")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 23.882225, -0.15, 112.45791)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_41" unique_id=1523618929]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_41/Collision" unique_id=426258618]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_Top_10" parent="Exterior" unique_id=1888500371 instance=ExtResource("7_cargo")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 31.66841, 2.88, 116.85965)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_Top_10" unique_id=474414609]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_Top_10/Collision" unique_id=1609492074]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_Top_11" parent="Exterior" unique_id=265721666 instance=ExtResource("7_cargo")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 32.75222, 2.88, 111.307594)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_Top_11" unique_id=1961128071]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_Top_11/Collision" unique_id=628163016]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_42" parent="Exterior" unique_id=211074533 instance=ExtResource("7_cargo")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 31.66841, -0.15, 116.85965)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_42" unique_id=1372153667]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_42/Collision" unique_id=539328278]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_43" parent="Exterior" unique_id=1556289712 instance=ExtResource("7_cargo")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 29.434284, -0.15, 113.54172)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_43" unique_id=463228711]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_43/Collision" unique_id=1926798752]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_44" parent="Exterior" unique_id=1071676753 instance=ExtResource("7_cargo")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 34.986343, -0.15, 114.62553)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_44" unique_id=572254994]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_44/Collision" unique_id=1255828652]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_45" parent="Exterior" unique_id=461237872 instance=ExtResource("7_cargo")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 32.75222, -0.15, 111.307594)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_45" unique_id=1409584131]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_45/Collision" unique_id=1012804298]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoLight_6" parent="Exterior" unique_id=1081765471 instance=ExtResource("12_light")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 30.584599, -0.15, 122.41171)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoLight_6" unique_id=1283934502]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoLight_6/Collision" unique_id=622098026]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.499, 0)
+shape = SubResource("BoxShape3D_col_12_light")
+
+[node name="CargoLight_7" parent="Exterior" unique_id=456857259 instance=ExtResource("12_light")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 21.648102, -0.15, 109.13997)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoLight_7" unique_id=189982502]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoLight_7/Collision" unique_id=1252176033]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.499, 0)
+shape = SubResource("BoxShape3D_col_12_light")
+
+[node name="CargoStack_46" parent="Exterior" unique_id=1482396435 instance=ExtResource("7_cargo")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 27.200161, -0.15, 110.223785)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_46" unique_id=725879402]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_46/Collision" unique_id=76370183]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_47" parent="Exterior" unique_id=1334022784 instance=ExtResource("7_cargo")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 30.518095, -0.15, 107.989655)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_47" unique_id=2081822032]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_47/Collision" unique_id=1789484270]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_48" parent="Exterior" unique_id=1167482405 instance=ExtResource("7_cargo")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 28.350475, -0.15, 119.09377)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_48" unique_id=846469918]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_48/Collision" unique_id=230595684]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_49" parent="Exterior" unique_id=187639414 instance=ExtResource("7_cargo")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 26.11635, -0.15, 115.77584)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_49" unique_id=388016518]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_49/Collision" unique_id=364053018]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_50" parent="Exterior" unique_id=1324195008 instance=ExtResource("7_cargo")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 23.882225, -0.15, 112.45791)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_50" unique_id=2092072292]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_50/Collision" unique_id=1917853493]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_Top_12" parent="Exterior" unique_id=393968236 instance=ExtResource("7_cargo")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 31.66841, 2.88, 116.85965)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_Top_12" unique_id=52983103]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_Top_12/Collision" unique_id=2104577587]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_Top_13" parent="Exterior" unique_id=1893622205 instance=ExtResource("7_cargo")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 32.75222, 2.88, 111.307594)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_Top_13" unique_id=339811091]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_Top_13/Collision" unique_id=618708462]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_51" parent="Exterior" unique_id=1363364656 instance=ExtResource("7_cargo")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 27.200161, -0.15, 110.223785)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_51" unique_id=733974729]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_51/Collision" unique_id=817616130]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_52" parent="Exterior" unique_id=1361752310 instance=ExtResource("7_cargo")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 30.518095, -0.15, 107.989655)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_52" unique_id=1211852196]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_52/Collision" unique_id=555104455]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_53" parent="Exterior" unique_id=570339637 instance=ExtResource("7_cargo")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 28.350475, -0.15, 119.09377)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_53" unique_id=136913188]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_53/Collision" unique_id=1701092578]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_54" parent="Exterior" unique_id=1812384430 instance=ExtResource("7_cargo")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 26.11635, -0.15, 115.77584)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_54" unique_id=1164644551]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_54/Collision" unique_id=349245687]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_55" parent="Exterior" unique_id=1379823757 instance=ExtResource("7_cargo")]
+transform = Transform3D(-1.6755934, 0, 2.4884508, 0, 3, 0, -2.4884508, 0, -1.6755934, 23.882225, -0.15, 112.45791)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_55" unique_id=133770214]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_55/Collision" unique_id=2039614106]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_Top_6" parent="Exterior" unique_id=1651257577 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 5, 2.88, -34)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_Top_6" unique_id=1871113837]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_Top_6/Collision" unique_id=988465445]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoStack_Top_7" parent="Exterior" unique_id=600987354 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 9, 2.88, -30)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoStack_Top_7" unique_id=874359607]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoStack_Top_7/Collision" unique_id=433421044]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoYard_0" parent="Exterior" unique_id=1885561590 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 30, -0.15, 28)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoYard_0" unique_id=2047335643]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoYard_0/Collision" unique_id=2060107276]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoYard_1" parent="Exterior" unique_id=407049248 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 34, -0.15, 28)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoYard_1" unique_id=1640203180]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoYard_1/Collision" unique_id=988478446]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoYard_2" parent="Exterior" unique_id=1590739009 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 30, -0.15, 32)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoYard_2" unique_id=919090765]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoYard_2/Collision" unique_id=344268281]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoYard_3" parent="Exterior" unique_id=2039913787 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 34, -0.15, 32)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoYard_3" unique_id=563715808]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoYard_3/Collision" unique_id=1968865060]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoYard_4" parent="Exterior" unique_id=1249747976 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 30, -0.15, 36)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoYard_4" unique_id=1363564009]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoYard_4/Collision" unique_id=945544948]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoYard_5" parent="Exterior" unique_id=250429010 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 34, -0.15, 36)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoYard_5" unique_id=30964903]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoYard_5/Collision" unique_id=1526721702]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoYard_Top_0" parent="Exterior" unique_id=528933131 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 30, 2.88, 28)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoYard_Top_0" unique_id=1600798223]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoYard_Top_0/Collision" unique_id=270842043]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
+
+[node name="CargoYard_Top_1" parent="Exterior" unique_id=600219201 instance=ExtResource("7_cargo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 34, 2.88, 32)
+
+[node name="Collision" type="StaticBody3D" parent="Exterior/CargoYard_Top_1" unique_id=397935677]
+
+[node name="Shape" type="CollisionShape3D" parent="Exterior/CargoYard_Top_1/Collision" unique_id=1228980206]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_col_7_cargo")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1149823738]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7431999, 0)

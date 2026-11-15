@@ -23,6 +23,9 @@ extends StaticBody3D
 
 @onready var _animation: AnimationPlayer = %AnimationPlayer
 
+## Se emite al empezar a abrirse (true) o a cerrarse (false); el AudioManager lo usa para sonar.
+signal state_changed(is_open: bool)
+
 ## Estado actual de la puerta: true = abierta, false = cerrada.
 var _is_open: bool = false
 
@@ -44,6 +47,7 @@ func _process(_delta: float) -> void:
 		return
 	_is_open = should_be_open
 	_play(should_be_open)
+	state_changed.emit(should_be_open)
 
 ## Reproduce la animación hacia el lado pedido (abrir o cerrar) sin saltos.
 func _play(should_be_open: bool) -> void:

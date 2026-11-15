@@ -75,9 +75,10 @@ func _run() -> void:
 	var minigame: OxygenRepairMinigame = manager.get_active_minigame() as OxygenRepairMinigame
 	if minigame != null:
 		minigame.result_display_time = 0.05
-		while minigame.is_running() and minigame.get_progress() < 1.0:
-			minigame.set_needle(minigame.get_target_center())
-			minigame.press_button()
+		# Se mantiene la presión en la zona verde hasta completar la reparación.
+		while minigame.is_running():
+			minigame.set_pressure(minigame.get_target_center())
+			minigame.step(0.1)
 			await get_tree().process_frame
 		await get_tree().create_timer(0.4).timeout
 

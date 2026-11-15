@@ -1,18 +1,17 @@
-[gd_resource type="StandardMaterial3D" format=3]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bxncfkoqmuowq"]
 
-; Material del cubo base de la estación (`StationPlatform/BaseCube`).
-;
-; Material SÓLIDO, sin texturas: el proyecto ya no carga las regolitas
-; generadas con IA (`ai_assets/textures/moon_regolith*.webp` ni
-; `mars_regolith*.webp`) en ninguna superficie.
-;
-; El cubo es decorado: la iluminación direccional + el relleno le dan el
-; volumen, y al ser una superficie enorme una textura repetida se notaría
-; más que un color plano. Si en el futuro se quiere detalle, crear un
-; material nuevo y asignarlo en `scenes/station_platform.tscn`.
+[ext_resource type="Texture2D" uid="uid://b2p6kcnc1hosw" path="res://ai_assets/textures/moon_regolith.webp" id="1_albedo"]
+[ext_resource type="Texture2D" uid="uid://5j4g2xjasqtq" path="res://ai_assets/textures/moon_regolith_normal.webp" id="2_normal"]
 
 [resource]
-resource_name = "StationPlatformMetal"
-albedo_color = Color(0.42, 0.44, 0.48, 1)
-metallic = 0.15
-roughness = 0.92
+resource_name = "StationPlatformRegolith"
+albedo_color = Color(0.85, 0.85, 0.85, 1)
+albedo_texture = ExtResource("1_albedo")
+roughness = 0.95
+normal_enabled = true
+normal_scale = 0.8
+normal_texture = ExtResource("2_normal")
+uv1_scale = Vector3(0.125, 0.125, 0.125)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 5

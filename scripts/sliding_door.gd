@@ -137,13 +137,13 @@ func try_card(card: AstronautCard) -> bool:
 		open_door()
 		return true
 	if card == null:
-		_deny("SIN CARNET\nCrea tu carnet en el menú")
+		_deny(tr("SIN CARNET\nCrea tu carnet en el menú"))
 		return false
 	if not card.can_open(required_access_level):
-		_deny("ACCESO DENEGADO\nSe necesita nivel %d (%s)" % [required_access_level, AstronautCard.RANKS[mini(required_access_level, AstronautCard.RANKS.size() - 1)]])
+		_deny(tr("ACCESO DENEGADO\nSe necesita nivel %d (%s)") % [required_access_level, tr(AstronautCard.RANKS[mini(required_access_level, AstronautCard.RANKS.size() - 1)])])
 		return false
 	_granted = true
-	_show_status("ACCESO CONCEDIDO\n%s · Nivel %d" % [card.nombre, card.nivel_acceso])
+	_show_status(tr("ACCESO CONCEDIDO\n%s · Nivel %d") % [card.nombre, card.nivel_acceso])
 	access_granted.emit(card)
 	open_door()
 	return true
@@ -186,7 +186,7 @@ func _on_reader_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		_player_at_reader = true
 		if not _is_open:
-			_show_status("ZONA RESTRINGIDA\nPulsa E para pasar tu carnet")
+			_show_status(tr("ZONA RESTRINGIDA\nPulsa E para pasar tu carnet"))
 
 func _on_reader_body_exited(body: Node3D) -> void:
 	if body.is_in_group("player"):
@@ -281,7 +281,7 @@ func _deny(reason: String) -> void:
 
 func _idle_text() -> String:
 	if is_restricted():
-		return "ZONA RESTRINGIDA\nNivel %d · Usa el lector" % required_access_level
+		return tr("ZONA RESTRINGIDA\nNivel %d · Usa el lector") % required_access_level
 	return ""
 
 func _show_status(text: String) -> void:

@@ -1,13 +1,15 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=10 format=3]
 
-; Minijuego de reparación del oxígeno: purga de presión.
+; Minijuego de reparación del oxígeno: presurización.
 ;
-; El jugador pulsa el botón (ratón o ESPACIO) cuando la aguja de la barra de
-; presión está dentro de la zona verde. La estructura de nodos completa está
+; El jugador mantiene ESPACIO (o el botón) para subir la presión; al soltar se
+; escapa sola. Debe dejar la aguja en la zona verde unos segundos seguidos; la
+; barra ESTABLE muestra cuánto falta. Pasarse del 100 % abre la válvula. La estructura de nodos completa está
 ; aquí; el script solo aporta la lógica.
 
 [ext_resource type="Script" path="res://scripts/minigame_oxygen.gd" id="1_oxygen"]
 [ext_resource type="Script" path="res://scripts/repair_gauge.gd" id="2_gauge"]
+[ext_resource type="Script" path="res://scripts/oxygen_station_3d.gd" id="3_station"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
 bg_color = Color(0.04, 0.06, 0.11, 0.94)
@@ -97,10 +99,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -360.0
-offset_top = -215.0
-offset_right = 360.0
-offset_bottom = 215.0
+offset_left = -390.0
+offset_top = -330.0
+offset_right = 390.0
+offset_bottom = 330.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
@@ -119,13 +121,29 @@ horizontal_alignment = 1
 [node name="HintLabel" type="Label" parent="Panel/Body"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.72, 0.84, 1, 1)
-text = "Pulsa ESPACIO o el botón cuando la aguja esté dentro de la zona verde."
+text = "Mantén ESPACIO o el botón para subir la presión. Al soltar, baja. Mantén la aguja en la zona verde hasta llenar ESTABLE."
 horizontal_alignment = 1
 autowrap_mode = 3
 
+[node name="StationView" type="SubViewportContainer" parent="Panel/Body"]
+custom_minimum_size = Vector2(740, 330)
+layout_mode = 2
+stretch = true
+
+[node name="StationViewport" type="SubViewport" parent="Panel/Body/StationView"]
+own_world_3d = true
+handle_input_locally = false
+msaa_3d = 2
+size = Vector2i(740, 330)
+render_target_update_mode = 4
+
+[node name="Station" type="Node3D" parent="Panel/Body/StationView/StationViewport"]
+unique_name_in_owner = true
+script = ExtResource("3_station")
+
 [node name="Gauge" type="Control" parent="Panel/Body"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(640, 64)
+custom_minimum_size = Vector2(640, 34)
 layout_mode = 2
 script = ExtResource("2_gauge")
 
@@ -136,7 +154,7 @@ theme_override_constants/separation = 10
 [node name="Name" type="Label" parent="Panel/Body/PressureRow"]
 custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
-text = "PRESIÓN"
+text = "ESTABLE"
 
 [node name="ProgressBar" type="ProgressBar" parent="Panel/Body/PressureRow"]
 unique_name_in_owner = true
@@ -187,7 +205,7 @@ horizontal_alignment = 2
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
-text = "Pulsa el botón cuando la aguja esté en la zona verde."
+text = "Mantén ESPACIO para subir la presión hasta la zona verde."
 horizontal_alignment = 1
 
 [node name="RepairButton" type="Button" parent="Panel/Body"]
@@ -202,7 +220,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_button")
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
 theme_override_styles/focus = SubResource("StyleBoxFlat_button_hover")
-text = "PULSA (ESPACIO)"
+text = "MANTÉN (ESPACIO)"
 
 [node name="ResultPanel" type="Control" parent="."]
 unique_name_in_owner = true

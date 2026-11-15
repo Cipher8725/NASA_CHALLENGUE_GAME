@@ -24,13 +24,13 @@ func show_card(card: AstronautCard) -> void:
 	if card == null:
 		return
 	_photo.texture = card.get_avatar_texture()
-	_name.text = card.nombre.to_upper() if not card.nombre.is_empty() else "SIN NOMBRE"
+	_name.text = card.nombre.to_upper() if not card.nombre.is_empty() else tr("SIN NOMBRE")
 	_number.text = card.numero
-	_rank.text = card.get_rank()
-	_base.text = card.base
+	_rank.text = tr(card.get_rank())
+	_base.text = tr(card.base)
 	_issued.text = card.fecha_emision
 	_expires.text = card.fecha_vencimiento
-	_level_label.text = "NIVEL %d" % card.nivel_acceso
+	_level_label.text = tr("NIVEL %d") % card.nivel_acceso
 	var style: StyleBoxFlat = (_level_badge.get_theme_stylebox("panel") as StyleBoxFlat).duplicate() as StyleBoxFlat
 	style.bg_color = level_colors[clampi(card.nivel_acceso, 0, level_colors.size() - 1)]
 	_level_badge.add_theme_stylebox_override("panel", style)

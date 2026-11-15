@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=7 format=3]
 
 ; Pantalla "MI CARNET": crear y guardar el carnet del astronauta.
 
 [ext_resource type="Script" path="res://scripts/card_editor.gd" id="1_editor"]
 [ext_resource type="PackedScene" path="res://scenes/ui/astronaut_card_view.tscn" id="2_view"]
 [ext_resource type="PackedScene" path="res://scenes/ui/photo_booth.tscn" id="3_booth"]
+[ext_resource type="Script" path="res://scripts/medal_icon.gd" id="4_medal"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
 content_margin_left = 22.0
@@ -188,6 +189,115 @@ offset_top = 150.0
 offset_right = 1230.0
 offset_bottom = 554.0
 
+[node name="MedalsPanel" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 590.0
+offset_top = 566.0
+offset_right = 1230.0
+offset_bottom = 690.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="Body" type="HBoxContainer" parent="MedalsPanel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Row" type="HBoxContainer" parent="MedalsPanel/Body"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Medal0" type="VBoxContainer" parent="MedalsPanel/Body/Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="Icon" type="Control" parent="MedalsPanel/Body/Row/Medal0"]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+script = ExtResource("4_medal")
+
+[node name="Name" type="Label" parent="MedalsPanel/Body/Row/Medal0"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.82, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 13
+text = "Base Lunar"
+horizontal_alignment = 1
+
+[node name="Medal1" type="VBoxContainer" parent="MedalsPanel/Body/Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="Icon" type="Control" parent="MedalsPanel/Body/Row/Medal1"]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+script = ExtResource("4_medal")
+
+[node name="Name" type="Label" parent="MedalsPanel/Body/Row/Medal1"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.82, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 13
+text = "Taller del Rover"
+horizontal_alignment = 1
+
+[node name="Medal2" type="VBoxContainer" parent="MedalsPanel/Body/Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="Icon" type="Control" parent="MedalsPanel/Body/Row/Medal2"]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+script = ExtResource("4_medal")
+
+[node name="Name" type="Label" parent="MedalsPanel/Body/Row/Medal2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.82, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 13
+text = "Despegue"
+horizontal_alignment = 1
+
+[node name="Medal3" type="VBoxContainer" parent="MedalsPanel/Body/Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="Icon" type="Control" parent="MedalsPanel/Body/Row/Medal3"]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+script = ExtResource("4_medal")
+
+[node name="Name" type="Label" parent="MedalsPanel/Body/Row/Medal3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.82, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 13
+text = "Biblioteca"
+horizontal_alignment = 1
+
+[node name="CertificateBox" type="VBoxContainer" parent="MedalsPanel/Body"]
+custom_minimum_size = Vector2(190, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="CertificateButton" type="Button" parent="MedalsPanel/Body/CertificateBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button")
+text = "VER CERTIFICADO"
+
+[node name="CertificateHint" type="Label" parent="MedalsPanel/Body/CertificateBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.8, 0.92, 1)
+theme_override_font_sizes/font_size = 12
+text = "Gana medalla en Base, Rover y Despegue."
+horizontal_alignment = 1
+autowrap_mode = 3
+
 [connection signal="text_changed" from="FormPanel/Form/NameEdit" to="." method="_on_name_changed"]
 [connection signal="pressed" from="FormPanel/Form/SaveButton" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="FormPanel/Form/TryButton" to="." method="_on_try_pressed"]
@@ -201,3 +311,4 @@ layout_mode = 1
 [connection signal="pressed" from="FormPanel/Form/PhotoRow/PhotoButton" to="." method="_on_photo_pressed"]
 [connection signal="pressed" from="FormPanel/Form/PhotoRow/RemovePhotoButton" to="." method="_on_remove_photo_pressed"]
 [connection signal="photo_taken" from="PhotoBooth" to="." method="_on_photo_taken"]
+[connection signal="pressed" from="MedalsPanel/Body/CertificateBox/CertificateButton" to="." method="_on_certificate_pressed"]

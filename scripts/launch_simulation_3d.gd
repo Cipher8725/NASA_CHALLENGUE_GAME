@@ -111,7 +111,7 @@ func _set_view(index: int) -> void:
 	_cockpit_view = _view == 1
 	_cockpit_camera.current = _cockpit_view
 	_exterior_camera.current = not _cockpit_view
-	_view_label.text = "Vista: Cabina (C)" if _cockpit_view else "Vista: Exterior (C)"
+	_view_label.text = tr("Vista: Cabina (C)") if _cockpit_view else tr("Vista: Exterior (C)")
 
 func _update_visuals(delta: float) -> void:
 	_update_world(delta)

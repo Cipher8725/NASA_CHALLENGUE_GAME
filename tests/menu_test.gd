@@ -65,6 +65,16 @@ func _run() -> void:
 	var launch_button: Control = menu.get_node("%LaunchButton") as Control
 	failures += _check("Simulación de despegue en su posición de la maqueta", launch_button.position.is_equal_approx(Vector2(501, 377)))
 
+	# Simulación de despegue: selector 3D / 2D.
+	(menu.get_node("%LaunchButton") as BaseButton).pressed.emit()
+	await get_tree().process_frame
+	failures += _check("Despegue abre el selector 3D / 2D", menu.is_launch_chooser_visible())
+	for path: String in menu.get_launch_scenes():
+		failures += _check("Existe la simulación %s" % path, ResourceLoader.exists(path))
+	(menu.get_node("%ChooserCancel") as BaseButton).pressed.emit()
+	await get_tree().process_frame
+	failures += _check("Cancelar cierra el selector y deja el panel", not menu.is_launch_chooser_visible() and menu.is_level_panel_visible())
+
 	# --- Cerrar ---
 	start_button.pressed.emit()
 	await get_tree().process_frame

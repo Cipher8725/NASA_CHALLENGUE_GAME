@@ -3,14 +3,16 @@ extends Node
 
 ## Generador de eventos de emergencia ambiental.
 ##
-## Programa coaliciones aleatorias (micrometeorito, sobrecarga energética,
-## caída de presión o fuga de agua) y las aplica sobre el `GameManager`.
+## Programa emergencias aleatorias (micrometeorito, corto circuito, caída de
+## presión, fuga de agua o tormenta solar) y las aplica sobre el `GameManager`.
+## La antigua «sobrecarga de energía» (descarga) ya no se programa: la energía
+## solo cae con el corto circuito, que se repara en el generador.
 ## El temporizador es un nodo estructural definido en `scenes/emergency_system.tscn`.
 
 ## Tipos de emergencia que el sistema puede generar.
 @export var enabled_emergency_types: Array[StringName] = [
 	GameManager.EMERGENCY_METEOR,
-	GameManager.EMERGENCY_OVERLOAD,
+	GameManager.EMERGENCY_SHORT_CIRCUIT,
 	GameManager.EMERGENCY_PRESSURE,
 	GameManager.EMERGENCY_WATER_LEAK,
 	GameManager.EMERGENCY_SOLAR_STORM,

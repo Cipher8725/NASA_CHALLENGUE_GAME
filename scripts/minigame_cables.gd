@@ -28,6 +28,8 @@ const CABLE_STYLE: Array[Dictionary] = [
 
 @onready var _wire_layer: CableWireLayer = %WireLayer
 @onready var _title: Label = %TitleLabel
+## Gabinete eléctrico en 3D: repite cada jugada (selección, conexión, error).
+@onready var _panel3d: PowerPanel3D = get_node_or_null("%PowerPanel") as PowerPanel3D
 
 var _cable_buttons: Array[Button] = []
 var _socket_buttons: Array[Button] = []
@@ -44,9 +46,9 @@ func _ready() -> void:
 		_socket_buttons[index].pressed.connect(press_socket.bind(index))
 
 func _setup() -> void:
-	_title.text = "REPARACIÓN DE ENERGÍA"
+	_title.text = tr("REPARACIÓN DE ENERGÍA")
 	_shuffle_sockets()
-	_set_status("Selecciona un cable y después su conector.")
+	_set_status(tr("Selecciona un cable y después su conector."))
 
 func _update_visuals(_delta: float) -> void:
 	pass
@@ -62,7 +64,9 @@ func press_cable(index: int) -> void:
 	_selected_cable = index
 	for i: int in range(CABLE_COUNT):
 		_cable_buttons[i].modulate = Color(1.6, 1.6, 1.6) if i == index else Color(1, 1, 1)
-	_set_status("Cable %s seleccionado: busca su conector." % String(CABLE_STYLE[index]["letter"]))
+	if _panel3d != null:
+		_panel3d.select_cable(index)
+	_set_status(tr("Cable %s seleccionado: busca su conector.") % String(CABLE_STYLE[index]["letter"]))
 
 ## Pulsa un conector (índice 0..3) y comprueba si corresponde al cable elegido.
 func press_socket(index: int) -> void:
@@ -72,12 +76,12 @@ func press_socket(index: int) -> void:
 	if _connected[_socket_order[index]]:
 		return
 	if _selected_cable < 0:
-		_set_status("Primero selecciona un cable.")
+		_set_status(tr("Primero selecciona un cable."))
 		return
 	if _socket_order[index] == _selected_cable:
 		_connect_cable(_selected_cable, index)
 	else:
-		_fail_connection()
+		_fail_connection(index)
 
 ## Orden de los conectores: `get_socket_order()[posicion]` es el cable que
 ## le corresponde al conector de esa posición.
@@ -86,6 +90,28 @@ func get_socket_order() -> Array[int]:
 	for cable_index: int in _socket_order:
 		copy.append(cable_index)
 	return copy
+
+
+## Tutorial del minijuego de energía.
+func guide_steps() -> Array[Dictionary]:
+	return [
+		GuideOverlay.step(tr("Reparar la energía"),
+			tr("Este es el [b]gabinete eléctrico[/b]. Hay que volver a enchufar los 4 cables, cada uno en la toma con [b]su letra[/b]."),
+			get_node_or_null("Panel/Body/PanelView") as Control),
+		GuideOverlay.step(tr("1. Elige un cable"),
+			tr("Pulsa un cable de esta columna (A, B, C o D). Su enchufe se levanta en el gabinete."),
+			get_node_or_null("Panel/Body/Board/CableColumn") as Control),
+		GuideOverlay.step(tr("2. Elige su toma"),
+			tr("Ahora pulsa la toma con la [b]misma letra[/b]. ¡Ojo! Las tomas cambian de orden en cada partida. Si te equivocas saltan chispas y pierdes tiempo."),
+			get_node_or_null("Panel/Body/Board/SocketColumn") as Control),
+		GuideOverlay.step(tr("Circuito y tiempo"),
+			tr("Conecta los 4 cables antes de que se acabe el tiempo para restablecer la energía de la base."),
+			get_node_or_null("Panel/Body/ProgressRow") as Control),
+	]
+
+## Gabinete 3D del minijuego (lo usan las pruebas; puede ser null).
+func get_panel_3d() -> PowerPanel3D:
+	return _panel3d
 
 ## Número de cables ya conectados.
 func get_connected_count() -> int:
@@ -115,6 +141,8 @@ func _shuffle_sockets() -> void:
 		_cable_buttons[cable_index].disabled = false
 		_cable_buttons[cable_index].modulate = Color(1, 1, 1)
 	_wire_layer.clear_connections()
+	if _panel3d != null:
+		_panel3d.reset(_socket_order)
 
 ## Conexión correcta: enciende la línea y suma progreso.
 func _connect_cable(cable_index: int, socket_index: int) -> void:
@@ -124,22 +152,33 @@ func _connect_cable(cable_index: int, socket_index: int) -> void:
 	_cable_buttons[cable_index].modulate = Color(1.35, 1.8, 1.35)
 	_socket_buttons[socket_index].modulate = Color(0.75, 1.7, 0.85)
 	_selected_cable = -1
+	if _panel3d != null:
+		_panel3d.connect_cable(cable_index, socket_index)
+	AudioManager.sfx(&"plug")
 	set_progress(get_progress() + 1.0 / float(CABLE_COUNT))
 	add_time(correct_time_bonus)
+	# Con los cuatro cables conectados el circuito queda completo, aunque antes
+	# un error haya restado progreso (si no, el minijuego no podría terminar).
+	if get_connected_count() >= CABLE_COUNT:
+		set_progress(1.0)
 	_refresh_wires()
-	_set_status("¡Línea %s conectada!  (%d%%)" % [
+	_set_status(tr("¡Línea %s conectada!  (%d%%)") % [
 		String(CABLE_STYLE[cable_index]["letter"]), roundi(get_progress() * 100.0)])
 	if get_progress() >= 1.0:
-		_succeed("Circuito eléctrico restablecido.")
+		_succeed(tr("Circuito eléctrico restablecido."))
 
-## Conexión incorrecta: penaliza el tiempo y la presión.
-func _fail_connection() -> void:
+## Conexión incorrecta (en el conector `socket_index`): penaliza el tiempo y la presión.
+func _fail_connection(socket_index: int) -> void:
 	_selected_cable = -1
+	if _panel3d != null:
+		_panel3d.fail_connection(socket_index)
+	AudioManager.sfx(&"spark")
+	AudioManager.sfx(&"miss", -4.0)
 	for i: int in range(CABLE_COUNT):
 		_cable_buttons[i].modulate = Color(1, 1, 1)
 	set_progress(maxf(0.0, get_progress() - wrong_progress_penalty))
 	remove_time(wrong_time_penalty)
-	_set_status("¡Conexión incorrecta!  -%.1f s" % wrong_time_penalty)
+	_set_status(tr("¡Conexión incorrecta!  -%.1f s") % wrong_time_penalty)
 
 ## Redibuja las líneas de los cables ya conectados.
 func _refresh_wires() -> void:

@@ -1,0 +1,157 @@
+[gd_scene load_steps=5 format=3]
+
+; Tutorial paso a paso que ilumina partes de la pantalla (Atrás / Siguiente / Saltar tutorial).
+; Lógica en scripts/guide_overlay.gd.
+
+[ext_resource type="Script" path="res://scripts/guide_overlay.gd" id="1_guide"]
+
+[sub_resource type="StyleBoxFlat" id="Style_panel"]
+bg_color = Color(0.04, 0.07, 0.13, 0.97)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.35, 0.7, 0.95, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+shadow_color = Color(0, 0, 0, 0.5)
+shadow_size = 14
+content_margin_left = 28.0
+content_margin_top = 22.0
+content_margin_right = 28.0
+content_margin_bottom = 22.0
+
+[sub_resource type="StyleBoxFlat" id="Style_btn"]
+bg_color = Color(0.1, 0.2, 0.34, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.35, 0.65, 0.9, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+content_margin_left = 16.0
+content_margin_right = 16.0
+
+[sub_resource type="StyleBoxFlat" id="Style_btn_hover"]
+bg_color = Color(0.16, 0.32, 0.52, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.82, 0.4, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+content_margin_left = 16.0
+content_margin_right = 16.0
+
+[node name="GuideOverlay" type="CanvasLayer"]
+process_mode = 3
+layer = 70
+script = ExtResource("1_guide")
+
+[node name="Shade" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Card" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 0)
+offset_right = 500.0
+offset_bottom = 220.0
+theme_override_styles/panel = SubResource("Style_panel")
+
+[node name="Body" type="VBoxContainer" parent="Card"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="CounterLabel" type="Label" parent="Card/Body"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.78, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "TUTORIAL · 1 / 5"
+
+[node name="GuideTitle" type="Label" parent="Card/Body"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(440, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.82, 0.4, 1)
+theme_override_font_sizes/font_size = 24
+text = "Título"
+autowrap_mode = 3
+
+[node name="GuideText" type="RichTextLabel" parent="Card/Body"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(440, 0)
+layout_mode = 2
+theme_override_colors/default_color = Color(0.9, 0.95, 1, 1)
+theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/bold_font_size = 18
+bbcode_enabled = true
+text = "Texto"
+fit_content = true
+
+[node name="Buttons" type="HBoxContainer" parent="Card/Body"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="GuideSkip" type="Button" parent="Card/Body/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(170, 42)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.88, 0.95, 1, 1)
+theme_override_colors/font_disabled_color = Color(0.5, 0.55, 0.62, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("Style_btn")
+theme_override_styles/hover = SubResource("Style_btn_hover")
+theme_override_styles/pressed = SubResource("Style_btn_hover")
+theme_override_styles/focus = SubResource("Style_btn_hover")
+theme_override_styles/disabled = SubResource("Style_btn")
+text = "Saltar tutorial"
+
+[node name="Spacer" type="Control" parent="Card/Body/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GuideBack" type="Button" parent="Card/Body/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 42)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.88, 0.95, 1, 1)
+theme_override_colors/font_disabled_color = Color(0.5, 0.55, 0.62, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("Style_btn")
+theme_override_styles/hover = SubResource("Style_btn_hover")
+theme_override_styles/pressed = SubResource("Style_btn_hover")
+theme_override_styles/focus = SubResource("Style_btn_hover")
+theme_override_styles/disabled = SubResource("Style_btn")
+text = "Atrás"
+
+[node name="GuideNext" type="Button" parent="Card/Body/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 42)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.88, 0.95, 1, 1)
+theme_override_colors/font_disabled_color = Color(0.5, 0.55, 0.62, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("Style_btn")
+theme_override_styles/hover = SubResource("Style_btn_hover")
+theme_override_styles/pressed = SubResource("Style_btn_hover")
+theme_override_styles/focus = SubResource("Style_btn_hover")
+theme_override_styles/disabled = SubResource("Style_btn")
+text = "Siguiente"

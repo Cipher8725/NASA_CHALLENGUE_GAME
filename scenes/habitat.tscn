@@ -1,24 +1,13 @@
-[gd_scene load_steps=16 format=3]
+[gd_scene format=3 uid="uid://dp6lm8xi57rwy"]
 
-; Módulo habitable de la estación espacial.
-;
-; La estación se apoya sobre un gran bloque (StationPlatform) de material sólido.
-; La geometría del módulo viene de `scenes/habitat_decor.tscn` y las consolas de
-; `scenes/console.tscn`.
-; El cielo es una panorámica realista (`resources/sky_space_material.tres`).
-;
-; FÍSICA: las paredes del pack son solo visuales; aquí están las cajas de
-; colisión invisibles. Cada pared se modela con una caja por panel y las
-; puertas se parten en dos tramos, de forma que los huecos quedan transitables
-; (si no, una puerta invisible cerraba el paso a las salas).
-
-[ext_resource type="Script" path="res://scripts/habitat.gd" id="1_habitat"]
+[ext_resource type="Script" uid="uid://d17v0jhfn56m0" path="res://scripts/habitat.gd" id="1_habitat"]
 [ext_resource type="PackedScene" path="res://scenes/console.tscn" id="2_console"]
-[ext_resource type="PackedScene" path="res://scenes/habitat_decor.tscn" id="3_decor"]
-[ext_resource type="PackedScene" path="res://scenes/station_platform.tscn" id="4_platform"]
-[ext_resource type="PackedScene" path="res://assets/Planets_Asteroids_FREE_SAMPLE/planets/Verdant_World.glb" id="5_planet"]
-[ext_resource type="PackedScene" path="res://assets/Planets_Asteroids_FREE_SAMPLE/asteroids/Cratered_Potato.glb" id="6_asteroid"]
+[ext_resource type="PackedScene" uid="uid://og0nbl21xc76" path="res://scenes/habitat_decor.tscn" id="3_decor"]
+[ext_resource type="PackedScene" uid="uid://cyq8gblodi36g" path="res://scenes/station_platform.tscn" id="4_platform"]
+[ext_resource type="Shader" uid="uid://cmkda1vu702vo" path="res://resources/shaders/tierra.gdshader" id="5_earth"]
+[ext_resource type="PackedScene" path="res://scenes/station_dome.tscn" id="7_dome"]
 [ext_resource type="Material" path="res://resources/sky_space_material.tres" id="7_sky"]
+[ext_resource type="Shader" uid="uid://bx8fj3phkado7" path="res://resources/shaders/sol_halo.gdshader" id="8_sun_halo"]
 
 [sub_resource type="Sky" id="Sky_space"]
 sky_material = ExtResource("7_sky")
@@ -31,6 +20,10 @@ ambient_light_color = Color(0.5, 0.56, 0.7, 1)
 ambient_light_energy = 0.55
 tonemap_mode = 3
 tonemap_exposure = 0.95
+glow_enabled = true
+glow_intensity = 0.9
+glow_bloom = 0.05
+glow_hdr_threshold = 1.3
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
 size = Vector3(20, 0.4, 20)
@@ -38,245 +31,253 @@ size = Vector3(20, 0.4, 20)
 [sub_resource type="BoxShape3D" id="BoxShape3D_wall_x"]
 size = Vector3(4, 4, 0.74)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_wall_z"]
-size = Vector3(0.74, 4, 4)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_wall_glass"]
 size = Vector3(4, 4, 0.32)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_door"]
 size = Vector3(1.2, 4, 0.65)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_door_side"]
-size = Vector3(0.65, 4, 1.2)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_door_top"]
 size = Vector3(1.6, 1.7, 0.65)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wall_z"]
+size = Vector3(0.74, 4, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_door_side"]
+size = Vector3(0.65, 4, 1.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_door_top_2"]
 size = Vector3(0.65, 1.7, 1.6)
 
-[node name="Habitat" type="Node3D"]
+[sub_resource type="ShaderMaterial" id="Earth_mat"]
+render_priority = 0
+shader = ExtResource("5_earth")
+shader_parameter/ocean_color = Color(0.04, 0.16, 0.42, 1)
+shader_parameter/land_color = Color(0.24, 0.36, 0.18, 1)
+shader_parameter/sand_color = Color(0.62, 0.56, 0.4, 1)
+shader_parameter/time_s = 0.0
+shader_parameter/rim_strength = 0.9
+shader_parameter/cloud_amount = 0.6
+
+[sub_resource type="SphereMesh" id="Earth_mesh"]
+material = SubResource("Earth_mat")
+radius = 1000.0
+height = 2000.0
+radial_segments = 128
+rings = 64
+
+[sub_resource type="StandardMaterial3D" id="Sun_mat"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0.93, 0.78, 1)
+emission_energy_multiplier = 12.0
+disable_receive_shadows = true
+
+[sub_resource type="SphereMesh" id="Sun_mesh"]
+material = SubResource("Sun_mat")
+radius = 650.0
+height = 1300.0
+radial_segments = 96
+rings = 48
+
+[sub_resource type="ShaderMaterial" id="SunHalo_mat"]
+render_priority = 1
+shader = ExtResource("8_sun_halo")
+shader_parameter/halo_color = Color(1, 0.86, 0.6, 1)
+shader_parameter/intensity = 2.5
+
+[sub_resource type="QuadMesh" id="SunHalo_mesh"]
+material = SubResource("SunHalo_mat")
+size = Vector2(3900, 3900)
+
+[node name="Habitat" type="Node3D" unique_id=1610025146]
 script = ExtResource("1_habitat")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=314679596]
 environment = SubResource("Environment_space")
 
-; Sol: ilumina la cara de los planetas que mira al módulo (viaja hacia +Z).
-[node name="SunLight" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.954480, 0, 0.298275, 0.163643, 0.836065, 0.523657, -0.249377, 0.548630, -0.798007, 0, 12, 0)
+[node name="SunLight" type="DirectionalLight3D" parent="." unique_id=1457688209]
+transform = Transform3D(-0.95448, 0, 0.298275, 0.163643, 0.836065, 0.523657, -0.249377, 0.54863, -0.798007, 0, 12, 0)
 light_energy = 1.05
 shadow_enabled = true
 
-; Relleno: luz suave desde el lado opuesto (sin sombras) para que las caras
-; en sombra de los modelos no queden negras.
-[node name="FillLight" type="DirectionalLight3D" parent="."]
+[node name="FillLight" type="DirectionalLight3D" parent="." unique_id=1158318077]
 transform = Transform3D(0.972806, 0, -0.231621, -0.116066, 0.865387, -0.487477, 0.200441, 0.501104, 0.841854, 0, 8, 0)
 light_energy = 0.3
-shadow_enabled = false
 
-; Iluminación interior: una lámpara por luminaria del techo. Sin sombras para
-; mantener el coste bajo (el módulo ya recibe sombra direccional).
-[node name="InteriorLights" type="Node3D" parent="."]
+[node name="InteriorLights" type="Node3D" parent="." unique_id=389201223]
 
-[node name="Light_0" type="OmniLight3D" parent="InteriorLights"]
+[node name="Light_0" type="OmniLight3D" parent="InteriorLights" unique_id=701179862]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 3.55, -4)
 light_color = Color(0.85, 0.9, 1, 1)
 light_energy = 1.15
 omni_range = 10.0
 
-[node name="Light_1" type="OmniLight3D" parent="InteriorLights"]
+[node name="Light_1" type="OmniLight3D" parent="InteriorLights" unique_id=165915233]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 3.55, -4)
 light_color = Color(0.85, 0.9, 1, 1)
 light_energy = 1.15
 omni_range = 10.0
 
-[node name="Light_2" type="OmniLight3D" parent="InteriorLights"]
+[node name="Light_2" type="OmniLight3D" parent="InteriorLights" unique_id=864166768]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 3.55, 4)
 light_color = Color(0.85, 0.9, 1, 1)
 light_energy = 1.15
 omni_range = 10.0
 
-[node name="Light_3" type="OmniLight3D" parent="InteriorLights"]
+[node name="Light_3" type="OmniLight3D" parent="InteriorLights" unique_id=1583987266]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 3.55, 4)
 light_color = Color(0.85, 0.9, 1, 1)
 light_energy = 1.15
 omni_range = 10.0
 
-; ─────────────────────────────────────────────────────────────
-; Colisiones. Una caja por panel de pared. Las puertas se parten en
-; dos tramos para dejar un hueco de 1,6 m (o 1,6 m en el eje Z).
-;
-; Puerta NORTE (x = 0) · puertas SUR (x = -8, 0, +8) · puerta OESTE y
-; puerta ESTE (z = 0).
-; ─────────────────────────────────────────────────────────────
-[node name="Floor" type="StaticBody3D" parent="."]
-collision_layer = 1
-collision_mask = 1
+[node name="Floor" type="StaticBody3D" parent="." unique_id=45734781]
 
-[node name="FloorCollision" type="CollisionShape3D" parent="Floor"]
+[node name="FloorCollision" type="CollisionShape3D" parent="Floor" unique_id=390100274]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
 shape = SubResource("BoxShape3D_floor")
 
-; Pared sur (z = -9,6): 5 paños macizos.
-[node name="WallBack" type="StaticBody3D" parent="."]
-collision_layer = 1
-collision_mask = 1
+[node name="WallBack" type="StaticBody3D" parent="." unique_id=364156218]
 
-[node name="South_Wall_0" type="CollisionShape3D" parent="WallBack"]
+[node name="South_Wall_0" type="CollisionShape3D" parent="WallBack" unique_id=2101883902]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 2, -9.6)
 shape = SubResource("BoxShape3D_wall_x")
 
-[node name="South_Wall_1" type="CollisionShape3D" parent="WallBack"]
+[node name="South_Wall_1" type="CollisionShape3D" parent="WallBack" unique_id=609618575]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -9.6)
 shape = SubResource("BoxShape3D_wall_x")
 
-[node name="South_Wall_2" type="CollisionShape3D" parent="WallBack"]
+[node name="South_Wall_2" type="CollisionShape3D" parent="WallBack" unique_id=778518581]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -9.6)
 shape = SubResource("BoxShape3D_wall_x")
 
-[node name="South_Wall_3" type="CollisionShape3D" parent="WallBack"]
+[node name="South_Wall_3" type="CollisionShape3D" parent="WallBack" unique_id=57652222]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, -9.6)
 shape = SubResource("BoxShape3D_wall_x")
 
-[node name="South_Wall_4" type="CollisionShape3D" parent="WallBack"]
+[node name="South_Wall_4" type="CollisionShape3D" parent="WallBack" unique_id=196017263]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2, -9.6)
 shape = SubResource("BoxShape3D_wall_x")
 
-; Pared norte (z = 9,6): puerta en x = 0, cristal en x = ±4.
-[node name="WallFront" type="StaticBody3D" parent="."]
-collision_layer = 1
-collision_mask = 1
+[node name="WallFront" type="StaticBody3D" parent="." unique_id=793149551]
 
-[node name="North_Wall_0" type="CollisionShape3D" parent="WallFront"]
+[node name="North_Wall_0" type="CollisionShape3D" parent="WallFront" unique_id=64712505]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 2, 9.6)
 shape = SubResource("BoxShape3D_wall_x")
 
-[node name="North_Glass_1" type="CollisionShape3D" parent="WallFront"]
+[node name="North_Glass_1" type="CollisionShape3D" parent="WallFront" unique_id=2074844586]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, 9.6)
 shape = SubResource("BoxShape3D_wall_glass")
 
-[node name="North_Door_a" type="CollisionShape3D" parent="WallFront"]
+[node name="North_Door_a" type="CollisionShape3D" parent="WallFront" unique_id=1757950917]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4, 2, 9.66)
 shape = SubResource("BoxShape3D_door")
 
-[node name="North_Door_b" type="CollisionShape3D" parent="WallFront"]
+[node name="North_Door_b" type="CollisionShape3D" parent="WallFront" unique_id=1206148331]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, 2, 9.66)
 shape = SubResource("BoxShape3D_door")
 
-[node name="North_Door_top" type="CollisionShape3D" parent="WallFront"]
+[node name="North_Door_top" type="CollisionShape3D" parent="WallFront" unique_id=2077882315]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.15, 9.66)
 shape = SubResource("BoxShape3D_door_top")
 
-[node name="North_Glass_3" type="CollisionShape3D" parent="WallFront"]
+[node name="North_Glass_3" type="CollisionShape3D" parent="WallFront" unique_id=1114402260]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, 9.6)
 shape = SubResource("BoxShape3D_wall_glass")
 
-[node name="North_Wall_4" type="CollisionShape3D" parent="WallFront"]
+[node name="North_Wall_4" type="CollisionShape3D" parent="WallFront" unique_id=1421530588]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2, 9.6)
 shape = SubResource("BoxShape3D_wall_x")
 
-; Pared oeste (x = -9,6): puerta en z = 0.
-[node name="WallLeft" type="StaticBody3D" parent="."]
-collision_layer = 1
-collision_mask = 1
+[node name="WallLeft" type="StaticBody3D" parent="." unique_id=600547854]
 
-[node name="West_Wall_0" type="CollisionShape3D" parent="WallLeft"]
+[node name="West_Wall_0" type="CollisionShape3D" parent="WallLeft" unique_id=84305293]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.6, 2, -8)
 shape = SubResource("BoxShape3D_wall_z")
 
-[node name="West_Wall_1" type="CollisionShape3D" parent="WallLeft"]
+[node name="West_Wall_1" type="CollisionShape3D" parent="WallLeft" unique_id=596518760]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.6, 2, -4)
 shape = SubResource("BoxShape3D_wall_z")
 
-[node name="West_Door_a" type="CollisionShape3D" parent="WallLeft"]
+[node name="West_Door_a" type="CollisionShape3D" parent="WallLeft" unique_id=432046556]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.6, 2, -1.4)
 shape = SubResource("BoxShape3D_door_side")
 
-[node name="West_Door_b" type="CollisionShape3D" parent="WallLeft"]
+[node name="West_Door_b" type="CollisionShape3D" parent="WallLeft" unique_id=99106732]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.6, 2, 1.4)
 shape = SubResource("BoxShape3D_door_side")
 
-[node name="West_Door_top" type="CollisionShape3D" parent="WallLeft"]
+[node name="West_Door_top" type="CollisionShape3D" parent="WallLeft" unique_id=464251233]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.6, 3.15, 0)
 shape = SubResource("BoxShape3D_door_top_2")
 
-[node name="West_Wall_3" type="CollisionShape3D" parent="WallLeft"]
+[node name="West_Wall_3" type="CollisionShape3D" parent="WallLeft" unique_id=84730579]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.6, 2, 4)
 shape = SubResource("BoxShape3D_wall_z")
 
-[node name="West_Wall_4" type="CollisionShape3D" parent="WallLeft"]
+[node name="West_Wall_4" type="CollisionShape3D" parent="WallLeft" unique_id=216270879]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.6, 2, 8)
 shape = SubResource("BoxShape3D_wall_z")
 
-; Pared este (x = 9,6): puerta en z = 0.
-[node name="WallRight" type="StaticBody3D" parent="."]
-collision_layer = 1
-collision_mask = 1
+[node name="WallRight" type="StaticBody3D" parent="." unique_id=516744110]
 
-[node name="East_Wall_0" type="CollisionShape3D" parent="WallRight"]
+[node name="East_Wall_0" type="CollisionShape3D" parent="WallRight" unique_id=1911034867]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.6, 2, -8)
 shape = SubResource("BoxShape3D_wall_z")
 
-[node name="East_Wall_1" type="CollisionShape3D" parent="WallRight"]
+[node name="East_Wall_1" type="CollisionShape3D" parent="WallRight" unique_id=1862037248]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.6, 2, -4)
 shape = SubResource("BoxShape3D_wall_z")
 
-[node name="East_Door_a" type="CollisionShape3D" parent="WallRight"]
+[node name="East_Door_a" type="CollisionShape3D" parent="WallRight" unique_id=670178005]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.6, 2, -1.4)
 shape = SubResource("BoxShape3D_door_side")
 
-[node name="East_Door_b" type="CollisionShape3D" parent="WallRight"]
+[node name="East_Door_b" type="CollisionShape3D" parent="WallRight" unique_id=328469057]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.6, 2, 1.4)
 shape = SubResource("BoxShape3D_door_side")
 
-[node name="East_Door_top" type="CollisionShape3D" parent="WallRight"]
+[node name="East_Door_top" type="CollisionShape3D" parent="WallRight" unique_id=1890417138]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.6, 3.15, 0)
 shape = SubResource("BoxShape3D_door_top_2")
 
-[node name="East_Wall_3" type="CollisionShape3D" parent="WallRight"]
+[node name="East_Wall_3" type="CollisionShape3D" parent="WallRight" unique_id=1120253671]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.6, 2, 4)
 shape = SubResource("BoxShape3D_wall_z")
 
-[node name="East_Wall_4" type="CollisionShape3D" parent="WallRight"]
+[node name="East_Wall_4" type="CollisionShape3D" parent="WallRight" unique_id=572057076]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.6, 2, 8)
 shape = SubResource("BoxShape3D_wall_z")
 
-; ─────────────────────────────────────────────────────────────
-; Contenido.
-; ─────────────────────────────────────────────────────────────
-[node name="StationPlatform" parent="." instance=ExtResource("4_platform")]
+[node name="StationPlatform" parent="." unique_id=1754557890 instance=ExtResource("4_platform")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.033672333, 0.001405716, 0.002811432)
 
-[node name="Interior" parent="." instance=ExtResource("3_decor")]
+[node name="Interior" parent="." unique_id=225696938 instance=ExtResource("3_decor")]
 
-; Consolas de control del módulo central: se colocan en los paños sólidos
-; de la pared sur (x = ±4), entre las tres puertas nuevas.
-[node name="ConsoleEnergy" parent="." instance=ExtResource("2_console")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -7.85)
-resource_type = &"energy"
-display_name = "ENERGÍA"
-console_color = Color(0.95, 0.75, 0.2, 1)
+[node name="StationDome" parent="." unique_id=214035888 instance=ExtResource("7_dome")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 37)
 
-[node name="ConsoleWater" parent="." instance=ExtResource("2_console")]
+[node name="ConsoleWater" parent="." unique_id=1549106891 instance=ExtResource("2_console")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -7.85)
 resource_type = &"water"
 display_name = "AGUA"
 console_color = Color(0.2, 0.85, 0.75, 1)
 
-; NOTA: la consola de OXÍGENO vive en scenes/rooms/room_oxigeno.tscn y la del
-; ESCUDO RADIOACTIVO va dentro del generador
-; (scenes/rooms/IMG_sala_del_generador.tscn), invisible pero interactuable.
+[node name="PlayerStart" type="Marker3D" parent="." unique_id=586269739]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.56560504, 4)
 
-[node name="PlayerStart" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+[node name="SpaceBackdrop" type="Node3D" parent="." unique_id=1239741764]
 
-; ─────────────────────────────────────────────────────────────
-; Espacio exterior visible a través del ventanal (+Z).
-; ─────────────────────────────────────────────────────────────
-[node name="SpaceBackdrop" type="Node3D" parent="."]
+[node name="Earth" type="MeshInstance3D" parent="SpaceBackdrop" unique_id=1931096474]
+transform = Transform3D(0.917755, -0.397148, 0, 0.397148, 0.917755, 0, 0, 0, 1, 421, 842, 2638)
+cast_shadow = 0
+mesh = SubResource("Earth_mesh")
 
-[node name="Planet" parent="SpaceBackdrop" instance=ExtResource("5_planet")]
-transform = Transform3D(140, 0, 0, 0, 140, 0, 0, 0, 140, 70, 45, 430)
+[node name="Sun" type="MeshInstance3D" parent="SpaceBackdrop" unique_id=69001806]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 895, 1571, -2394)
+cast_shadow = 0
+mesh = SubResource("Sun_mesh")
 
-[node name="Asteroid" parent="SpaceBackdrop" instance=ExtResource("6_asteroid")]
-transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, -70, 30, 300)
+[node name="SunHalo" type="MeshInstance3D" parent="SpaceBackdrop/Sun" unique_id=1458996605]
+cast_shadow = 0
+mesh = SubResource("SunHalo_mesh")

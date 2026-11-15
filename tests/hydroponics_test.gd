@@ -28,8 +28,12 @@ func _run() -> void:
 	var manager: RepairMinigameManager = RepairMinigameManager.new()
 	failures += _check("La comida tiene minijuego", manager.has_minigame_for(GameManager.RESOURCE_FOOD))
 	manager.free()
-	var room: String = FileAccess.get_file_as_string("res://scenes/rooms/room_hydroponics.tscn")
-	failures += _check("La sala de hidroponía tiene la consola del huerto", room.contains("ConsoleFood") and room.contains('resource_type = &"food"'))
+	# Se instancia la sala (no se lee el .tscn como texto: en el juego exportado es binario).
+	var room: Node = (load("res://scenes/rooms/room_hydroponics.tscn") as PackedScene).instantiate()
+	var food_console: Node = room.find_child("ConsoleFood", true, false)
+	failures += _check("La sala de hidroponía tiene la consola del huerto",
+		food_console != null and StringName(food_console.get("resource_type")) == GameManager.RESOURCE_FOOD)
+	room.free()
 
 	# --- Minijuego ---
 	var game_node: HydroponicsMinigame = (load("res://scenes/ui/minigame_hydroponics.tscn") as PackedScene).instantiate() as HydroponicsMinigame
@@ -62,6 +66,9 @@ func _run() -> void:
 		game_node._update_visuals(0.25)
 	failures += _check("La luz gasta energía (%.1f)" % (energy_before - game.get_resource_level(GameManager.RESOURCE_ENERGY)), game.get_resource_level(GameManager.RESOURCE_ENERGY) < energy_before)
 	failures += _check("La cosecha se completa", game_node.get_progress() >= 1.0)
+	var garden: HydroponicsGarden3D = game_node.get_node("%Garden") as HydroponicsGarden3D
+	failures += _check("Huerto 3D con 6 plantas", garden != null and garden.get_plant_count() == 6)
+	failures += _check("Las plantas 3D crecieron hasta la cosecha", garden != null and garden.get_growth() >= 1.0)
 	# _succeed() espera result_display_time antes de emitir `finished`.
 	await get_tree().create_timer(game_node.result_display_time + 0.5).timeout
 	failures += _check("El minijuego termina con éxito", result[0] and result[1])

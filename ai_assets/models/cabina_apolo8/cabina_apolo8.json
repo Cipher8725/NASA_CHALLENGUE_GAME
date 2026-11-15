@@ -1,0 +1,11 @@
+{
+  "descripcion": "Piezas 3D de la cabina del módulo de mando del Apolo 8, generadas con Hunyuan 3D (3d.hunyuanglobal.com) a partir de imágenes de referencia hechas para el juego y optimizadas en Blender (tools/blender/hunyuan_optimizar.py).",
+  "escena": "res://scenes/simulacion_despegue_3d.tscn",
+  "unidades": "metros",
+  "modelos": [
+    {"archivo": "panel_principal_3d.glb", "nodo": "World/Rocket/Cabin/Panel_000_frente/PanelPrincipal3D", "ancho_m": 2.30, "triangulos": 24000, "textura": 2048},
+    {"archivo": "escotilla_3d.glb", "nodo": "World/Rocket/Cabin/Panel_180_atras/Escotilla3D", "ancho_m": 1.24, "triangulos": 16000, "textura": 1024},
+    {"archivo": "dsky_3d.glb", "nodo": "World/Rocket/Cabin/Panel_090_derecha/DSKY3D", "ancho_m": 0.62, "escala_en_escena": 1.35, "triangulos": 12000, "textura": 1024}
+  ],
+  "nota": "Son modelos de apoyo visual con aspecto realista; los rótulos y números no son lecturas reales del Apolo 8."
+}

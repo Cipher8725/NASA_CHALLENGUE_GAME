@@ -92,12 +92,14 @@ var _feedback_tween: Tween
 @onready var _result_text: Label = %ResultText
 
 func _ready() -> void:
+	AudioManager.music(&"")
 	if DisplayServer.get_name() != "headless":
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	_data = load_data(DATA_PATH)
+	_data = _translate_data(load_data(DATA_PATH))
 	_telemetry = _data.get("telemetria", []) as Array
 	_events = _data.get("eventos", []) as Array
 	_reset()
+	show_guide.call_deferred(false)
 
 ## Lee el JSON de la misión (vacío si falta).
 static func load_data(path: String) -> Dictionary:
@@ -166,9 +168,9 @@ func press_action() -> void:
 			_start_countdown()
 		Phase.COUNTDOWN:
 			if _countdown_left > early_tolerance_real:
-				_add_error("¡Todavía no! Espera a que la cuenta llegue a 0.")
+				_add_error(tr("¡Todavía no! Espera a que la cuenta llegue a 0."))
 			else:
-				_show_feedback("¡Despegue!", Color(0.55, 1, 0.7))
+				_show_feedback(tr("¡Despegue!"), Color(0.55, 1, 0.7))
 				_liftoff()
 		Phase.FLIGHT:
 			_try_order()
@@ -177,16 +179,20 @@ func press_action() -> void:
 func step(real_delta: float) -> void:
 	match _phase:
 		Phase.COUNTDOWN:
+			var before: int = int(ceil(_countdown_left))
 			_countdown_left -= real_delta
+			# Un pitido por cada segundo de la cuenta regresiva.
+			if int(ceil(_countdown_left)) < before and before > 0:
+				AudioManager.sfx(&"countdown", -3.0)
 			if _countdown_left <= 0.0:
 				_countdown_left = 0.0
 				if _waiting_since < 0.0:
 					_waiting_since = 0.0
-					_hint.text = "¡AHORA! Pulsa ¡DESPEGUE!"
+					_hint.text = tr("¡AHORA! Pulsa ¡DESPEGUE!")
 				else:
 					_waiting_since += real_delta
 					if _waiting_since >= late_limit_real:
-						_add_error("La computadora encendió los motores por ti.")
+						_add_error(tr("La computadora encendió los motores por ti."))
 						_liftoff()
 		Phase.FLIGHT:
 			_advance_flight(real_delta)
@@ -212,11 +218,11 @@ func _reset() -> void:
 	_result.visible = false
 	_feedback.text = ""
 	var crew: Array = _data.get("tripulacion", []) as Array
-	_intro_text.text = "Fecha: %s · Cohete: %s\nTripulación: %s\n\nPrimera misión con personas en ir hasta la Luna. Tú das las órdenes del despegue hasta llegar a la órbita de la Tierra: sigue las pistas y pulsa el botón naranja en el momento justo.\n\n%s\n\nMira alrededor de la cabina con las flechas (o Q y E)." % [_data.get("fecha", ""), _data.get("cohete", ""), ", ".join(PackedStringArray(crew)), _data.get("nota_automatica", "")]
-	_action.text = "INICIAR CUENTA REGRESIVA"
-	_info_title.text = "Antes del despegue"
-	_info_text.text = "Las ventanas están tapadas por una cubierta protectora. Se destapan al soltar la torre de escape."
-	_hint.text = "Pulsa el botón naranja para empezar."
+	_intro_text.text = tr("Fecha: %s · Cohete: %s\nTripulación: %s\n\nPrimera misión con personas en ir hasta la Luna. Tú das las órdenes del despegue hasta llegar a la órbita de la Tierra: sigue las pistas y pulsa el botón naranja en el momento justo.\n\n%s\n\nMira alrededor de la cabina con las flechas (o Q y E).") % [tr(str(_data.get("fecha", ""))), tr(str(_data.get("cohete", ""))), ", ".join(PackedStringArray(crew)), tr(str(_data.get("nota_automatica", "")))]
+	_action.text = tr("INICIAR CUENTA REGRESIVA")
+	_info_title.text = tr("Antes del despegue")
+	_info_text.text = tr("Las ventanas están tapadas por una cubierta protectora. Se destapan al soltar la torre de escape.")
+	_hint.text = tr("Pulsa el botón naranja para empezar.")
 	_on_reset()
 	_update_hud()
 
@@ -226,8 +232,8 @@ func _start_countdown() -> void:
 	_waiting_since = -1.0
 	_intro.visible = false
 	var first: Dictionary = get_next_action_event()
-	_action.text = str(first.get("accion", "¡DESPEGUE!"))
-	_hint.text = str(first.get("pista", ""))
+	_action.text = tr(str(first.get("accion", "¡DESPEGUE!")))
+	_hint.text = tr(str(first.get("pista", "")))
 
 func _liftoff() -> void:
 	_phase = Phase.FLIGHT
@@ -245,7 +251,7 @@ func _advance_flight(real_delta: float) -> void:
 	if _waiting_since >= 0.0:
 		_waiting_since += real_delta
 		if _waiting_since >= late_limit_real:
-			_add_error("La computadora hizo la maniobra por ti.")
+			_add_error(tr("La computadora hizo la maniobra por ti."))
 			_complete_order(e, false)
 		return
 	var scale: float = fast_time_scale if _fast else time_scale
@@ -253,7 +259,7 @@ func _advance_flight(real_delta: float) -> void:
 	if _mission_time >= t_event:
 		if bool(e.get("requiere_accion", false)):
 			_waiting_since = 0.0
-			_hint.text = "¡AHORA! " + str(e.get("accion", ""))
+			_hint.text = tr("¡AHORA! ") + tr(str(e.get("accion", "")))
 		else:
 			_apply_event(e)
 			_event_index += 1
@@ -265,12 +271,12 @@ func _try_order() -> void:
 		return
 	var e: Dictionary = _events[_event_index]
 	if not bool(e.get("requiere_accion", false)):
-		_add_error("¡Todavía no! Espera la próxima maniobra.")
+		_add_error(tr("¡Todavía no! Espera la próxima maniobra."))
 		return
 	var scale: float = fast_time_scale if _fast else time_scale
 	var seconds_left_real: float = (float(e["t"]) - _mission_time) / scale
 	if _waiting_since < 0.0 and seconds_left_real > early_tolerance_real:
-		_add_error("¡Muy pronto! Mira la pista y el reloj.")
+		_add_error(tr("¡Muy pronto! Mira la pista y el reloj."))
 		return
 	_complete_order(e, true)
 
@@ -280,18 +286,19 @@ func _complete_order(e: Dictionary, on_time: bool) -> void:
 	_apply_event(e)
 	_event_index += 1
 	if on_time:
-		_show_feedback("¡Perfecto! " + str(e.get("titulo", "")), Color(0.55, 1, 0.7))
+		_show_feedback(tr("¡Perfecto! ") + tr(str(e.get("titulo", ""))), Color(0.55, 1, 0.7))
 	maneuver_done.emit(str(e["id"]), on_time)
 	_prepare_next_action()
 
 ## Aplica lo que pasa en una maniobra: etapa activa, piezas que se sueltan, ventanas.
 func _apply_event(e: Dictionary) -> void:
-	_info_title.text = str(e.get("titulo", ""))
-	_info_text.text = str(e.get("texto", ""))
+	_info_title.text = tr(str(e.get("titulo", "")))
+	_info_text.text = tr(str(e.get("texto", "")))
 	if e.has("etapa"):
 		_stage_id = str(e["etapa"])
 	if e.has("quitar"):
 		_drop_stage(str(e["quitar"]))
+		AudioManager.sfx(&"staging", -2.0)
 	if bool(e.get("ventanas", false)):
 		_windows_open = true
 	if str(e.get("id", "")) == "separar_sic":
@@ -300,22 +307,23 @@ func _apply_event(e: Dictionary) -> void:
 func _prepare_next_action() -> void:
 	var next: Dictionary = get_next_action_event()
 	if next.is_empty():
-		_action.text = "EN CAMINO A LA ÓRBITA..."
-		_hint.text = "Espera unos segundos."
+		_action.text = tr("EN CAMINO A LA ÓRBITA...")
+		_hint.text = tr("Espera unos segundos.")
 	else:
-		_action.text = str(next.get("accion", ""))
-		_hint.text = str(next.get("pista", ""))
+		_action.text = tr(str(next.get("accion", "")))
+		_hint.text = tr(str(next.get("pista", "")))
 
 func _finish() -> void:
 	_phase = Phase.DONE
 	_stage_id = ""
 	var stars: int = get_stars()
-	_result_title.text = "¡Apolo 8 en órbita!"
+	_result_title.text = tr("¡Apolo 8 en órbita!")
 	_result_stars.text = "★".repeat(stars) + "☆".repeat(3 - stars)
-	_result_text.text = "Errores: %d\n\nLlegaste a %d km de altura y %s km/h, como el Apolo 8 real, en 11 minutos y 35 segundos de vuelo.\n\nFuentes: tabla de ascenso del Apolo 8 (NASA SP-4029) e informe de la misión." % [_errors, int(telemetry_at(_mission_time).x), _thousands(int(telemetry_at(_mission_time).y))]
+	_result_text.text = tr("Errores: %d\n\nLlegaste a %d km de altura y %s km/h, como el Apolo 8 real, en 11 minutos y 35 segundos de vuelo.\n\nFuentes: tabla de ascenso del Apolo 8 (NASA SP-4029) e informe de la misión.") % [_errors, int(telemetry_at(_mission_time).x), _thousands(int(telemetry_at(_mission_time).y))]
 	_result.visible = true
-	_action.text = "¡MISIÓN CUMPLIDA!"
+	_action.text = tr("¡MISIÓN CUMPLIDA!")
 	_hint.text = ""
+	PlayerProgress.award_and_notify(PlayerProgress.LAUNCH, PlayerProgress.medal_for_stars(stars))
 	mission_completed.emit(stars, _errors)
 
 # --- Visuales ---
@@ -337,15 +345,15 @@ func _update_hud() -> void:
 		_clock.text = "T− %s" % _format_time(float(left))
 	else:
 		_clock.text = "T+ %s" % _format_time(_mission_time)
-	_altitude.text = "Altura: %s km" % _decimal(tel.x)
-	_speed.text = "Velocidad: %s km/h" % _thousands(int(tel.y))
+	_altitude.text = tr("Altura: %s km") % _decimal(tel.x)
+	_speed.text = tr("Velocidad: %s km/h") % _thousands(int(tel.y))
 	var stages: Dictionary = _data.get("etapas", {}) as Dictionary
 	if stages.has(_stage_id):
 		var s: Dictionary = stages[_stage_id]
-		_stage_label.text = "Empuja: " + str(s["nombre"])
-		_engines_label.text = "%s · %s" % [s["motores"], s["combustible"]]
+		_stage_label.text = tr("Empuja: ") + tr(str(s["nombre"]))
+		_engines_label.text = "%s · %s" % [tr(str(s["motores"])), tr(str(s["combustible"]))]
 	else:
-		_stage_label.text = "Motores apagados" if _phase != Phase.INTRO else "En la plataforma 39A"
+		_stage_label.text = tr("Motores apagados") if _phase != Phase.INTRO else tr("En la plataforma 39A")
 		_engines_label.text = ""
 	if _sky_material:
 		_sky_material.set_shader_parameter("altitude_km", tel.x)
@@ -394,7 +402,7 @@ func _set_view(index: int) -> void:
 	if _cockpit == null:
 		return
 	_cockpit.texture = load(VIEW_TEXTURES[_view]) as Texture2D
-	_view_label.text = "Vista: %s (%d/%d)" % [VIEW_NAMES[_view], _view + 1, VIEW_TEXTURES.size()]
+	_view_label.text = tr("Vista: %s (%d/%d)") % [tr(VIEW_NAMES[_view]), _view + 1, VIEW_TEXTURES.size()]
 
 ## Valor de cualquier columna de la telemetría (por ejemplo "alcance_km") en un segundo de misión.
 func telemetry_value(t: float, key: String) -> float:
@@ -451,12 +459,14 @@ static func _thousands(value: int) -> String:
 	var text: String = str(absi(value))
 	var out: String = ""
 	while text.length() > 3:
-		out = " " + text.substr(text.length() - 3) + out
+		# Separador de miles: espacio en español (8 447) y coma en inglés (8,447).
+		out = ("," if Localization.is_english() else " ") + text.substr(text.length() - 3) + out
 		text = text.substr(0, text.length() - 3)
 	return text + out
 
 static func _decimal(value: float) -> String:
-	return ("%.1f" % value).replace(".", ",")
+	# Decimal con coma en español (65,8) y con punto en inglés (65.8).
+	return "%.1f" % value if Localization.is_english() else ("%.1f" % value).replace(".", ",")
 
 # --- Entrada y botones ---
 
@@ -492,3 +502,39 @@ func _on_retry_pressed() -> void:
 
 func _on_menu_pressed() -> void:
 	get_tree().change_scene_to_file(MENU_SCENE)
+
+## Traduce todos los textos de los datos del Apolo 8 al idioma activo.
+## Los identificadores ("s_ic", "despegue"...) no tienen traducción y no cambian.
+func _translate_data(value: Variant) -> Variant:
+	if value is String:
+		return tr(value as String) if not (value as String).is_empty() else value
+	if value is Dictionary:
+		var out: Dictionary = {}
+		for key: Variant in (value as Dictionary):
+			out[key] = _translate_data((value as Dictionary)[key])
+		return out
+	if value is Array:
+		var list: Array = []
+		for item: Variant in (value as Array):
+			list.append(_translate_data(item))
+		return list
+	return value
+
+# --- Tutorial ---
+
+## Tutorial del despegue del Apolo 8 (sirve para la versión 2D y la 3D).
+func show_guide(force: bool = true) -> GuideOverlay:
+	var steps: Array[Dictionary] = [
+		GuideOverlay.step(tr("Despegue del Apolo 8"),
+			tr("Vas a vivir el despegue del [b]21 de diciembre de 1968[/b], con la altura, la velocidad y los tiempos [b]reales[/b] de la NASA.")),
+		GuideOverlay.step(tr("El botón de acción"),
+			tr("Cuando el control de misión te dé una orden, pulsa este botón (o [b]ESPACIO[/b]) [b]en el momento justo[/b]: encender motores, soltar etapas… Si llegas tarde, cuenta como error."), %ActionButton),
+		GuideOverlay.step(tr("Los datos del vuelo"),
+			tr("Reloj de misión, altura, velocidad, etapa y motores, como en la telemetría real del Saturno V."), %ClockLabel),
+		GuideOverlay.step(tr("Qué está pasando"),
+			tr("Aquí se explica cada fase del vuelo. Al final recibes de 1 a 3 estrellas y tu medalla."), %InfoTitle),
+	]
+	if has_method("is_cockpit_view"):
+		steps.append(GuideOverlay.step(tr("Cambia la vista"),
+			tr("Con la tecla [b]C[/b] o las flechas pasas de la vista exterior del cohete a la cabina."), %ViewLabel))
+	return GuideOverlay.start(self, "despegue", steps, false, force)

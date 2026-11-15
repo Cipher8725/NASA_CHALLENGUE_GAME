@@ -54,7 +54,7 @@ func _process(delta: float) -> void:
 		return
 	_time_left = maxf(0.0, _time_left - delta)
 	if _time_left <= 0.0:
-		_fail("Se agotó el tiempo de reparación.")
+		_fail(tr("Se agotó el tiempo de reparación."))
 		return
 	_update_visuals(delta)
 	_refresh_hud()
@@ -64,7 +64,7 @@ func _input(event: InputEvent) -> void:
 		return
 	# Escape cancela la reparación en curso.
 	if event.is_action_pressed("ui_cancel"):
-		_fail("Reparación cancelada por el jugador.")
+		_fail(tr("Reparación cancelada por el jugador."))
 		get_viewport().set_input_as_handled()
 		return
 	_handle_action_input(event)
@@ -155,9 +155,18 @@ func _fail(message: String) -> void:
 func _show_result(success: bool, message: String) -> void:
 	_result_panel.visible = true
 	if success:
-		_result_title.text = "REPARACIÓN COMPLETADA"
+		_result_title.text = tr("REPARACIÓN COMPLETADA")
 		_result_title.modulate = Color(0.45, 0.95, 0.55)
 	else:
-		_result_title.text = "REPARACIÓN FALLIDA"
+		_result_title.text = tr("REPARACIÓN FALLIDA")
 		_result_title.modulate = Color(0.95, 0.45, 0.4)
 	_result_detail.text = message
+
+## Pasos del tutorial de este minijuego (los minijuegos concretos los definen).
+## El RepairMinigameManager los muestra la primera vez que se abre cada uno.
+func guide_steps() -> Array[Dictionary]:
+	return []
+
+## Id del tutorial (uno por minijuego).
+func guide_id() -> String:
+	return "minijuego_%s" % String(resource_type)

@@ -106,4 +106,4 @@ static func shield_damage_per_severity() -> float:
 ## Texto corto de una erupción para el HUD.
 static func flare_label(flare: Dictionary) -> String:
 	var peak: String = String(flare.get("pico", flare.get("inicio", "")))
-	return "Tormenta solar clase %s (DONKI, %s)" % [flare.get("clase", "?"), peak.substr(0, 10)]
+	return TranslationServer.translate("Tormenta solar clase %s (DONKI, %s)") % [flare.get("clase", "?"), peak.substr(0, 10)]

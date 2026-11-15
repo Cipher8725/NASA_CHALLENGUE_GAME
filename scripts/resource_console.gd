@@ -4,7 +4,7 @@ extends Area3D
 ## Consola de control del hábitat.
 ##
 ## Cada consola está asociada a un recurso vital (oxígeno, energía, agua o
-## escudo radioactivo). El jugador se acerca y la repara con la acción
+## escudo contra la radiación). El jugador se acerca y la repara con la acción
 ## "interact".
 ##
 ## El modelo 3D (`command_console.glb`) y su etiqueta están definidos en
@@ -36,8 +36,13 @@ func _ready() -> void:
 ## Oculta el modelo, la etiqueta y el cuerpo sólido: la consola queda
 ## accesible pero no se ve (está dentro de una máquina).
 func _hide_panel() -> void:
-	_model.visible = false
-	_label.visible = false
+	# Si falta el pack de modelos (assets/ no está), el modelo puede no existir.
+	if _model != null:
+		_model.visible = false
+	if _label != null:
+		_label.visible = false
+	if _body == null:
+		return
 	for child: Node in _body.get_children():
 		if child is CollisionShape3D:
 			(child as CollisionShape3D).set_deferred("disabled", true)

@@ -13,6 +13,12 @@ size = Vector3(8, 0.4, 8)
 [sub_resource type="BoxShape3D" id="BoxShape3D_corridor_wall"]
 size = Vector3(0.4693, 3.65, 7.97)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_prop_0"]
+size = Vector3(0.802, 1.743, 2.023)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prop_1"]
+size = Vector3(0.561, 1.09, 0.524)
+
 [node name="corridor_module" type="Node3D" unique_id=1880699126]
 
 [node name="Floor" type="Node3D" parent="." unique_id=369011858]
@@ -83,3 +89,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 2.2, 0)
 [node name="FloorShape" type="CollisionShape3D" parent="Collision" unique_id=1757100596]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
 shape = SubResource("BoxShape3D_floor")
+
+; Colisiones de los adornos: una caja por cada nodo de Props, ajustada a la
+; AABB de su malla en el espacio de la escena (los giros son de 90°, así que
+; la caja alineada a los ejes queda ceñida). Capa 1, como suelo y paredes.
+[node name="PropsCollision" type="StaticBody3D" parent="."]
+
+[node name="FloorLamp_0" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 1.032, -2.611)
+shape = SubResource("BoxShape3D_prop_0")
+
+[node name="FloorLamp_1" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 1.032, 1.389)
+shape = SubResource("BoxShape3D_prop_0")
+
+[node name="WallLight_1" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.496, 2.2, -0.005)
+shape = SubResource("BoxShape3D_prop_1")

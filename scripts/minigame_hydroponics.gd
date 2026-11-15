@@ -37,6 +37,8 @@ const CROPS_PATH: String = "res://resources/hidroponia/cultivos.json"
 @onready var _red_button: Button = %RedLightButton
 @onready var _blue_button: Button = %BlueLightButton
 @onready var _water_button: Button = %WaterButton
+## Huerto en 3D (cámara Veggie): plantas que crecen, luz de color y gotas al regar.
+@onready var _garden: HydroponicsGarden3D = %Garden
 
 var _data: Dictionary = {}
 var _crop: Dictionary = {}
@@ -57,6 +59,24 @@ func _ready() -> void:
 	for button: Button in [_red_button, _blue_button, _water_button]:
 		button.focus_mode = Control.FOCUS_NONE
 
+
+## Tutorial del huerto hidropónico.
+func guide_steps() -> Array[Dictionary]:
+	return [
+		GuideOverlay.step(tr("El huerto hidropónico"),
+			tr("Aquí cultivas comida como en la [b]ISS[/b] (cámara Veggie de la NASA). Las plantas crecen sin tierra, con luz LED y agua."),
+			get_node_or_null("Panel/Body/GardenView") as Control),
+		GuideOverlay.step(tr("1. Elige la luz"),
+			tr("[b]Roja (90:10)[/b] o [b]azul (50:50)[/b], como en los estudios reales. La luz gasta energía de la base."),
+			get_node_or_null("Panel/Body/LightRow") as Control),
+		GuideOverlay.step(tr("2. Mantén la humedad"),
+			tr("Riega con [b]ESPACIO[/b] o con el botón. La humedad debe quedar en la [b]zona buena (35 % a 80 %)[/b]: ni seca ni encharcada."),
+			get_node_or_null("Panel/Body/MoistureRow") as Control),
+		GuideOverlay.step(tr("3. Cosecha"),
+			tr("Cuida las plantas hasta que la cosecha llegue al 100 %. Cada día del juego es un día real del experimento."),
+			get_node_or_null("Panel/Body/GrowthRow") as Control),
+	]
+
 func _setup() -> void:
 	_data = _load_crops()
 	_crop = _pick_crop()
@@ -64,9 +84,11 @@ func _setup() -> void:
 	_moisture = 0.55
 	_days = 0.0
 	_errors = 0
-	_title.text = "HUERTO HIDROPÓNICO"
-	_crop_label.text = "%s — %s" % [_crop.get("nombre", "Cultivo"), _crop.get("donde", "")]
-	_set_status("Elige la luz: 1 = roja (90:10)   2 = azul (50:50)")
+	_title.text = tr("HUERTO HIDROPÓNICO")
+	_crop_label.text = "%s — %s" % [tr(String(_crop.get("nombre", "Cultivo"))), tr(String(_crop.get("donde", "")))]
+	_garden.set_crop(String(_crop.get("id", "lechuga")))
+	_garden.set_light("")
+	_set_status(tr("Elige la luz: 1 = roja (90:10)   2 = azul (50:50)"))
 	_refresh_garden()
 
 func _update_visuals(delta: float) -> void:
@@ -81,14 +103,14 @@ func _update_visuals(delta: float) -> void:
 	var dry: float = lerpf(dry_rate_start, dry_rate_end, get_progress())
 	_moisture = maxf(0.0, _moisture - dry * delta)
 	if _moisture < moisture_min * 0.5:
-		_register_error("¡Se secó la almohadilla! Riega más seguido.")
+		_register_error(tr("¡Se secó la almohadilla! Riega más seguido."))
 		_moisture = moisture_min
 	# Solo crece con la humedad en la zona buena.
 	if _moisture >= moisture_min and _moisture <= moisture_max:
 		_days += delta / float(settings.get("segundos_por_dia", 0.5))
 		set_progress(_days / harvest_days())
 		if get_progress() >= 1.0:
-			_succeed("¡Cosecha lista! %s a los %d días, como en la ISS (%s)." % [_crop.get("nombre", ""), harvest_days(), _crop.get("estudio", "")])
+			_succeed(tr("¡Cosecha lista! %s a los %d días, como en la ISS (%s).") % [tr(String(_crop.get("nombre", ""))), harvest_days(), _crop.get("estudio", "")])
 	_refresh_garden()
 
 func _handle_action_input(event: InputEvent) -> void:
@@ -109,7 +131,8 @@ func select_light(kind: String) -> void:
 	if not is_running() or not _light.is_empty():
 		return
 	_light = kind
-	_set_status("Luz %s encendida. Riega con ESPACIO y mantén la humedad en verde." % ("roja 90:10" if kind == "rojo" else "azul 50:50 (+15 % energía)"))
+	_garden.set_light(kind)
+	_set_status(tr("Luz %s encendida. Riega con ESPACIO y mantén la humedad en verde.") % (tr("roja 90:10") if kind == "rojo" else tr("azul 50:50 (+15 % energía)")))
 	_refresh_garden()
 
 ## Riega la almohadilla: sube la humedad y gasta agua de la base.
@@ -120,9 +143,11 @@ func water() -> void:
 	_spend(GameManager.RESOURCE_WATER, cost)
 	_water_used += cost
 	_moisture += water_per_press
+	_garden.splash()
+	AudioManager.sfx(&"water", -3.0)
 	if _moisture > 1.0:
 		_moisture = moisture_max
-		_register_error("¡Demasiada agua! Las raíces necesitan aire.")
+		_register_error(tr("¡Demasiada agua! Las raíces necesitan aire."))
 	_refresh_garden()
 
 ## Días que necesita el cultivo elegido (dato real del estudio).
@@ -152,6 +177,11 @@ func get_energy_used() -> float:
 
 # --- Métodos privados ---
 
+## En el huerto no se "repara": se cosecha. Se cambian los títulos del resultado.
+func _show_result(success: bool, message: String) -> void:
+	super._show_result(success, message)
+	_result_title.text = tr("¡COSECHA LISTA!") if success else tr("COSECHA PERDIDA")
+
 func _load_crops() -> Dictionary:
 	var file: FileAccess = FileAccess.open(CROPS_PATH, FileAccess.READ)
 	if file == null:
@@ -168,25 +198,27 @@ func _pick_crop() -> Dictionary:
 		if (crop as Dictionary).get("dias_hasta_cosecha") != null:
 			options.append(crop)
 	if options.is_empty():
-		return {"nombre": "Lechuga", "dias_hasta_cosecha": 33}
+		return {"nombre": tr("Lechuga"), "dias_hasta_cosecha": 33}
 	return options[randi() % options.size()] as Dictionary
 
 func _register_error(message: String) -> void:
 	_errors += 1
 	set_progress(maxf(0.0, get_progress() - 0.08))
 	_days = get_progress() * harvest_days()
-	_set_status("%s  (errores: %d/%d)" % [message, _errors, max_errors])
+	_set_status(tr("%s  (errores: %d/%d)") % [message, _errors, max_errors])
 	if _errors >= max_errors:
-		_fail("Se perdió la cosecha. En la ISS también pasó: en VEG-04A el exceso de fertilizante dañó las plantas.")
+		_fail(tr("Se perdió la cosecha. En la ISS también pasó: en VEG-04A el exceso de fertilizante dañó las plantas."))
 
 func _spend(resource_type: StringName, amount: float) -> void:
 	if _game != null:
 		_game.consume_resource(resource_type, amount)
 
 func _refresh_garden() -> void:
+	_garden.set_growth(get_progress())
+	_garden.set_moisture(_moisture)
 	_moisture_bar.value = _moisture
 	_moisture_label.text = "%d%%" % roundi(_moisture * 100.0)
-	_day_label.text = "Día %d de %d" % [floori(_days), harvest_days()]
+	_day_label.text = tr("Día %d de %d") % [floori(_days), harvest_days()]
 	_red_button.disabled = not _light.is_empty()
 	_blue_button.disabled = not _light.is_empty()
 	_water_button.disabled = _light.is_empty()

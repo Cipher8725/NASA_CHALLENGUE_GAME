@@ -63,15 +63,17 @@ vendor/
 credentials.json
 
 # ─────────────────────────────────────────────────────────────
-# Packs de terceros: presentes en disco, FUERA de Git
+# Packs de terceros (`assets/`): SE VERSIONAN (decisión del 15/11/2026,
+# para que el repositorio funcione al clonarlo). Ojo: ver las condiciones de
+# redistribución en `ai_assets/LICENSES.md`.
 # ─────────────────────────────────────────────────────────────
-# Las escenas usan los packs in situ desde `assets/` (decisión del
-# arquitecto: no moverlos ni copiarlos). No se versionan porque dos de
-# ellos prohíben redistribuir los archivos originales y entre los tres
-# suman ~136 MB. Ver `ai_assets/LICENSES.md` y `tools/check_assets.sh`.
-/assets/KayKit_Space_Base_Bits_1.0_FREE/
-/assets/Molten Maps SciFi Asset Pack/
-/assets/Planets_Asteroids_FREE_SAMPLE/
 
 # Caché de Python (tools/process_ai_textures.py)
 __pycache__/
+
+# Ejecutable local y clave de API: nunca al repositorio
+claude.exe
+API.txt
+# Copia de referencia del parche de Alaitz (ya integrado; ver Hito 31)
+PArcheTutorial/
+

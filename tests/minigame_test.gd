@@ -20,7 +20,7 @@ func _run() -> void:
 	print("=== RESULTADO MINIJUEGOS: %s ===" % ("TODO OK" if failures == 0 else "%d FALLOS" % failures))
 	get_tree().quit(0 if failures == 0 else 1)
 
-## Minijuego de oxígeno: pulsar el botón dentro de la zona suma presión.
+## Minijuego de oxígeno: mantener la presión en la zona verde lo completa.
 func _test_oxygen_minigame() -> int:
 	var failures: int = 0
 	var packed: PackedScene = load("res://scenes/ui/minigame_oxygen.tscn") as PackedScene
@@ -36,26 +36,45 @@ func _test_oxygen_minigame() -> int:
 	failures += _check("El minijuego arranca en marcha", minigame.is_running())
 	failures += _check("El progreso empieza a cero", is_equal_approx(minigame.get_progress(), 0.0))
 
-	# Pulsar fuera de la zona debe fallar y penalizar el tiempo.
+	# Mantener la bomba sube la presión; soltarla la deja escapar.
+	minigame.set_pumping(true)
+	minigame.step(0.5)
+	var pumped: float = minigame.get_pressure()
+	failures += _check("Mantener la tecla sube la presión", pumped > 0.0)
+	minigame.set_pumping(false)
+	minigame.step(0.5)
+	failures += _check("Soltar la tecla deja escapar la presión", minigame.get_pressure() < pumped)
+
+	# Pasarse del 100 % abre la válvula: cae la presión y se pierde tiempo.
 	var time_before: float = minigame.get_time_left()
-	minigame.set_needle(clampf(minigame.get_target_center() + 0.4, 0.0, 1.0))
-	minigame.press_button()
-	failures += _check("Pulsar fuera de la zona cuenta como fallo", minigame.get_misses() == 1)
-	failures += _check("Fallar resta tiempo", minigame.get_time_left() < time_before)
+	minigame.set_pressure(0.99)
+	minigame.set_pumping(true)
+	minigame.step(0.2)
+	minigame.set_pumping(false)
+	failures += _check("La sobrepresión abre la válvula", minigame.get_overpressures() == 1)
+	failures += _check("La sobrepresión resta tiempo", minigame.get_time_left() < time_before)
+	failures += _check("Tras la válvula la presión baja", minigame.get_pressure() < 0.5)
 
-	# Pulsar dentro de la zona suma presión.
-	minigame.set_needle(minigame.get_target_center())
-	minigame.press_button()
-	failures += _check("Pulsar en la zona cuenta como acierto", minigame.get_hits() == 1)
-	failures += _check("Aciertar sube la presión", minigame.get_progress() > 0.0)
+	# El puesto 3D repite la presión y la zona verde en su manómetro.
+	var station: OxygenStation3D = minigame.get_station()
+	failures += _check("El minijuego tiene el puesto de oxígeno 3D con sus piezas", station != null and station.is_model_ready())
+	if station != null:
+		minigame.set_pressure(0.25)
+		failures += _check("La aguja 3D marca la presión (25 %)", absf(station.get_needle_degrees() - OxygenStation3D.value_to_degrees(0.25)) < 0.01)
 
-	# Al llegar al 100% el minijuego termina con éxito.
-	while minigame.is_running() and minigame.get_progress() < 1.0:
-		minigame.set_needle(minigame.get_target_center())
-		minigame.press_button()
-		await get_tree().process_frame
-	failures += _check("El minijuego termina al llenar la presión", not minigame.is_running())
-	failures += _check("El minijajeo termina con éxito", not minigame.is_finished() or minigame.get_progress() >= 1.0)
+	# Fuera de la zona verde no se gana estabilidad.
+	minigame.set_pressure(0.1)
+	minigame.step(0.1)
+	failures += _check("Fuera de la zona no avanza la estabilidad", is_equal_approx(minigame.get_progress(), 0.0))
+
+	# Dentro de la zona, la estabilidad sube hasta completar la reparación.
+	minigame.set_pressure(minigame.get_target_center())
+	minigame.step(0.1)
+	failures += _check("En la zona verde la estabilidad sube", minigame.get_progress() > 0.0)
+	failures += _check("Sin completar el tiempo no termina", minigame.is_running())
+	await _hold_in_zone(minigame)
+	failures += _check("El minijuego termina al mantener la presión", not minigame.is_running())
+	failures += _check("El minijuego termina con éxito", minigame.get_progress() >= 1.0)
 
 	minigame.queue_free()
 	return failures
@@ -75,6 +94,13 @@ func _test_cable_minigame() -> int:
 
 	var order: Array[int] = minigame.get_socket_order()
 	failures += _check("Hay cuatro conectores", order.size() == 4)
+	var panel: PowerPanel3D = minigame.get_panel_3d()
+	failures += _check("El minijuego tiene el gabinete eléctrico 3D con sus piezas", panel != null and panel.is_model_ready())
+	if panel != null:
+		var letters_ok: bool = true
+		for position: int in range(4):
+			letters_ok = letters_ok and panel.get_socket_letter(position) == String(CableRepairMinigame.CABLE_STYLE[order[position]]["letter"])
+		failures += _check("Las tomas 3D muestran las mismas letras barajadas", letters_ok)
 
 	# Conectar mal penaliza el tiempo y no enciende ninguna línea.
 	var wrong_position: int = -1
@@ -94,7 +120,10 @@ func _test_cable_minigame() -> int:
 		minigame.press_cable(cable)
 		minigame.press_socket(position)
 	failures += _check("Las cuatro líneas quedan conectadas", minigame.get_connected_count() == 4)
-	failures += _check("El circuito llega al 100%", minigame.get_progress() >= 1.0)
+	if panel != null:
+		failures += _check("Los 4 enchufes 3D están en su toma", panel.get_connected_count() == 4 and panel.get_cable_socket(2) == order.find(2))
+		failures += _check("La palanca general 3D sube al terminar", panel.is_complete())
+	failures += _check("El circuito llega al 100% aunque antes hubo un error", minigame.get_progress() >= 1.0)
 	failures += _check("El minijuego de cables termina", not minigame.is_running())
 
 	minigame.queue_free()
@@ -140,11 +169,8 @@ func _test_manager_integration() -> int:
 		return failures
 	minigame.result_display_time = 0.05
 
-	# Se completa el minijuego pulsando siempre en la zona buena.
-	while minigame.is_running() and minigame.get_progress() < 1.0:
-		minigame.set_needle(minigame.get_target_center())
-		minigame.press_button()
-		await get_tree().process_frame
+	# Se completa el minijuego manteniendo la presión en la zona verde.
+	await _hold_in_zone(minigame)
 	await get_tree().create_timer(0.4).timeout
 
 	failures += _check("El minijuego se cierra al terminar", not manager.is_open())
@@ -152,6 +178,13 @@ func _test_manager_integration() -> int:
 	failures += _check("El recurso se repone al completar el minijuego",
 		game.get_resource_level(GameManager.RESOURCE_OXYGEN) > level_before)
 	return failures
+
+## Mantiene la presión en el centro de la zona verde hasta que termina.
+func _hold_in_zone(minigame: OxygenRepairMinigame) -> void:
+	while minigame.is_running():
+		minigame.set_pressure(minigame.get_target_center())
+		minigame.step(0.1)
+		await get_tree().process_frame
 
 ## Localiza una consola por su recurso dentro de la escena principal.
 func _find_console(main_scene: Node, resource_type: StringName) -> ResourceConsole:

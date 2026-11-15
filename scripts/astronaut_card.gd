@@ -56,7 +56,7 @@ func save_card(path: String = SAVE_PATH) -> bool:
 	return ResourceSaver.save(self, path) == OK
 
 func get_rank() -> String:
-	return RANKS[clampi(nivel_acceso, 0, RANKS.size() - 1)]
+	return tr(RANKS[clampi(nivel_acceso, 0, RANKS.size() - 1)])
 
 func has_photo() -> bool:
 	return not foto.is_empty() and FileAccess.file_exists(foto)

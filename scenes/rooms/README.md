@@ -66,7 +66,7 @@ con el mismo mobiliario que las fotos, repartido en las 25 baldosas:
 |--------|------------|------------------------|-----------|
 | `IMG_vestibulo.tscn` | `6bDelJ.jpg` | Vestíbulo / módulo de acceso | Pantalla grande en la pared oeste, puesto de control a escala, 9 baterías verdes apiladas, ventanal de cristal, barandilla y escalera de servicio (`Ramp_Grey`) al este |
 | `IMG_sala_de_mando.tscn` | `pGXT9C.jpg` | Sala de mando | `Orrery` central con el holograma, suelo `Floor_Metal_Circles`, 6 puestos de trabajo con lámpara, `Command_Wall`, ventanas de cristal |
-| `IMG_sala_del_generador.tscn` | `PjBOyt.jpg` | Sala del generador | Paredes `Wall_Red`, generador naranja, 8 baterías, franja de peligro, panel de estado, escalera de servicio y el **panel del escudo radioactivo dentro del generador** |
+| `IMG_sala_del_generador.tscn` | `PjBOyt.jpg` | Sala del generador | Paredes `Wall_Red`, generador naranja, 8 baterías, franja de peligro, panel de estado, escalera de servicio y el **panel del escudo contra la radiación dentro del generador** |
 | `IMG_enfermeria.tscn` | `9tMILo.jpg` | Enfermería | 7 camas `Bunk_Single_Green` + litera doble, paredes `Wall_Green`, biomonitores y alfombra verde |
 | `IMG_criotanque.tscn` | `bK2PlK.jpg` | Criotanque | 5 cápsulas `Cryo_Tube_ON` encendidas y 2 apagadas, paredes `Wall_Blue`, suelo médico, apliques y biomonitor rojo |
 | `IMG_cuartos.tscn` | `DnG84u.jpg` | Cuartos | Litera doble y 5 literas `Bunk_Single_Blue`, panel rojo de acento, tablero de ajedrez, sillas y apliques |

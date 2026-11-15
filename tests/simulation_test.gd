@@ -2,9 +2,11 @@ extends Node
 
 ## Test de simulación del bucle de juego.
 ##
-## Comprueba las dos rutas de final de partida:
+## Comprueba las dos rutas de la partida:
 ##  - Ruta de DERROTA: sin reparaciones, un recurso se agota y la misión falla.
-##  - Ruta de VICTORIA: reparando a tiempo, se sobrevive el tiempo objetivo.
+##  - Ruta de SUPERVIVENCIA: la misión no tiene límite de tiempo; reparando a
+##    tiempo se sigue jugando pasado el antiguo límite de 3 minutos y la
+##    puntuación sigue subiendo.
 ##
 ## Nota: con `Engine.time_scale` acelerado, los temporizadores del árbol también se
 ## aceleran; por eso se espera por fotogramas (polling) y no con `create_timer`.
@@ -63,37 +65,35 @@ func _run() -> void:
 	failures += _check("Se emite la señal mission_failed", failed[0])
 	failures += _check("El motivo de derrota es un recurso agotado (%s)" % failure_reason[0], failure_reason[0].contains("Recurso agotado"))
 
-	# --- RUTA DE VICTORIA: reparando a tiempo ---
+	# --- RUTA DE SUPERVIVENCIA: sin límite de tiempo ---
 	game.start_mission()
-	var victory_state: GameManager.MissionState = await _wait_for_state([GameManager.MissionState.ACTIVE])
-	failures += _check("La segunda misión arranca en ACTIVE", victory_state == GameManager.MissionState.ACTIVE)
+	var survival_state: GameManager.MissionState = await _wait_for_state([GameManager.MissionState.ACTIVE])
+	failures += _check("La segunda misión arranca en ACTIVE", survival_state == GameManager.MissionState.ACTIVE)
 
 	var completed: Array[bool] = [false]
-	var final_score: Array[float] = [0.0]
-	var on_completed: Callable = func(score: float) -> void:
+	var on_completed: Callable = func(_score: float) -> void:
 		completed[0] = true
-		final_score[0] = score
 	game.mission_completed.connect(on_completed)
 
-	# Simula a un jugador perfecto: repara todos los recursos cada fotograma.
-	var victory_state_final: GameManager.MissionState = GameManager.MissionState.ACTIVE
+	# Simula a un jugador perfecto hasta pasar el antiguo límite de la misión.
+	var limit: float = game.config.mission_duration + 20.0
 	var frames: int = 0
-	while frames < MAX_WAIT_FRAMES:
+	while frames < MAX_WAIT_FRAMES and game.get_mission_time() < limit:
 		await get_tree().process_frame
 		frames += 1
 		game.restore_resource(GameManager.RESOURCE_OXYGEN, 50.0)
-		game.restore_resource(GameManager.RESOURCE_ENERGY, 50.0)
 		game.restore_resource(GameManager.RESOURCE_WATER, 50.0)
 		game.restore_resource(GameManager.RESOURCE_SHIELD, 50.0)
-		victory_state_final = game.get_mission_state()
-		if victory_state_final == GameManager.MissionState.COMPLETED or victory_state_final == GameManager.MissionState.FAILED:
+		game.restore_resource(GameManager.RESOURCE_FOOD, 50.0)
+		if game.get_mission_state() == GameManager.MissionState.FAILED:
 			break
 	game.mission_completed.disconnect(on_completed)
 
-	failures += _check("Con reparaciones la misión se completa por tiempo", victory_state_final == GameManager.MissionState.COMPLETED)
-	failures += _check("Se emite la señal mission_completed", completed[0])
-	failures += _check("La puntuación final es > 0 (%.0f)" % final_score[0], final_score[0] > 0.0)
-	failures += _check("Misiones completadas = 1", game.get_missions_completed() == 1)
+	var final_survival: GameManager.MissionState = game.get_mission_state()
+	failures += _check("Pasado el antiguo límite (%.0f s) la misión sigue" % game.get_mission_time(),
+		game.get_mission_time() >= limit and (final_survival == GameManager.MissionState.ACTIVE or final_survival == GameManager.MissionState.CRITICAL))
+	failures += _check("No se completa por tiempo", not completed[0])
+	failures += _check("La puntuación sigue subiendo (%.0f)" % game.get_score(), game.get_score() > limit * 0.9)
 
 	Engine.time_scale = 1.0
 	print("=== RESULTADO SIMULACION: %s ===" % ("TODO OK" if failures == 0 else "%d FALLOS" % failures))

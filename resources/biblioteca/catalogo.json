@@ -6,16 +6,16 @@
   "portada": "res://ai_assets/ui/biblioteca/portadas/sistema_solar.png",
   "paginas": [
    {
-    "titulo": "Nuestra dirección cósmica",
-    "texto": "La Tierra es un planeta del sistema solar. El Sol es la estrella de ese sistema, que a su vez forma parte de la galaxia Vía Láctea. Una luna es un satélite natural que orbita un planeta u otro cuerpo."
+	"titulo": "Nuestra dirección cósmica",
+	"texto": "La Tierra es un planeta del sistema solar. El Sol es la estrella de ese sistema, que a su vez forma parte de la galaxia Vía Láctea. Una luna es un satélite natural que orbita un planeta u otro cuerpo."
    },
    {
-    "titulo": "Los planetas",
-    "texto": "Mercurio, Venus, Tierra y Marte son rocosos. Júpiter y Saturno son gigantes gaseosos. Urano y Neptuno son gigantes helados. Plutón es un planeta enano."
+	"titulo": "Los planetas",
+	"texto": "Mercurio, Venus, Tierra y Marte son rocosos. Júpiter y Saturno son gigantes gaseosos. Urano y Neptuno son gigantes helados. Plutón es un planeta enano."
    },
    {
-    "titulo": "Cuerpos pequeños",
-    "texto": "Muchos asteroides son rocosos o metálicos. Los cometas contienen hielos y polvo. Cuando un cometa se acerca al Sol, parte de sus hielos se transforma en gas y puede producir una cola."
+	"titulo": "Cuerpos pequeños",
+	"texto": "Muchos asteroides son rocosos o metálicos. Los cometas contienen hielos y polvo. Cuando un cometa se acerca al Sol, parte de sus hielos se transforma en gas y puede producir una cola."
    }
   ],
   "fuentes": [
@@ -29,16 +29,16 @@
   "portada": "res://ai_assets/ui/biblioteca/portadas/tierra_luna.png",
   "paginas": [
    {
-    "titulo": "Rotación y órbita",
-    "texto": "El giro de la Tierra sobre su eje explica el ciclo habitual de día y noche. La Luna gira sobre su eje en aproximadamente el mismo tiempo que tarda en orbitar la Tierra. Por eso vemos casi siempre la misma cara lunar."
+	"titulo": "Rotación y órbita",
+	"texto": "El giro de la Tierra sobre su eje explica el ciclo habitual de día y noche. La Luna gira sobre su eje en aproximadamente el mismo tiempo que tarda en orbitar la Tierra. Por eso vemos casi siempre la misma cara lunar."
    },
    {
-    "titulo": "Fases y eclipses",
-    "texto": "Las fases dependen de cuánto vemos de la mitad iluminada por el Sol. En un eclipse solar, la Luna se interpone entre la Tierra y el Sol. En un eclipse lunar, la Luna pasa por la sombra de la Tierra."
+	"titulo": "Fases y eclipses",
+	"texto": "Las fases dependen de cuánto vemos de la mitad iluminada por el Sol. En un eclipse solar, la Luna se interpone entre la Tierra y el Sol. En un eclipse lunar, la Luna pasa por la sombra de la Tierra."
    },
    {
-    "titulo": "El entorno lunar",
-    "texto": "La gravedad en la superficie lunar es aproximadamente una sexta parte de la terrestre. Tu masa se mantiene y tu peso disminuye. La Luna tiene una exosfera extremadamente tenue y está cubierta por polvo y fragmentos rocosos llamados regolito."
+	"titulo": "El entorno lunar",
+	"texto": "La gravedad en la superficie lunar es aproximadamente una sexta parte de la terrestre. Tu masa se mantiene y tu peso disminuye. La Luna tiene una exosfera extremadamente tenue y está cubierta por polvo y fragmentos rocosos llamados regolito."
    }
   ],
   "fuentes": [
@@ -53,16 +53,16 @@
   "portada": "res://ai_assets/ui/biblioteca/portadas/vida_espacio.png",
   "paginas": [
    {
-    "titulo": "Por qué flotan",
-    "texto": "En órbita, la nave y sus ocupantes caen juntos alrededor de la Tierra. Esa caída compartida produce la sensación de ingravidez. Se usa el término microgravedad porque todavía hay pequeñas aceleraciones y perturbaciones."
+	"titulo": "Por qué flotan",
+	"texto": "En órbita, la nave y sus ocupantes caen juntos alrededor de la Tierra. Esa caída compartida produce la sensación de ingravidez. Se usa el término microgravedad porque todavía hay pequeñas aceleraciones y perturbaciones."
    },
    {
-    "titulo": "Cuidar el cuerpo",
-    "texto": "Con poca carga física, los músculos y los huesos pueden debilitarse. La tripulación usa ejercicios de resistencia y ejercicio aeróbico para reducir esos efectos."
+	"titulo": "Cuidar el cuerpo",
+	"texto": "Con poca carga física, los músculos y los huesos pueden debilitarse. La tripulación usa ejercicios de resistencia y ejercicio aeróbico para reducir esos efectos."
    },
    {
-    "titulo": "Trabajar en equipo",
-    "texto": "El horario asigna tiempo a mantenimiento, experimentos, comidas, ejercicio y descanso. La tripulación asegura equipos y herramientas para evitar que floten y usa procedimientos escritos para coordinar el trabajo."
+	"titulo": "Trabajar en equipo",
+	"texto": "El horario asigna tiempo a mantenimiento, experimentos, comidas, ejercicio y descanso. La tripulación asegura equipos y herramientas para evitar que floten y usa procedimientos escritos para coordinar el trabajo."
    }
   ],
   "fuentes": [
@@ -81,18 +81,18 @@
   "portada": "res://ai_assets/ui/biblioteca/portadas/despegue_orbita.png",
   "paginas": [
    {
-    "titulo": "Empuje y peso",
-    "texto": "Un cohete expulsa masa a alta velocidad y recibe empuje en la dirección opuesta. Para iniciar un ascenso vertical, el empuje debe superar el peso. Durante el vuelo, la gravedad y la resistencia del aire afectan la trayectoria."
+	"titulo": "Empuje y peso",
+	"texto": "Un cohete expulsa masa a alta velocidad y recibe empuje en la dirección opuesta. Para iniciar un ascenso vertical, el empuje debe superar el peso. Durante el vuelo, la gravedad y la resistencia del aire afectan la trayectoria."
    },
    {
-    "titulo": "Las etapas",
-    "texto": "Una etapa incluye su propio sistema de propulsión y propelente. Al terminar de usarla, algunos cohetes la separan para que las etapas siguientes aceleren con menos masa. La carga útil es lo que se quiere transportar.",
-    "imagen": "res://ai_assets/ui/lector/diagrama_cohete.png"
+	"titulo": "Las etapas",
+	"texto": "Una etapa incluye su propio sistema de propulsión y propelente. Al terminar de usarla, algunos cohetes la separan para que las etapas siguientes aceleren con menos masa. La carga útil es lo que se quiere transportar.",
+	"imagen": "res://ai_assets/ui/lector/diagrama_cohete.png"
    },
    {
-    "titulo": "Alcanzar una órbita",
-    "texto": "Además de ganar altura, el vehículo debe adquirir suficiente velocidad lateral. La gravedad curva su trayectoria. Con la velocidad adecuada a esa altura, la nave sigue cayendo alrededor de la Tierra.",
-    "imagen": "res://ai_assets/ui/lector/diagrama_orbita.png"
+	"titulo": "Alcanzar una órbita",
+	"texto": "Además de ganar altura, el vehículo debe adquirir suficiente velocidad lateral. La gravedad curva su trayectoria. Con la velocidad adecuada a esa altura, la nave sigue cayendo alrededor de la Tierra.",
+	"imagen": "res://ai_assets/ui/lector/diagrama_orbita.png"
    }
   ],
   "fuentes": [
@@ -111,16 +111,16 @@
   "portada": "res://ai_assets/ui/biblioteca/portadas/rover.png",
   "paginas": [
    {
-    "titulo": "Moverse por el terreno",
-    "texto": "El chasis sostiene el equipo. Las ruedas transmiten al suelo la fuerza de los motores. En Perseverance, una suspensión articulada ayuda a mantener las ruedas en contacto cuando el terreno cambia de altura."
+	"titulo": "Moverse por el terreno",
+	"texto": "El chasis sostiene el equipo. Las ruedas transmiten al suelo la fuerza de los motores. En Perseverance, una suspensión articulada ayuda a mantener las ruedas en contacto cuando el terreno cambia de altura."
    },
    {
-    "titulo": "Observar y medir",
-    "texto": "Las cámaras de navegación muestran el terreno; los instrumentos científicos estudian materiales o el entorno. En Perseverance, un brazo coloca instrumentos cerca de las rocas y ayuda a recolectar muestras."
+	"titulo": "Observar y medir",
+	"texto": "Las cámaras de navegación muestran el terreno; los instrumentos científicos estudian materiales o el entorno. En Perseverance, un brazo coloca instrumentos cerca de las rocas y ayuda a recolectar muestras."
    },
    {
-    "titulo": "Energía y comunicación",
-    "texto": "Un rover necesita electricidad para moverse, procesar datos y comunicarse. Perseverance usa un generador termoeléctrico y baterías. Puede enviar datos directamente a la Tierra o a través de orbitadores, según el enlace."
+	"titulo": "Energía y comunicación",
+	"texto": "Un rover necesita electricidad para moverse, procesar datos y comunicarse. Perseverance usa un generador termoeléctrico y baterías. Puede enviar datos directamente a la Tierra o a través de orbitadores, según el enlace."
    }
   ],
   "fuentes": [
@@ -138,16 +138,16 @@
   "portada": "res://ai_assets/ui/biblioteca/portadas/soporte_vital.png",
   "paginas": [
    {
-    "titulo": "Un ambiente respirable",
-    "texto": "La cabina necesita presión adecuada y una mezcla respirable de gases. Los sensores miden el ambiente. La ventilación mueve el aire y los equipos de purificación retiran dióxido de carbono y otros contaminantes."
+	"titulo": "Un ambiente respirable",
+	"texto": "La cabina necesita presión adecuada y una mezcla respirable de gases. Los sensores miden el ambiente. La ventilación mueve el aire y los equipos de purificación retiran dióxido de carbono y otros contaminantes."
    },
    {
-    "titulo": "Recuperar agua y producir oxígeno",
-    "texto": "En la Estación Espacial Internacional, se recupera agua de la humedad y de aguas residuales, se purifica y se verifica su calidad. La electrólisis puede separar agua en oxígeno e hidrógeno; el oxígeno puede alimentar la cabina."
+	"titulo": "Recuperar agua y producir oxígeno",
+	"texto": "En la Estación Espacial Internacional, se recupera agua de la humedad y de aguas residuales, se purifica y se verifica su calidad. La electrólisis puede separar agua en oxígeno e hidrógeno; el oxígeno puede alimentar la cabina."
    },
    {
-    "titulo": "Dependencias",
-    "texto": "Bombas, ventiladores, calentadores y sensores necesitan electricidad. Los sistemas también controlan la temperatura. Una pérdida eléctrica puede afectar varios equipos, por lo que importan las reservas y los sistemas de respaldo."
+	"titulo": "Dependencias",
+	"texto": "Bombas, ventiladores, calentadores y sensores necesitan electricidad. Los sistemas también controlan la temperatura. Una pérdida eléctrica puede afectar varios equipos, por lo que importan las reservas y los sistemas de respaldo."
    }
   ],
   "fuentes": [
@@ -165,16 +165,16 @@
   "portada": "res://ai_assets/ui/biblioteca/portadas/cuerpo_espacio.png",
   "paginas": [
    {
-    "titulo": "Comer bien lejos de la Tierra",
-    "texto": "Tu cuerpo necesita energía y nutrientes también en el espacio. Los menús de los astronautas tienen entre 1900 y 3200 calorías al día. La Estación Espacial recibe comida fresca cada pocos meses, pero en la Luna o en Marte habrá que cultivarla."
+	"titulo": "Comer bien lejos de la Tierra",
+	"texto": "Tu cuerpo necesita energía y nutrientes también en el espacio. Los menús de los astronautas tienen entre 1900 y 3200 calorías al día. La Estación Espacial recibe comida fresca cada pocos meses, pero en la Luna o en Marte habrá que cultivarla."
    },
    {
-    "titulo": "Lechugas en la Estación",
-    "texto": "En el huerto Veggie de la ISS crecieron lechugas romanas rojas. Se cosecharon a los 33 días. Los científicos no encontraron microbios peligrosos para las personas y vieron que tenían tantos antioxidantes como las de la Tierra. Los astronautas se comieron parte de la cosecha (estudio OSD-745)."
+	"titulo": "Lechugas en la Estación",
+	"texto": "En el huerto Veggie de la ISS crecieron lechugas romanas rojas. Se cosecharon a los 33 días. Los científicos no encontraron microbios peligrosos para las personas y vieron que tenían tantos antioxidantes como las de la Tierra. Los astronautas se comieron parte de la cosecha (estudio OSD-745)."
    },
    {
-    "titulo": "Luz roja o luz azul",
-    "texto": "En 2019 se cultivó mizuna con dos tipos de luz: 90 % roja y 10 % azul, o mitad y mitad. La cosecha y su química cambiaron según la luz. En el primer intento el fertilizante fue demasiado fuerte y dañó las plantas; en el segundo se redujo y salió mejor (estudios OSD-780 y OSD-655)."
+	"titulo": "Luz roja o luz azul",
+	"texto": "En 2019 se cultivó mizuna con dos tipos de luz: 90 % roja y 10 % azul, o mitad y mitad. La cosecha y su química cambiaron según la luz. En el primer intento el fertilizante fue demasiado fuerte y dañó las plantas; en el segundo se redujo y salió mejor (estudios OSD-780 y OSD-655)."
    }
   ],
   "fuentes": [
@@ -195,16 +195,16 @@
   "portada": "res://ai_assets/ui/biblioteca/portadas/exploracion_lunar.png",
   "paginas": [
    {
-    "titulo": "Después del aterrizaje",
-    "texto": "La tripulación confirma el estado del vehículo y sus comunicaciones, revisa el tiempo y los recursos disponibles y evalúa el terreno antes de una salida. Cada vehículo y misión tienen sus propias listas de comprobación."
+	"titulo": "Después del aterrizaje",
+	"texto": "La tripulación confirma el estado del vehículo y sus comunicaciones, revisa el tiempo y los recursos disponibles y evalúa el terreno antes de una salida. Cada vehículo y misión tienen sus propias listas de comprobación."
    },
    {
-    "titulo": "Planear el recorrido",
-    "texto": "Los desniveles, las sombras profundas y el regolito influyen en la movilidad y en la visibilidad. El recorrido debe incluir puntos de referencia, un plan de vuelta y margen de tiempo y consumibles."
+	"titulo": "Planear el recorrido",
+	"texto": "Los desniveles, las sombras profundas y el regolito influyen en la movilidad y en la visibilidad. El recorrido debe incluir puntos de referencia, un plan de vuelta y margen de tiempo y consumibles."
    },
    {
-    "titulo": "Documentar una muestra",
-    "texto": "La posición, las fotografías y las observaciones del entorno dan contexto a una roca. Una identificación única vincula la muestra con ese registro. El almacenamiento protege la muestra y ayuda a evitar contaminación o mezclas."
+	"titulo": "Documentar una muestra",
+	"texto": "La posición, las fotografías y las observaciones del entorno dan contexto a una roca. Una identificación única vincula la muestra con ese registro. El almacenamiento protege la muestra y ayuda a evitar contaminación o mezclas."
    }
   ],
   "fuentes": [
@@ -219,16 +219,16 @@
   "portada": "res://ai_assets/ui/biblioteca/portadas/control_mision.png",
   "paginas": [
    {
-    "titulo": "Leer la telemetría",
-    "texto": "La telemetría transmite medidas como presión, temperatura y tensión eléctrica. Cada valor se interpreta con su unidad, la hora de lectura, la tendencia y el intervalo esperado para esa fase de la misión."
+	"titulo": "Leer la telemetría",
+	"texto": "La telemetría transmite medidas como presión, temperatura y tensión eléctrica. Cada valor se interpreta con su unidad, la hora de lectura, la tendencia y el intervalo esperado para esa fase de la misión."
    },
    {
-    "titulo": "Relacionar alarmas",
-    "texto": "Varias alertas pueden tener una causa común. Si coinciden una caída de tensión y avisos de equipos conectados a ella, se contrasta la secuencia con otras lecturas y con el estado de los sistemas de respaldo."
+	"titulo": "Relacionar alarmas",
+	"texto": "Varias alertas pueden tener una causa común. Si coinciden una caída de tensión y avisos de equipos conectados a ella, se contrasta la secuencia con otras lecturas y con el estado de los sistemas de respaldo."
    },
    {
-    "titulo": "Comunicar lo observado",
-    "texto": "Un informe conciso identifica el equipo, el momento, los valores observados y lo que se ha confirmado. La coordinación entre tripulación y especialistas ayuda a decidir con base en procedimientos y datos compartidos."
+	"titulo": "Comunicar lo observado",
+	"texto": "Un informe conciso identifica el equipo, el momento, los valores observados y lo que se ha confirmado. La coordinación entre tripulación y especialistas ayuda a decidir con base en procedimientos y datos compartidos."
    }
   ],
   "fuentes": [
@@ -242,16 +242,16 @@
   "portada": "res://ai_assets/ui/biblioteca/portadas/trajes_espaciales.png",
   "paginas": [
    {
-    "titulo": "Un hábitat portátil",
-    "texto": "Un traje de actividad extravehicular mantiene presión alrededor del cuerpo y suministra oxígeno. También necesita retirar el dióxido de carbono que exhala el astronauta y mantener la circulación del aire."
+	"titulo": "Un hábitat portátil",
+	"texto": "Un traje de actividad extravehicular mantiene presión alrededor del cuerpo y suministra oxígeno. También necesita retirar el dióxido de carbono que exhala el astronauta y mantener la circulación del aire."
    },
    {
-    "titulo": "Calor, protección y movilidad",
-    "texto": "El esfuerzo genera calor. Un traje puede usar una prenda con agua circulante para ayudar a extraerlo. Las capas externas y el visor protegen al astronauta; las articulaciones permiten moverse con el traje presurizado."
+	"titulo": "Calor, protección y movilidad",
+	"texto": "El esfuerzo genera calor. Un traje puede usar una prenda con agua circulante para ayudar a extraerlo. Las capas externas y el visor protegen al astronauta; las articulaciones permiten moverse con el traje presurizado."
    },
    {
-    "titulo": "El margen de regreso",
-    "texto": "La batería, el oxígeno y otros consumibles limitan el tiempo fuera. Las comunicaciones y el seguimiento del estado del traje permiten a la tripulación ajustar el recorrido y preservar una reserva para el regreso."
+	"titulo": "El margen de regreso",
+	"texto": "La batería, el oxígeno y otros consumibles limitan el tiempo fuera. Las comunicaciones y el seguimiento del estado del traje permiten a la tripulación ajustar el recorrido y preservar una reserva para el regreso."
    }
   ],
   "fuentes": [
@@ -267,16 +267,16 @@
   "portada": "res://ai_assets/ui/biblioteca/portadas/clima_espacial.png",
   "paginas": [
    {
-    "titulo": "Erupciones solares",
-    "texto": "El Sol lanza destellos de energía llamados erupciones. Se clasifican con letras: C, M y X, y cada letra es 10 veces más fuerte que la anterior. El 1 de febrero de 2026 la región activa 14366 del Sol produjo una erupción X8.1, registrada por la base de datos DONKI de la NASA."
+	"titulo": "Erupciones solares",
+	"texto": "El Sol lanza destellos de energía llamados erupciones. Se clasifican con letras: C, M y X, y cada letra es 10 veces más fuerte que la anterior. El 1 de febrero de 2026 la región activa 14366 del Sol produjo una erupción X8.1, registrada por la base de datos DONKI de la NASA."
    },
    {
-    "titulo": "Radiación medida en la ISS",
-    "texto": "Los detectores DosTel de la Estación Espacial midieron la radiación el 1 de abril de 2022. En 24 horas, un astronauta recibió entre 250 y 290 microgray. Casi siempre la tasa estaba cerca de 4 microgray por hora, pero varias veces al día subió a cientos (RadLab, NASA)."
+	"titulo": "Radiación medida en la ISS",
+	"texto": "Los detectores DosTel de la Estación Espacial midieron la radiación el 1 de abril de 2022. En 24 horas, un astronauta recibió entre 250 y 290 microgray. Casi siempre la tasa estaba cerca de 4 microgray por hora, pero varias veces al día subió a cientos (RadLab, NASA)."
    },
    {
-    "titulo": "Vigilar el Sol",
-    "texto": "Cuando ocurre una erupción fuerte, DONKI envía un aviso con la hora, la clase y la región del Sol, y advierte si pueden llegar más protones energéticos. En la Base lunar, esas mismas erupciones reales dañan el escudo y tú decides cuándo repararlo."
+	"titulo": "Vigilar el Sol",
+	"texto": "Cuando ocurre una erupción fuerte, DONKI envía un aviso con la hora, la clase y la región del Sol, y advierte si pueden llegar más protones energéticos. En la Base lunar, esas mismas erupciones reales dañan el escudo y tú decides cuándo repararlo."
    }
   ],
   "fuentes": [

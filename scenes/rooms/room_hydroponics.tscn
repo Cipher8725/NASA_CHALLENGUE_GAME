@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://m3isblpxpu5" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Hydroponics_Full.glb" id="8_hydroponics_full"]
 [ext_resource type="PackedScene" uid="uid://dajxlnayl6bv5" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Hydroponic_Bay.glb" id="9_hydroponic_bay"]
 [ext_resource type="PackedScene" uid="uid://c6ra6oraaqxlt" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Hydroponics_Empty.glb" id="10_hydroponics_empty"]
-[ext_resource type="PackedScene" uid="uid://bcm0ecaa35w2g" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Plant_1.glb" id="11_plant_1"]
 [ext_resource type="PackedScene" uid="uid://vcgswxecvabm" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Wall_Display_Green.glb" id="12_wall_display_green"]
 [ext_resource type="PackedScene" uid="uid://dfbi13b0jbbgw" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Wall_Glass_Clear.glb" id="14_b3aat"]
 [ext_resource type="PackedScene" path="res://scenes/doors/auto_door.tscn" id="15_auto_door"]
@@ -27,6 +26,21 @@ size = Vector3(1.2, 4, 0.65)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wall_z"]
 size = Vector3(0.74, 4, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prop_0"]
+size = Vector3(0.802, 1.743, 3.002)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prop_1"]
+size = Vector3(1.542, 0.929, 2.18)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prop_2"]
+size = Vector3(2.274, 0.495, 0.742)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prop_3"]
+size = Vector3(1.608, 0.929, 2.18)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prop_4"]
+size = Vector3(1.544, 2.456, 0.194)
 
 [node name="room_hydroponics" type="Node3D" unique_id=1466597513]
 
@@ -313,15 +327,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
 [node name="Hydroponics_Empty_1" parent="Props" unique_id=1673323393 instance=ExtResource("10_hydroponics_empty")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 
-[node name="Plant_0" parent="Props" unique_id=1031801968 instance=ExtResource("11_plant_1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 8)
-
-[node name="Plant_1" parent="Props" unique_id=643890413 instance=ExtResource("11_plant_1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
-
-[node name="Plant_2" parent="Props" unique_id=1626598163 instance=ExtResource("11_plant_1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -8)
-
 [node name="Display" parent="Props" unique_id=1463636305 instance=ExtResource("12_wall_display_green")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 9.15)
 
@@ -468,3 +473,72 @@ transform = Transform3D(-4.645693e-08, 1.0998092, -4.371139e-08, 0, -4.8074185e-
 
 [node name="Wall_East_5" parent="." unique_id=649963512 instance=ExtResource("14_b3aat")]
 transform = Transform3D(-4.645693e-08, 1.0998092, -4.371139e-08, 0, -4.8074185e-08, -1, -1.0628107, -4.8074185e-08, 1.9106855e-15, 5.6692257, 3.8268428, 0.0031661987)
+
+; Colisiones de los adornos: una caja por cada nodo de Props, ajustada a la
+; AABB de su malla en el espacio de la escena (los giros son de 90°, así que
+; la caja alineada a los ejes queda ceñida). Capa 1, como suelo y paredes.
+[node name="PropsCollision" type="StaticBody3D" parent="."]
+
+[node name="HydroLamp_0" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.6, 0.872, 5.102)
+shape = SubResource("BoxShape3D_prop_0")
+
+[node name="HydroLamp_1" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.6, 0.872, -2.898)
+shape = SubResource("BoxShape3D_prop_0")
+
+[node name="Hydroponics_Full_0" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.465, 5)
+shape = SubResource("BoxShape3D_prop_1")
+
+[node name="Hydroponics_Full_1" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.465, 1)
+shape = SubResource("BoxShape3D_prop_1")
+
+[node name="Hydroponics_Full_2" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.465, -3)
+shape = SubResource("BoxShape3D_prop_1")
+
+[node name="Hydroponics_Full_3" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.465, 5)
+shape = SubResource("BoxShape3D_prop_1")
+
+[node name="Hydroponics_Full_4" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.465, 1)
+shape = SubResource("BoxShape3D_prop_1")
+
+[node name="Hydroponics_Full_5" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.465, -3)
+shape = SubResource("BoxShape3D_prop_1")
+
+[node name="Bay_0" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.254, 6)
+shape = SubResource("BoxShape3D_prop_2")
+
+[node name="Bay_1" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.254, 2)
+shape = SubResource("BoxShape3D_prop_2")
+
+[node name="Bay_2" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.254, -2)
+shape = SubResource("BoxShape3D_prop_2")
+
+[node name="Bay_3" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.254, -6)
+shape = SubResource("BoxShape3D_prop_2")
+
+[node name="Bay_4" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.254, -7)
+shape = SubResource("BoxShape3D_prop_2")
+
+[node name="Hydroponics_Empty_0" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.465, 6)
+shape = SubResource("BoxShape3D_prop_3")
+
+[node name="Hydroponics_Empty_1" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.465, 2)
+shape = SubResource("BoxShape3D_prop_3")
+
+[node name="Display" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.933, 9.124)
+shape = SubResource("BoxShape3D_prop_4")

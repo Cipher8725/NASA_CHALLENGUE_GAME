@@ -1,0 +1,35 @@
+[gd_scene format=3]
+
+; Domo geodésico de la estación (modelo generado con Meshy, ver
+; tools/generar_domo_meshy.py). Se instancia en habitat.tscn con el centro en
+; (0, 0, 37), el centro de la estación.
+;
+; El modelo es un casquete esférico cortado por debajo del ecuador: el anillo
+; de la base mide el 82 % del ancho máximo (que alcanza a ~30 % de la altura)
+; y en +z tiene un arco de entrada que se mete hasta el 72 %. Escala elegida:
+; ancho máximo 161 × 273 m y 50 m de alto, así el anillo del suelo es una
+; elipse de 132 × 224 m que contiene toda la estación y la zona exterior con
+; ~5 m de margen en el punto más justo (la planta solar del suroeste).
+;
+; AABB original: 1,9025 × 1,4039 × 1,8990 m con la base en y = -0,7036. Se
+; escala a 161 × 50 × 273 y se sube para que la base quede en y = -0,15 (la
+; cara superior visual del bloque de la plataforma).
+; La colisión (DomeCollision) la construye scripts/station_dome.gd con los
+; triángulos del modelo ya escalados.
+
+[ext_resource type="Script" path="res://scripts/station_dome.gd" id="1_dome"]
+[ext_resource type="PackedScene" path="res://ai_assets/models/domo/domo_estacion.glb" id="2_model"]
+
+[node name="StationDome" type="Node3D"]
+script = ExtResource("1_dome")
+
+[node name="Model" parent="." instance=ExtResource("2_model")]
+unique_name_in_owner = true
+transform = Transform3D(84.626, 0, 0, 0, 35.614, 0, 0, 0, 143.866, 0.0292, 24.908, 0.0919)
+
+[node name="DomeBody" type="StaticBody3D" parent="."]
+collision_layer = 1
+collision_mask = 1
+
+[node name="DomeCollision" type="CollisionShape3D" parent="DomeBody"]
+unique_name_in_owner = true

@@ -118,11 +118,15 @@ func _collect(node: Node, root: Node, meshes: Array[Dictionary]) -> void:
 			var mesh: Mesh = mesh_instance.mesh
 			# Las mallas ocultas (p. ej. el panel invisible dentro del generador)
 			# no se comprueban: no se ven y su solape es intencionado.
-			if mesh != null and mesh_instance.visible_in_tree and not _is_ignored_path(String(mesh_instance.get_path())):
+			if mesh != null and mesh_instance.is_visible_in_tree() and not _is_ignored_path(String(mesh_instance.get_path())):
+				var box: AABB = mesh_instance.global_transform * mesh.get_aabb()
+				# Los paneles planos a la altura del techo (claraboyas de vidrio) son parte
+				# del techo: se apoyan sobre las paredes por diseño.
+				var group: String = "Ceiling" if box.size.y < 0.5 and box.position.y > 3.0 else _group_of(mesh_instance)
 				meshes.append({
 					"name": String(mesh_instance.get_path()).replace(String(root.get_path()) + "/", ""),
-					"aabb": mesh_instance.global_transform * mesh.get_aabb(),
-					"group": _group_of(mesh_instance),
+					"aabb": box,
+					"group": group,
 				})
 		_collect(child, root, meshes)
 

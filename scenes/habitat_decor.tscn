@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://og0nbl21xc76"]
+[gd_scene format=3 uid="uid://og0nbl21xc76"]
 
 [ext_resource type="PackedScene" uid="uid://b11uw27ojj2s2" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Floor_Tile_Metal.glb" id="1_floor"]
 [ext_resource type="PackedScene" uid="uid://djvy7wuhgm1m3" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Hazard_Floor_1.glb" id="2_hazard"]
@@ -13,28 +13,60 @@
 [ext_resource type="PackedScene" uid="uid://ds3lui4vkxm5g" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Chair_1.glb" id="12_chair"]
 [ext_resource type="PackedScene" uid="uid://m3isblpxpu5" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Hydroponics_Full.glb" id="13_hydro"]
 [ext_resource type="PackedScene" uid="uid://bam7qp2ri6ow8" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Cafeteria_Table.glb" id="14_table"]
-[ext_resource type="PackedScene" uid="uid://bcm0ecaa35w2g" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Plant_1.glb" id="16_plant"]
 [ext_resource type="PackedScene" uid="uid://dqp6gp3xnq36w" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Battery_Grey.glb" id="17_battery"]
 [ext_resource type="PackedScene" uid="uid://ccxdvlyfsfgsn" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Wall_Pipe.glb" id="18_pipe"]
 [ext_resource type="PackedScene" uid="uid://cgxqed14butwc" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Air_Con.glb" id="19_aircon"]
 [ext_resource type="PackedScene" uid="uid://q8ym1vbxnct2" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Wall_Display_Blue.glb" id="20_display"]
-[ext_resource type="PackedScene" path="res://scenes/rooms/IMG_sala_del_generador.tscn" id="20_fh7sm"]
+[ext_resource type="PackedScene" uid="uid://fl8rd5fnxs3w" path="res://scenes/rooms/IMG_sala_del_generador.tscn" id="20_fh7sm"]
 [ext_resource type="PackedScene" uid="uid://bs73u8wekfb7c" path="res://scenes/rooms/corridor_module.tscn" id="21_e44fg"]
 [ext_resource type="PackedScene" uid="uid://c5rvxs7kkt7cm" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Sleeper Casket Static.glb" id="21_sleeper"]
 [ext_resource type="PackedScene" uid="uid://cvc3lxrr5mdc" path="res://scenes/rooms/IMG_vestibulo.tscn" id="22_e44fg"]
 [ext_resource type="PackedScene" uid="uid://c8hxngrvtgiwk" path="res://scenes/rooms/IMG_sala_de_mando.tscn" id="23_ajx3t"]
 [ext_resource type="PackedScene" uid="uid://4yt1wmnf3dyb" path="res://scenes/rooms/room_quarters.tscn" id="25_5k81o"]
-[ext_resource type="PackedScene" path="res://scenes/rooms/room_oxigeno.tscn" id="26_oxigeno"]
-[ext_resource type="PackedScene" path="res://scenes/rooms/room_briefing.tscn" id="27_briefing"]
+[ext_resource type="PackedScene" uid="uid://ddhk2o44abk45" path="res://scenes/rooms/room_oxigeno.tscn" id="26_oxigeno"]
+[ext_resource type="PackedScene" uid="uid://cgss8q8c7pcm6" path="res://scenes/rooms/room_briefing.tscn" id="27_briefing"]
 [ext_resource type="PackedScene" uid="uid://cv8al1vk6lorh" path="res://scenes/rooms/room_medbay.tscn" id="28_medbay"]
-[ext_resource type="PackedScene" path="res://scenes/rooms/room_hydroponics.tscn" id="29_hydro"]
+[ext_resource type="PackedScene" uid="uid://bhu1h3nm2fvmf" path="res://scenes/rooms/room_hydroponics.tscn" id="29_hydro"]
 [ext_resource type="Script" uid="uid://b5hkk1h6r046b" path="res://scripts/regolith_floor.gd" id="30_regolith"]
 [ext_resource type="Script" uid="uid://cer8iomnvhwbx" path="res://scripts/window_glass.gd" id="32_glass"]
 [ext_resource type="Material" path="res://resources/window_glass_material.tres" id="33_glassmat"]
-[ext_resource type="PackedScene" path="res://scenes/DoorAnim.tscn" id="34_door_anim"]
+[ext_resource type="PackedScene" path="res://scenes/doors/auto_door.tscn" id="35_auto_door"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_mq8aq"]
 size = Vector3(100, 0.2, 96.375)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prop_0"]
+size = Vector3(0.904, 0.834, 0.67)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prop_1"]
+size = Vector3(2.573, 0.933, 1.541)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prop_2"]
+size = Vector3(2.028, 3.374, 2.052)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prop_3"]
+size = Vector3(2.232, 2.955, 1.519)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prop_4"]
+size = Vector3(2.18, 0.929, 1.542)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prop_5"]
+size = Vector3(1.944, 0.921, 2.24)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prop_6"]
+size = Vector3(0.827, 1.414, 0.963)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prop_7"]
+size = Vector3(1.175, 1.085, 0.927)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prop_8"]
+size = Vector3(1.464, 0.915, 0.473)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prop_9"]
+size = Vector3(0.194, 2.456, 1.544)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_prop_10"]
+size = Vector3(2.794, 2.461, 0.887)
 
 [node name="StationInterior" type="Node3D" unique_id=591982817]
 script = ExtResource("30_regolith")
@@ -167,13 +199,15 @@ transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -9.6, 0, -4)
 
 [node name="Wall_Left_2" parent="Walls" unique_id=1757820201 instance=ExtResource("5_door")]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -9.6, 0, 0)
-[node name="Door_West" parent="Walls" instance=ExtResource("34_door_anim")]
-transform = Transform3D(0, 0, -1.6, 0, 2, 0, 1, 0, 0, -9.6, 1, 0)
+
+[node name="Door_West" parent="Walls" instance=ExtResource("35_auto_door")]
+transform = Transform3D(0, 0, -1, 0, 1.369, 0, 1.145, 0, 0, -9.6, 0, 0)
 
 [node name="Wall_Left_5" parent="Walls" unique_id=809641709 instance=ExtResource("5_door")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.026544094, 0, 9.660257)
-[node name="Door_North" parent="Walls" instance=ExtResource("34_door_anim")]
-transform = Transform3D(-1.6, 0, 0, 0, 2, 0, 0, 0, -1, 0.026544094, 1, 9.660257)
+
+[node name="Door_North" parent="Walls" instance=ExtResource("35_auto_door")]
+transform = Transform3D(-1.145, 0, 0, 0, 1.369, 0, 0, 0, -1, 0.026544094, 0, 9.660257)
 
 [node name="Wall_Left_3" parent="Walls" unique_id=1060086365 instance=ExtResource("3_wall")]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -9.6, 0, 4)
@@ -189,8 +223,9 @@ transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 9.6, 0, -4)
 
 [node name="Wall_Right_2" parent="Walls" unique_id=1346921228 instance=ExtResource("5_door")]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 9.6, 0, 0)
-[node name="Door_East" parent="Walls" instance=ExtResource("34_door_anim")]
-transform = Transform3D(0, 0, 1.6, 0, 2, 0, -1, 0, 0, 9.6, 1, 0)
+
+[node name="Door_East" parent="Walls" instance=ExtResource("35_auto_door")]
+transform = Transform3D(0, 0, 1, 0, 1.369, 0, -1.145, 0, 0, 9.6, 0, 0)
 
 [node name="Wall_Right_3" parent="Walls" unique_id=2053983934 instance=ExtResource("3_wall")]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 9.6, 0, 4)
@@ -262,18 +297,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 8)
 [node name="Ceil_4_4" parent="Ceiling" unique_id=197005461 instance=ExtResource("6_ceiling")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
 
-[node name="Light_0" parent="Ceiling" unique_id=967500554 instance=ExtResource("7_light")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 3.85, -4)
-
-[node name="Light_1" parent="Ceiling" unique_id=402616356 instance=ExtResource("7_light")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 3.85, -4)
-
-[node name="Light_2" parent="Ceiling" unique_id=1802612550 instance=ExtResource("7_light")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 3.85, 4)
-
-[node name="Light_3" parent="Ceiling" unique_id=1309067244 instance=ExtResource("7_light")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 3.85, 4)
-
 [node name="Props" type="Node3D" parent="." unique_id=486508598]
 
 [node name="Battery_0" parent="Props" unique_id=1908103489 instance=ExtResource("17_battery")]
@@ -306,15 +329,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6, 0, 3.3)
 [node name="Chair_1" parent="Props" unique_id=432951192 instance=ExtResource("12_chair")]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 3.6, 0, 7.1)
 
-[node name="Plant_0" parent="Props" unique_id=1225035022 instance=ExtResource("16_plant")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.4, 0, 8.4)
-
-[node name="Plant_1" parent="Props" unique_id=274677905 instance=ExtResource("16_plant")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, -8.5)
-
-[node name="Plant_2" parent="Props" unique_id=625503990 instance=ExtResource("16_plant")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, -8.5)
-
 [node name="Pipe_0" parent="Props" unique_id=247409696 instance=ExtResource("18_pipe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.18, 1, -8.7)
 
@@ -331,7 +345,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.3, 2.8, -8.85)
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -9.1, 0.6, -3)
 
 [node name="Display_Right" parent="Props" unique_id=1434415515 instance=ExtResource("20_display")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 9.1, 0.6, 1)
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 9.1, 0.6, 3)
 
 [node name="Monitor" parent="Props" unique_id=1122441378 instance=ExtResource("8_monitor")]
 transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 1.02, -8.75)
@@ -356,6 +370,30 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 27.4
 
 [node name="room_quarters" parent="." unique_id=1564317319 instance=ExtResource("25_5k81o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.016598225, -0.017638206, 19.634491)
+
+[node name="Lamp_28" parent="room_quarters" unique_id=532119851 instance=ExtResource("7_light")]
+transform = Transform3D(0.42247787, 0, 0, 0, 1, 0, 0, 0, 0.4333002, -4.1461735, 3.6570191, -15.592756)
+
+[node name="Wall_East_13" parent="room_quarters" unique_id=490031027 instance=ExtResource("4_glass")]
+transform = Transform3D(-4.645693e-08, 1.0998092, -4.371139e-08, 0, -4.8074185e-08, -1, -1.0628107, -4.8074185e-08, 1.9106855e-15, -6.221546, 3.8238618, -15.64394)
+
+[node name="Lamp_29" parent="room_quarters" unique_id=1048618764 instance=ExtResource("7_light")]
+transform = Transform3D(0.42247787, 0, 0, 0, 1, 0, 0, 0, 0.4333002, 3.8920832, 3.6570191, -15.592756)
+
+[node name="Wall_East_14" parent="room_quarters" unique_id=1909392151 instance=ExtResource("4_glass")]
+transform = Transform3D(-4.645693e-08, 1.0998092, -4.371139e-08, 0, -4.8074185e-08, -1, -1.0628107, -4.8074185e-08, 1.9106855e-15, 1.8167105, 3.8238618, -15.64394)
+
+[node name="Lamp_30" parent="room_quarters" unique_id=1366577947 instance=ExtResource("7_light")]
+transform = Transform3D(0.42247787, 0, 0, 0, 1, 0, 0, 0, 0.4333002, 3.8920832, 3.6570191, -23.533081)
+
+[node name="Wall_East_15" parent="room_quarters" unique_id=2110028570 instance=ExtResource("4_glass")]
+transform = Transform3D(-4.645693e-08, 1.0998092, -4.371139e-08, 0, -4.8074185e-08, -1, -1.0628107, -4.8074185e-08, 1.9106855e-15, 1.8167105, 3.8238618, -23.584265)
+
+[node name="Lamp_31" parent="room_quarters" unique_id=1729804484 instance=ExtResource("7_light")]
+transform = Transform3D(0.42247787, 0, 0, 0, 1, 0, 0, 0, 0.4333002, -4.1212673, 3.6570191, -23.533081)
+
+[node name="Wall_East_16" parent="room_quarters" unique_id=1726341866 instance=ExtResource("4_glass")]
+transform = Transform3D(-4.645693e-08, 1.0998092, -4.371139e-08, 0, -4.8074185e-08, -1, -1.0628107, -4.8074185e-08, 1.9106855e-15, -6.19664, 3.8238618, -23.584265)
 
 [node name="RoomOxygen" parent="." unique_id=158101272 instance=ExtResource("26_oxigeno")]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -27.58, 0, -11.59)
@@ -382,3 +420,76 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 101.8)
 transform = Transform3D(-0.49612787, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 1.8125)
 visible = false
 mesh = SubResource("BoxMesh_mq8aq")
+
+; Colisiones de los adornos: una caja por cada nodo de Props, ajustada a la
+; AABB de su malla en el espacio de la escena (los giros son de 90°, así que
+; la caja alineada a los ejes queda ceñida). Capa 1, como suelo y paredes.
+[node name="PropsCollision" type="StaticBody3D" parent="."]
+
+[node name="Battery_0" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9, 0.417, 8.55)
+shape = SubResource("BoxShape3D_prop_0")
+
+[node name="Battery_1" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.85, 0.417, 8.55)
+shape = SubResource("BoxShape3D_prop_0")
+
+[node name="Bunk_0" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.886, 0.475, -5.005)
+shape = SubResource("BoxShape3D_prop_1")
+
+[node name="Bunk_1" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.886, 0.475, -1.206)
+shape = SubResource("BoxShape3D_prop_1")
+
+[node name="CryoTube" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.05, 1.687, 5.612)
+shape = SubResource("BoxShape3D_prop_2")
+
+[node name="SleeperCasket" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.102, 1.494, 8.242)
+shape = SubResource("BoxShape3D_prop_3")
+
+[node name="Hydroponics" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.465, -2.2)
+shape = SubResource("BoxShape3D_prop_4")
+
+[node name="CafeteriaTable" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6, 0.461, 5.4)
+shape = SubResource("BoxShape3D_prop_5")
+
+[node name="Chair_0" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.598, 0.707, 3.253)
+shape = SubResource("BoxShape3D_prop_6")
+
+[node name="Chair_1" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.601, 0.707, 7.146)
+shape = SubResource("BoxShape3D_prop_6")
+
+[node name="Pipe_0" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.617, 1.526, -8.749)
+shape = SubResource("BoxShape3D_prop_7")
+
+[node name="Pipe_1" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.063, 1.526, -8.749)
+shape = SubResource("BoxShape3D_prop_7")
+
+[node name="AirCon_0" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.224, 2.922, -8.962)
+shape = SubResource("BoxShape3D_prop_8")
+
+[node name="AirCon_1" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.376, 2.922, -8.962)
+shape = SubResource("BoxShape3D_prop_8")
+
+[node name="Display_Left" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.074, 2.533, -3)
+shape = SubResource("BoxShape3D_prop_9")
+
+[node name="Display_Right" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.074, 2.533, 3)
+shape = SubResource("BoxShape3D_prop_9")
+
+[node name="Monitor" type="CollisionShape3D" parent="PropsCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, -8.793)
+shape = SubResource("BoxShape3D_prop_10")

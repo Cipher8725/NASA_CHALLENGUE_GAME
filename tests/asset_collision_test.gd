@@ -17,8 +17,11 @@ const MIN_OVERLAP_VOLUME: float = 0.05
 ## Prefijos de ruta que no participan en la comprobación de solapes.
 ## La plataforma y el espacio exterior son decorado; las salas instanciadas
 ## (habitaciones y pasillos) se validan aparte en room_collision_test.gd.
+## El domo envuelve toda la estación por diseño (su AABB lo engloba todo); que
+## su cáscara no toque nada lo comprueba `dome_energy_test.gd` con la física.
 const IGNORED_PATH_PARTS: PackedStringArray = [
 	"StationPlatform",
+	"StationDome",
 	"SpaceBackdrop",
 	"Interior/Room",
 	"Interior/IMG_",
@@ -105,6 +108,11 @@ func _group_of(node: MeshInstance3D, path: String) -> String:
 		return "Floor"
 	if path.contains("Ceiling"):
 		return "Ceiling"
+	# Las AutoDoor (`Walls/Door_*`) van dentro del hueco del panel
+	# `Wall_With_Door_Grey`, y su marco y su hoja se solapan entre sí: todo eso
+	# es intencionado, así que comparten grupo con el panel de la puerta.
+	if path.contains("/Walls/Door_"):
+		return "Wall With Door Grey"
 	var n: String = node.name
 	var parts: PackedStringArray = n.split("_")
 	if parts.size() > 1:

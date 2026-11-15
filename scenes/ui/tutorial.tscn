@@ -1,0 +1,169 @@
+[gd_scene load_steps=5 format=3]
+
+; Tutorial "Control de misión" de la Base Lunar (5 páginas). Se muestra la primera vez
+; que se juega la base y desde el menú de pausa. El texto lo pone scripts/tutorial.gd.
+
+[ext_resource type="Script" path="res://scripts/tutorial.gd" id="1_tutorial"]
+
+[sub_resource type="StyleBoxFlat" id="Style_panel"]
+bg_color = Color(0.04, 0.07, 0.13, 0.97)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.35, 0.7, 0.95, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+shadow_color = Color(0, 0, 0, 0.5)
+shadow_size = 14
+content_margin_left = 28.0
+content_margin_top = 22.0
+content_margin_right = 28.0
+content_margin_bottom = 22.0
+
+[sub_resource type="StyleBoxFlat" id="Style_btn"]
+bg_color = Color(0.1, 0.2, 0.34, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.35, 0.65, 0.9, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+content_margin_left = 16.0
+content_margin_right = 16.0
+
+[sub_resource type="StyleBoxFlat" id="Style_btn_hover"]
+bg_color = Color(0.16, 0.32, 0.52, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.82, 0.4, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+content_margin_left = 16.0
+content_margin_right = 16.0
+
+[node name="Tutorial" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tutorial")
+
+[node name="Dim" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.01, 0.03, 0.72)
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -420.0
+offset_top = -250.0
+offset_right = 420.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("Style_panel")
+
+[node name="Body" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="StepLabel" type="Label" parent="Panel/Body"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.78, 1, 1)
+theme_override_font_sizes/font_size = 15
+text = "CONTROL DE MISIÓN · 1 / 5"
+
+[node name="TitleLabel" type="Label" parent="Panel/Body"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.82, 0.4, 1)
+theme_override_font_sizes/font_size = 30
+text = "Título"
+autowrap_mode = 3
+
+[node name="BodyText" type="RichTextLabel" parent="Panel/Body"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0.9, 0.95, 1, 1)
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+bbcode_enabled = true
+text = "Texto"
+fit_content = false
+
+[node name="Buttons" type="HBoxContainer" parent="Panel/Body"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="SkipButton" type="Button" parent="Panel/Body/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 46)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.88, 0.95, 1, 1)
+theme_override_colors/font_disabled_color = Color(0.5, 0.55, 0.62, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("Style_btn")
+theme_override_styles/hover = SubResource("Style_btn_hover")
+theme_override_styles/pressed = SubResource("Style_btn_hover")
+theme_override_styles/focus = SubResource("Style_btn_hover")
+theme_override_styles/disabled = SubResource("Style_btn")
+text = "Saltar"
+
+[node name="Spacer" type="Control" parent="Panel/Body/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BackButton" type="Button" parent="Panel/Body/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 46)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.88, 0.95, 1, 1)
+theme_override_colors/font_disabled_color = Color(0.5, 0.55, 0.62, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("Style_btn")
+theme_override_styles/hover = SubResource("Style_btn_hover")
+theme_override_styles/pressed = SubResource("Style_btn_hover")
+theme_override_styles/focus = SubResource("Style_btn_hover")
+theme_override_styles/disabled = SubResource("Style_btn")
+text = "Atrás"
+
+[node name="NextButton" type="Button" parent="Panel/Body/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 46)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.88, 0.95, 1, 1)
+theme_override_colors/font_disabled_color = Color(0.5, 0.55, 0.62, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("Style_btn")
+theme_override_styles/hover = SubResource("Style_btn_hover")
+theme_override_styles/pressed = SubResource("Style_btn_hover")
+theme_override_styles/focus = SubResource("Style_btn_hover")
+theme_override_styles/disabled = SubResource("Style_btn")
+text = "Siguiente"

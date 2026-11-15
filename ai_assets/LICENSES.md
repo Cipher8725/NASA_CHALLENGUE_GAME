@@ -49,6 +49,14 @@ Los textos completos están en `ai_assets/LICENSES/`.
   con estos assets. Ver `LICENSES/appeal_foundry_license.txt`.
 - **Uso**: asteroide visible a través del ventanal.
 
+## Modelos generados con IA
+
+- **`models/domo/domo_estacion.glb`** — generado con Meshy (text-to-3d) para
+  este proyecto con la clave del equipo (`MESHY_API_KEY`). Los recursos creados
+  con una cuenta de pago de Meshy pertenecen al usuario; con cuenta gratuita
+  Meshy los publica bajo CC BY 4.0 (atribuir a Meshy). Script:
+  `tools/generar_domo_meshy.py`.
+
 ## Packs NO versionados en Git
 
 Los tres packs permanecen en `assets/` pero están excluidos del repositorio

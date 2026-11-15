@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3]
+
+; Herramienta de desarrollo: capturas del domo (Hito 24) en docs/capturas/.
+; godot --path . --rendering-driver opengl3 res://tools/capturas/capturar_domo.tscn
+
+[ext_resource type="Script" path="res://tools/capturas/capturar_domo.gd" id="1_captura"]
+
+[node name="CapturarDomo" type="Node"]
+script = ExtResource("1_captura")

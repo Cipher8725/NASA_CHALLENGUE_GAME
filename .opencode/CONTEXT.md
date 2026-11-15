@@ -662,7 +662,7 @@ código, un contador `get_applied_*_count()` para las pruebas y un `print` únic
     clonar hay que colocarlos y ejecutar `bash tools/check_assets.sh` antes de
     importar; sin ellos las escenas no cargan.
 16. Los minijuegos son deliberadamente sencillos (el arquitecto los mejorará
-    después): el de oxígeno solo mide pulsaciones y el de cables solo 4
+    después): el de oxígeno es mantener la presión en una franja y el de cables solo 4
     conexiones fijas. La dificultad está en los `@export` de cada script.
 17. **`tests/room_collision_test.gd` no está comprobando nada**: usa
     `mesh_instance.visible_in_tree`, que es una propiedad de `CanvasItem`
@@ -840,5 +840,150 @@ funciona, la ruta de la herramienta debe ser **relativa** (`.`), porque concaten
   de `RoomHydroponics/Wall_South_2`, ya existente).
 - Ojo: en los `.tscn` el `Transform3D(...)` no se puede transponer a mano; copiar el del nodo visual.
 
+### Hito 22 — Sin plantas en el suelo y AutoDoor en la sala principal (2026-11-15)
+
+- **Plantas retiradas**: se eliminaron las 23 instancias de `Plant_1.glb` (todas en el suelo, y = 0)
+  y su `ext_resource` en `scenes/habitat_decor.tscn` (3) y en las salas que instancia:
+  `IMG_sala_del_generador` (1), `IMG_vestibulo` (2), `IMG_sala_de_mando` (4), `room_quarters` (2),
+  `room_oxigeno` (2), `room_briefing` (4), `room_medbay` (1), `room_hydroponics` (3).
+  `corridor_module` no tenía. Ninguna tenía colisión propia.
+- **Sala principal (`habitat_decor.tscn`)**: `Door_West`, `Door_North` y `Door_East` pasan de
+  `scenes/DoorAnim.tscn` a `scenes/doors/auto_door.tscn` con la escala estándar 1,145 × 1,369 × 1 y la
+  rotación de su panel `Wall_With_Door_Grey`. `DoorAnim.tscn` ya no se usa en ninguna escena.
+- `tests/asset_collision_test.gd`: las mallas bajo `Walls/Door_*` comparten grupo con el panel de la
+  puerta (el solape puerta/hueco y marco/hoja es intencionado).
+- Tests: `doors_test`, `physics_test`, `functional_test`, `interaction_test` y `asset_collision_test` en
+  verde; `station_access_test` mantiene solo el fallo previo de `RoomHydroponics/Wall_South_2`.
+
+### Hito 23 — Minijuego de oxígeno por presión sostenida y colisión en los adornos (2026-11-15)
+
+- **Minijuego de oxígeno rehecho** (`scripts/minigame_oxygen.gd`, `scenes/ui/minigame_oxygen.tscn`):
+  mantener ESPACIO/ENTER o el botón (`button_down`/`button_up`) sube la presión a `pump_rate`
+  (0,55/s); siempre se escapa a `leak_rate` (0,22/s); cada pulsación da un toque de `pump_per_press`.
+  La zona verde (ancho 0,14, centro aleatorio entre 0,6 y 0,8) hay que mantenerla `hold_required`
+  = 2,5 s; fuera de ella la estabilidad baja ×1,5. Llegar al 100 % abre la válvula: presión a 0,3 y
+  −2 s. La barra de la fila (antes «PRESIÓN») se llama «ESTABLE» y muestra `hold_time/hold_required`;
+  el `RepairGauge` dibuja la presión como aguja. API para pruebas: `step(delta)`, `set_pumping()`,
+  `set_pressure()`, `get_pressure()`, `get_target_center()`, `is_in_zone()`, `get_overpressures()`.
+  `tests/minigame_test.gd` e `interaction_test.gd` actualizados (ya no existen `set_needle`/`get_hits`).
+- **Colisión en todos los adornos**: cada escena (`habitat_decor` y las 9 salas que instancia, incluido
+  `corridor_module`) tiene un `StaticBody3D` `PropsCollision` (capa 1) con una `BoxShape3D` por nodo
+  de `Props`, ceñida a la AABB de su malla (132 cajas; las formas de igual tamaño se comparten).
+  `ServiceStairs` se excluye: ya tiene su cuña. Generado midiendo las AABB en Godot; si se mueve un
+  adorno hay que mover también su caja (mismo nombre en `PropsCollision`).
+- `Display_Right` de la sala principal tapaba media puerta este (z 0,2–1,8): movida a z = 3.
+- Tests en verde: functional, interaction, physics, doors, minigame, radiation, hydroponics,
+  asset_collision y room_collision. `station_access_test`: solo el fallo previo de `RoomHydroponics`.
+
+### Hito 24 — Domo de Meshy, energía solar, corto circuito y misión sin límite (2026-11-15)
+
+- **Domo** (`scenes/station_dome.tscn` + `scripts/station_dome.gd`, instanciado en `habitat.tscn` en
+  (0, 0, 37)): modelo de Meshy `ai_assets/models/domo/domo_estacion.glb` (generado con
+  `tools/generar_domo_meshy.py saldo|generar`; costó ~30 de 100 créditos). Es un casquete esférico:
+  el anillo del suelo mide el 82 % del ancho máximo y en +z tiene un arco que entra hasta el 72 %.
+  Escala del nodo `Model`: 161 × 50 × 273 m → anillo del suelo de 132 × 224 m. Colisión: una
+  `ConcavePolygonShape3D` (30 044 triángulos, `backface_collision`) creada en `_ready()` con los
+  vértices YA escalados (Godot no admite escala no uniforme en formas cóncavas). Vidrio translúcido
+  (copia del material de Meshy con alfa 0,16 y `CULL_DISABLED`); el brillo sigue al escudo.
+  El modelo tiene huecos sin vidrio arriba (> 20 m, inalcanzables).
+- **Plataforma**: el bloque base de `station_platform.tscn` pasa de 84 × 160 a 170 × 282 m (malla
+  y colisión, mismo centro z = 37).
+- **Energía**: `energy_decay_rate = 0` (sin descarga) y la emergencia `sobrecarga_energia` ya no se
+  programa. Los paneles solares cargan `solar_charge_rate` = 0,3/s (0→100 en ~5,5 min). La energía
+  está en `GameManager.NON_FATAL_RESOURCES`: llegar a 0 no hace perder la partida.
+- **Corto circuito** (`GameManager.EMERGENCY_SHORT_CIRCUIT`, en la rotación de `EmergencySystem`):
+  energía a 0, sin carga solar y oxígeno ×`short_circuit_oxygen_multiplier` (2) hasta repararlo.
+  Señal `short_circuit_changed`. Se repara con el minijuego de cables: `RepairMinigameManager`
+  llama a `repair_short_circuit()` antes de reponer la energía.
+- **Consola de ENERGÍA** movida de `habitat.tscn` al interior del generador
+  (`IMG_sala_del_generador/ConsoleEnergy`, `panel_visible = false`): se pulsa E junto a la máquina.
+  Sustituye a la antigua consola invisible del escudo.
+- **Consola del DOMO** (`scenes/dome_console.tscn`, hereda de `console.tscn`; `scripts/dome_console.gd`,
+  `DomeConsole extends ResourceConsole`, recurso `shield`): en el sitio del antiguo escritorio
+  decorativo de la sala del generador (6, 0, -6). `GameManager.divert_energy_to_dome()` pasa TODA
+  la energía al escudo (× `dome_transfer_efficiency`); señal `energy_diverted_to_dome`. No hace nada
+  sin energía, con corto circuito o con el escudo lleno.
+- **Misión sin límite**: `MissionConfig.endless_mission = true`. No hay victoria por tiempo; el HUD
+  muestra el tiempo aguantado. `mission_duration` (180 s) queda como ciclo del perfil de radiación
+  de RadLab (`get_mission_progress()` usa `fposmod`).
+- Tests: nuevo `tests/dome_energy_test.tscn` (30 comprobaciones, incluida una consulta física de las
+  522 colisiones de la estación contra la cáscara del domo). `simulation_test` cambia la ruta de
+  victoria por la de supervivencia. `asset_collision_test` ignora `StationDome`. Capturas en
+  `docs/capturas/hito24_domo_*.png` (`tools/capturas/capturar_domo.tscn`).
+- Fallos previos que siguen: `station_access_test` (dintel de `RoomHydroponics`) y `menu_test`
+  (`CardButton`, por cambios sin commit en `scenes/main_menu.tscn` anteriores a este hito).
+
 ---
-*Actualizado: 2026-11-15 — Hito 21 (techo y paneles solares del generador) completado.*
+*Actualizado: 2026-11-15 — Hito 24 (domo, energía solar, corto circuito y misión sin límite) completado.*
+
+### Hito 25 — Minimapa y HUD rediseñado (2026-11-15)
+- `ai_assets/IMG/Map/minimapa_habitat.png`: minimapa cenital de `scenes/habitat_decor.tscn` (9 salas con nombre, pasillos sin nombre), generado por `tools/generate_minimap.py` a partir de las posiciones de la escena (14 px/m, origen de mundo (-44.7637, -44.6178)). El script puede además pedir texturas por sala a la API de Layer (clave en `API.txt`); aún no se ha podido ejecutar porque el proxy bloquea `api.app.layer.ai`.
+- HUD (`scenes/hud.tscn`, `scripts/mission_hud.gd`): arriba a la izquierda solo OXÍGENO, ENERGÍA y ESCUDO como burbujas que se gastan (`scripts/resource_bubbles.gd`, clase `ResourceBubbles`) + porcentaje. AGUA y COMIDA bajan a la esquina inferior izquierda como texto "NOMBRE  NN%". La barra de ayuda pasa al centro inferior.
+- Minimapa circular abajo a la izquierda (`scripts/hud_minimap.gd`, clase `HudMinimap`): el `Panel` Frame recorta con `clip_children`; la imagen se desplaza para que la posición real del jugador (grupo `player`) quede en el centro; norte arriba y flecha que gira con el jugador.
+- Escala de la UI al 97 % (`MissionHud.UI_SCALE`), reajustada al cambiar el tamaño de la ventana.
+- Si se mueve una sala en `habitat_decor.tscn`, hay que regenerar el minimapa (`python tools/generate_minimap.py . --no-api`) y, si cambia el origen, actualizar `map_origin` en `hud_minimap.gd`.
+
+
+### Hito 26 — Domo con 3 niveles y aviso de corto circuito (2026-11-15)
+- `GameManager.divert_energy_to_dome(fraction = 1.0)`: desvía solo una fracción de la energía actual.
+- Consola del domo (`scripts/dome_console.gd`): al pulsar E abre `scenes/ui/dome_energy_panel.tscn` (`scripts/dome_energy_panel.gd`, clase `DomeEnergyPanel`) en la capa `RepairMinigames`, con 3 niveles: BAJO 25 %, MEDIO 50 %, MÁXIMO 100 % (`level_fractions`, editable). Se elige con el ratón o con 1/2/3; Esc cancela. Cada botón muestra la energía que se gasta y el escudo que se gana. `divert_level(n)` aplica un nivel sin panel (lo usa `tests/dome_energy_test.gd`, actualizado para los 3 niveles).
+- Corto circuito: aviso fijo rojo parpadeante en el HUD (`%ShortCircuitBanner`) con la sala donde está la consola de energía (calculada con `HudMinimap.room_name_at`) y la sala en la que está el jugador; si ya ha llegado, se lo dice. El minimapa marca el destino con un punto parpadeante o una flecha roja en el borde (`HudMinimap.set_target/clear_target`). Todo desaparece al reparar.
+- `HudMinimap.ROOMS` repite los centros de las salas de `habitat_decor.tscn`: si se mueve una sala, actualizar también esa tabla.
+
+### Hito 27 — Juego en dos idiomas: español e inglés (2026-11-15)
+- Autoload `Lang` (`scripts/localization.gd`): el español es el texto original y la CLAVE; el diccionario `EN` (≈320 textos) se registra como traducción "en" en el `TranslationServer`. El idioma se guarda en `user://settings.cfg`. `project.godot`: `internationalization/locale/fallback="es"` (si no, Godot caería al inglés). En modo headless (tests) siempre español.
+- Menú principal: botón `LanguageButton` arriba a la derecha (muestra el OTRO idioma: "ENGLISH" / "ESPAÑOL"). Los botones del menú tienen el texto dibujado en la imagen: las versiones en inglés están en `ai_assets/ui/menu/en/` (mismo nombre de archivo) y `MainMenu._apply_language_textures()` las cambia.
+- Los `Label`/`Button`/`Label3D` de las escenas se traducen solos. Los textos con formato usan `tr("...")` en los scripts (antes de aplicar `%`). Datos traducidos: eventos del Apolo 8 (`LaunchSimulation._translate_data`), cultivos (nombre y lugar), nombres de piezas del rover (`nombre_en`), salas del minimapa (imagen `ai_assets/IMG/Map/en/minimapa_habitat.png`).
+- Sin traducir (contenido, no UI): texto de los libros de la Biblioteca, fichas de las piezas del rover (material, importancia, dato) y portadas.
+- Para añadir un texto: escribirlo en español (escena o `tr()`) y añadir su traducción en `Lang.EN`.
+
+### Hito 28 — Pausa en la Base Lunar (2026-11-15)
+- `scenes/ui/pause_menu.tscn` + `scripts/pause_menu.gd` (clase `PauseMenu`), instanciado en `scenes/main.tscn` dentro de `PauseLayer` (CanvasLayer, capa 20, `process_mode` ALWAYS).
+- Esc o P (acción nueva `pause_game`) pausan con `get_tree().paused = true`: se congelan GameManager (recursos, reloj, puntos), emergencias, jugador y cuenta atrás inicial (`create_timer(..., false)`). No se puede pausar con un minijuego/panel del domo abierto ni con la misión terminada.
+- Botones: CONTINUAR, REINICIAR MISIÓN y VOLVER AL MENÚ PRINCIPAL. Al volver al menú se llama a `GameManager.abort_mission()` (nuevo) para que el autoload no siga consumiendo recursos; `_mission_run` invalida la cuenta atrás de una misión abandonada.
+
+### Hito 29 — Tierra a escala real y Sol visible en el hábitat (2026-11-15)
+- `scenes/habitat.tscn` / `SpaceBackdrop`: el planeta `Verdant_World` (140× de escala, ~36° del cielo) se sustituye por `Earth`, una esfera con `resources/shaders/tierra.gdshader` (océanos, continentes, nubes y brillo de atmósfera) de radio 46,4 m a 2 800 m: 1,9° de diámetro aparente, lo mismo que la Tierra vista desde la Luna. Inclinada 23,4°.
+- Nuevo `Sun`: esfera emisiva (HDR, energía 12) de radio 14 m a 3 000 m (0,53°, como el Sol real) colocada en la dirección de la que viene `SunLight`, más un halo billboard aditivo (`resources/shaders/sol_halo.gdshader`, nodo `Sun/SunHalo`). El entorno activa `glow` (umbral HDR 1,3) para el resplandor.
+- La cámara del jugador usa `far` por defecto (4 000 m): si se alejan la Tierra o el Sol hay que subirlo.
+
+### Hito 30 — Biblioteca en inglés y Tierra más grande (2026-11-15)
+- Biblioteca: con el juego en inglés, `Library.localize_catalog()` empareja por `id` el catálogo español con `resources/biblioteca/catalogo_en.json` y toma título, páginas, fuentes y portada. El `nivel` sigue en español (lo usa la estantería) y se muestra traducido (Básico → Beginner); el texto de la actividad ("Practicar: …") se traduce con `Lang`.
+- `catalogo_en.json` y `libros/library_en.md`: se añadieron los 2 libros que faltaban en inglés (Your Body in Space, Space Weather); ahora están los 11. Su `portada` apunta a `ai_assets/ui/biblioteca/portadas/en/<id>.png`: portadas con el título en inglés (generadas a partir de las originales).
+- Hábitat: la Tierra pasa de radio 46,4 m (1,9°, tamaño real) a 130 m (~5,3°) para verse mejor.
+
+> Hitos que siguen: del parche de Alaitz (PArcheTutorial), integrados en el Hito 31.
+
+*Actualizado: 2026-11-15 — Hito 25 (tutoriales paso a paso) completado.*
+
+### Hito 31 — Fusión del parche de Alaitz (PArcheTutorial) (2026-11-15)
+Se unió `PArcheTutorial/PARA_CESAR_NaSA-GAME` (+ `parche_tutoriales`, que ya estaba incluido) con fusión de 3 vías (`git merge-file`, base 51368ab o 66dd8a1 si el archivo no existía), conservando lo nuestro y añadiendo lo suyo:
+- **Suyo, añadido**: tutoriales paso a paso (`GuideOverlay`, `scenes/ui/guide_overlay.tscn`, `tutorial.tscn`) en menú, Base Lunar, minijuegos, taller, despegue, biblioteca y carnet; sonido y música (autoload `Audio` = `scripts/audio_manager.gd`, `assets/audio/`); medallas y certificado (`PlayerProgress`, `MedalIcon`, `scenes/certificate.tscn`, "Mi carnet" vuelve al menú); minijuegos 3D (`OxygenStation3D`, `PowerPanel3D`, `HydroponicsGarden3D`, modelos en `ai_assets/models/minijuegos/`); selector 3D/2D del despegue; `locale/en.po` (669 textos) registrado en `[internationalization]`; imágenes `*_en.png`; `GameSettings` (`user://ajustes.cfg`).
+- **Nuestro, conservado**: sistema de idioma `Lang` (+ `localization_api.gd` = clase `Localization` que delega en `Lang` para su código), HUD con burbujas/minimapa/agua y comida abajo, domo con 3 niveles, alerta de corto circuito, oxígeno por presión sostenida (ahora con el puesto 3D, sonidos y tutorial adaptado), sin plantas en el suelo, consolas de energía/domo en el generador, misión sin fin, Tierra y Sol.
+- **Pausa unida**: autoload `Pause` (`scenes/ui/pause_menu.tscn`, `scripts/pause_menu.gd`): Esc o P en base, taller y despegue; Continuar, Cómo jugar, Reiniciar misión (solo base), idioma (vía `Lang`), volumen, Volver al menú (abandona la misión con `abort_mission`) y aviso de medalla. No se abre con minijuego/panel del domo abiertos, durante un tutorial ni con la misión terminada. Se quitó `PauseLayer` de `main.tscn`.
+- **Ajustes de unión**: tutorial de la base reescrito para nuestro HUD (burbujas, minimapa, consola del domo) y para la misión sin fin; en misión sin fin la medalla de la base se da al fallar según el tiempo aguantado (`PlayerProgress.medal_for_survival`: 3/6/10 min); `game_manager.gd` une `RESOURCE_NAMES` (suyo) con corto circuito/domo/`abort_mission` (nuestros).
+- Los `.uid` de scripts que ya existían se mantienen (los suyos traían otros); los nuevos traen los suyos. La carpeta `PArcheTutorial/` queda como referencia y se puede borrar.
+- Pendiente: abrir en Godot 4.7.2 (que importe) y correr todas las pruebas de `tests/` (no se pudo ejecutar Godot desde la sesión).
+
+### Hito 32 — Arreglo: biblioteca y minijuegos usaban scripts de PArcheTutorial (2026-11-15)
+- Causa: la carpeta `PArcheTutorial/` está dentro del proyecto y sus `.gd` declaran los mismos `class_name` (`Library`, `OxygenRepairMinigame`, `CableRepairMinigame`, `HydroponicsMinigame`, `CardEditor`, `LaunchSimulation`, `RoverWorkshop`, `AnimatedDoor`). Godot registró esas clases apuntando a las copias del parche, así que la biblioteca y los minijuegos cargaban código que no corresponde a sus escenas y fallaban.
+- Arreglo: `PArcheTutorial/.gdignore` (Godot ya no escanea esa carpeta) y se corrigieron las 8 rutas en `.godot/global_script_class_cache.cfg`. Además se quitó el UID inválido de `auto_door.tscn` en `IMG_sala_del_generador.tscn` (avisaba al cargar la base).
+- Regla: no dejar copias de scripts del proyecto dentro de `res://` sin un `.gdignore` (o fuera del proyecto).
+
+### Hito 33 — Colisiones y textura de la plataforma exterior (2026-11-15)
+- `scenes/station_platform.tscn` (no existe una escena "Space_Station"; es la plataforma/cubo bajo la estación): cada uno de los 25 objetos (pasarelas, barandillas, módulos laterales, depósitos, cajas, camión, paneles solares, puesto, plataforma de aterrizaje, módulo de aterrizaje y luces) tiene ahora `Collision` (StaticBody3D, capa 1) con una caja del tamaño exacto de su malla, calculado leyendo el AABB de cada glTF/GLB (`~/gltf_aabb.py` en la sesión; misma lógica reutilizable).
+- `resources/station_platform_material.tres`: el cubo usa la regolita lunar de `ai_assets/textures/moon_regolith.webp` + `moon_regolith_normal.webp` en triplanar con coordenadas de mundo (se repite cada ~8 m sin estirarse).
+
+### Hito 34 — Más luces y pilas de carga en la plataforma exterior (2026-11-15)
+- `scenes/station_platform.tscn` / `Exterior`: 14 luces nuevas (`lights.gltf`, escala 3): 2 más en las esquinas de la pista (`PadLight_Back_*`, ahora 4), 5 por el camino este (`PathLight_East_*`, x = 48, z 20–100), 5 por el oeste (`PathLight_West_*`, x = −48, z 30–110) y 2 en el patio de carga (`CargoLight_*`).
+- 15 pilas de carga nuevas (`cargo_A_stacked.gltf`, escala 3): el patio sur pasa de 2×2 a 3×3 con 2 pilas encima (`CargoStack_4..8`, `CargoStack_Top_*`) y hay un patio nuevo junto a la pista (`CargoYard_*`, 3×2 + 2 encima).
+- Todos con su `Collision` (misma caja que los existentes). Zonas elegidas fuera de salas, pasillos y del borde del domo.
+
+### Hito 35 — Tierra y Sol mucho más grandes (2026-11-15)
+- `scenes/habitat.tscn`: `Earth_mesh` radio 2000 m (altura 4000) y `Sun_mesh` radio 1500 m (altura 3000, más segmentos); el halo del Sol (`SunHalo_mesh`) pasa a 9000 × 9000 para seguir rodeándolo. Posiciones sin cambiar (Tierra a ~2 800 m, Sol a ~3 000 m).
+- `scenes/player.tscn`: la cámara del jugador pasa a `far = 12000` (antes 4000 por defecto); si no, se recortaba la parte trasera de las esferas.
+- Hito 35 (ajuste): Tierra radio 1000 m, Sol radio 650 m, halo 3900 × 3900.
+
+### Hito 36 — Arreglo: el jugador caía fuera del escenario (2026-11-15)
+- Causa: en `station_platform.tscn` la `LandingPad` se escaló ×9 en el editor y además su `Collision` (StaticBody3D) y su `Shape` tenían escala ×5 cada uno: la caja de colisión medía ~560 × 110 × 560 m y envolvía toda la estación, así que la física expulsaba al jugador.
+- Arreglo: `Collision` y `Shape` de la pista vuelven a escala 1 (la caja ya crece con la escala de la pista). Regla: escalar el objeto, nunca su StaticBody3D/CollisionShape3D.

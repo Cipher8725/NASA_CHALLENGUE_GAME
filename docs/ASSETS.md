@@ -222,6 +222,10 @@ sin Draco. Procedencia, pasos y fuentes de los textos: `ai_assets/models/perseve
   Luna por la ventana, lo que no corresponde a un despegue.
 - `ai_assets/models/cabina_apolo8/`: panel principal, escotilla y DSKY en 3D (Hunyuan 3D,
   optimizados con `tools/blender/hunyuan_optimizar.py`), colocados en la cabina del despegue 3D.
+- `ai_assets/models/domo/domo_estacion.glb` (+ texturas `_0/_1/_2.jpg`): domo geodésico de la
+  estación generado con **Meshy** (text-to-3d, preview + refine, ~30 000 triángulos) mediante
+  `tools/generar_domo_meshy.py`; los IDs de las tareas quedan en `meshy_tareas.json`. Se usa en
+  `scenes/station_dome.tscn` con material de vidrio translúcido aplicado por script.
 - `ai_assets/apolo8/etapas/`: el Saturno V del paquete recortado en torre de
   escape, cápsula, adaptador SLA, S-IVB, S-II y S-IC, con fondo transparente.
 - Textos de la biblioteca: `resources/biblioteca/catalogo.json` (del paquete,
@@ -237,3 +241,19 @@ sin Draco. Procedencia, pasos y fuentes de los textos: `ai_assets/models/perseve
 - `resources/hidroponia/cultivos.json`: NASA OSDR OSD-745, OSD-780, OSD-655 y Agencia Espacial Canadiense.
 - `ai_assets/ui/biblioteca/portadas/cuerpo_espacio.png` y `clima_espacial.png`: ilustraciones propias
   dibujadas con `tools/portadas/make_covers.py` sobre el marco de las portadas existentes (sin fotos de terceros).
+- `ai_assets/perseverance_fotos/*.jpg` + `fotos.json`: 6 fotos de Mastcam-Z del Perseverance, NASA Image and
+  Video Library (crédito NASA/JPL-Caltech/ASU/MSSS), versión mediana.
+
+## Hitos 21 y 22 (inglés y minijuegos en 3D)
+
+- `ai_assets/ui/menu/*_en.png`, `ai_assets/ui/biblioteca/portadas/*_en.png`, `ai_assets/ui/lector/diagrama_cohete_en.png`:
+  versiones en inglés de las imágenes con texto, rehechas a partir de las originales con la fuente Poppins.
+- `ai_assets/models/minijuegos/oxygen_station.glb` y `power_panel.glb`: modelos propios hechos en Blender por
+  script (`tools/blender/oxygen_station.py`, `tools/blender/power_panel.py`), con texturas propias (pintura con
+  desgaste, esfera del manómetro, etiqueta O₂ y aviso eléctrico). Inspirados en equipos de estación espacial,
+  no son copias de un equipo real concreto.
+
+## Hito 24 (sonido)
+
+- `assets/audio/sfx/*.wav` y `assets/audio/music/*.ogg`: efectos y música propios, sintetizados desde cero con
+  `tools/generar_audio.py` (numpy). No usan muestras ni grabaciones de terceros.

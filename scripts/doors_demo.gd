@@ -25,7 +25,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _on_access_granted(card: AstronautCard) -> void:
-	_show_card(card, "ACCESO CONCEDIDO")
+	_show_card(card, tr("ACCESO CONCEDIDO"))
 
 func _on_access_denied(reason: String) -> void:
 	_show_card(AstronautCard.load_saved(), reason.replace("\n", " · "))

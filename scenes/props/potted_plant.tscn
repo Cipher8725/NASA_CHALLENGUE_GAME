@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3]
+
+; Planta decorativa en maceta. El modelo Plant_1 del pack Molten Maps son solo las hojas;
+; sin maceta parecía crecer del piso de la base. La maceta es de primitivas de Godot.
+
+[ext_resource type="PackedScene" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Plant_1.glb" id="1_plant"]
+
+[sub_resource type="StandardMaterial3D" id="Mat_pot"]
+albedo_color = Color(0.86, 0.88, 0.9, 1)
+metallic = 0.3
+roughness = 0.4
+
+[sub_resource type="CylinderMesh" id="Mesh_pot"]
+material = SubResource("Mat_pot")
+top_radius = 0.34
+bottom_radius = 0.25
+height = 0.46
+radial_segments = 32
+
+[sub_resource type="StandardMaterial3D" id="Mat_band"]
+albedo_color = Color(0.2, 0.45, 0.75, 1)
+metallic = 0.4
+roughness = 0.35
+
+[sub_resource type="CylinderMesh" id="Mesh_band"]
+material = SubResource("Mat_band")
+top_radius = 0.345
+bottom_radius = 0.33
+height = 0.05
+radial_segments = 32
+
+[sub_resource type="StandardMaterial3D" id="Mat_soil"]
+albedo_color = Color(0.22, 0.15, 0.1, 1)
+roughness = 1.0
+
+[sub_resource type="CylinderMesh" id="Mesh_soil"]
+material = SubResource("Mat_soil")
+top_radius = 0.31
+bottom_radius = 0.31
+height = 0.02
+radial_segments = 32
+
+[node name="PottedPlant" type="Node3D"]
+
+[node name="Pot" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23, 0)
+mesh = SubResource("Mesh_pot")
+
+[node name="Band" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+mesh = SubResource("Mesh_band")
+
+[node name="Soil" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.43, 0)
+mesh = SubResource("Mesh_soil")
+
+[node name="Leaves" parent="." instance=ExtResource("1_plant")]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0.43, 0)
+
+[node name="LeavesInner" parent="." instance=ExtResource("1_plant")]
+transform = Transform3D(0.5, 0, 0.866, 0, 1.4, 0, -0.866, 0, 0.5, 0, 0.44, 0)

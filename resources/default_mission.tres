@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_config")
+endless_mission = true
 mission_duration = 180.0
 briefing_duration = 3.0
 max_oxygen = 100.0
@@ -12,7 +13,7 @@ max_water = 100.0
 max_shield = 100.0
 max_food = 100.0
 oxygen_decay_rate = 0.6
-energy_decay_rate = 0.22
+energy_decay_rate = 0.0
 water_decay_rate = 0.16
 shield_decay_rate = 0.08
 food_decay_rate = 0.12
@@ -24,3 +25,6 @@ score_per_second = 1.0
 score_per_remaining_resource = 2.0
 critical_threshold = 20.0
 console_restore_amount = 30.0
+solar_charge_rate = 0.3
+short_circuit_oxygen_multiplier = 2.0
+dome_transfer_efficiency = 1.0

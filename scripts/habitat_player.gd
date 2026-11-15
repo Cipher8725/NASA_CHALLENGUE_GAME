@@ -68,7 +68,12 @@ func is_input_enabled() -> bool:
 func _unhandled_input(event: InputEvent) -> void:
 	# `ui_cancel` es la acción por defecto de Escape.
 	if event.is_action_pressed("ui_cancel"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		# ESC abre el menú de pausa (que libera el ratón); sin él, solo se suelta el ratón.
+		var pause: PauseMenu = PauseMenu.get_instance()
+		if pause != null and pause.can_pause():
+			pause.open()
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		get_viewport().set_input_as_handled()
 		return
 
@@ -123,10 +128,12 @@ func _repair_nearest_console() -> void:
 	var manager: RepairMinigameManager = _get_minigame_manager()
 	if manager != null and manager.has_minigame_for(target.resource_type):
 		if manager.open_minigame(target):
+			AudioManager.sfx(&"console")
 			print("[Jugador] Minijuego de reparación abierto: %s" % target.display_name)
 			return
 	var amount: float = target.repair()
 	if amount > 0.0:
+		AudioManager.sfx(&"console")
 		print("[Jugador] Reparación completada en %s (+%.0f)" % [target.display_name, amount])
 
 ## Devuelve el gestor de minijuegos (null si la escena no lo tiene).

@@ -263,7 +263,7 @@ icono = ExtResource("icon_15")
 [resource]
 script = ExtResource("1_data")
 nombre = "Perseverance"
-subtitulo = "Rover de la NASA · Activo en el cráter Jezero, Marte (noviembre de 2026)"
+subtitulo = "Rover de la NASA · Activo en Marte desde 2021 · Récord: 45,22 km recorridos (11/10/2026)"
 credito = "Modelo 3D: NASA/JPL-Caltech (NASA 3D Resources). Dividido en piezas para NaSA-GAME."
 modelo = ExtResource("3_model")
 piezas = Array[ExtResource("2_piece")]([SubResource("Piece_suspension_izquierda"), SubResource("Piece_suspension_derecha"), SubResource("Piece_suspension_centro"), SubResource("Piece_ruedas_izquierda"), SubResource("Piece_ruedas_derecha"), SubResource("Piece_cuerpo"), SubResource("Piece_sistema_muestras"), SubResource("Piece_radar_rimfax"), SubResource("Piece_mmrtg"), SubResource("Piece_antena_alta_ganancia"), SubResource("Piece_antenas_uhf_baja_ganancia"), SubResource("Piece_mastil"), SubResource("Piece_cabeza_supercam_mastcamz"), SubResource("Piece_brazo_robotico"), SubResource("Piece_torreta_taladro_sherloc_watson"), SubResource("Piece_pixl")])

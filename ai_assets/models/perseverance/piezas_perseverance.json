@@ -1,7 +1,7 @@
 {
  "rover": "Perseverance",
  "agencia": "NASA / JPL-Caltech",
- "estado": "Activo en el cráter Jezero, Marte (noviembre de 2026)",
+ "estado": "Activo en Marte desde 2021 · Récord: 45,22 km recorridos (11/10/2026)",
  "modelo_fuente": "NASA 3D Resources — Mars 2020 Perseverance Rover (github.com/nasa/NASA-3D-Resources)",
  "credito": "Modelo 3D: NASA/JPL-Caltech (NASA 3D Resources). Dividido en piezas para NaSA-GAME.",
  "piezas": [
@@ -356,5 +356,7 @@
   "https://science.nasa.gov/missions/mars-2020-perseverance/searching-for-buried-treasure-on-mars-with-rimfax/",
   "https://www.jpl.nasa.gov/news/nasas-new-mars-rover-will-use-x-rays-to-hunt-fossils/",
   "https://science.nasa.gov/mission/mars-2020-perseverance/science-instruments/"
- ]
+ ],
+ "fuente_estado": "https://www.jpl.nasa.gov/news/nasas-perseverance-sets-off-world-record-for-total-distance-driven/",
+ "nota_estado": "El 11 de octubre de 2026 (sol 2006) Perseverance llegó a 45,22 km recorridos y superó el récord de Opportunity (45,16 km). Verificado el 15/11/2026."
 }
