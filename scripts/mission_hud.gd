@@ -11,11 +11,13 @@ extends Control
 @onready var _energy_bar: ProgressBar = %EnergyBar
 @onready var _water_bar: ProgressBar = %WaterBar
 @onready var _shield_bar: ProgressBar = %ShieldBar
+@onready var _food_bar: ProgressBar = %FoodBar
 
 @onready var _oxygen_value: Label = %OxygenValue
 @onready var _energy_value: Label = %EnergyValue
 @onready var _water_value: Label = %WaterValue
 @onready var _shield_value: Label = %ShieldValue
+@onready var _food_value: Label = %FoodValue
 
 @onready var _timer_label: Label = %TimerLabel
 @onready var _score_label: Label = %ScoreLabel
@@ -32,6 +34,7 @@ const RESOURCE_LABELS: Dictionary = {
 	&"energy": "ENERGÍA",
 	&"water": "AGUA",
 	&"shield": "ESCUDO RADIOACTIVO",
+	&"food": "COMIDA",
 }
 
 ## Colores de la cuenta atrás: normal, aviso (quedan 30 s) y peligro (10 s).
@@ -135,6 +138,8 @@ func _on_resource_changed(resource_type: StringName, current_value: float, max_v
 			_update_resource_bar(_water_bar, _water_value, current_value, max_value)
 		GameManager.RESOURCE_SHIELD:
 			_update_resource_bar(_shield_bar, _shield_value, current_value, max_value)
+		GameManager.RESOURCE_FOOD:
+			_update_resource_bar(_food_bar, _food_value, current_value, max_value)
 
 func _on_resource_critical(resource_type: StringName) -> void:
 	var label: String = String(RESOURCE_LABELS.get(resource_type, resource_type))
@@ -145,7 +150,24 @@ func _on_resource_depleted(resource_type: StringName) -> void:
 	_show_alert("¡%s AGOTADO!" % label, 4.0)
 
 func _on_emergency_triggered(emergency_type: StringName, severity: float) -> void:
+	# La tormenta solar lleva datos reales de DONKI: se avisa con la clase,
+	# la fecha y el identificador del evento de la NASA.
+	if emergency_type == GameManager.EMERGENCY_SOLAR_STORM:
+		var evento: RadiationData.SpaceWeatherEvent = _last_solar_storm
+		if evento != null:
+			_show_alert(evento.get_aviso(), 5.0)
+			return
 	_show_alert("EMERGENCIA: %s" % emergency_type.to_upper(), 3.0)
+
+## Último evento de tormenta solar real que se ha mostrado (lo usa el HUD).
+var _last_solar_storm: RadiationData.SpaceWeatherEvent = null
+
+## Registra el evento real de tormenta solar que acaba de ocurrir y muestra
+## su aviso en pantalla.
+func show_solar_storm(event: RadiationData.SpaceWeatherEvent) -> void:
+	_last_solar_storm = event
+	if event != null:
+		_show_alert(event.get_aviso(), 5.0)
 
 func _on_mission_state_changed(new_state: GameManager.MissionState) -> void:
 	_update_state_display(new_state)
@@ -153,12 +175,21 @@ func _on_mission_state_changed(new_state: GameManager.MissionState) -> void:
 func _on_mission_failed(reason: String) -> void:
 	_result_panel.visible = true
 	_result_title.text = "MISIÓN FALLIDA"
-	_result_detail.text = "%s\n\nPuntuación: %d" % [reason, roundi(_game.get_score())]
+	_result_detail.text = "%s\n\nPuntuación: %d%s" % [reason, roundi(_game.get_score()), _texto_dato_real()]
 
 func _on_mission_completed(final_score: float) -> void:
 	_result_panel.visible = true
 	_result_title.text = "MISIÓN COMPLETADA"
-	_result_detail.text = "¡Has sobrevivido al hábitat!\n\nPuntuación final: %d" % roundi(final_score)
+	_result_detail.text = "¡Has sobrevivido al hábitat!\n\nPuntuación final: %d%s" % [roundi(final_score), _texto_dato_real()]
+
+## Dato real de la NASA que se añade a la pantalla de resultado.
+## Viene de RadLab (dosis medida en la ISS). Si no hay datos, no se muestra nada.
+func _texto_dato_real() -> String:
+	var radiacion: RadiationData = RadiationData.get_instance()
+	var texto: String = radiacion.get_texto_dosis_iss()
+	if texto.is_empty():
+		return ""
+	return "\n\n" + texto
 
 ## Muestra un mensaje de alerta temporal en pantalla.
 func _show_alert(message: String, duration: float) -> void:

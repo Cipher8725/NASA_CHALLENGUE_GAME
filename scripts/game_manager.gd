@@ -50,11 +50,13 @@ const RESOURCE_OXYGEN: StringName = &"oxygen"
 const RESOURCE_ENERGY: StringName = &"energy"
 const RESOURCE_WATER: StringName = &"water"
 const RESOURCE_SHIELD: StringName = &"shield"
+const RESOURCE_FOOD: StringName = &"food"
 
 const EMERGENCY_METEOR: StringName = &"micrometeorito"
 const EMERGENCY_OVERLOAD: StringName = &"sobrecarga_energia"
 const EMERGENCY_PRESSURE: StringName = &"caida_presion"
 const EMERGENCY_WATER_LEAK: StringName = &"fuga_agua"
+const EMERGENCY_SOLAR_STORM: StringName = &"tormenta_solar"
 
 const SAVE_PATH_FORMAT: String = "user://nasa_save_%d.json"
 
@@ -218,10 +220,21 @@ func trigger_emergency(emergency_type: StringName, severity: float) -> void:
 			_apply_damage(RESOURCE_OXYGEN, clamped_severity * 20.0)
 		EMERGENCY_WATER_LEAK:
 			_apply_damage(RESOURCE_WATER, clamped_severity * 12.0)
+		EMERGENCY_SOLAR_STORM:
+			_apply_damage(RESOURCE_SHIELD, clamped_severity * config.shield_solar_storm_damage)
 		_:
 			push_warning("GameManager: tipo de emergencia desconocido: %s" % emergency_type)
 			return
 	emergency_triggered.emit(emergency_type, clamped_severity)
+
+## Dispara una tormenta solar real de DONKI: elige un evento del catálogo
+## de la NASA y aplica su severidad al escudo. Devuelve el aviso que se
+## muestra en el HUD, o una cadena vacía si no hay datos.
+func trigger_solar_storm(event: RadiationData.SpaceWeatherEvent) -> String:
+	if event == null:
+		return ""
+	trigger_emergency(EMERGENCY_SOLAR_STORM, event.severidad)
+	return event.get_aviso()
 
 # --- Persistencia ---
 
@@ -278,25 +291,27 @@ func has_save_game(slot: int) -> bool:
 
 # --- Métodos privados ---
 
-## Reinicia los cuatro recursos a su capacidad máxima.
+## Reinicia los cinco recursos a su capacidad máxima.
 func _reset_resources() -> void:
 	_maxima = {
 		RESOURCE_OXYGEN: config.max_oxygen,
 		RESOURCE_ENERGY: config.max_energy,
 		RESOURCE_WATER: config.max_water,
 		RESOURCE_SHIELD: config.max_shield,
+		RESOURCE_FOOD: config.max_food,
 	}
 	_levels = _maxima.duplicate()
 	_critical_latched = {}
 	_depleted_latched = {}
 	_notification_accumulator = 0.0
 
-## Aplica el decaimiento continuo de los cuatro recursos.
+## Aplica el decaimiento continuo de los cinco recursos.
 func _apply_decay(delta: float) -> void:
 	_decay_resource(RESOURCE_OXYGEN, config.oxygen_decay_rate, delta)
 	_decay_resource(RESOURCE_ENERGY, config.energy_decay_rate, delta)
 	_decay_resource(RESOURCE_WATER, config.water_decay_rate, delta)
 	_decay_resource(RESOURCE_SHIELD, config.shield_decay_rate, delta)
+	_decay_resource(RESOURCE_FOOD, config.food_decay_rate, delta)
 
 ## Aplica el decaimiento de un recurso concreto.
 func _decay_resource(resource_type: StringName, rate: float, delta: float) -> void:

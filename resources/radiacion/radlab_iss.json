@@ -1,0 +1,2330 @@
+{
+  "descripcion": "Dosis absorbida medida en la ISS por los instrumentos TEPC (Tissue Equivalent Proportional Counter), recogida por el RadLab de la NASA.",
+  "fuentes": [
+    "https://visualization.osdr.nasa.gov/radlab/api/",
+    "https://visualization.osdr.nasa.gov/radlab/gui/data-api/"
+  ],
+  "url_consulta": "https://visualization.osdr.nasa.gov/radlab/api/?format=json&spacecraft=ISS&instrument_family=TEPC&absorbed_dose_rate&dose_equivalent_rate",
+  "fecha_descarga": "2026-11-15",
+  "unidades": {
+    "dosis_absorbida_ugy_dia": "µGy/día (microgray por día)",
+    "tasa_absorbida_ugy_hora": "µGy/hora",
+    "tasa_equivalente_usv_hora": "µSv/hora"
+  },
+  "nota_conversion": "RadLab publica la TASA de dosis absorbida en µGy/hora. La dosis diaria se calcula multiplicando esa tasa por 24 horas (un día completo en la ISS).",
+  "periodo": {
+    "primera_medicion": "2014-09-21",
+    "ultima_medicion": "2020-01-08",
+    "numero_de_mediciones_diarias": 325
+  },
+  "instrumentos": [
+    "IV-TEPC-COL1A2-pre",
+    "IV-TEPC-NOD2DCQ-pre",
+    "IV-TEPC-NOD2PCQ-pre",
+    "IV-TEPC-NOD2PD3-pre",
+    "IV-TEPC-NOD3FD3-pre",
+    "IV-TEPC-SMP328-pre",
+    "TEPC-SMP327-pre",
+    "TEPC-SMP330-pre"
+  ],
+  "estadisticas": {
+    "dosis_absorbida_media_ugy_dia": 327.412,
+    "dosis_absorbida_minima_ugy_dia": 12.76,
+    "dosis_absorbida_maxima_ugy_dia": 650.06,
+    "dosis_absorbida_media_mgy_dia": 0.327412
+  },
+  "mediciones": [
+    {
+      "fecha": "2014-09-21",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 373.65,
+      "tasa_absorbida_ugy_hora": 15.56875,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-09-21",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 317.11,
+      "tasa_absorbida_ugy_hora": 13.21292,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-09-22",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 474.08,
+      "tasa_absorbida_ugy_hora": 19.75333,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-09-22",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 382.4,
+      "tasa_absorbida_ugy_hora": 15.93333,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-09-23",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 368.95,
+      "tasa_absorbida_ugy_hora": 15.37292,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-09-23",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 297.59,
+      "tasa_absorbida_ugy_hora": 12.39958,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-09-24",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 412.54,
+      "tasa_absorbida_ugy_hora": 17.18917,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-09-24",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 329.92,
+      "tasa_absorbida_ugy_hora": 13.74667,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-09-25",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 402.34,
+      "tasa_absorbida_ugy_hora": 16.76417,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-09-25",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 341.86,
+      "tasa_absorbida_ugy_hora": 14.24417,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-09-26",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 365.08,
+      "tasa_absorbida_ugy_hora": 15.21167,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-09-26",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 312.77,
+      "tasa_absorbida_ugy_hora": 13.03208,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-09-27",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 417.99,
+      "tasa_absorbida_ugy_hora": 17.41625,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-09-27",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 305.55,
+      "tasa_absorbida_ugy_hora": 12.73125,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-09-28",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 391.13,
+      "tasa_absorbida_ugy_hora": 16.29708,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-09-28",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 306.78,
+      "tasa_absorbida_ugy_hora": 12.7825,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-09-29",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 363.28,
+      "tasa_absorbida_ugy_hora": 15.13667,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-09-29",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 312.38,
+      "tasa_absorbida_ugy_hora": 13.01583,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-09-30",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 365.09,
+      "tasa_absorbida_ugy_hora": 15.21208,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-09-30",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 299.22,
+      "tasa_absorbida_ugy_hora": 12.4675,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-01",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 417.56,
+      "tasa_absorbida_ugy_hora": 17.39833,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-01",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 290.31,
+      "tasa_absorbida_ugy_hora": 12.09625,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-02",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 384.22,
+      "tasa_absorbida_ugy_hora": 16.00917,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-02",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 298.49,
+      "tasa_absorbida_ugy_hora": 12.43708,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-03",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 399.53,
+      "tasa_absorbida_ugy_hora": 16.64708,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-03",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 308.59,
+      "tasa_absorbida_ugy_hora": 12.85792,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-04",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 405.63,
+      "tasa_absorbida_ugy_hora": 16.90125,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-04",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 308.68,
+      "tasa_absorbida_ugy_hora": 12.86167,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-05",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 374.31,
+      "tasa_absorbida_ugy_hora": 15.59625,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-05",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 308.18,
+      "tasa_absorbida_ugy_hora": 12.84083,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-06",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 425.01,
+      "tasa_absorbida_ugy_hora": 17.70875,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-06",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 313.47,
+      "tasa_absorbida_ugy_hora": 13.06125,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-07",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 232.95,
+      "tasa_absorbida_ugy_hora": 9.70625,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-07",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 314.68,
+      "tasa_absorbida_ugy_hora": 13.11167,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-08",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 24.7,
+      "tasa_absorbida_ugy_hora": 1.02917,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-08",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 308.48,
+      "tasa_absorbida_ugy_hora": 12.85333,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-09",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 24.15,
+      "tasa_absorbida_ugy_hora": 1.00625,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-09",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 293.34,
+      "tasa_absorbida_ugy_hora": 12.2225,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-10",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 23.85,
+      "tasa_absorbida_ugy_hora": 0.99375,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-10",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 310.4,
+      "tasa_absorbida_ugy_hora": 12.93333,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-11",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 24.08,
+      "tasa_absorbida_ugy_hora": 1.00333,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-11",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 298.59,
+      "tasa_absorbida_ugy_hora": 12.44125,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-12",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 25.85,
+      "tasa_absorbida_ugy_hora": 1.07708,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-12",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 304.92,
+      "tasa_absorbida_ugy_hora": 12.705,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-13",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 23.13,
+      "tasa_absorbida_ugy_hora": 0.96375,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-13",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 310.25,
+      "tasa_absorbida_ugy_hora": 12.92708,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-14",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 23.74,
+      "tasa_absorbida_ugy_hora": 0.98917,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-14",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 319.47,
+      "tasa_absorbida_ugy_hora": 13.31125,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-15",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 23.22,
+      "tasa_absorbida_ugy_hora": 0.9675,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-15",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 329.46,
+      "tasa_absorbida_ugy_hora": 13.7275,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-16",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 24.45,
+      "tasa_absorbida_ugy_hora": 1.01875,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-16",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 305.69,
+      "tasa_absorbida_ugy_hora": 12.73708,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-17",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 24.58,
+      "tasa_absorbida_ugy_hora": 1.02417,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-17",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 312.67,
+      "tasa_absorbida_ugy_hora": 13.02792,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-18",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 24.0,
+      "tasa_absorbida_ugy_hora": 1.0,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-18",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 316.88,
+      "tasa_absorbida_ugy_hora": 13.20333,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-19",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 23.21,
+      "tasa_absorbida_ugy_hora": 0.96708,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-19",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 303.5,
+      "tasa_absorbida_ugy_hora": 12.64583,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-20",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 24.54,
+      "tasa_absorbida_ugy_hora": 1.0225,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-20",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 297.93,
+      "tasa_absorbida_ugy_hora": 12.41375,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-21",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 23.23,
+      "tasa_absorbida_ugy_hora": 0.96792,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-21",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 302.59,
+      "tasa_absorbida_ugy_hora": 12.60792,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-22",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 25.77,
+      "tasa_absorbida_ugy_hora": 1.07375,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-22",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 298.4,
+      "tasa_absorbida_ugy_hora": 12.43333,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-23",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 23.82,
+      "tasa_absorbida_ugy_hora": 0.9925,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-23",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 295.33,
+      "tasa_absorbida_ugy_hora": 12.30542,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-24",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 27.7,
+      "tasa_absorbida_ugy_hora": 1.15417,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-24",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 293.15,
+      "tasa_absorbida_ugy_hora": 12.21458,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-25",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 23.97,
+      "tasa_absorbida_ugy_hora": 0.99875,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-25",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 296.78,
+      "tasa_absorbida_ugy_hora": 12.36583,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-26",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 22.18,
+      "tasa_absorbida_ugy_hora": 0.92417,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-26",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 297.24,
+      "tasa_absorbida_ugy_hora": 12.385,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-27",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 31.24,
+      "tasa_absorbida_ugy_hora": 1.30167,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-27",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 287.39,
+      "tasa_absorbida_ugy_hora": 11.97458,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-28",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 23.94,
+      "tasa_absorbida_ugy_hora": 0.9975,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-28",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 294.07,
+      "tasa_absorbida_ugy_hora": 12.25292,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-29",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 22.72,
+      "tasa_absorbida_ugy_hora": 0.94667,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-29",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 303.4,
+      "tasa_absorbida_ugy_hora": 12.64167,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-30",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 26.73,
+      "tasa_absorbida_ugy_hora": 1.11375,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-30",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 341.63,
+      "tasa_absorbida_ugy_hora": 14.23458,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-31",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 23.72,
+      "tasa_absorbida_ugy_hora": 0.98833,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-10-31",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 283.45,
+      "tasa_absorbida_ugy_hora": 11.81042,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-11-01",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 22.04,
+      "tasa_absorbida_ugy_hora": 0.91833,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-11-01",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 341.3,
+      "tasa_absorbida_ugy_hora": 14.22083,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-11-02",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 22.27,
+      "tasa_absorbida_ugy_hora": 0.92792,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-11-02",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 299.37,
+      "tasa_absorbida_ugy_hora": 12.47375,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-11-03",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 12.76,
+      "tasa_absorbida_ugy_hora": 0.53167,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-11-03",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 307.52,
+      "tasa_absorbida_ugy_hora": 12.81333,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-11-04",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 296.39,
+      "tasa_absorbida_ugy_hora": 12.34958,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-11-05",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 291.7,
+      "tasa_absorbida_ugy_hora": 12.15417,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-11-06",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 292.49,
+      "tasa_absorbida_ugy_hora": 12.18708,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-11-07",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 292.86,
+      "tasa_absorbida_ugy_hora": 12.2025,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-11-08",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 300.16,
+      "tasa_absorbida_ugy_hora": 12.50667,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-11-09",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 300.58,
+      "tasa_absorbida_ugy_hora": 12.52417,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-11-10",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 285.07,
+      "tasa_absorbida_ugy_hora": 11.87792,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-11-11",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 286.06,
+      "tasa_absorbida_ugy_hora": 11.91917,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-11-12",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 291.32,
+      "tasa_absorbida_ugy_hora": 12.13833,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-11-13",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 299.05,
+      "tasa_absorbida_ugy_hora": 12.46042,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-11-14",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 293.91,
+      "tasa_absorbida_ugy_hora": 12.24625,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-11-15",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 294.24,
+      "tasa_absorbida_ugy_hora": 12.26,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-11-16",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 290.17,
+      "tasa_absorbida_ugy_hora": 12.09042,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-11-17",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 302.44,
+      "tasa_absorbida_ugy_hora": 12.60167,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-11-18",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 286.81,
+      "tasa_absorbida_ugy_hora": 11.95042,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2014-11-19",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 335.35,
+      "tasa_absorbida_ugy_hora": 13.97292,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-08",
+      "instrumento": "IV-TEPC-NOD3FD3-pre",
+      "dosis_absorbida_ugy_dia": 309.97,
+      "tasa_absorbida_ugy_hora": 12.91542,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-08",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 304.69,
+      "tasa_absorbida_ugy_hora": 12.69542,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-09",
+      "instrumento": "IV-TEPC-NOD3FD3-pre",
+      "dosis_absorbida_ugy_dia": 312.59,
+      "tasa_absorbida_ugy_hora": 13.02458,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-09",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 313.61,
+      "tasa_absorbida_ugy_hora": 13.06708,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-10",
+      "instrumento": "IV-TEPC-NOD3FD3-pre",
+      "dosis_absorbida_ugy_dia": 311.35,
+      "tasa_absorbida_ugy_hora": 12.97292,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-10",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 313.94,
+      "tasa_absorbida_ugy_hora": 13.08083,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-11",
+      "instrumento": "IV-TEPC-NOD3FD3-pre",
+      "dosis_absorbida_ugy_dia": 288.44,
+      "tasa_absorbida_ugy_hora": 12.01833,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-11",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 318.11,
+      "tasa_absorbida_ugy_hora": 13.25458,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-12",
+      "instrumento": "IV-TEPC-NOD3FD3-pre",
+      "dosis_absorbida_ugy_dia": 304.47,
+      "tasa_absorbida_ugy_hora": 12.68625,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-12",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 314.11,
+      "tasa_absorbida_ugy_hora": 13.08792,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-13",
+      "instrumento": "IV-TEPC-NOD3FD3-pre",
+      "dosis_absorbida_ugy_dia": 300.8,
+      "tasa_absorbida_ugy_hora": 12.53333,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-13",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 298.69,
+      "tasa_absorbida_ugy_hora": 12.44542,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-14",
+      "instrumento": "IV-TEPC-NOD3FD3-pre",
+      "dosis_absorbida_ugy_dia": 293.73,
+      "tasa_absorbida_ugy_hora": 12.23875,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-14",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 301.59,
+      "tasa_absorbida_ugy_hora": 12.56625,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-15",
+      "instrumento": "IV-TEPC-NOD3FD3-pre",
+      "dosis_absorbida_ugy_dia": 294.23,
+      "tasa_absorbida_ugy_hora": 12.25958,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-15",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 303.79,
+      "tasa_absorbida_ugy_hora": 12.65792,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-16",
+      "instrumento": "IV-TEPC-NOD3FD3-pre",
+      "dosis_absorbida_ugy_dia": 291.74,
+      "tasa_absorbida_ugy_hora": 12.15583,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-16",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 309.27,
+      "tasa_absorbida_ugy_hora": 12.88625,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-17",
+      "instrumento": "IV-TEPC-NOD3FD3-pre",
+      "dosis_absorbida_ugy_dia": 286.59,
+      "tasa_absorbida_ugy_hora": 11.94125,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-17",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 307.3,
+      "tasa_absorbida_ugy_hora": 12.80417,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-18",
+      "instrumento": "IV-TEPC-NOD3FD3-pre",
+      "dosis_absorbida_ugy_dia": 291.69,
+      "tasa_absorbida_ugy_hora": 12.15375,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-18",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 313.7,
+      "tasa_absorbida_ugy_hora": 13.07083,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-19",
+      "instrumento": "IV-TEPC-NOD3FD3-pre",
+      "dosis_absorbida_ugy_dia": 290.52,
+      "tasa_absorbida_ugy_hora": 12.105,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-19",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 309.25,
+      "tasa_absorbida_ugy_hora": 12.88542,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-20",
+      "instrumento": "IV-TEPC-NOD3FD3-pre",
+      "dosis_absorbida_ugy_dia": 284.15,
+      "tasa_absorbida_ugy_hora": 11.83958,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-20",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 312.88,
+      "tasa_absorbida_ugy_hora": 13.03667,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-21",
+      "instrumento": "IV-TEPC-NOD3FD3-pre",
+      "dosis_absorbida_ugy_dia": 300.24,
+      "tasa_absorbida_ugy_hora": 12.51,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-21",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 310.57,
+      "tasa_absorbida_ugy_hora": 12.94042,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-22",
+      "instrumento": "IV-TEPC-NOD3FD3-pre",
+      "dosis_absorbida_ugy_dia": 289.23,
+      "tasa_absorbida_ugy_hora": 12.05125,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-22",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 297.11,
+      "tasa_absorbida_ugy_hora": 12.37958,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-23",
+      "instrumento": "IV-TEPC-NOD3FD3-pre",
+      "dosis_absorbida_ugy_dia": 305.84,
+      "tasa_absorbida_ugy_hora": 12.74333,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-23",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 344.78,
+      "tasa_absorbida_ugy_hora": 14.36583,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-24",
+      "instrumento": "IV-TEPC-NOD3FD3-pre",
+      "dosis_absorbida_ugy_dia": 283.95,
+      "tasa_absorbida_ugy_hora": 11.83125,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-24",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 293.73,
+      "tasa_absorbida_ugy_hora": 12.23875,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-25",
+      "instrumento": "IV-TEPC-NOD3FD3-pre",
+      "dosis_absorbida_ugy_dia": 303.29,
+      "tasa_absorbida_ugy_hora": 12.63708,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-25",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 361.45,
+      "tasa_absorbida_ugy_hora": 15.06042,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-26",
+      "instrumento": "IV-TEPC-NOD3FD3-pre",
+      "dosis_absorbida_ugy_dia": 284.07,
+      "tasa_absorbida_ugy_hora": 11.83625,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-26",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 285.84,
+      "tasa_absorbida_ugy_hora": 11.91,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-27",
+      "instrumento": "IV-TEPC-NOD3FD3-pre",
+      "dosis_absorbida_ugy_dia": 314.49,
+      "tasa_absorbida_ugy_hora": 13.10375,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-27",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 371.58,
+      "tasa_absorbida_ugy_hora": 15.4825,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-28",
+      "instrumento": "IV-TEPC-NOD3FD3-pre",
+      "dosis_absorbida_ugy_dia": 290.76,
+      "tasa_absorbida_ugy_hora": 12.115,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-28",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 289.22,
+      "tasa_absorbida_ugy_hora": 12.05083,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-29",
+      "instrumento": "IV-TEPC-NOD3FD3-pre",
+      "dosis_absorbida_ugy_dia": 310.31,
+      "tasa_absorbida_ugy_hora": 12.92958,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-29",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 338.01,
+      "tasa_absorbida_ugy_hora": 14.08375,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-30",
+      "instrumento": "IV-TEPC-NOD3FD3-pre",
+      "dosis_absorbida_ugy_dia": 316.92,
+      "tasa_absorbida_ugy_hora": 13.205,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-04-30",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 320.96,
+      "tasa_absorbida_ugy_hora": 13.37333,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-01",
+      "instrumento": "IV-TEPC-NOD3FD3-pre",
+      "dosis_absorbida_ugy_dia": 312.03,
+      "tasa_absorbida_ugy_hora": 13.00125,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-01",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 312.37,
+      "tasa_absorbida_ugy_hora": 13.01542,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-02",
+      "instrumento": "IV-TEPC-NOD3FD3-pre",
+      "dosis_absorbida_ugy_dia": 289.76,
+      "tasa_absorbida_ugy_hora": 12.07333,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-02",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 297.58,
+      "tasa_absorbida_ugy_hora": 12.39917,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-03",
+      "instrumento": "IV-TEPC-NOD3FD3-pre",
+      "dosis_absorbida_ugy_dia": 359.74,
+      "tasa_absorbida_ugy_hora": 14.98917,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-03",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 304.6,
+      "tasa_absorbida_ugy_hora": 12.69167,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-04",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 379.2,
+      "tasa_absorbida_ugy_hora": 15.8,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-04",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 303.66,
+      "tasa_absorbida_ugy_hora": 12.6525,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-05",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 384.97,
+      "tasa_absorbida_ugy_hora": 16.04042,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-05",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 312.45,
+      "tasa_absorbida_ugy_hora": 13.01875,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-06",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 384.16,
+      "tasa_absorbida_ugy_hora": 16.00667,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-06",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 308.17,
+      "tasa_absorbida_ugy_hora": 12.84042,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-07",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 381.0,
+      "tasa_absorbida_ugy_hora": 15.875,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-07",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 311.2,
+      "tasa_absorbida_ugy_hora": 12.96667,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-08",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 357.98,
+      "tasa_absorbida_ugy_hora": 14.91583,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-08",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 297.77,
+      "tasa_absorbida_ugy_hora": 12.40708,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-09",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 352.25,
+      "tasa_absorbida_ugy_hora": 14.67708,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-09",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 296.14,
+      "tasa_absorbida_ugy_hora": 12.33917,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-10",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 366.86,
+      "tasa_absorbida_ugy_hora": 15.28583,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-10",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 303.72,
+      "tasa_absorbida_ugy_hora": 12.655,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-11",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 363.21,
+      "tasa_absorbida_ugy_hora": 15.13375,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-11",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 299.69,
+      "tasa_absorbida_ugy_hora": 12.48708,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-12",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 378.36,
+      "tasa_absorbida_ugy_hora": 15.765,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-12",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 324.74,
+      "tasa_absorbida_ugy_hora": 13.53083,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-13",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 391.59,
+      "tasa_absorbida_ugy_hora": 16.31625,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-13",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 324.11,
+      "tasa_absorbida_ugy_hora": 13.50458,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-14",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 388.82,
+      "tasa_absorbida_ugy_hora": 16.20083,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-14",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 318.83,
+      "tasa_absorbida_ugy_hora": 13.28458,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-15",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 438.63,
+      "tasa_absorbida_ugy_hora": 18.27625,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-15",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 346.08,
+      "tasa_absorbida_ugy_hora": 14.42,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-16",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 351.63,
+      "tasa_absorbida_ugy_hora": 14.65125,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-16",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 303.51,
+      "tasa_absorbida_ugy_hora": 12.64625,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-17",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 453.78,
+      "tasa_absorbida_ugy_hora": 18.9075,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-17",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 365.21,
+      "tasa_absorbida_ugy_hora": 15.21708,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-18",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 352.81,
+      "tasa_absorbida_ugy_hora": 14.70042,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-18",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 303.67,
+      "tasa_absorbida_ugy_hora": 12.65292,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-19",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 430.79,
+      "tasa_absorbida_ugy_hora": 17.94958,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-19",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 321.94,
+      "tasa_absorbida_ugy_hora": 13.41417,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-20",
+      "instrumento": "IV-TEPC-SMP328-pre",
+      "dosis_absorbida_ugy_dia": 368.52,
+      "tasa_absorbida_ugy_hora": 15.355,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2016-05-20",
+      "instrumento": "TEPC-SMP327-pre",
+      "dosis_absorbida_ugy_dia": 304.08,
+      "tasa_absorbida_ugy_hora": 12.67,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-02-24",
+      "instrumento": "IV-TEPC-COL1A2-pre",
+      "dosis_absorbida_ugy_dia": 306.24,
+      "tasa_absorbida_ugy_hora": 12.76,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-02-25",
+      "instrumento": "IV-TEPC-COL1A2-pre",
+      "dosis_absorbida_ugy_dia": 299.59,
+      "tasa_absorbida_ugy_hora": 12.48292,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-02-26",
+      "instrumento": "IV-TEPC-COL1A2-pre",
+      "dosis_absorbida_ugy_dia": 304.46,
+      "tasa_absorbida_ugy_hora": 12.68583,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-02-27",
+      "instrumento": "IV-TEPC-COL1A2-pre",
+      "dosis_absorbida_ugy_dia": 303.32,
+      "tasa_absorbida_ugy_hora": 12.63833,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-02-28",
+      "instrumento": "IV-TEPC-COL1A2-pre",
+      "dosis_absorbida_ugy_dia": 299.07,
+      "tasa_absorbida_ugy_hora": 12.46125,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-03-01",
+      "instrumento": "IV-TEPC-COL1A2-pre",
+      "dosis_absorbida_ugy_dia": 299.73,
+      "tasa_absorbida_ugy_hora": 12.48875,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-03-02",
+      "instrumento": "IV-TEPC-COL1A2-pre",
+      "dosis_absorbida_ugy_dia": 290.86,
+      "tasa_absorbida_ugy_hora": 12.11917,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-03-03",
+      "instrumento": "IV-TEPC-COL1A2-pre",
+      "dosis_absorbida_ugy_dia": 289.22,
+      "tasa_absorbida_ugy_hora": 12.05083,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-03-04",
+      "instrumento": "IV-TEPC-COL1A2-pre",
+      "dosis_absorbida_ugy_dia": 289.42,
+      "tasa_absorbida_ugy_hora": 12.05917,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-03-05",
+      "instrumento": "IV-TEPC-COL1A2-pre",
+      "dosis_absorbida_ugy_dia": 293.28,
+      "tasa_absorbida_ugy_hora": 12.22,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-03-06",
+      "instrumento": "IV-TEPC-COL1A2-pre",
+      "dosis_absorbida_ugy_dia": 292.43,
+      "tasa_absorbida_ugy_hora": 12.18458,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-03-07",
+      "instrumento": "IV-TEPC-COL1A2-pre",
+      "dosis_absorbida_ugy_dia": 291.28,
+      "tasa_absorbida_ugy_hora": 12.13667,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-03-08",
+      "instrumento": "IV-TEPC-COL1A2-pre",
+      "dosis_absorbida_ugy_dia": 302.0,
+      "tasa_absorbida_ugy_hora": 12.58333,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-03-09",
+      "instrumento": "IV-TEPC-COL1A2-pre",
+      "dosis_absorbida_ugy_dia": 297.17,
+      "tasa_absorbida_ugy_hora": 12.38208,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-03-10",
+      "instrumento": "IV-TEPC-COL1A2-pre",
+      "dosis_absorbida_ugy_dia": 297.64,
+      "tasa_absorbida_ugy_hora": 12.40167,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-03-11",
+      "instrumento": "IV-TEPC-COL1A2-pre",
+      "dosis_absorbida_ugy_dia": 315.23,
+      "tasa_absorbida_ugy_hora": 13.13458,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-03-12",
+      "instrumento": "IV-TEPC-COL1A2-pre",
+      "dosis_absorbida_ugy_dia": 295.93,
+      "tasa_absorbida_ugy_hora": 12.33042,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-03-13",
+      "instrumento": "IV-TEPC-COL1A2-pre",
+      "dosis_absorbida_ugy_dia": 321.23,
+      "tasa_absorbida_ugy_hora": 13.38458,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-03-14",
+      "instrumento": "IV-TEPC-COL1A2-pre",
+      "dosis_absorbida_ugy_dia": 295.59,
+      "tasa_absorbida_ugy_hora": 12.31625,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-08-18",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 337.49,
+      "tasa_absorbida_ugy_hora": 14.06208,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-08-19",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 364.04,
+      "tasa_absorbida_ugy_hora": 15.16833,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-08-20",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 314.4,
+      "tasa_absorbida_ugy_hora": 13.1,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-08-21",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 383.91,
+      "tasa_absorbida_ugy_hora": 15.99625,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-08-22",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 317.21,
+      "tasa_absorbida_ugy_hora": 13.21708,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-08-23",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 382.81,
+      "tasa_absorbida_ugy_hora": 15.95042,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-08-24",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 331.09,
+      "tasa_absorbida_ugy_hora": 13.79542,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-08-25",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 332.35,
+      "tasa_absorbida_ugy_hora": 13.84792,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-08-26",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 334.45,
+      "tasa_absorbida_ugy_hora": 13.93542,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-08-27",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 336.79,
+      "tasa_absorbida_ugy_hora": 14.03292,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-08-28",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 335.08,
+      "tasa_absorbida_ugy_hora": 13.96167,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-08-29",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 332.82,
+      "tasa_absorbida_ugy_hora": 13.8675,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-08-30",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 341.51,
+      "tasa_absorbida_ugy_hora": 14.22958,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-08-31",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 336.13,
+      "tasa_absorbida_ugy_hora": 14.00542,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-09-01",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 326.84,
+      "tasa_absorbida_ugy_hora": 13.61833,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-09-02",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 332.48,
+      "tasa_absorbida_ugy_hora": 13.85333,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-09-03",
+      "instrumento": "IV-TEPC-NOD2PCQ-pre",
+      "dosis_absorbida_ugy_dia": 317.33,
+      "tasa_absorbida_ugy_hora": 13.22208,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-09-04",
+      "instrumento": "IV-TEPC-NOD2PCQ-pre",
+      "dosis_absorbida_ugy_dia": 316.11,
+      "tasa_absorbida_ugy_hora": 13.17125,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-09-05",
+      "instrumento": "IV-TEPC-NOD2PCQ-pre",
+      "dosis_absorbida_ugy_dia": 307.69,
+      "tasa_absorbida_ugy_hora": 12.82042,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-09-06",
+      "instrumento": "IV-TEPC-NOD2PCQ-pre",
+      "dosis_absorbida_ugy_dia": 307.53,
+      "tasa_absorbida_ugy_hora": 12.81375,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-09-15",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 336.12,
+      "tasa_absorbida_ugy_hora": 14.005,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-09-16",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 311.86,
+      "tasa_absorbida_ugy_hora": 12.99417,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-09-17",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 325.95,
+      "tasa_absorbida_ugy_hora": 13.58125,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-09-18",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 351.21,
+      "tasa_absorbida_ugy_hora": 14.63375,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-12-15",
+      "instrumento": "IV-TEPC-NOD2DCQ-pre",
+      "dosis_absorbida_ugy_dia": 341.89,
+      "tasa_absorbida_ugy_hora": 14.24542,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-12-16",
+      "instrumento": "IV-TEPC-NOD2DCQ-pre",
+      "dosis_absorbida_ugy_dia": 332.64,
+      "tasa_absorbida_ugy_hora": 13.86,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-12-17",
+      "instrumento": "IV-TEPC-NOD2DCQ-pre",
+      "dosis_absorbida_ugy_dia": 361.71,
+      "tasa_absorbida_ugy_hora": 15.07125,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-12-18",
+      "instrumento": "IV-TEPC-NOD2DCQ-pre",
+      "dosis_absorbida_ugy_dia": 307.77,
+      "tasa_absorbida_ugy_hora": 12.82375,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-12-19",
+      "instrumento": "IV-TEPC-NOD2DCQ-pre",
+      "dosis_absorbida_ugy_dia": 394.43,
+      "tasa_absorbida_ugy_hora": 16.43458,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-12-20",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 390.97,
+      "tasa_absorbida_ugy_hora": 16.29042,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-12-21",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 357.24,
+      "tasa_absorbida_ugy_hora": 14.885,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-12-22",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 371.41,
+      "tasa_absorbida_ugy_hora": 15.47542,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-12-23",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 358.8,
+      "tasa_absorbida_ugy_hora": 14.95,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-12-24",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 359.41,
+      "tasa_absorbida_ugy_hora": 14.97542,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-12-25",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 353.65,
+      "tasa_absorbida_ugy_hora": 14.73542,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-12-26",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 357.63,
+      "tasa_absorbida_ugy_hora": 14.90125,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-12-27",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 364.26,
+      "tasa_absorbida_ugy_hora": 15.1775,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-12-28",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 355.56,
+      "tasa_absorbida_ugy_hora": 14.815,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-12-29",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 371.01,
+      "tasa_absorbida_ugy_hora": 15.45875,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-12-30",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 362.38,
+      "tasa_absorbida_ugy_hora": 15.09917,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2017-12-31",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 368.03,
+      "tasa_absorbida_ugy_hora": 15.33458,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-01-01",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 361.42,
+      "tasa_absorbida_ugy_hora": 15.05917,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-01-02",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 367.48,
+      "tasa_absorbida_ugy_hora": 15.31167,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-01-03",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 366.21,
+      "tasa_absorbida_ugy_hora": 15.25875,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-01-04",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 372.56,
+      "tasa_absorbida_ugy_hora": 15.52333,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-01-05",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 362.29,
+      "tasa_absorbida_ugy_hora": 15.09542,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-01-06",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 411.04,
+      "tasa_absorbida_ugy_hora": 17.12667,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-01-07",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 360.1,
+      "tasa_absorbida_ugy_hora": 15.00417,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-01-08",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 398.64,
+      "tasa_absorbida_ugy_hora": 16.61,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-01-09",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 352.14,
+      "tasa_absorbida_ugy_hora": 14.6725,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-01-10",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 413.02,
+      "tasa_absorbida_ugy_hora": 17.20917,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-01-11",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 354.32,
+      "tasa_absorbida_ugy_hora": 14.76333,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-01-12",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 412.19,
+      "tasa_absorbida_ugy_hora": 17.17458,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-01-13",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 365.23,
+      "tasa_absorbida_ugy_hora": 15.21792,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-01-14",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 385.36,
+      "tasa_absorbida_ugy_hora": 16.05667,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-01-15",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 380.46,
+      "tasa_absorbida_ugy_hora": 15.8525,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-01-16",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 379.67,
+      "tasa_absorbida_ugy_hora": 15.81958,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-01-17",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 376.44,
+      "tasa_absorbida_ugy_hora": 15.685,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-01-18",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 388.4,
+      "tasa_absorbida_ugy_hora": 16.18333,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-01-19",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 379.01,
+      "tasa_absorbida_ugy_hora": 15.79208,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-01-20",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 374.48,
+      "tasa_absorbida_ugy_hora": 15.60333,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-01-21",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 382.14,
+      "tasa_absorbida_ugy_hora": 15.9225,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-01-22",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 381.59,
+      "tasa_absorbida_ugy_hora": 15.89958,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-01-23",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 377.13,
+      "tasa_absorbida_ugy_hora": 15.71375,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-01-24",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 391.94,
+      "tasa_absorbida_ugy_hora": 16.33083,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-01-25",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 372.85,
+      "tasa_absorbida_ugy_hora": 15.53542,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-01-26",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 383.67,
+      "tasa_absorbida_ugy_hora": 15.98625,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-01-27",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 379.24,
+      "tasa_absorbida_ugy_hora": 15.80167,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-01-28",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 382.35,
+      "tasa_absorbida_ugy_hora": 15.93125,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-01-29",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 379.35,
+      "tasa_absorbida_ugy_hora": 15.80625,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-01-30",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 370.33,
+      "tasa_absorbida_ugy_hora": 15.43042,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-01-31",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 371.44,
+      "tasa_absorbida_ugy_hora": 15.47667,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-02-01",
+      "instrumento": "IV-TEPC-NOD2PD3-pre",
+      "dosis_absorbida_ugy_dia": 374.56,
+      "tasa_absorbida_ugy_hora": 15.60667,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-12-11",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 451.01,
+      "tasa_absorbida_ugy_hora": 18.79208,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-12-12",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 431.55,
+      "tasa_absorbida_ugy_hora": 17.98125,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-12-13",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 481.81,
+      "tasa_absorbida_ugy_hora": 20.07542,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-12-14",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 417.46,
+      "tasa_absorbida_ugy_hora": 17.39417,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-12-15",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 537.0,
+      "tasa_absorbida_ugy_hora": 22.375,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-12-16",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 416.4,
+      "tasa_absorbida_ugy_hora": 17.35,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-12-17",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 517.86,
+      "tasa_absorbida_ugy_hora": 21.5775,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-12-18",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 413.38,
+      "tasa_absorbida_ugy_hora": 17.22417,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-12-19",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 496.98,
+      "tasa_absorbida_ugy_hora": 20.7075,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-12-20",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 442.45,
+      "tasa_absorbida_ugy_hora": 18.43542,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-12-21",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 470.25,
+      "tasa_absorbida_ugy_hora": 19.59375,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-12-22",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 446.89,
+      "tasa_absorbida_ugy_hora": 18.62042,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-12-23",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 434.31,
+      "tasa_absorbida_ugy_hora": 18.09625,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-12-24",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 449.81,
+      "tasa_absorbida_ugy_hora": 18.74208,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-12-25",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 440.21,
+      "tasa_absorbida_ugy_hora": 18.34208,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-12-26",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 438.12,
+      "tasa_absorbida_ugy_hora": 18.255,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-12-27",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 452.94,
+      "tasa_absorbida_ugy_hora": 18.8725,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-12-28",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 479.95,
+      "tasa_absorbida_ugy_hora": 19.99792,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-12-29",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 428.0,
+      "tasa_absorbida_ugy_hora": 17.83333,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-12-30",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 443.21,
+      "tasa_absorbida_ugy_hora": 18.46708,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2018-12-31",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 437.19,
+      "tasa_absorbida_ugy_hora": 18.21625,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2019-01-01",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 447.93,
+      "tasa_absorbida_ugy_hora": 18.66375,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2019-01-02",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 433.59,
+      "tasa_absorbida_ugy_hora": 18.06625,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2019-01-03",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 473.27,
+      "tasa_absorbida_ugy_hora": 19.71958,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2019-01-04",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 479.93,
+      "tasa_absorbida_ugy_hora": 19.99708,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2019-01-05",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 432.25,
+      "tasa_absorbida_ugy_hora": 18.01042,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2019-01-06",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 516.11,
+      "tasa_absorbida_ugy_hora": 21.50458,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2019-12-24",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 527.08,
+      "tasa_absorbida_ugy_hora": 21.96167,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2019-12-25",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 561.58,
+      "tasa_absorbida_ugy_hora": 23.39917,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2019-12-26",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 524.3,
+      "tasa_absorbida_ugy_hora": 21.84583,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2019-12-27",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 533.9,
+      "tasa_absorbida_ugy_hora": 22.24583,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2019-12-28",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 536.15,
+      "tasa_absorbida_ugy_hora": 22.33958,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2019-12-29",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 541.04,
+      "tasa_absorbida_ugy_hora": 22.54333,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2019-12-30",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 571.7,
+      "tasa_absorbida_ugy_hora": 23.82083,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2019-12-31",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 537.67,
+      "tasa_absorbida_ugy_hora": 22.40292,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2020-01-01",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 552.48,
+      "tasa_absorbida_ugy_hora": 23.02,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2020-01-02",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 562.26,
+      "tasa_absorbida_ugy_hora": 23.4275,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2020-01-03",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 513.36,
+      "tasa_absorbida_ugy_hora": 21.39,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2020-01-04",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 609.46,
+      "tasa_absorbida_ugy_hora": 25.39417,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2020-01-05",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 513.16,
+      "tasa_absorbida_ugy_hora": 21.38167,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2020-01-06",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 650.06,
+      "tasa_absorbida_ugy_hora": 27.08583,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2020-01-07",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 447.74,
+      "tasa_absorbida_ugy_hora": 18.65583,
+      "tasa_equivalente_usv_hora": null
+    },
+    {
+      "fecha": "2020-01-08",
+      "instrumento": "TEPC-SMP330-pre",
+      "dosis_absorbida_ugy_dia": 606.35,
+      "tasa_absorbida_ugy_hora": 25.26458,
+      "tasa_equivalente_usv_hora": null
+    }
+  ],
+  "formula_shield_decay_rate": {
+    "descripcion": "Como se calcula shield_decay_rate (el desgaste del escudo por segundo) a partir de la dosis real de RadLab.",
+    "datos_reales_usados": {
+      "dosis_absorbida_media_ugy_dia": 327.412,
+      "dosis_absorbida_media_mgy_dia": 0.327412,
+      "duracion_mision_s": 180,
+      "segundos_por_dia": 86400,
+      "max_shield_puntos": 100
+    },
+    "pasos": [
+      "dosis_real_mision_ugy = 327.412 * (180 / 86400) = 0.682108 uGy (dosis real que recibiria un astronauta en 180 s)",
+      "presupuesto_escudo_ugy = 682.108 uGy (cada punto del escudo cubre 10 veces la dosis real de una partida)",
+      "tasa_escudo = max_shield / (duracion_mision_s * 10) = 100 / (180 * 10) = 0.0556 puntos/s"
+    ],
+    "valor_resultante_shield_decay_rate": 0.0556,
+    "nota": "El factor 10 es APROXIMADO (juego): convierte la escala de tiempo real (180 s son 0.00208 de un dia) en una escala jugable. La dosis de RadLab usada en la formula es el dato real medido por los instrumentos TEPC."
+  }
+}
