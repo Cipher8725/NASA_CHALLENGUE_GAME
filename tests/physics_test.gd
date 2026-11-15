@@ -15,6 +15,9 @@ func _ready() -> void:
 	# Espera a que la física haya registrado los cuerpos del primer fotograma.
 	for _i: int in range(3):
 		await get_tree().physics_frame
+	# Las hojas de las puertas correderas bloquean el paso mientras estan
+	# cerradas. Se abren para comprobar el HUECO de la pared, no la hoja.
+	await _abrir_puertas()
 	_run()
 
 func _run() -> void:
@@ -39,6 +42,8 @@ func _run() -> void:
 	_check(_ray_hits(space, Vector3(0, 1, 4), Vector3(20, 1, 4)), "Pared derecha bloquea")
 
 	# 2 bis) Las puertas SÍ dejan pasar: ese es el punto de la ampliación.
+	# Se vuelven a abrir por si alguna se ha cerrado durante el test.
+	await _abrir_puertas()
 	_check(not _ray_hits(space, Vector3(0, 1, 0), Vector3(0, 1, 14)), "La puerta norte deja pasar")
 	_check(not _ray_hits(space, Vector3(0, 1, 0), Vector3(-14, 1, 0)), "La puerta oeste deja pasar")
 	_check(not _ray_hits(space, Vector3(0, 1, 0), Vector3(14, 1, 0)), "La puerta este deja pasar")
@@ -62,6 +67,20 @@ func _run() -> void:
 
 	print("=== RESULTADO FISICA: %s ===" % ("TODO OK" if _failures == 0 else "FALLOS (%d)" % _failures))
 	get_tree().quit(_failures)
+
+## Abre todas las puertas correderas de la escena y espera a que la
+## colisión de la hoja se desactive (es un `set_deferred`).
+func _abrir_puertas() -> void:
+	var pendientes: Array[Node] = [get_node("Main")]
+	while not pendientes.is_empty():
+		var nodo: Node = pendientes.pop_back()
+		for hijo: Node in nodo.get_children():
+			pendientes.append(hijo)
+			if hijo is SlidingDoor:
+				(hijo as SlidingDoor).open_door()
+	# Un par de fotogramas de física para aplicar la desactivación diferida.
+	for _i: int in range(3):
+		await get_tree().physics_frame
 
 ## Lanza un rayo y devuelve true si impacta contra algo.
 func _ray_hits(space: PhysicsDirectSpaceState3D, from: Vector3, to: Vector3) -> bool:
