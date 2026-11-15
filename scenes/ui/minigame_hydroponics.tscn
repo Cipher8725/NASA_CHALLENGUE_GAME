@@ -1,0 +1,329 @@
+[gd_scene load_steps=10 format=3]
+
+; Minijuego de producción de alimentos en la hidroponía.
+;
+; El jugador ajusta la LUZ (arriba/abajo) y el AGUA (izquierda/derecha) para
+; mantener la planta dentro del rango que necesita el cultivo. Los rangos
+; salen de `resources/hidroponia/cultivos.json` (datos de la CSA).
+; Regar consume agua y la luz consume energía de la misión real.
+
+[ext_resource type="Script" path="res://scripts/minigame_hydroponics.gd" id="1_hydro"]
+[ext_resource type="Script" path="res://scripts/repair_gauge.gd" id="2_gauge"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.04, 0.09, 0.05, 0.94)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45, 0.8, 0.4, 0.75)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar_bg"]
+bg_color = Color(0.12, 0.16, 0.13, 0.9)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar_fill"]
+bg_color = Color(0.95, 0.85, 0.35, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar_fill_water"]
+bg_color = Color(0.35, 0.72, 0.95, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_zone"]
+bg_color = Color(0.4, 0.9, 0.45, 0.35)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_soil"]
+bg_color = Color(0.29, 0.2, 0.12, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="HydroponicsMinigame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hydro")
+
+[node name="Dim" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.68)
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -380.0
+offset_top = -250.0
+offset_right = 380.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="Body" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TitleLabel" type="Label" parent="Panel/Body"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "HIDROPONÍA"
+horizontal_alignment = 1
+
+[node name="CropLabel" type="Label" parent="Panel/Body"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.95, 0.7, 1)
+theme_override_font_sizes/font_size = 19
+text = "Lechuga  ·  21 días hasta cosechar (CSA)"
+horizontal_alignment = 1
+
+[node name="HintLabel" type="Label" parent="Panel/Body"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.9, 0.75, 1)
+text = "FLECHAS: arriba/abajo = luz, izquierda/derecha = agua. Regar gasta agua y la luz gasta energía."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="TrayRow" type="HBoxContainer" parent="Panel/Body"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Tray" type="PanelContainer" parent="Panel/Body/TrayRow"]
+custom_minimum_size = Vector2(90, 150)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_soil")
+
+[node name="Plant" type="ColorRect" parent="Panel/Body/TrayRow/Tray"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 8)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -35.0
+offset_top = -8.0
+offset_right = 35.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+color = Color(0.35, 0.75, 0.35, 1)
+
+[node name="Controls" type="VBoxContainer" parent="Panel/Body/TrayRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="LightRow" type="HBoxContainer" parent="Panel/Body/TrayRow/Controls"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Name" type="Label" parent="Panel/Body/TrayRow/Controls/LightRow"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+text = "LUZ"
+
+[node name="LightBar" type="ProgressBar" parent="Panel/Body/TrayRow/Controls/LightRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+value = 0.5
+show_percentage = false
+theme_override_styles/background = SubResource("StyleBoxFlat_bar_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bar_fill")
+
+[node name="LightZone" type="ColorRect" parent="Panel/Body/TrayRow/Controls/LightRow/LightBar"]
+unique_name_in_owner = true
+layout_mode = 1
+mouse_filter = 2
+color = Color(0.4, 0.9, 0.45, 0.35)
+
+[node name="LightValue" type="Label" parent="Panel/Body/TrayRow/Controls/LightRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+text = "50%"
+horizontal_alignment = 2
+
+[node name="WaterRow" type="HBoxContainer" parent="Panel/Body/TrayRow/Controls"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Name" type="Label" parent="Panel/Body/TrayRow/Controls/WaterRow"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+text = "AGUA"
+
+[node name="WaterBar" type="ProgressBar" parent="Panel/Body/TrayRow/Controls/WaterRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+value = 0.5
+show_percentage = false
+theme_override_styles/background = SubResource("StyleBoxFlat_bar_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bar_fill_water")
+
+[node name="WaterZone" type="ColorRect" parent="Panel/Body/TrayRow/Controls/WaterRow/WaterBar"]
+unique_name_in_owner = true
+layout_mode = 1
+mouse_filter = 2
+color = Color(0.4, 0.9, 0.45, 0.35)
+
+[node name="WaterValue" type="Label" parent="Panel/Body/TrayRow/Controls/WaterRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+text = "50%"
+horizontal_alignment = 2
+
+[node name="GrowthRow" type="HBoxContainer" parent="Panel/Body"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Name" type="Label" parent="Panel/Body/GrowthRow"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+text = "CRECIMIENTO"
+
+[node name="ProgressBar" type="ProgressBar" parent="Panel/Body/GrowthRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+value = 0.0
+show_percentage = false
+theme_override_styles/background = SubResource("StyleBoxFlat_bar_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bar_fill")
+
+[node name="ProgressLabel" type="Label" parent="Panel/Body/GrowthRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+text = "0%"
+horizontal_alignment = 2
+
+[node name="TimerRow" type="HBoxContainer" parent="Panel/Body"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Name" type="Label" parent="Panel/Body/TimerRow"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+text = "TIEMPO"
+
+[node name="TimerBar" type="ProgressBar" parent="Panel/Body/TimerRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 20.0
+value = 20.0
+show_percentage = false
+theme_override_styles/background = SubResource("StyleBoxFlat_bar_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bar_fill")
+
+[node name="TimerLabel" type="Label" parent="Panel/Body/TimerRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+text = "20.0 s"
+horizontal_alignment = 2
+
+[node name="StatusLabel" type="Label" parent="Panel/Body"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+text = "Ajusta la luz y el agua para que la planta crezca."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ResultPanel" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dim" type="ColorRect" parent="ResultPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.55)
+
+[node name="Box" type="VBoxContainer" parent="ResultPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -80.0
+offset_right = 320.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+
+[node name="ResultTitle" type="Label" parent="ResultPanel/Box"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "REPARACIÓN COMPLETADA"
+horizontal_alignment = 1
+
+[node name="ResultDetail" type="Label" parent="ResultPanel/Box"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.95, 0.85, 1)
+text = "Cosecha lista."
+horizontal_alignment = 1

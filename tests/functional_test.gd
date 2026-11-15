@@ -32,7 +32,8 @@ func _run_tests() -> void:
 	var console_count: int = 0
 	if habitat != null:
 		console_count = habitat.get_consoles().size()
-	failures += _check("4 consolas registradas (obtenidas: %d)" % console_count, console_count == 4)
+	# Hay una consola por recurso vital: oxígeno, energía, agua, escudo y comida.
+	failures += _check("5 consolas registradas (obtenidas: %d)" % console_count, console_count == 5)
 
 	# Restauración de recurso vía consola (primero se consume para tener margen).
 	game.consume_resource(GameManager.RESOURCE_OXYGEN, 40.0)
