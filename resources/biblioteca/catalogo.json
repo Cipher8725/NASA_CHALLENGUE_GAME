@@ -1,233 +1,289 @@
 [
- {
-  "id": "sistema_solar",
-  "nivel": "Básico",
-  "titulo": "El sistema solar",
-  "portada": "res://ai_assets/ui/biblioteca/portadas/sistema_solar.png",
-  "paginas": [
-   {
-    "titulo": "Nuestra dirección cósmica",
-    "texto": "La Tierra es un planeta del sistema solar. El Sol es la estrella de ese sistema, que a su vez forma parte de la galaxia Vía Láctea. Una luna es un satélite natural que orbita un planeta u otro cuerpo."
-   },
-   {
-    "titulo": "Los planetas",
-    "texto": "Mercurio, Venus, Tierra y Marte son rocosos. Júpiter y Saturno son gigantes gaseosos. Urano y Neptuno son gigantes helados. Plutón es un planeta enano."
-   },
-   {
-    "titulo": "Cuerpos pequeños",
-    "texto": "Muchos asteroides son rocosos o metálicos. Los cometas contienen hielos y polvo. Cuando un cometa se acerca al Sol, parte de sus hielos se transforma en gas y puede producir una cola."
-   }
-  ],
-  "fuentes": [
-   "https://science.nasa.gov/solar-system/"
-  ]
- },
- {
-  "id": "tierra_luna",
-  "nivel": "Básico",
-  "titulo": "La Tierra y la Luna",
-  "portada": "res://ai_assets/ui/biblioteca/portadas/tierra_luna.png",
-  "paginas": [
-   {
-    "titulo": "Rotación y órbita",
-    "texto": "El giro de la Tierra sobre su eje explica el ciclo habitual de día y noche. La Luna gira sobre su eje en aproximadamente el mismo tiempo que tarda en orbitar la Tierra. Por eso vemos casi siempre la misma cara lunar."
-   },
-   {
-    "titulo": "Fases y eclipses",
-    "texto": "Las fases dependen de cuánto vemos de la mitad iluminada por el Sol. En un eclipse solar, la Luna se interpone entre la Tierra y el Sol. En un eclipse lunar, la Luna pasa por la sombra de la Tierra."
-   },
-   {
-    "titulo": "El entorno lunar",
-    "texto": "La gravedad en la superficie lunar es aproximadamente una sexta parte de la terrestre. Tu masa se mantiene y tu peso disminuye. La Luna tiene una exosfera extremadamente tenue y está cubierta por polvo y fragmentos rocosos llamados regolito."
-   }
-  ],
-  "fuentes": [
-   "https://science.nasa.gov/moon/facts/",
-   "https://science.nasa.gov/moon/moon-phases/"
-  ]
- },
- {
-  "id": "vida_espacio",
-  "nivel": "Básico",
-  "titulo": "Vivir en el espacio",
-  "portada": "res://ai_assets/ui/biblioteca/portadas/vida_espacio.png",
-  "paginas": [
-   {
-    "titulo": "Por qué flotan",
-    "texto": "En órbita, la nave y sus ocupantes caen juntos alrededor de la Tierra. Esa caída compartida produce la sensación de ingravidez. Se usa el término microgravedad porque todavía hay pequeñas aceleraciones y perturbaciones."
-   },
-   {
-    "titulo": "Cuidar el cuerpo",
-    "texto": "Con poca carga física, los músculos y los huesos pueden debilitarse. La tripulación usa ejercicios de resistencia y ejercicio aeróbico para reducir esos efectos."
-   },
-   {
-    "titulo": "Trabajar en equipo",
-    "texto": "El horario asigna tiempo a mantenimiento, experimentos, comidas, ejercicio y descanso. La tripulación asegura equipos y herramientas para evitar que floten y usa procedimientos escritos para coordinar el trabajo."
-   }
-  ],
-  "fuentes": [
-   "https://www.nasa.gov/missions/station/iss-research/astronaut-exercise/",
-   "https://www.jpl.nasa.gov/edu/resources/project/imagine-youre-an-astronaut/"
-  ],
-  "actividad": {
-   "texto": "Practicar: Base lunar",
-   "escena": "res://scenes/main.tscn"
+  {
+    "id": "sistema_solar",
+    "nivel": "Básico",
+    "titulo": "El sistema solar",
+    "portada": "res://ai_assets/ui/biblioteca/portadas/sistema_solar.png",
+    "paginas": [
+      {
+        "titulo": "Nuestra dirección cósmica",
+        "texto": "La Tierra es un planeta del sistema solar. El Sol es la estrella de ese sistema, que a su vez forma parte de la galaxia Vía Láctea. Una luna es un satélite natural que orbita un planeta u otro cuerpo."
+      },
+      {
+        "titulo": "Los planetas",
+        "texto": "Mercurio, Venus, Tierra y Marte son rocosos. Júpiter y Saturno son gigantes gaseosos. Urano y Neptuno son gigantes helados. Plutón es un planeta enano."
+      },
+      {
+        "titulo": "Cuerpos pequeños",
+        "texto": "Muchos asteroides son rocosos o metálicos. Los cometas contienen hielos y polvo. Cuando un cometa se acerca al Sol, parte de sus hielos se transforma en gas y puede producir una cola."
+      }
+    ],
+    "fuentes": [
+      "https://science.nasa.gov/solar-system/"
+    ]
+  },
+  {
+    "id": "tierra_luna",
+    "nivel": "Básico",
+    "titulo": "La Tierra y la Luna",
+    "portada": "res://ai_assets/ui/biblioteca/portadas/tierra_luna.png",
+    "paginas": [
+      {
+        "titulo": "Rotación y órbita",
+        "texto": "El giro de la Tierra sobre su eje explica el ciclo habitual de día y noche. La Luna gira sobre su eje en aproximadamente el mismo tiempo que tarda en orbitar la Tierra. Por eso vemos casi siempre la misma cara lunar."
+      },
+      {
+        "titulo": "Fases y eclipses",
+        "texto": "Las fases dependen de cuánto vemos de la mitad iluminada por el Sol. En un eclipse solar, la Luna se interpone entre la Tierra y el Sol. En un eclipse lunar, la Luna pasa por la sombra de la Tierra."
+      },
+      {
+        "titulo": "El entorno lunar",
+        "texto": "La gravedad en la superficie lunar es aproximadamente una sexta parte de la terrestre. Tu masa se mantiene y tu peso disminuye. La Luna tiene una exosfera extremadamente tenue y está cubierta por polvo y fragmentos rocosos llamados regolito."
+      }
+    ],
+    "fuentes": [
+      "https://science.nasa.gov/moon/facts/",
+      "https://science.nasa.gov/moon/moon-phases/"
+    ]
+  },
+  {
+    "id": "vida_espacio",
+    "nivel": "Básico",
+    "titulo": "Vivir en el espacio",
+    "portada": "res://ai_assets/ui/biblioteca/portadas/vida_espacio.png",
+    "paginas": [
+      {
+        "titulo": "Por qué flotan",
+        "texto": "En órbita, la nave y sus ocupantes caen juntos alrededor de la Tierra. Esa caída compartida produce la sensación de ingravidez. Se usa el término microgravedad porque todavía hay pequeñas aceleraciones y perturbaciones."
+      },
+      {
+        "titulo": "Cuidar el cuerpo",
+        "texto": "Con poca carga física, los músculos y los huesos pueden debilitarse. La tripulación usa ejercicios de resistencia y ejercicio aeróbico para reducir esos efectos."
+      },
+      {
+        "titulo": "Trabajar en equipo",
+        "texto": "El horario asigna tiempo a mantenimiento, experimentos, comidas, ejercicio y descanso. La tripulación asegura equipos y herramientas para evitar que floten y usa procedimientos escritos para coordinar el trabajo."
+      }
+    ],
+    "fuentes": [
+      "https://www.nasa.gov/missions/station/iss-research/astronaut-exercise/",
+      "https://www.jpl.nasa.gov/edu/resources/project/imagine-youre-an-astronaut/"
+    ],
+    "actividad": {
+      "texto": "Practicar: Base lunar",
+      "escena": "res://scenes/main.tscn"
+    }
+  },
+  {
+    "id": "despegue_orbita",
+    "nivel": "Intermedio",
+    "titulo": "Del despegue a la órbita",
+    "portada": "res://ai_assets/ui/biblioteca/portadas/despegue_orbita.png",
+    "paginas": [
+      {
+        "titulo": "Empuje y peso",
+        "texto": "Un cohete expulsa masa a alta velocidad y recibe empuje en la dirección opuesta. Para iniciar un ascenso vertical, el empuje debe superar el peso. Durante el vuelo, la gravedad y la resistencia del aire afectan la trayectoria."
+      },
+      {
+        "titulo": "Las etapas",
+        "texto": "Una etapa incluye su propio sistema de propulsión y propelente. Al terminar de usarla, algunos cohetes la separan para que las etapas siguientes aceleren con menos masa. La carga útil es lo que se quiere transportar.",
+        "imagen": "res://ai_assets/ui/lector/diagrama_cohete.png"
+      },
+      {
+        "titulo": "Alcanzar una órbita",
+        "texto": "Además de ganar altura, el vehículo debe adquirir suficiente velocidad lateral. La gravedad curva su trayectoria. Con la velocidad adecuada a esa altura, la nave sigue cayendo alrededor de la Tierra.",
+        "imagen": "res://ai_assets/ui/lector/diagrama_orbita.png"
+      }
+    ],
+    "fuentes": [
+      "https://www.grc.nasa.gov/www/k-12/rocket/",
+      "https://science.nasa.gov/learn/basics-of-space-flight/chapter3-4/"
+    ],
+    "actividad": {
+      "texto": "Practicar: Simulación de despegue",
+      "escena": "res://scenes/simulacion_despegue_3d.tscn"
+    }
+  },
+  {
+    "id": "rover",
+    "nivel": "Intermedio",
+    "titulo": "Anatomía de un rover",
+    "portada": "res://ai_assets/ui/biblioteca/portadas/rover.png",
+    "paginas": [
+      {
+        "titulo": "Moverse por el terreno",
+        "texto": "El chasis sostiene el equipo. Las ruedas transmiten al suelo la fuerza de los motores. En Perseverance, una suspensión articulada ayuda a mantener las ruedas en contacto cuando el terreno cambia de altura."
+      },
+      {
+        "titulo": "Observar y medir",
+        "texto": "Las cámaras de navegación muestran el terreno; los instrumentos científicos estudian materiales o el entorno. En Perseverance, un brazo coloca instrumentos cerca de las rocas y ayuda a recolectar muestras."
+      },
+      {
+        "titulo": "Energía y comunicación",
+        "texto": "Un rover necesita electricidad para moverse, procesar datos y comunicarse. Perseverance usa un generador termoeléctrico y baterías. Puede enviar datos directamente a la Tierra o a través de orbitadores, según el enlace."
+      }
+    ],
+    "fuentes": [
+      "https://science.nasa.gov/mission/mars-2020-perseverance/rover-components/"
+    ],
+    "actividad": {
+      "texto": "Practicar: Armado del rover",
+      "escena": "res://scenes/rover_workshop.tscn"
+    }
+  },
+  {
+    "id": "soporte_vital",
+    "nivel": "Intermedio",
+    "titulo": "Soporte vital",
+    "portada": "res://ai_assets/ui/biblioteca/portadas/soporte_vital.png",
+    "paginas": [
+      {
+        "titulo": "Un ambiente respirable",
+        "texto": "La cabina necesita presión adecuada y una mezcla respirable de gases. Los sensores miden el ambiente. La ventilación mueve el aire y los equipos de purificación retiran dióxido de carbono y otros contaminantes."
+      },
+      {
+        "titulo": "Recuperar agua y producir oxígeno",
+        "texto": "En la Estación Espacial Internacional, se recupera agua de la humedad y de aguas residuales, se purifica y se verifica su calidad. La electrólisis puede separar agua en oxígeno e hidrógeno; el oxígeno puede alimentar la cabina."
+      },
+      {
+        "titulo": "Dependencias",
+        "texto": "Bombas, ventiladores, calentadores y sensores necesitan electricidad. Los sistemas también controlan la temperatura. Una pérdida eléctrica puede afectar varios equipos, por lo que importan las reservas y los sistemas de respaldo."
+      }
+    ],
+    "fuentes": [
+      "https://www.nasa.gov/reference/environmental-control-and-life-support-systems-eclss/"
+    ],
+    "actividad": {
+      "texto": "Practicar: Base lunar",
+      "escena": "res://scenes/main.tscn"
+    }
+  },
+  {
+    "id": "exploracion_lunar",
+    "nivel": "Avanzado",
+    "titulo": "Exploración lunar",
+    "portada": "res://ai_assets/ui/biblioteca/portadas/exploracion_lunar.png",
+    "paginas": [
+      {
+        "titulo": "Después del aterrizaje",
+        "texto": "La tripulación confirma el estado del vehículo y sus comunicaciones, revisa el tiempo y los recursos disponibles y evalúa el terreno antes de una salida. Cada vehículo y misión tienen sus propias listas de comprobación."
+      },
+      {
+        "titulo": "Planear el recorrido",
+        "texto": "Los desniveles, las sombras profundas y el regolito influyen en la movilidad y en la visibilidad. El recorrido debe incluir puntos de referencia, un plan de vuelta y margen de tiempo y consumibles."
+      },
+      {
+        "titulo": "Documentar una muestra",
+        "texto": "La posición, las fotografías y las observaciones del entorno dan contexto a una roca. Una identificación única vincula la muestra con ese registro. El almacenamiento protege la muestra y ayuda a evitar contaminación o mezclas."
+      }
+    ],
+    "fuentes": [
+      "https://science.nasa.gov/moon/facts/",
+      "https://www.nasa.gov/wp-content/uploads/2017/02/eva-exp-0042_xeva_system_con_ops_rev_b_final_dtd_10192020_ref_doc.pdf"
+    ]
+  },
+  {
+    "id": "control_mision",
+    "nivel": "Avanzado",
+    "titulo": "Control de misión",
+    "portada": "res://ai_assets/ui/biblioteca/portadas/control_mision.png",
+    "paginas": [
+      {
+        "titulo": "Leer la telemetría",
+        "texto": "La telemetría transmite medidas como presión, temperatura y tensión eléctrica. Cada valor se interpreta con su unidad, la hora de lectura, la tendencia y el intervalo esperado para esa fase de la misión."
+      },
+      {
+        "titulo": "Relacionar alarmas",
+        "texto": "Varias alertas pueden tener una causa común. Si coinciden una caída de tensión y avisos de equipos conectados a ella, se contrasta la secuencia con otras lecturas y con el estado de los sistemas de respaldo."
+      },
+      {
+        "titulo": "Comunicar lo observado",
+        "texto": "Un informe conciso identifica el equipo, el momento, los valores observados y lo que se ha confirmado. La coordinación entre tripulación y especialistas ayuda a decidir con base en procedimientos y datos compartidos."
+      }
+    ],
+    "fuentes": [
+      "https://ntrs.nasa.gov/api/citations/20130014090/downloads/20130014090.pdf"
+    ]
+  },
+  {
+    "id": "trajes_espaciales",
+    "nivel": "Avanzado",
+    "titulo": "Trajes espaciales",
+    "portada": "res://ai_assets/ui/biblioteca/portadas/trajes_espaciales.png",
+    "paginas": [
+      {
+        "titulo": "Un hábitat portátil",
+        "texto": "Un traje de actividad extravehicular mantiene presión alrededor del cuerpo y suministra oxígeno. También necesita retirar el dióxido de carbono que exhala el astronauta y mantener la circulación del aire."
+      },
+      {
+        "titulo": "Calor, protección y movilidad",
+        "texto": "El esfuerzo genera calor. Un traje puede usar una prenda con agua circulante para ayudar a extraerlo. Las capas externas y el visor protegen al astronauta; las articulaciones permiten moverse con el traje presurizado."
+      },
+      {
+        "titulo": "El margen de regreso",
+        "texto": "La batería, el oxígeno y otros consumibles limitan el tiempo fuera. Las comunicaciones y el seguimiento del estado del traje permiten a la tripulación ajustar el recorrido y preservar una reserva para el regreso."
+      }
+    ],
+    "fuentes": [
+      "https://www.nasa.gov/centers-and-facilities/johnson/spacewalk-spacesuit-basics/",
+      "https://www.nasa.gov/wp-content/uploads/2017/02/eva-exp-0042_xeva_system_con_ops_rev_b_final_dtd_10192020_ref_doc.pdf",
+      "https://ntrs.nasa.gov/api/citations/20250010956/downloads/20250010956.pdf"
+    ]
+  },
+  {
+    "id": "cuerpo_espacio",
+    "nivel": "Intermedio",
+    "titulo": "Tu cuerpo en el espacio",
+    "portada": "res://ai_assets/ui/biblioteca/portadas/cuerpo_espacio.png",
+    "paginas": [
+      {
+        "titulo": "¿Por qué cambia el cuerpo?",
+        "texto": "En la Tierra tus huesos y tus músculos siempre están en la tarea de sostener tu peso contra la gravedad. En el espacio flotan casi sin carga. Los huesos no necesitan ser tan fuertes y se van deshaciendo; los músculos tampoco tienen que trabajar tanto y se atrofian. Tu cuerpo además redistribuye los líquidos: la sangre y el líquido de las células suben hacia el pecho y la cara. Por eso los astronautas se ven más abultados en la cara y tienen las piernas más delgadas después de unas semanas en órbita. La NASA guarda estos estudios en el OSDR, su archivo de datos científicos abiertos."
+      },
+      {
+        "titulo": "Cultivar plantas en la estación",
+        "texto": "Para las misiones largas la NASA no solo guarda comida envasada: quiere cultivar plantas a bordo. El proyecto VEG-04, llamado \"Pick-and-eat space crop production\", hizo dos experimentos en la ISS durante 2019 con el sistema Veggie, con sus controles correspondientes en tierra. Se cultivó mostaza mizuna (*Brassica rapa*) y se probaron distintas mezclas de luz roja, azul y verde. El OSDR guarda estos experimentos con el código OSD-655, que midió el contenido de elementos, la capacidad antirradical (ORAC) y los fenoles de la planta, y con el código OSD-780, que contó los microorganismos de la planta y de las superficies del equipo de cultivo."
+      },
+      {
+        "titulo": "La lechuga que comieron",
+        "texto": "El OSD-745 es el estudio de la lechuga roja que se cultivó en la ISS y se comparó con plantas de tierra. Se creció lechuga roja *Lactuca sativa* cv 'Outredgeous' en almohadillas Veggie, con dos mezclas de sustrato de arcilla porosa y fertilizante de liberación lenta, y se midió su contenido de antocianinas y fenoles, además de su capacidad antirradical (ORAC) y su composición elemental.\n\nLos datos de OSD-655, OSD-780 y OSD-745 cuentan cuatro cosas. Primera: el contenido de las plantas cambia cuando crecen en el espacio. Segunda: los microbios de las superficies del equipo se comportan de otra manera y hay que contarlos. Tercera: la calidad de la luz importa para el crecimiento, la nutrición y la microbiología. Cuarta: una planta que crece en órbita se puede cosechar, dejar que vuelva a brotar y cosechar otra vez, y eso es lo que hace viable comer de propia cosecha en una misión larga."
+      }
+    ],
+    "fuentes": [
+      "<https://osdr.nasa.gov/osdr/data/studies/OSD-655>",
+      "<https://osdr.nasa.gov/osdr/data/studies/OSD-780>",
+      "<https://osdr.nasa.gov/osdr/data/studies/OSD-745>",
+      "<https://osdr.nasa.gov/osdr/data/search?term=bone>"
+    ]
+  },
+  {
+    "id": "clima_espacio",
+    "nivel": "Avanzado",
+    "titulo": "El clima del espacio",
+    "portada": "res://ai_assets/ui/biblioteca/portadas/clima_espacio.png",
+    "paginas": [
+      {
+        "titulo": "Qué es una tormenta solar",
+        "texto": "El Sol es una estrella que lanza ondas de plasma de forma constante. A veces una zona activa de su superficie libera de golpe una enorme cantidad de energía: es una llamarada solar, que la NASA clasifica por su clase en la escala C, M y X. Una llamarada X es la mayor, y puede emitir radiación suficiente para afectar a los astronautas de la Estación Espacial Internacional. La base de datos DONKI de la NASA guarda cada evento con su fecha y su identificador. Entre noviembre de 2025 y octubre de 2026 se registraron 481 llamaradas, de ellas 24 de clase X."
+      },
+      {
+        "titulo": "La llamarada más fuerte del año",
+        "texto": "La llamarada más fuerte de ese periodo fue la X5.1 del 11 de noviembre de 2025 (DONKI: 2025-11-11T09:49:00-FLR-001). Solo tres días antes, el 8 de noviembre, ya hubo una X1.7. Una llamarada X no dura mucho: el Sol puede liberar en minutos la energía que tardaría años en producir el Sol. Por eso el aviso de emergencia en la base lunar no es una advertencia lenta: es un golpe.\n\nLas eyecciones de masa coronal (CME en inglés) son las que de verdad pueden golpear la Tierra: una nube de plasma y campo magnético que sale despedida del Sol. DONKI registró 1679 eyecciones en ese mismo año. La velocidad importa mucho: la más rápida de las registradas llegó a 1903 km/s el 1 de diciembre de 2025, y hubo otras de 1856 km/s (11 de noviembre de 2025) y 1820 km/s (18 de enero de 2026). Una eyección muy rápida es la que puede alcanzar la magnetosfera con más fuerza."
+      },
+      {
+        "titulo": "Cómo te protege el escudo",
+        "texto": "En la Tierra estás protegido por la atmósfera y por el campo magnético. En órbita no: solo te cubren el casco y el blindaje de la nave. La dosis que recibe un astronauta se mide en microgray (µGy) al día. Los instrumentos TEPC a bordo de la estación miden esa exposición y la NASA publica los datos en su sistema RadLab: la media del periodo registrado es de unos 327 µGy al día. Esa cifra es la que el juego usa como referencia real. Una tormenta solar fuerte es el motivo por el que el escudo del hábitat se desgasta más de lo normal, y por eso hay que reparar el blindaje a tiempo."
+      }
+    ],
+    "fuentes": [
+      "<https://ccmc.gsfc.nasa.gov/DONKI/>",
+      "<https://ccmc.gsfc.nasa.gov/DONKI/api/>",
+      "<https://visualization.osdr.nasa.gov/radlab/gui/data-api/>",
+      "<https://visualization.osdr.nasa.gov/radlab/api/>"
+    ],
+    "actividad": {
+      "texto": "Practicar: Base lunar",
+      "escena": "res://scenes/main.tscn"
+    }
   }
- },
- {
-  "id": "despegue_orbita",
-  "nivel": "Intermedio",
-  "titulo": "Del despegue a la órbita",
-  "portada": "res://ai_assets/ui/biblioteca/portadas/despegue_orbita.png",
-  "paginas": [
-   {
-    "titulo": "Empuje y peso",
-    "texto": "Un cohete expulsa masa a alta velocidad y recibe empuje en la dirección opuesta. Para iniciar un ascenso vertical, el empuje debe superar el peso. Durante el vuelo, la gravedad y la resistencia del aire afectan la trayectoria."
-   },
-   {
-    "titulo": "Las etapas",
-    "texto": "Una etapa incluye su propio sistema de propulsión y propelente. Al terminar de usarla, algunos cohetes la separan para que las etapas siguientes aceleren con menos masa. La carga útil es lo que se quiere transportar.",
-    "imagen": "res://ai_assets/ui/lector/diagrama_cohete.png"
-   },
-   {
-    "titulo": "Alcanzar una órbita",
-    "texto": "Además de ganar altura, el vehículo debe adquirir suficiente velocidad lateral. La gravedad curva su trayectoria. Con la velocidad adecuada a esa altura, la nave sigue cayendo alrededor de la Tierra.",
-    "imagen": "res://ai_assets/ui/lector/diagrama_orbita.png"
-   }
-  ],
-  "fuentes": [
-   "https://www.grc.nasa.gov/www/k-12/rocket/",
-   "https://science.nasa.gov/learn/basics-of-space-flight/chapter3-4/"
-  ],
-  "actividad": {
-   "texto": "Practicar: Simulación de despegue",
-   "escena": "res://scenes/simulacion_despegue_3d.tscn"
-  }
- },
- {
-  "id": "rover",
-  "nivel": "Intermedio",
-  "titulo": "Anatomía de un rover",
-  "portada": "res://ai_assets/ui/biblioteca/portadas/rover.png",
-  "paginas": [
-   {
-    "titulo": "Moverse por el terreno",
-    "texto": "El chasis sostiene el equipo. Las ruedas transmiten al suelo la fuerza de los motores. En Perseverance, una suspensión articulada ayuda a mantener las ruedas en contacto cuando el terreno cambia de altura."
-   },
-   {
-    "titulo": "Observar y medir",
-    "texto": "Las cámaras de navegación muestran el terreno; los instrumentos científicos estudian materiales o el entorno. En Perseverance, un brazo coloca instrumentos cerca de las rocas y ayuda a recolectar muestras."
-   },
-   {
-    "titulo": "Energía y comunicación",
-    "texto": "Un rover necesita electricidad para moverse, procesar datos y comunicarse. Perseverance usa un generador termoeléctrico y baterías. Puede enviar datos directamente a la Tierra o a través de orbitadores, según el enlace."
-   }
-  ],
-  "fuentes": [
-   "https://science.nasa.gov/mission/mars-2020-perseverance/rover-components/"
-  ],
-  "actividad": {
-   "texto": "Practicar: Armado del rover",
-   "escena": "res://scenes/rover_workshop.tscn"
-  }
- },
- {
-  "id": "soporte_vital",
-  "nivel": "Intermedio",
-  "titulo": "Soporte vital",
-  "portada": "res://ai_assets/ui/biblioteca/portadas/soporte_vital.png",
-  "paginas": [
-   {
-    "titulo": "Un ambiente respirable",
-    "texto": "La cabina necesita presión adecuada y una mezcla respirable de gases. Los sensores miden el ambiente. La ventilación mueve el aire y los equipos de purificación retiran dióxido de carbono y otros contaminantes."
-   },
-   {
-    "titulo": "Recuperar agua y producir oxígeno",
-    "texto": "En la Estación Espacial Internacional, se recupera agua de la humedad y de aguas residuales, se purifica y se verifica su calidad. La electrólisis puede separar agua en oxígeno e hidrógeno; el oxígeno puede alimentar la cabina."
-   },
-   {
-    "titulo": "Dependencias",
-    "texto": "Bombas, ventiladores, calentadores y sensores necesitan electricidad. Los sistemas también controlan la temperatura. Una pérdida eléctrica puede afectar varios equipos, por lo que importan las reservas y los sistemas de respaldo."
-   }
-  ],
-  "fuentes": [
-   "https://www.nasa.gov/reference/environmental-control-and-life-support-systems-eclss/"
-  ],
-  "actividad": {
-   "texto": "Practicar: Base lunar",
-   "escena": "res://scenes/main.tscn"
-  }
- },
- {
-  "id": "exploracion_lunar",
-  "nivel": "Avanzado",
-  "titulo": "Exploración lunar",
-  "portada": "res://ai_assets/ui/biblioteca/portadas/exploracion_lunar.png",
-  "paginas": [
-   {
-    "titulo": "Después del aterrizaje",
-    "texto": "La tripulación confirma el estado del vehículo y sus comunicaciones, revisa el tiempo y los recursos disponibles y evalúa el terreno antes de una salida. Cada vehículo y misión tienen sus propias listas de comprobación."
-   },
-   {
-    "titulo": "Planear el recorrido",
-    "texto": "Los desniveles, las sombras profundas y el regolito influyen en la movilidad y en la visibilidad. El recorrido debe incluir puntos de referencia, un plan de vuelta y margen de tiempo y consumibles."
-   },
-   {
-    "titulo": "Documentar una muestra",
-    "texto": "La posición, las fotografías y las observaciones del entorno dan contexto a una roca. Una identificación única vincula la muestra con ese registro. El almacenamiento protege la muestra y ayuda a evitar contaminación o mezclas."
-   }
-  ],
-  "fuentes": [
-   "https://science.nasa.gov/moon/facts/",
-   "https://www.nasa.gov/wp-content/uploads/2017/02/eva-exp-0042_xeva_system_con_ops_rev_b_final_dtd_10192020_ref_doc.pdf"
-  ]
- },
- {
-  "id": "control_mision",
-  "nivel": "Avanzado",
-  "titulo": "Control de misión",
-  "portada": "res://ai_assets/ui/biblioteca/portadas/control_mision.png",
-  "paginas": [
-   {
-    "titulo": "Leer la telemetría",
-    "texto": "La telemetría transmite medidas como presión, temperatura y tensión eléctrica. Cada valor se interpreta con su unidad, la hora de lectura, la tendencia y el intervalo esperado para esa fase de la misión."
-   },
-   {
-    "titulo": "Relacionar alarmas",
-    "texto": "Varias alertas pueden tener una causa común. Si coinciden una caída de tensión y avisos de equipos conectados a ella, se contrasta la secuencia con otras lecturas y con el estado de los sistemas de respaldo."
-   },
-   {
-    "titulo": "Comunicar lo observado",
-    "texto": "Un informe conciso identifica el equipo, el momento, los valores observados y lo que se ha confirmado. La coordinación entre tripulación y especialistas ayuda a decidir con base en procedimientos y datos compartidos."
-   }
-  ],
-  "fuentes": [
-   "https://ntrs.nasa.gov/api/citations/20130014090/downloads/20130014090.pdf"
-  ]
- },
- {
-  "id": "trajes_espaciales",
-  "nivel": "Avanzado",
-  "titulo": "Trajes espaciales",
-  "portada": "res://ai_assets/ui/biblioteca/portadas/trajes_espaciales.png",
-  "paginas": [
-   {
-    "titulo": "Un hábitat portátil",
-    "texto": "Un traje de actividad extravehicular mantiene presión alrededor del cuerpo y suministra oxígeno. También necesita retirar el dióxido de carbono que exhala el astronauta y mantener la circulación del aire."
-   },
-   {
-    "titulo": "Calor, protección y movilidad",
-    "texto": "El esfuerzo genera calor. Un traje puede usar una prenda con agua circulante para ayudar a extraerlo. Las capas externas y el visor protegen al astronauta; las articulaciones permiten moverse con el traje presurizado."
-   },
-   {
-    "titulo": "El margen de regreso",
-    "texto": "La batería, el oxígeno y otros consumibles limitan el tiempo fuera. Las comunicaciones y el seguimiento del estado del traje permiten a la tripulación ajustar el recorrido y preservar una reserva para el regreso."
-   }
-  ],
-  "fuentes": [
-   "https://www.nasa.gov/centers-and-facilities/johnson/spacewalk-spacesuit-basics/",
-   "https://www.nasa.gov/wp-content/uploads/2017/02/eva-exp-0042_xeva_system_con_ops_rev_b_final_dtd_10192020_ref_doc.pdf",
-   "https://ntrs.nasa.gov/api/citations/20250010956/downloads/20250010956.pdf"
-  ]
- }
 ]
