@@ -537,4 +537,6 @@ func show_guide(force: bool = true) -> GuideOverlay:
 	if has_method("is_cockpit_view"):
 		steps.append(GuideOverlay.step(tr("Cambia la vista"),
 			tr("Con la tecla [b]C[/b] o las flechas pasas de la vista exterior del cohete a la cabina."), %ViewLabel))
-	return GuideOverlay.start(self, "despegue", steps, false, force)
+	# El 2D y el 3D tienen su propio tutorial: entrar por primera vez a cada uno lo muestra.
+	var guide_id: String = "despegue_3d" if has_method("is_cockpit_view") else "despegue"
+	return GuideOverlay.start(self, guide_id, steps, false, force)

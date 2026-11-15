@@ -2007,3 +2007,21 @@ msgstr "Medals and certificate"
 
 msgid "Aquí aparecen tus medallas de cada misión. Con medalla en Base, Rover y Despegue se desbloquea tu [b]Certificado de Astronauta Junior[/b]."
 msgstr "Your medals from each mission appear here. With a medal in Base, Rover and Launch you unlock your [b]Junior Astronaut Certificate[/b]."
+
+msgid "Consola del domo"
+msgstr "Dome console"
+
+msgid "Aquí conviertes [b]energía[/b] en [b]escudo[/b]. El escudo protege la base de la radiación y de las tormentas solares."
+msgstr "Here you turn [b]energy[/b] into [b]shield[/b]. The shield protects the base from radiation and solar storms."
+
+msgid "Elige un nivel"
+msgstr "Choose a level"
+
+msgid "Nivel 1 usa el 25 % de la energía, nivel 2 el 50 % y nivel 3 toda. Pulsa el botón o las teclas [b]1[/b], [b]2[/b] o [b]3[/b]."
+msgstr "Level 1 uses 25 % of the energy, level 2 uses 50 % and level 3 uses all of it. Press the button or the keys [b]1[/b], [b]2[/b] or [b]3[/b]."
+
+msgid "Cuidado con la energía"
+msgstr "Watch your energy"
+
+msgid "Si gastas mucha energía, las consolas y los paneles tardan en recuperarse. [b]Esc[/b] cierra sin desviar nada."
+msgstr "If you spend a lot of energy, consoles and panels take time to recover. [b]Esc[/b] closes without diverting anything."

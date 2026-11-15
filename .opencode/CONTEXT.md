@@ -987,3 +987,9 @@ Se unió `PArcheTutorial/PARA_CESAR_NaSA-GAME` (+ `parche_tutoriales`, que ya es
 ### Hito 36 — Arreglo: el jugador caía fuera del escenario (2026-11-15)
 - Causa: en `station_platform.tscn` la `LandingPad` se escaló ×9 en el editor y además su `Collision` (StaticBody3D) y su `Shape` tenían escala ×5 cada uno: la caja de colisión medía ~560 × 110 × 560 m y envolvía toda la estación, así que la física expulsaba al jugador.
 - Arreglo: `Collision` y `Shape` de la pista vuelven a escala 1 (la caja ya crece con la escala de la pista). Regla: escalar el objeto, nunca su StaticBody3D/CollisionShape3D.
+
+### Hito 37 — Botón «Mi carnet» de vuelta y tutoriales en todos los modos (2026-11-15)
+- `scenes/main_menu.tscn`: se restaura `CardButton` (único `%CardButton`, 160,540 → 422,590, estilo del parche) y su conexión `pressed → _on_card_pressed` (abre `card_editor.tscn`). Sin él, el tutorial del menú fallaba al buscar `%CardButton`.
+- `scripts/launch_simulation.gd`: el 2D y el 3D usan ids distintos (`despegue` / `despegue_3d`); antes, jugar uno marcaba el otro como visto.
+- `scripts/dome_energy_panel.gd`: tutorial nuevo `consola_domo` (3 pasos) la primera vez que se abre la consola del domo; las teclas 1/2/3/Esc se ignoran mientras el tutorial está abierto. Textos en `locale/en.po`.
+- Revisado: base (`base_lunar`), minijuegos, rover, despegue, biblioteca, carnet y menús ya muestran su tutorial la primera vez; todos los `%Nodo` de sus pasos existen en sus escenas.
