@@ -220,9 +220,20 @@ sin Draco. Procedencia, pasos y fuentes de los textos: `ai_assets/models/perseve
   CM-103 con el vidrio de las ventanas vuelto transparente (máscaras trazadas a
   mano) para ver el cielo de la simulación. Las imágenes originales mostraban la
   Luna por la ventana, lo que no corresponde a un despegue.
+- `ai_assets/models/cabina_apolo8/`: panel principal, escotilla y DSKY en 3D (Hunyuan 3D,
+  optimizados con `tools/blender/hunyuan_optimizar.py`), colocados en la cabina del despegue 3D.
 - `ai_assets/apolo8/etapas/`: el Saturno V del paquete recortado en torre de
   escape, cápsula, adaptador SLA, S-IVB, S-II y S-IC, con fondo transparente.
 - Textos de la biblioteca: `resources/biblioteca/catalogo.json` (del paquete,
   con fuentes de la NASA). Datos del despegue: `resources/apolo8/ascenso.json`.
 - Las ilustraciones del paquete son conceptuales (según su LEEME); los datos
   numéricos de la simulación son reales.
+
+
+## Datos y portadas del Hito 20 (recursos de la NASA y la CSA)
+
+- `resources/radiacion/radlab_iss.json`: NASA OSDR RadLab, DosTel en la ISS (1/4/2022).
+- `resources/radiacion/donki_eventos.json`: NASA CCMC DONKI, erupciones solares M y X (nov. 2025 – mar. 2026).
+- `resources/hidroponia/cultivos.json`: NASA OSDR OSD-745, OSD-780, OSD-655 y Agencia Espacial Canadiense.
+- `ai_assets/ui/biblioteca/portadas/cuerpo_espacio.png` y `clima_espacial.png`: ilustraciones propias
+  dibujadas con `tools/portadas/make_covers.py` sobre el marco de las portadas existentes (sin fotos de terceros).

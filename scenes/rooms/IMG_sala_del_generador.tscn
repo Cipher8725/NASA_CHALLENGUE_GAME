@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" path="res://scenes/console.tscn" id="17_console"]
 [ext_resource type="PackedScene" uid="uid://dfbi13b0jbbgw" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Wall_Glass_Clear.glb" id="19_s86oo"]
 [ext_resource type="PackedScene" uid="uid://c56cqjc884pa1" path="res://scenes/doors/auto_door.tscn" id="20_auto_door"]
+[ext_resource type="PackedScene" uid="uid://bsqq38k3fv5py" path="res://assets/KayKit_Space_Base_Bits_1.0_FREE/Assets/gltf/solarpanel.gltf" id="21_solarpanel"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
 size = Vector3(20, 0.4, 20)
@@ -31,6 +32,21 @@ size = Vector3(1.2, 4, 0.65)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wall_z"]
 size = Vector3(0.74, 4, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_door_top"]
+size = Vector3(1.6, 1.7, 0.65)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_door_top_2"]
+size = Vector3(1.2, 1.7, 2.15)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_stairs"]
+points = PackedVector3Array(-1.8, 0, 2.6, 1.8, 0, 2.6, -1.8, 0, -2.4, 1.8, 0, -2.4, -1.8, 4.01, -2, 1.8, 4.01, -2, -1.8, 4.01, -2.4, 1.8, 4.01, -2.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_roof"]
+size = Vector3(19.94, 0.2, 19.94)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_solar"]
+size = Vector3(2.7, 1.1, 1.35)
 
 [node name="IMG_sala_del_generador" type="Node3D" unique_id=229616860]
 
@@ -379,6 +395,10 @@ shape = SubResource("BoxShape3D_door")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.6, 2, -9.6)
 shape = SubResource("BoxShape3D_door")
 
+[node name="Wall_South_0_top" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 3.15, -9.6)
+shape = SubResource("BoxShape3D_door_top")
+
 [node name="Wall_North_1" type="CollisionShape3D" parent="Collision" unique_id=1659761327]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, 9.6)
 shape = SubResource("BoxShape3D_wall_x")
@@ -439,6 +459,10 @@ shape = SubResource("BoxShape3D_door")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.6, 2, 1.4)
 shape = SubResource("BoxShape3D_door")
 
+[node name="Wall_West_2_top" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.6, 3.15, 0)
+shape = SubResource("BoxShape3D_door_top_2")
+
 [node name="Wall_East_3" type="CollisionShape3D" parent="Collision" unique_id=899081619]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.6, 2, 4)
 shape = SubResource("BoxShape3D_wall_z")
@@ -478,3 +502,141 @@ transform = Transform3D(-4.645693e-08, 1.0998092, -4.371139e-08, 0, -4.8074185e-
 
 [node name="Wall_East_5" parent="." unique_id=396527354 instance=ExtResource("19_s86oo")]
 transform = Transform3D(-4.645693e-08, 1.0998092, -4.371139e-08, 0, -4.8074185e-08, -1, -1.0628107, -4.8074185e-08, 1.9106855e-15, 5.6692257, 3.8268428, 0.0031661987)
+
+; Paneles solares sobre el techo: uno por baldosa opaca (las baldosas sin
+; techo son claraboyas de cristal y se dejan libres para no tapar la luz).
+; La franja z = -2 queda despejada: es el paso desde lo alto de ServiceStairs.
+[node name="SolarPanels" type="Node3D" parent="Ceiling"]
+
+[node name="Solar_0" parent="Ceiling/SolarPanels" instance=ExtResource("21_solarpanel")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -8, 4.01, -8)
+
+[node name="Solar_1" parent="Ceiling/SolarPanels" instance=ExtResource("21_solarpanel")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -4, 4.01, -8)
+
+[node name="Solar_2" parent="Ceiling/SolarPanels" instance=ExtResource("21_solarpanel")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 4, 4.01, -8)
+
+[node name="Solar_3" parent="Ceiling/SolarPanels" instance=ExtResource("21_solarpanel")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 8, 4.01, -8)
+
+[node name="Solar_4" parent="Ceiling/SolarPanels" instance=ExtResource("21_solarpanel")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -8, 4.01, -4)
+
+[node name="Solar_5" parent="Ceiling/SolarPanels" instance=ExtResource("21_solarpanel")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 4.01, -4)
+
+[node name="Solar_6" parent="Ceiling/SolarPanels" instance=ExtResource("21_solarpanel")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 8, 4.01, -4)
+
+[node name="Solar_7" parent="Ceiling/SolarPanels" instance=ExtResource("21_solarpanel")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -4, 4.01, 0)
+
+[node name="Solar_8" parent="Ceiling/SolarPanels" instance=ExtResource("21_solarpanel")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 4.01, 0)
+
+[node name="Solar_9" parent="Ceiling/SolarPanels" instance=ExtResource("21_solarpanel")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 4, 4.01, 0)
+
+[node name="Solar_10" parent="Ceiling/SolarPanels" instance=ExtResource("21_solarpanel")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -8, 4.01, 4)
+
+[node name="Solar_11" parent="Ceiling/SolarPanels" instance=ExtResource("21_solarpanel")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 4.01, 4)
+
+[node name="Solar_12" parent="Ceiling/SolarPanels" instance=ExtResource("21_solarpanel")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 8, 4.01, 4)
+
+[node name="Solar_13" parent="Ceiling/SolarPanels" instance=ExtResource("21_solarpanel")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -8, 4.01, 8)
+
+[node name="Solar_14" parent="Ceiling/SolarPanels" instance=ExtResource("21_solarpanel")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -4, 4.01, 8)
+
+[node name="Solar_15" parent="Ceiling/SolarPanels" instance=ExtResource("21_solarpanel")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 4, 4.01, 8)
+
+[node name="Solar_16" parent="Ceiling/SolarPanels" instance=ExtResource("21_solarpanel")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 8, 4.01, 8)
+
+; Rampa de servicio: cuña con la misma transformación que Props/ServiceStairs.
+; La malla sube 4 m en ~3,7 m (~47°, por encima de los 45° de floor_max_angle
+; del jugador), así que la base de la cuña se alarga 0,6 m hacia fuera para
+; dejar la pendiente en ~41° y que el CharacterBody3D pueda subirla. Por arriba
+; se prolonga 0,4 m dentro del techo para no dejar escalón contra RoofShape.
+[node name="ServiceStairs" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 11.97, 0, -2)
+shape = SubResource("ConvexPolygonShape3D_stairs")
+
+; Techo transitable: la cara superior queda a 4,01 m, a ras de lo alto de la rampa.
+[node name="RoofShape" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.91, 0)
+shape = SubResource("BoxShape3D_roof")
+
+[node name="Solar_0" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 4.56, -8)
+shape = SubResource("BoxShape3D_solar")
+
+[node name="Solar_1" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4.56, -8)
+shape = SubResource("BoxShape3D_solar")
+
+[node name="Solar_2" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4.56, -8)
+shape = SubResource("BoxShape3D_solar")
+
+[node name="Solar_3" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4.56, -8)
+shape = SubResource("BoxShape3D_solar")
+
+[node name="Solar_4" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 4.56, -4)
+shape = SubResource("BoxShape3D_solar")
+
+[node name="Solar_5" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.56, -4)
+shape = SubResource("BoxShape3D_solar")
+
+[node name="Solar_6" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4.56, -4)
+shape = SubResource("BoxShape3D_solar")
+
+[node name="Solar_7" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4.56, 0)
+shape = SubResource("BoxShape3D_solar")
+
+[node name="Solar_8" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.56, 0)
+shape = SubResource("BoxShape3D_solar")
+
+[node name="Solar_9" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4.56, 0)
+shape = SubResource("BoxShape3D_solar")
+
+[node name="Solar_10" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 4.56, 4)
+shape = SubResource("BoxShape3D_solar")
+
+[node name="Solar_11" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.56, 4)
+shape = SubResource("BoxShape3D_solar")
+
+[node name="Solar_12" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4.56, 4)
+shape = SubResource("BoxShape3D_solar")
+
+[node name="Solar_13" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 4.56, 8)
+shape = SubResource("BoxShape3D_solar")
+
+[node name="Solar_14" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4.56, 8)
+shape = SubResource("BoxShape3D_solar")
+
+[node name="Solar_15" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4.56, 8)
+shape = SubResource("BoxShape3D_solar")
+
+[node name="Solar_16" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4.56, 8)
+shape = SubResource("BoxShape3D_solar")

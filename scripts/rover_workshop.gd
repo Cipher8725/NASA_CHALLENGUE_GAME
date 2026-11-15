@@ -36,11 +36,6 @@ enum Phase { CHOOSING, ASSEMBLING, DONE }
 ## Escena a la que vuelve el botón "VOLVER AL MENÚ".
 const MENU_SCENE: String = "res://scenes/main_menu.tscn"
 
-## Metadatos de las fotos reales del Perseverance descargadas de la NASA.
-const PHOTOS_PATH: String = "res://ai_assets/perseverance_fotos/fotos.json"
-## Texto que acompaña a la foto cuando el rover ya está armado.
-const PHOTO_CAPTION: String = "Así ve Marte el rover que acabas de armar"
-
 ## Rover que se arma en este taller.
 @export var rover_data: RoverData
 ## Velocidad de giro de la cámara con el botón derecho (radianes por píxel).
@@ -79,10 +74,6 @@ var _local_faces: Dictionary = {}
 var _ghosts: Dictionary = {}
 ## Por cada id: fila de la lista de procedimiento.
 var _steps: Dictionary = {}
-## Fotos reales del Perseverance (NASA) que se muestran al terminar.
-var _photos: Array[Dictionary] = []
-## Foto que se está mostrando ahora.
-var _photo: Dictionary = {}
 
 # Estado del arrastre en curso.
 var _pressed_id: StringName = &""
@@ -116,16 +107,10 @@ var _orbiting: bool = false
 @onready var _result_title: Label = %ResultTitle
 @onready var _result_detail: Label = %ResultDetail
 @onready var _credit_label: Label = %CreditLabel
-@onready var _photo_panel: Control = %PhotoPanel
-@onready var _photo_image: TextureRect = %PhotoImage
-@onready var _photo_caption: Label = %PhotoCaption
-@onready var _photo_info: Label = %PhotoInfo
-@onready var _photo_credit: Label = %PhotoCredit
 
 func _ready() -> void:
 	if DisplayServer.get_name() != "headless":
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	_photos = _load_photos(PHOTOS_PATH)
 	_build_rover()
 	_build_steps()
 	_reset_state()
@@ -169,19 +154,6 @@ func get_home_position(piece_id: StringName) -> Vector3:
 
 func get_tray_position(piece_id: StringName) -> Vector3:
 	return _tray[piece_id]
-
-## Numero de fotos reales del Perseverance disponibles.
-func get_photo_count() -> int:
-	return _photos.size()
-
-## Foto real que se esta mostrando ahora (vacia si no hay ninguna).
-func get_current_photo() -> Dictionary:
-	return _photo
-
-## Muestra una foto real del Perseverance. Devuelve true si se pudo mostrar.
-func show_rover_photo() -> bool:
-	_show_rover_photo()
-	return _photo_panel.visible
 
 ## Pieza que toca instalar ahora (null si el entrenamiento no está en curso).
 func get_next_piece() -> RoverPieceData:
@@ -332,7 +304,6 @@ func _reset_state() -> void:
 		(_nodes[piece_id] as Node3D).position = _tray[piece_id]
 	_card.visible = false
 	_result_panel.visible = false
-	_photo_panel.visible = false
 	_mode_panel.visible = true
 	_hint_label.text = "Elige un modo para empezar el entrenamiento."
 	_update_ghost()
@@ -374,53 +345,7 @@ func _finish() -> void:
 	_hint_label.text = "Rover completo. Pulsa EMPEZAR DE NUEVO para practicar otra vez."
 	_card.visible = false
 	_result_panel.visible = true
-	_show_rover_photo()
 	training_completed.emit(_stars, _errors, _elapsed)
-
-## Muestra una foto real del Perseverance (NASA) con su credito.
-## Los datos vienen de `ai_assets/perseverance_fotos/fotos.json`.
-func _show_rover_photo() -> void:
-	if _photos.is_empty():
-		_photo_panel.visible = false
-		return
-	_photo = _photos[randi() % _photos.size()]
-	var ruta: String = str(_photo.get("archivo", ""))
-	var textura: Texture2D = load(ruta) as Texture2D if ResourceLoader.exists(ruta) else null
-	if textura == null:
-		_photo_panel.visible = false
-		return
-	_photo_image.texture = textura
-	_photo_caption.text = PHOTO_CAPTION
-	var titulo: String = str(_photo.get("titulo", ""))
-	var fecha: String = str(_photo.get("fecha", ""))
-	var camara: String = str(_photo.get("camara", ""))
-	var sol: String = str(_photo.get("sol", ""))
-	var detalles: String = ""
-	if sol != "":
-		detalles = "Sol %s." % sol
-	if camara != "":
-		detalles = ("%s " % detalles if detalles != "" else "") + "Camara %s." % camara
-	if fecha != "":
-		detalles = ("%s " % detalles if detalles != "" else "") + "Tomada el %s." % fecha
-	if titulo != "":
-		detalles = ("%s " % detalles if detalles != "" else "") + titulo
-	_photo_info.text = detalles
-	_photo_credit.text = str(_photo.get("credito", "NASA/JPL-Caltech"))
-	_photo_panel.visible = true
-
-## Lee los metadatos de las fotos reales del Perseverance.
-static func _load_photos(path: String) -> Array[Dictionary]:
-	var resultado: Array[Dictionary] = []
-	if not FileAccess.file_exists(path):
-		push_warning("RoverWorkshop: no existe %s" % path)
-		return resultado
-	var datos: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
-	if not (datos is Dictionary):
-		return resultado
-	for item: Variant in (datos as Dictionary).get("fotos", []) as Array:
-		if item is Dictionary:
-			resultado.append(item as Dictionary)
-	return resultado
 
 ## Sube de nivel el carnet guardado, si corresponde. Devuelve el texto a mostrar.
 func _promote_card() -> String:

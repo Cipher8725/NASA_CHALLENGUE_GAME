@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3]
+[gd_scene load_steps=19 format=3]
 
 ; ─────────────────────────────────────────────────────────────
 ; IMG_SALA DEL ORRERY  (20 x 20 m)
@@ -33,6 +33,9 @@ size = Vector3(0.74, 4, 4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_door"]
 size = Vector3(1.2, 4, 0.65)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_door_top"]
+size = Vector3(1.6, 1.7, 0.65)
 
 [node name="IMG_sala_del_orrery" type="Node3D"]
 
@@ -373,6 +376,10 @@ shape = SubResource("BoxShape3D_door")
 [node name="Wall_South_2_b" type="CollisionShape3D" parent="Collision"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, 2, -9.6)
 shape = SubResource("BoxShape3D_door")
+
+[node name="Wall_South_2_top" type="CollisionShape3D" parent="Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.15, -9.6)
+shape = SubResource("BoxShape3D_door_top")
 
 [node name="Wall_North_3" type="CollisionShape3D" parent="Collision"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0, 2, 9.6)

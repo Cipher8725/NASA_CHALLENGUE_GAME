@@ -1,167 +1,109 @@
 class_name RadiationData
 extends RefCounted
 
-## Datos reales de radiación del espacio, descargados de la NASA.
+## Datos reales de radiación usados por la Base lunar.
 ##
-## Este script NO inventa cifras: lee los JSON que hay en `resources/radiacion/`
-## (descargados una vez con `tools/descargar_datos_nasa.py`) y expone helpers
-## para que el juego pueda usarlos.
+## - `resources/radiacion/radlab_iss.json`: dosis medida en la ISS por los detectores
+##   DosTel (NASA OSDR RadLab), 24 horas del 1 de abril de 2022.
+## - `resources/radiacion/donki_eventos.json`: erupciones solares reales registradas por
+##   DONKI (NASA CCMC).
 ##
-## Fuentes:
-##  * RadLab (NASA/OSDR): dosis absorbida medida en la ISS.
-##  * DONKI (NASA/CCMC): tormentas solares y eyecciones de masa coronal.
-##
-## Si un archivo falta o está mal escrito, se avisa y el juego sigue
-## funcionando con valores por defecto marcados como aproximados.
+## Ningún número de radiación se inventa aquí: solo se leen esos archivos. Lo que es
+## regla de juego (escala de tiempo, daño por clase) está marcado como "aproximado"
+## dentro de los propios JSON.
 
 const RADLAB_PATH: String = "res://resources/radiacion/radlab_iss.json"
 const DONKI_PATH: String = "res://resources/radiacion/donki_eventos.json"
+## Detector cuyo perfil horario se usa en el juego.
+const PROFILE_DETECTOR: String = "DosTel1"
+## Factor (tasa / media del día) a partir del cual el HUD avisa de radiación alta.
+const HIGH_RADIATION_FACTOR: float = 4.0
 
-## Evento de clima espacial real.
-class SpaceWeatherEvent extends RefCounted:
-	var tipo: String = ""
-	var id_donki: String = ""
-	var fecha: String = ""
-	var clase: String = ""
-	var familia_clase: String = ""
-	var severidad: float = 0.0
-	var etiqueta_severidad: String = ""
-	var velocidad_km_s: int = 0
+static var _radlab: Dictionary = {}
+static var _donki: Dictionary = {}
 
-	func get_titulo() -> String:
-		if tipo == "tormenta_solar":
-			return "Tormenta solar clase %s" % clase
-		return "Eyeccion de masa coronal"
-
-	## Texto del aviso que se muestra en el HUD.
-	func get_aviso() -> String:
-		var texto: String = get_titulo()
-		if tipo == "eyeccion_masa_coronal" and velocidad_km_s > 0:
-			texto = "Eyeccion de masa coronal a %d km/s" % velocidad_km_s
-		return "%s (DONKI, %s)" % [texto, fecha]
-
-static var _instance: RadiationData = null
-
-## Instancia compartida (los datos no cambian durante la partida).
-static func get_instance() -> RadiationData:
-	if _instance == null:
-		_instance = RadiationData.new()
-		_instance._cargar()
-	return _instance
-
-# --- Datos cargados ---
-
-## Dosis absorbida media diaria medida en la ISS, en µGy/día.
-var dosis_media_ugy_dia: float = 0.0
-## Dosis absorbida media diaria, en mGy/día.
-var dosis_media_mgy_dia: float = 0.0
-## Número de mediciones diarias usadas para la media.
-var numero_mediciones: int = 0
-## Instrumentos que tomaron las mediciones.
-var instrumentos: Array[String] = []
-## URL de la API de RadLab.
-var url_radlab: String = ""
-## Fecha en que se descargaron los datos.
-var fecha_descarga_radlab: String = ""
-
-## Eventos de clima espacial (tormentas solares y CMEs), del más reciente al más antiguo.
-var eventos: Array[SpaceWeatherEvent] = []
-## Tabla clase -> severidad (aproximada, es la decisión de diseño del juego).
-var clase_a_severidad: Dictionary = {}
-## URL de la API de DONKI.
-var url_donki: String = ""
-## Fecha en que se descargaron los eventos.
-var fecha_descarga_donki: String = ""
-
-# --- API pública ---
-
-## Devuelve el evento real que corresponde a una clase de tormenta solar.
-## Si no hay ninguno con esa clase, devuelve null.
-func get_evento_de_clase(familia: String) -> SpaceWeatherEvent:
-	for evento: SpaceWeatherEvent in eventos:
-		if evento.familia_clase == familia:
-			return evento
-	return null
-
-## Devuelve el evento real con la mayor severidad de su clase.
-## Se usa para que la tormenta mas fuerte sea la que castiga mas.
-func get_evento_mas_severo() -> SpaceWeatherEvent:
-	var mejor: SpaceWeatherEvent = null
-	for evento: SpaceWeatherEvent in eventos:
-		if mejor == null or evento.severidad > mejor.severidad:
-			mejor = evento
-	return mejor
-
-## Texto con el dato real de radiacion para la pantalla de resultado.
-func get_texto_dosis_iss() -> String:
-	if dosis_media_ugy_dia <= 0.0:
-		return ""
-	return "En la ISS un astronauta recibe unos %.0f µGy al día (RadLab, NASA)" % dosis_media_ugy_dia
-
-## Texto corto con el dato real, para la pantalla de resultado.
-func get_texto_dosis_iss_corto() -> String:
-	if dosis_media_mgy_dia <= 0.0:
-		return ""
-	return "Dosis real en la ISS: %.3f mGy/día (RadLab, NASA)" % dosis_media_mgy_dia
-
-# --- Carga ---
-
-func _cargar() -> void:
-	_cargar_radlab()
-	_cargar_donki()
-
-func _cargar_radlab() -> void:
-	var datos: Dictionary = _leer_json(RADLAB_PATH)
-	if datos.is_empty():
-		push_warning("RadiationData: no se pudo leer %s" % RADLAB_PATH)
-		return
-	var estadisticas: Dictionary = datos.get("estadisticas", {}) as Dictionary
-	dosis_media_ugy_dia = float(estadisticas.get("dosis_absorbida_media_ugy_dia", 0.0))
-	dosis_media_mgy_dia = float(estadisticas.get("dosis_absorbida_media_mgy_dia", 0.0))
-	numero_mediciones = int((datos.get("periodo", {}) as Dictionary).get("numero_de_mediciones_diarias", 0))
-	instrumentos.assign(Array(datos.get("instrumentos", [])))
-	url_radlab = str(datos.get("url_consulta", ""))
-	fecha_descarga_radlab = str(datos.get("fecha_descarga", ""))
-
-func _cargar_donki() -> void:
-	var datos: Dictionary = _leer_json(DONKI_PATH)
-	if datos.is_empty():
-		push_warning("RadiationData: no se pudo leer %s" % DONKI_PATH)
-		return
-	clase_a_severidad = datos.get("clase_a_severidad", {}) as Dictionary
-	url_donki = str((datos.get("urls_consulta", {}) as Dictionary).get("tormentas_solares", ""))
-	fecha_descarga_donki = str(datos.get("fecha_descarga", ""))
-	var lista: Array = datos.get("eventos", []) as Array
-	for item: Variant in lista:
-		if not (item is Dictionary):
-			continue
-		var dato: Dictionary = item as Dictionary
-		var evento := SpaceWeatherEvent.new()
-		evento.tipo = str(dato.get("tipo", ""))
-		evento.id_donki = str(dato.get("id_donki", ""))
-		evento.fecha = str(dato.get("fecha", ""))
-		evento.clase = str(dato.get("clase", ""))
-		evento.familia_clase = str(dato.get("familia_clase", ""))
-		evento.velocidad_km_s = int(dato.get("velocidad_km_s", 0))
-		var regla: Dictionary = clase_a_severidad.get(evento.familia_clase, {}) as Dictionary
-		# La clase B no tiene severidad definida por la NASA: se deja vacia
-		# (no se inventa) y el evento no genera tormenta.
-		var severidad: Variant = regla.get("severidad", null)
-		if severidad == null:
-			continue
-		evento.severidad = float(severidad)
-		evento.etiqueta_severidad = str(regla.get("etiqueta", ""))
-		eventos.append(evento)
-	# Los eventos mas recientes primero: son los mas relevantes para la partida.
-	eventos.sort_custom(func(a: SpaceWeatherEvent, b: SpaceWeatherEvent) -> bool:
-		return a.fecha > b.fecha)
-
-func _leer_json(path: String) -> Dictionary:
-	if not FileAccess.file_exists(path):
+## Lee y guarda en caché un JSON del proyecto.
+static func _load_json(path: String) -> Dictionary:
+	var file: FileAccess = FileAccess.open(path, FileAccess.READ)
+	if file == null:
+		push_error("RadiationData: no se encontró %s" % path)
 		return {}
-	var texto: String = FileAccess.get_file_as_string(path)
-	var datos: Variant = JSON.parse_string(texto)
-	if not (datos is Dictionary):
-		push_warning("RadiationData: %s no contiene un objeto JSON válido." % path)
+	var parsed: Variant = JSON.parse_string(file.get_as_text())
+	file.close()
+	return parsed as Dictionary if typeof(parsed) == TYPE_DICTIONARY else {}
+
+static func radlab() -> Dictionary:
+	if _radlab.is_empty():
+		_radlab = _load_json(RADLAB_PATH)
+	return _radlab
+
+static func donki() -> Dictionary:
+	if _donki.is_empty():
+		_donki = _load_json(DONKI_PATH)
+	return _donki
+
+static func _detector() -> Dictionary:
+	var detectors: Dictionary = radlab().get("detectores", {})
+	return detectors.get(PROFILE_DETECTOR, {})
+
+## Perfil real de 24 valores (µGy/h), uno por hora UTC.
+static func hourly_profile() -> Array:
+	return _detector().get("media_por_hora_uGy_h", [])
+
+## Tasa media del día medido (µGy/h).
+static func mean_rate() -> float:
+	return float(_detector().get("tasa_media_uGy_h", 0.0))
+
+## Dosis total de las 24 horas medidas (µGy).
+static func daily_dose() -> float:
+	return float(_detector().get("dosis_24h_uGy", 0.0))
+
+## Hora del día real (0-23) que representa una fracción de la misión (0-1).
+static func hour_for_progress(progress: float) -> int:
+	return clampi(int(floorf(clampf(progress, 0.0, 0.9999) * 24.0)), 0, 23)
+
+## Tasa real (µGy/h) para un momento de la misión.
+static func rate_for_progress(progress: float) -> float:
+	var profile: Array = hourly_profile()
+	if profile.is_empty():
+		return mean_rate()
+	return float(profile[hour_for_progress(progress)])
+
+## Multiplicador del desgaste del escudo: tasa de ese momento / tasa media del día.
+## Fórmula documentada en radlab_iss.json → uso_en_juego.formula.
+static func shield_factor(progress: float) -> float:
+	var mean: float = mean_rate()
+	if mean <= 0.0:
+		return 1.0
+	return rate_for_progress(progress) / mean
+
+## Lista de erupciones solares reales.
+static func flares() -> Array:
+	return donki().get("eventos", [])
+
+## Elige una erupción real al azar (diccionario vacío si no hay datos).
+static func random_flare() -> Dictionary:
+	var list: Array = flares()
+	if list.is_empty():
 		return {}
-	return datos as Dictionary
+	return list[randi() % list.size()] as Dictionary
+
+## Severidad de juego (0-1) para una clase como "M5.9" o "X8.1".
+static func severity_for_class(flare_class: String) -> float:
+	var table: Dictionary = donki().get("severidad_por_clase", {})
+	if flare_class.is_empty():
+		return 0.5
+	var letter: String = flare_class.substr(0, 1).to_upper()
+	var magnitude: float = flare_class.substr(1).to_float()
+	var base: float = float(table.get(letter, 0.5))
+	var extra: float = float(table.get("extra_por_magnitud", 0.0)) * magnitude
+	return minf(base + extra, float(table.get("maximo", 1.0)))
+
+## Puntos de escudo que quita una tormenta de severidad 1.
+static func shield_damage_per_severity() -> float:
+	return float(donki().get("dano_escudo_por_severidad", 25.0))
+
+## Texto corto de una erupción para el HUD.
+static func flare_label(flare: Dictionary) -> String:
+	var peak: String = String(flare.get("pico", flare.get("inicio", "")))
+	return "Tormenta solar clase %s (DONKI, %s)" % [flare.get("clase", "?"), peak.substr(0, 10)]

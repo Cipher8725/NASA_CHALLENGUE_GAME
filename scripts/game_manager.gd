@@ -4,7 +4,7 @@ extends Node
 ## Gestor global de la misión (registrado como Autoload con el nombre "Game").
 ##
 ## Responsabilidades:
-## - Mantener el estado de los recursos vitales (oxígeno, energía, agua y escudo radioactivo).
+## - Mantener el estado de los recursos vitales (oxígeno, energía, agua, escudo radioactivo y comida).
 ## - Emitir señales para que la UI y el mundo observen el estado (nunca al revés).
 ## - Controlar la máquina de estados de la misión.
 ## - Persistir y recuperar partidas guardadas.
@@ -50,12 +50,14 @@ const RESOURCE_OXYGEN: StringName = &"oxygen"
 const RESOURCE_ENERGY: StringName = &"energy"
 const RESOURCE_WATER: StringName = &"water"
 const RESOURCE_SHIELD: StringName = &"shield"
+## Comida fresca del huerto hidropónico (se repone con el minijuego de cultivo).
 const RESOURCE_FOOD: StringName = &"food"
 
 const EMERGENCY_METEOR: StringName = &"micrometeorito"
 const EMERGENCY_OVERLOAD: StringName = &"sobrecarga_energia"
 const EMERGENCY_PRESSURE: StringName = &"caida_presion"
 const EMERGENCY_WATER_LEAK: StringName = &"fuga_agua"
+## Tormenta solar real tomada de DONKI (ver RadiationData).
 const EMERGENCY_SOLAR_STORM: StringName = &"tormenta_solar"
 
 const SAVE_PATH_FORMAT: String = "user://nasa_save_%d.json"
@@ -87,6 +89,8 @@ var _elapsed_mission_time: float = 0.0
 var _score: float = 0.0
 var _missions_completed: int = 0
 var _notification_accumulator: float = 0.0
+## Última erupción solar real aplicada (datos de DONKI), para el HUD.
+var _last_solar_flare: Dictionary = {}
 
 func _ready() -> void:
 	# Se publica la instancia estática para que otros scripts puedan acceder al
@@ -221,20 +225,31 @@ func trigger_emergency(emergency_type: StringName, severity: float) -> void:
 		EMERGENCY_WATER_LEAK:
 			_apply_damage(RESOURCE_WATER, clamped_severity * 12.0)
 		EMERGENCY_SOLAR_STORM:
-			_apply_damage(RESOURCE_SHIELD, clamped_severity * config.shield_solar_storm_damage)
+			_apply_damage(RESOURCE_SHIELD, clamped_severity * RadiationData.shield_damage_per_severity())
 		_:
 			push_warning("GameManager: tipo de emergencia desconocido: %s" % emergency_type)
 			return
 	emergency_triggered.emit(emergency_type, clamped_severity)
 
-## Dispara una tormenta solar real de DONKI: elige un evento del catálogo
-## de la NASA y aplica su severidad al escudo. Devuelve el aviso que se
-## muestra en el HUD, o una cadena vacía si no hay datos.
-func trigger_solar_storm(event: RadiationData.SpaceWeatherEvent) -> String:
-	if event == null:
-		return ""
-	trigger_emergency(EMERGENCY_SOLAR_STORM, event.severidad)
-	return event.get_aviso()
+## Aplica una tormenta solar real de DONKI: su clase (C, M, X) decide la severidad.
+func trigger_solar_flare(flare: Dictionary) -> void:
+	_last_solar_flare = flare
+	var severity: float = RadiationData.severity_for_class(String(flare.get("clase", "")))
+	trigger_emergency(EMERGENCY_SOLAR_STORM, severity)
+
+## Última tormenta solar aplicada (vacío si todavía no hubo ninguna).
+func get_last_solar_flare() -> Dictionary:
+	return _last_solar_flare
+
+## Fracción de la misión transcurrida (0-1).
+func get_mission_progress() -> float:
+	if config == null or config.mission_duration <= 0.0:
+		return 0.0
+	return clampf(_elapsed_mission_time / config.mission_duration, 0.0, 1.0)
+
+## Tasa de radiación real (µGy/h, RadLab) que corresponde al momento actual.
+func get_current_radiation_rate() -> float:
+	return RadiationData.rate_for_progress(get_mission_progress())
 
 # --- Persistencia ---
 
@@ -291,7 +306,7 @@ func has_save_game(slot: int) -> bool:
 
 # --- Métodos privados ---
 
-## Reinicia los cinco recursos a su capacidad máxima.
+## Reinicia los cuatro recursos a su capacidad máxima.
 func _reset_resources() -> void:
 	_maxima = {
 		RESOURCE_OXYGEN: config.max_oxygen,
@@ -305,12 +320,14 @@ func _reset_resources() -> void:
 	_depleted_latched = {}
 	_notification_accumulator = 0.0
 
-## Aplica el decaimiento continuo de los cinco recursos.
+## Aplica el decaimiento continuo de los cuatro recursos.
 func _apply_decay(delta: float) -> void:
 	_decay_resource(RESOURCE_OXYGEN, config.oxygen_decay_rate, delta)
 	_decay_resource(RESOURCE_ENERGY, config.energy_decay_rate, delta)
 	_decay_resource(RESOURCE_WATER, config.water_decay_rate, delta)
-	_decay_resource(RESOURCE_SHIELD, config.shield_decay_rate, delta)
+	# El escudo se gasta según la radiación real medida en la ISS (RadLab):
+	# más rápido en los picos del día, más lento el resto del tiempo.
+	_decay_resource(RESOURCE_SHIELD, config.shield_decay_rate * RadiationData.shield_factor(get_mission_progress()), delta)
 	_decay_resource(RESOURCE_FOOD, config.food_decay_rate, delta)
 
 ## Aplica el decaimiento de un recurso concreto.

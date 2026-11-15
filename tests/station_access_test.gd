@@ -7,9 +7,24 @@ extends Node
 ##     las colisiones del hábitat eran cajas de 20 m que cerraban las puertas).
 ##  2. Por detrás de cada puerta hay un paso real: el rayo que sale de la
 ##     puerta tiene que recorrer al menos 8 m antes de chocar con algo.
+##  3. Sobre cada hueco de puerta hay dintel (colisión `*_top`): no se puede
+##     atravesar el muro por encima de la puerta.
+##  4. Se puede VOLVER a entrar: la cápsula del jugador, apoyada en el suelo
+##     de fuera, cruza la puerta hacia dentro sin chocar. Es la red de
+##     seguridad del bug del "muro invisible" al regresar a la estación (la
+##     plataforma estaba 0,15 m por debajo del suelo de las salas y ese
+##     escalón frenaba la cápsula como si fuera una pared).
 
 ## Altura a la que se comprueban los pasos (altura del pecho).
 const DOOR_HEIGHT: float = 1.2
+## Altura a la que se comprueba el dintel (por encima del marco de la puerta).
+const LINTEL_PROBE_HEIGHT: float = 3.3
+## Distancia fuera de la puerta desde la que el jugador intenta volver a entrar.
+const REENTRY_OUTSIDE: float = 3.0
+## Distancia que el jugador debe recorrer dentro de la sala tras cruzar.
+const REENTRY_INSIDE: float = 2.0
+## Holgura sobre el suelo al colocar la cápsula de prueba.
+const REENTRY_LIFT: float = 0.03
 ## Longitud del rayo para comprobar el paso inmediato de una puerta.
 const PASSAGE_LENGTH: float = 2.5
 ## Distancia mínima que debe recorrer el rayo de salida de una puerta.
@@ -38,6 +53,11 @@ func _run() -> void:
 	printerr("ACC: puertas=", doors.size())
 	_failures += _check_passages(doors)
 	_failures += _check_openings(doors)
+	_failures += _check_lintels(doors)
+	# Las hojas de las puertas correderas bloquean mientras están cerradas (es
+	# lo correcto en el juego); para medir el paso se abren todas.
+	await _open_sliding_doors(main)
+	_failures += _check_reentry(doors, player)
 
 	print("=== RESULTADO ACCESIBILIDAD: %s ===" % ("TODO OK" if _failures == 0 else "%d FALLOS" % _failures))
 	get_tree().quit(_failures)
@@ -77,6 +97,59 @@ func _check_openings(doors: Array[Dictionary]) -> int:
 	if failures == 0:
 		print("  [OK]    todas las puertas dan a un espacio abierto")
 	return failures
+
+## Por encima de cada puerta el muro debe ser sólido (dintel `*_top`).
+func _check_lintels(doors: Array[Dictionary]) -> int:
+	var failures: int = 0
+	for door: Dictionary in doors:
+		var position: Vector3 = door["position"]
+		var facing: Vector3 = door["facing"]
+		var center: Vector3 = position + Vector3(0, LINTEL_PROBE_HEIGHT, 0)
+		if not _ray_hits(center - facing * 1.0, center + facing * 1.0):
+			failures += 1
+			print("  [FALLO] %s: no hay dintel sobre la puerta" % door["name"])
+	if failures == 0:
+		print("  [OK]    todas las puertas tienen dintel")
+	return failures
+
+## El jugador, de pie en el suelo de fuera, debe poder cruzar cada puerta
+## hacia dentro. Se usa `test_move` con las formas reales del jugador, así que
+## detecta escalones y bordes que un rayo fino no ve.
+func _check_reentry(doors: Array[Dictionary], player: HabitatPlayer) -> int:
+	var failures: int = 0
+	for door: Dictionary in doors:
+		var position: Vector3 = door["position"]
+		var facing: Vector3 = door["facing"]
+		var outside: Vector3 = position + facing * REENTRY_OUTSIDE
+		var ground: Dictionary = _ray(outside + Vector3(0, 2, 0), outside + Vector3(0, -3, 0))
+		if ground.is_empty():
+			failures += 1
+			print("  [FALLO] %s: no hay suelo fuera de la puerta" % door["name"])
+			continue
+		var floor_y: float = (ground["position"] as Vector3).y
+		var start: Transform3D = Transform3D(Basis.IDENTITY, Vector3(outside.x, floor_y + REENTRY_LIFT, outside.z))
+		var collision: KinematicCollision3D = KinematicCollision3D.new()
+		var motion: Vector3 = -facing * (REENTRY_OUTSIDE + REENTRY_INSIDE)
+		if player.test_move(start, motion, collision):
+			failures += 1
+			print("  [FALLO] %s: no se puede volver a entrar (suelo fuera y=%.2f, choca en %s a y=%.2f)" % [
+				door["name"], floor_y, str(collision.get_collider()), collision.get_position().y])
+	if failures == 0:
+		print("  [OK]    se puede volver a entrar por todas las puertas")
+	return failures
+
+## Abre todas las puertas correderas y espera a que la colisión de la hoja se
+## desactive (es un `set_deferred`).
+func _open_sliding_doors(root: Node) -> void:
+	var pending: Array[Node] = [root]
+	while not pending.is_empty():
+		var node: Node = pending.pop_back()
+		for child: Node in node.get_children():
+			pending.append(child)
+			if child is SlidingDoor:
+				(child as SlidingDoor).open_door()
+	for _i: int in range(3):
+		await get_tree().physics_frame
 
 ## Recorre el árbol con una pila explícita y devuelve las puertas con su
 ## posición y la dirección hacia la que se sale de su sala.

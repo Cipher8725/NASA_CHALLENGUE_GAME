@@ -781,5 +781,64 @@ funciona, la ruta de la herramienta debe ser **relativa** (`.`), porque concaten
 - Las 4 puertas con rotación (puertas en paredes este/oeste/norte: `room_briefing` Door_West_2, `IMG_vestibulo` Door_East_2, `room_medbay` Door_East_2, `room_quarters` Door_South_5 y Door_South_6) mantuvieron su rotación aplicando la escala sobre la matriz de rotación existente.
 - No se modificó ningún otro nodo ni propiedad.
 
+### Hito 19 — Cabina del Apolo 8 con modelos 3D de Hunyuan 3D (2026-11-14)
+
+- Tres piezas 3D generadas con Hunyuan 3D (versión internacional, 3d.hunyuanglobal.com) desde
+  imágenes de referencia "intermedias" (realistas pero sin choque con el estilo del juego):
+  `ai_assets/models/cabina_apolo8/panel_principal_3d.glb` (2,30 m), `escotilla_3d.glb` (1,24 m)
+  y `dsky_3d.glb` (0,62 m, escala 1,35 en escena). Datos en `cabina_apolo8.json`.
+- Optimizadas con `tools/blender/hunyuan_optimizar.py`: 50k → 12–24k triángulos, texturas
+  4096 → 1024/2048, origen centrado, tamaño en metros. Las texturas se exportan en PNG: con JPEG
+  exportado desde Blender, Godot 4.7.2 no cargaba la textura base (modelo blanco).
+- Colocadas como hijos de los paneles de `%Cabin` en `simulacion_despegue_3d.tscn`
+  (PanelPrincipal3D, Escotilla3D, DSKY3D); `CabinLight` más fuerte (1,6) para que se lean.
+  El DSKY va girado 180° porque el panel derecho mira hacia dentro con su −Z.
+- Test: `launch_simulation_3d_test` comprueba que los tres modelos están en la cabina.
+  Capturas: `docs/capturas/cabina_3d_hunyuan_*.png`.
+
+### Hito 20 — Recursos de la NASA y la CSA (2026-11-15)
+
+- **Radiación real (RadLab + DONKI).** `scripts/radiation_data.gd` (`RadiationData`, estático) lee
+  `resources/radiacion/radlab_iss.json` (DosTel en la ISS, 1/4/2022, perfil de 24 h) y
+  `resources/radiacion/donki_eventos.json` (22 erupciones M y X reales). El escudo se gasta con
+  `shield_decay_rate × tasa(hora)/tasa_media` (180 s = 24 h, aproximado). Nueva emergencia
+  `GameManager.EMERGENCY_SOLAR_STORM` (`tormenta_solar`): `EmergencySystem` elige una erupción real y
+  llama a `GameManager.trigger_solar_flare()`; la severidad sale de la clase (C < M < X, tabla en el
+  JSON). El HUD avisa la tormenta con su clase y fecha de DONKI, avisa los picos de RadLab y muestra un
+  dato real al terminar la misión. Prueba: `tests/radiation_test.tscn`.
+- **Comida y huerto (OSDR + CSA).** Quinto recurso `GameManager.RESOURCE_FOOD` (`max_food`,
+  `food_decay_rate` en `MissionConfig`), barra COMIDA en `scenes/hud.tscn`, consola `ConsoleFood` en
+  `scenes/rooms/room_hydroponics.tscn`. Minijuego `scenes/ui/minigame_hydroponics.tscn` +
+  `scripts/minigame_hydroponics.gd` (`HydroponicsMinigame`): elegir luz roja 90:10 o azul 50:50
+  (VEG-04), regar con ESPACIO (gasta agua) y mantener la humedad hasta los días reales de cosecha
+  (lechuga 33, mizuna 35). La luz gasta energía (azul +15 %). Datos: `resources/hidroponia/cultivos.json`
+  (OSD-745, OSD-780, OSD-655 y CSA). Prueba: `tests/hydroponics_test.tscn`.
+- **Biblioteca: 11 libros.** «Tu cuerpo en el espacio» (Intermedio, OSDR + CSA) y «El clima del
+  espacio» (Avanzado, DONKI + RadLab). Portadas nuevas con el mismo marco
+  (`tools/portadas/make_covers.py`). La estantería tiene una cuarta columna (x 942).
+- `README.md` con la tabla «Datos de la NASA usados».
+- Nota: OSD-655 trata de la mizuna de VEG-04 (análisis de elementos y antioxidantes), no de estrés
+  fisiológico humano.
+- Pendiente: DONKI se descargó solo hasta el 14/3/2026 (límite de DEMO_KEY); con una clave gratuita de
+  api.nasa.gov se puede completar el año. Fotos reales del Perseverance para el taller: pendiente.
+
+### Hito 21 — Techo transitable y paneles solares en la sala del generador (2026-11-15)
+
+- `scenes/rooms/IMG_sala_del_generador.tscn`, todo dentro del `StaticBody3D` `Collision`:
+  - `ServiceStairs` (`ConvexPolygonShape3D` en cuña) con la **misma transformación literal** que
+    `Props/ServiceStairs` (`Ramp_Grey.glb`, fuera del muro este). La malla sube 4 m en ~3,7 m
+    (~47°, más que los 45° por defecto de `floor_max_angle`), así que la base de la cuña se alarga
+    0,6 m hacia fuera (~41°) y por arriba entra 0,4 m en el techo.
+  - `RoofShape`: caja 19,94 × 0,2 × 19,94 con la cara superior a 4,01 m. El borde **debe coincidir**
+    con lo alto de la rampa (x = 9,97): con 20 m sobresalía 3 cm y el jugador se atascaba en la esquina.
+  - 17 paneles `KayKit .../gltf/solarpanel.gltf` (escala 3, como en `station_platform.tscn`) en
+    `Ceiling/SolarPanels`, uno por baldosa opaca del techo; las claraboyas de cristal y la franja
+    z = -2 (llegada de la rampa) quedan libres. Cada panel tiene su `BoxShape3D` 2,7 × 1,1 × 1,35.
+- Verificado con un `CharacterBody3D` real (`scenes/player.tscn`) moviéndose a 4 m/s: sube la rampa
+  y cruza el techo a y = 4,01. `physics_test` y `asset_collision_test` en verde. `station_access_test`
+  baja de 2 a 1 fallo (el techo pone el dintel que faltaba sobre la puerta sur del generador; queda el
+  de `RoomHydroponics/Wall_South_2`, ya existente).
+- Ojo: en los `.tscn` el `Transform3D(...)` no se puede transponer a mano; copiar el del nodo visual.
+
 ---
-*Actualizado: 2026-11-14 — Hito 18 (escala uniforme de puertas AutoDoor) completado.*
+*Actualizado: 2026-11-15 — Hito 21 (techo y paneles solares del generador) completado.*

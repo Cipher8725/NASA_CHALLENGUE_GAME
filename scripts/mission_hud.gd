@@ -53,6 +53,16 @@ const STATE_COLORS: Dictionary = {
 }
 
 var _alert_time_left: float = 0.0
+## Evita repetir el aviso de radiación alta mientras dura el mismo pico.
+var _high_radiation_warned: bool = false
+
+## Nombres para niños de cada emergencia.
+const EMERGENCY_LABELS: Dictionary = {
+	&"micrometeorito": "MICROMETEORITO",
+	&"sobrecarga_energia": "SOBRECARGA DE ENERGÍA",
+	&"caida_presion": "CAÍDA DE PRESIÓN",
+	&"fuga_agua": "FUGA DE AGUA",
+}
 
 func _ready() -> void:
 	# Conexión a las señales del gestor global (observación, no control).
@@ -74,6 +84,8 @@ func _process(delta: float) -> void:
 	# El HUD solo refresca los indicadores de tiempo y puntuación.
 	_update_timer_display()
 	_update_score_display()
+
+	_check_radiation_peak()
 
 	if _alert_time_left > 0.0:
 		_alert_time_left -= delta
@@ -149,25 +161,29 @@ func _on_resource_depleted(resource_type: StringName) -> void:
 	var label: String = String(RESOURCE_LABELS.get(resource_type, resource_type))
 	_show_alert("¡%s AGOTADO!" % label, 4.0)
 
-func _on_emergency_triggered(emergency_type: StringName, severity: float) -> void:
-	# La tormenta solar lleva datos reales de DONKI: se avisa con la clase,
-	# la fecha y el identificador del evento de la NASA.
+func _on_emergency_triggered(emergency_type: StringName, _severity: float) -> void:
 	if emergency_type == GameManager.EMERGENCY_SOLAR_STORM:
-		var evento: RadiationData.SpaceWeatherEvent = _last_solar_storm
-		if evento != null:
-			_show_alert(evento.get_aviso(), 5.0)
-			return
-	_show_alert("EMERGENCIA: %s" % emergency_type.to_upper(), 3.0)
+		var flare: Dictionary = _game.get_last_solar_flare()
+		_show_alert("¡%s! Revisa el escudo." % RadiationData.flare_label(flare).to_upper(), 4.0)
+		return
+	var label: String = String(EMERGENCY_LABELS.get(emergency_type, String(emergency_type).to_upper()))
+	_show_alert("EMERGENCIA: %s" % label, 3.0)
 
-## Último evento de tormenta solar real que se ha mostrado (lo usa el HUD).
-var _last_solar_storm: RadiationData.SpaceWeatherEvent = null
+## Avisa cuando la radiación real (RadLab) sube mucho por encima de la media del día.
+func _check_radiation_peak() -> void:
+	var state: GameManager.MissionState = _game.get_mission_state()
+	if state != GameManager.MissionState.ACTIVE and state != GameManager.MissionState.CRITICAL:
+		return
+	var factor: float = RadiationData.shield_factor(_game.get_mission_progress())
+	if factor >= RadiationData.HIGH_RADIATION_FACTOR and not _high_radiation_warned:
+		_high_radiation_warned = true
+		_show_alert("RADIACIÓN ALTA: %d µGy/h medidos en la ISS (RadLab)" % roundi(_game.get_current_radiation_rate()), 4.0)
+	elif factor < RadiationData.HIGH_RADIATION_FACTOR:
+		_high_radiation_warned = false
 
-## Registra el evento real de tormenta solar que acaba de ocurrir y muestra
-## su aviso en pantalla.
-func show_solar_storm(event: RadiationData.SpaceWeatherEvent) -> void:
-	_last_solar_storm = event
-	if event != null:
-		_show_alert(event.get_aviso(), 5.0)
+## Dato real de radiación para la pantalla de resultado.
+func _radiation_fact() -> String:
+	return "Dato real: un astronauta en la ISS recibió unos %d µGy en un día (RadLab, NASA)." % roundi(RadiationData.daily_dose())
 
 func _on_mission_state_changed(new_state: GameManager.MissionState) -> void:
 	_update_state_display(new_state)
@@ -175,21 +191,12 @@ func _on_mission_state_changed(new_state: GameManager.MissionState) -> void:
 func _on_mission_failed(reason: String) -> void:
 	_result_panel.visible = true
 	_result_title.text = "MISIÓN FALLIDA"
-	_result_detail.text = "%s\n\nPuntuación: %d%s" % [reason, roundi(_game.get_score()), _texto_dato_real()]
+	_result_detail.text = "%s\n\nPuntuación: %d\n\n%s" % [reason, roundi(_game.get_score()), _radiation_fact()]
 
 func _on_mission_completed(final_score: float) -> void:
 	_result_panel.visible = true
 	_result_title.text = "MISIÓN COMPLETADA"
-	_result_detail.text = "¡Has sobrevivido al hábitat!\n\nPuntuación final: %d%s" % [roundi(final_score), _texto_dato_real()]
-
-## Dato real de la NASA que se añade a la pantalla de resultado.
-## Viene de RadLab (dosis medida en la ISS). Si no hay datos, no se muestra nada.
-func _texto_dato_real() -> String:
-	var radiacion: RadiationData = RadiationData.get_instance()
-	var texto: String = radiacion.get_texto_dosis_iss()
-	if texto.is_empty():
-		return ""
-	return "\n\n" + texto
+	_result_detail.text = "¡Has sobrevivido al hábitat!\n\nPuntuación final: %d\n\n%s" % [roundi(final_score), _radiation_fact()]
 
 ## Muestra un mensaje de alerta temporal en pantalla.
 func _show_alert(message: String, duration: float) -> void:

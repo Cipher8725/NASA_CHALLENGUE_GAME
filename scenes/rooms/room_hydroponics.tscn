@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bhu1h3nm2fvmf"]
+[gd_scene load_steps=20 format=3 uid="uid://bhu1h3nm2fvmf"]
 
 [ext_resource type="PackedScene" uid="uid://d4hcl821xhh7q" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Hydroponics_Floor.glb" id="1_hydroponics_floor"]
 [ext_resource type="PackedScene" uid="uid://cv5cclhjgq3wn" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Ceiling_Tile_Grey_Metal.glb" id="2_ceiling_tile_grey_metal"]
@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://vcgswxecvabm" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Wall_Display_Green.glb" id="12_wall_display_green"]
 [ext_resource type="PackedScene" uid="uid://dfbi13b0jbbgw" path="res://assets/Molten Maps SciFi Asset Pack/Assets/gtlf/Wall_Glass_Clear.glb" id="14_b3aat"]
 [ext_resource type="PackedScene" path="res://scenes/doors/auto_door.tscn" id="15_auto_door"]
-[ext_resource type="PackedScene" path="res://scenes/console.tscn" id="17_console"]
+[ext_resource type="PackedScene" path="res://scenes/console.tscn" id="16_console"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
 size = Vector3(20, 0.4, 20)
@@ -325,12 +325,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -8)
 [node name="Display" parent="Props" unique_id=1463636305 instance=ExtResource("12_wall_display_green")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 9.15)
 
-; Consola de comida: controla el cultivo de la hidroponía.
-[node name="ConsoleFood" parent="." unique_id=1543271885 instance=ExtResource("17_console")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
+[node name="ConsoleFood" parent="." instance=ExtResource("16_console")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -2.5)
 resource_type = &"food"
-display_name = "COMIDA"
-console_color = Color(0.55, 0.87, 0.4, 1)
+display_name = "HUERTO"
+console_color = Color(0.55, 0.88, 0.3, 1)
 
 [node name="Collision" type="StaticBody3D" parent="." unique_id=1426695579]
 

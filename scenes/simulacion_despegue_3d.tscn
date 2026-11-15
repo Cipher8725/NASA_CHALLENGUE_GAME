@@ -34,6 +34,9 @@
 [ext_resource type="Texture2D" path="res://ai_assets/apolo8/cabina_180_atras.png" id="29_r"]
 [ext_resource type="Texture2D" path="res://ai_assets/apolo8/humo.png" id="31_r"]
 [ext_resource type="Texture2D" path="res://ai_assets/apolo8/cabina_270_izquierda.png" id="30_r"]
+[ext_resource type="PackedScene" path="res://ai_assets/models/cabina_apolo8/panel_principal_3d.glb" id="32_r"]
+[ext_resource type="PackedScene" path="res://ai_assets/models/cabina_apolo8/escotilla_3d.glb" id="33_r"]
+[ext_resource type="PackedScene" path="res://ai_assets/models/cabina_apolo8/dsky_3d.glb" id="34_r"]
 
 [sub_resource type="ShaderMaterial" id="Sky3D_mat"]
 shader = ExtResource("17_r")
@@ -362,6 +365,15 @@ cast_shadow = 0
 mesh = SubResource("Panel_mesh")
 surface_material_override/0 = SubResource("Panel_270_izquierda_mat")
 
+[node name="PanelPrincipal3D" parent="World/Rocket/Cabin/Panel_000_frente" instance=ExtResource("32_r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0, 0.11)
+
+[node name="Escotilla3D" parent="World/Rocket/Cabin/Panel_180_atras" instance=ExtResource("33_r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, -0.02, 0.08)
+
+[node name="DSKY3D" parent="World/Rocket/Cabin/Panel_090_derecha" instance=ExtResource("34_r")]
+transform = Transform3D(-1.35, 0, 0, 0, 1.35, 0, 0, 0, -1.35, 0.35, -0.25, -0.07)
+
 [node name="Ceiling" type="MeshInstance3D" parent="World/Rocket/Cabin"]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0.9, 0)
 cast_shadow = 0
@@ -373,8 +385,9 @@ cast_shadow = 0
 mesh = SubResource("CabinCap_mesh")
 
 [node name="CabinLight" type="OmniLight3D" parent="World/Rocket/Cabin"]
-light_energy = 0.4
-omni_range = 3.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+light_energy = 1.6
+omni_range = 4.5
 
 [node name="CockpitCamera" type="Camera3D" parent="World/Rocket/Cabin"]
 unique_name_in_owner = true

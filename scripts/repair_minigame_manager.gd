@@ -16,8 +16,8 @@ extends CanvasLayer
 const SCENE_OXYGEN: String = "res://scenes/ui/minigame_oxygen.tscn"
 ## Ruta de la escena del minijuego de energía (conectar cables).
 const SCENE_ENERGY: String = "res://scenes/ui/minigame_cables.tscn"
-## Ruta de la escena del minijuego de hidroponía (ajustar luz y agua).
-const SCENE_HYDROPONICS: String = "res://scenes/ui/minigame_hydroponics.tscn"
+## Ruta del minijuego de la hidroponía (cultivar comida con luz y agua).
+const SCENE_FOOD: String = "res://scenes/ui/minigame_hydroponics.tscn"
 
 var _current: RepairMinigame = null
 
@@ -68,7 +68,7 @@ func _scene_for(resource_type: StringName) -> String:
 		GameManager.RESOURCE_ENERGY:
 			return SCENE_ENERGY
 		GameManager.RESOURCE_FOOD:
-			return SCENE_HYDROPONICS
+			return SCENE_FOOD
 		_:
 			return ""
 

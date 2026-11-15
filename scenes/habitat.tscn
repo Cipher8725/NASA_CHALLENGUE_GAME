@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3]
+[gd_scene load_steps=16 format=3]
 
 ; Módulo habitable de la estación espacial.
 ;
@@ -49,6 +49,12 @@ size = Vector3(1.2, 4, 0.65)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_door_side"]
 size = Vector3(0.65, 4, 1.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_door_top"]
+size = Vector3(1.6, 1.7, 0.65)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_door_top_2"]
+size = Vector3(0.65, 1.7, 1.6)
 
 [node name="Habitat" type="Node3D"]
 script = ExtResource("1_habitat")
@@ -158,6 +164,10 @@ shape = SubResource("BoxShape3D_door")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, 2, 9.66)
 shape = SubResource("BoxShape3D_door")
 
+[node name="North_Door_top" type="CollisionShape3D" parent="WallFront"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.15, 9.66)
+shape = SubResource("BoxShape3D_door_top")
+
 [node name="North_Glass_3" type="CollisionShape3D" parent="WallFront"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, 9.6)
 shape = SubResource("BoxShape3D_wall_glass")
@@ -187,6 +197,10 @@ shape = SubResource("BoxShape3D_door_side")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.6, 2, 1.4)
 shape = SubResource("BoxShape3D_door_side")
 
+[node name="West_Door_top" type="CollisionShape3D" parent="WallLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.6, 3.15, 0)
+shape = SubResource("BoxShape3D_door_top_2")
+
 [node name="West_Wall_3" type="CollisionShape3D" parent="WallLeft"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.6, 2, 4)
 shape = SubResource("BoxShape3D_wall_z")
@@ -215,6 +229,10 @@ shape = SubResource("BoxShape3D_door_side")
 [node name="East_Door_b" type="CollisionShape3D" parent="WallRight"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.6, 2, 1.4)
 shape = SubResource("BoxShape3D_door_side")
+
+[node name="East_Door_top" type="CollisionShape3D" parent="WallRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.6, 3.15, 0)
+shape = SubResource("BoxShape3D_door_top_2")
 
 [node name="East_Wall_3" type="CollisionShape3D" parent="WallRight"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.6, 2, 4)

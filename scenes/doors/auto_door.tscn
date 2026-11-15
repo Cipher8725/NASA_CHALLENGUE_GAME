@@ -1,7 +1,13 @@
-[gd_scene format=3 uid="uid://c56cqjc884pa1"]
+[gd_scene load_steps=7 format=3]
 
-[ext_resource type="Script" uid="uid://drxhvo04ansvc" path="res://scripts/sliding_door.gd" id="1_door"]
-[ext_resource type="PackedScene" uid="uid://dyfjh08sxqkct" path="res://ai_assets/models/puerta/puerta_scifi.glb" id="2_model"]
+; Puerta AUTOMÁTICA: se abre sola cuando el jugador se acerca y se cierra cuando se aleja.
+; Modelo 3D en res://ai_assets/models/puerta/. Medidas: 1,7 m x 2,2 m por defecto. CAMBIA EL TAMAÑO en el Inspector: grupo "Tamaño (ajustable)".
+; Al abrirse la hoja sube su propia altura (o se desliza de lado si slide_direction = IZQUIERDA/DERECHA, para techos bajos).
+; Colisiones: marco (StaticBody3D, capa 1) y hoja (se desactiva al abrir).
+; Áreas: capa 0, máscara 2 (el jugador está en la capa 2 y en el grupo "player").
+
+[ext_resource type="Script" path="res://scripts/sliding_door.gd" id="1_door"]
+[ext_resource type="PackedScene" path="res://ai_assets/models/puerta/puerta_scifi.glb" id="2_model"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_post"]
 resource_local_to_scene = true
@@ -13,58 +19,59 @@ size = Vector3(1.7, 0.25, 0.3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_leaf"]
 resource_local_to_scene = true
-size = Vector3(1.26, 1.96, 0.099999994)
+size = Vector3(1.26, 1.96, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_detect"]
 resource_local_to_scene = true
 size = Vector3(3, 2.4, 4)
 
-[node name="AutoDoor" type="Node3D" unique_id=761302825]
+[node name="AutoDoor" type="Node3D"]
 script = ExtResource("1_door")
+required_access_level = 0
 
-[node name="Model" parent="." unique_id=1832408631 instance=ExtResource("2_model")]
+[node name="Model" parent="." instance=ExtResource("2_model")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
 
-[node name="FrameBody" type="StaticBody3D" parent="." unique_id=1029547706]
+[node name="FrameBody" type="StaticBody3D" parent="."]
 
-[node name="LeftPost" type="CollisionShape3D" parent="FrameBody" unique_id=1025659820]
+[node name="LeftPost" type="CollisionShape3D" parent="FrameBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.735, 1.1, 0)
 shape = SubResource("BoxShape3D_post")
 
-[node name="RightPost" type="CollisionShape3D" parent="FrameBody" unique_id=1227111673]
+[node name="RightPost" type="CollisionShape3D" parent="FrameBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.735, 1.1, 0)
 shape = SubResource("BoxShape3D_post")
 
-[node name="Top" type="CollisionShape3D" parent="FrameBody" unique_id=1707270789]
+[node name="Top" type="CollisionShape3D" parent="FrameBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.075, 0)
 shape = SubResource("BoxShape3D_top")
 
-[node name="LeafBody" type="StaticBody3D" parent="." unique_id=1789691459]
+[node name="LeafBody" type="StaticBody3D" parent="."]
 
-[node name="LeafCollision" type="CollisionShape3D" parent="LeafBody" unique_id=1436738623]
+[node name="LeafCollision" type="CollisionShape3D" parent="LeafBody"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9644865, -0.049999997)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.98, -0.05)
 shape = SubResource("BoxShape3D_leaf")
 
-[node name="DetectArea" type="Area3D" parent="." unique_id=148902539]
+[node name="DetectArea" type="Area3D" parent="."]
 unique_name_in_owner = true
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="DetectShape" type="CollisionShape3D" parent="DetectArea" unique_id=291296626]
+[node name="DetectShape" type="CollisionShape3D" parent="DetectArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 shape = SubResource("BoxShape3D_detect")
 
-[node name="StatusLabel" type="Label3D" parent="." unique_id=1929996161]
+[node name="StatusLabel" type="Label3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.95, 0.25)
-pixel_size = 0.004
 billboard = 1
 no_depth_test = true
 modulate = Color(1, 0.9, 0.55, 1)
 font_size = 30
+pixel_size = 0.004
 outline_size = 8
-autowrap_mode = 3
 width = 600.0
+autowrap_mode = 3
+outline_modulate = Color(0, 0, 0, 1)

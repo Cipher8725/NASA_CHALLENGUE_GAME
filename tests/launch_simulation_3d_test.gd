@@ -15,6 +15,8 @@ func _run() -> void:
 	sim.set_process(false)
 	for piece: String in LaunchSimulation3D.ROCKET_PIECES:
 		failures += _check("El Saturno V 3D tiene la pieza %s" % piece, sim.get_node_or_null("World/Rocket/" + piece) != null)
+	for model: String in ["PanelPrincipal3D", "Escotilla3D", "DSKY3D"]:
+		failures += _check("La cabina tiene el modelo 3D %s (Hunyuan 3D)" % model, sim.find_child(model, true, false) != null)
 	failures += _check("Empieza con la vista exterior", not sim.is_cockpit_view())
 	sim._set_view(1)
 	failures += _check("La vista de cabina usa la cámara de la cabina", sim.is_cockpit_view() and (sim.get_node("%CockpitCamera") as Camera3D).current)

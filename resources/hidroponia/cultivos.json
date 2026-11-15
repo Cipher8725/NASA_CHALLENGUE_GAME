@@ -1,99 +1,72 @@
 {
-  "descripcion": "Cultivos que la Canadian Space Agency (CSA) considera candidatos para producir alimento en el espacio, con sus nutrientes, días de crecimiento y los factores (luz, agua, temperatura, humedad) que hay que controlar. Datos extraidos del material educativo 'Interplanetary Farming' y de la pagina 'Growing healthy food in space and in remote areas' de la CSA.",
-  "fuentes": [
-    "https://www.asc-csa.gc.ca/eng/youth-educators/toolkits/food-production/",
-    "https://www.asc-csa.gc.ca/eng/youth-educators/activities/fitness-and-nutrition/interplanetary-farming.asp",
-    "https://www.asc-csa.gc.ca/eng/sciences/food-production/growing-healthy-food-in-space-and-remote-areas.asp"
-  ],
-  "url_consulta": "https://www.asc-csa.gc.ca/eng/youth-educators/activities/fitness-and-nutrition/interplanetary-farming.asp",
-  "fecha_descarga": "2026-11-15",
-  "nota_datos": "Los dias de crecimiento y los nutrientes son los que publica la CSA. Los valores de luz y agua en unidades de juego (porcentaje de intensidad y humedad) son APROXIMADOS (juego): la CSA explica que la luz y el agua son factores a regular, pero no da cifras numericas para el agua y el color de luz. Esas cifras se han elegido para que el minijuego sea jugable.",
-  "cultivos": [
-    {
-      "id": "lechuga",
-      "nombre": "Lechuga (hoja verde)",
-      "dias_hasta_cosechar": 21,
-      "dias_hasta_cosechar_rango": "21-28",
-      "nutrientes": "Vitamina K, vitamina A, vitamina C",
-      "beneficio_nutricional": "Aporta vitaminas K, A y C, que ayudan a mantener Huesos y piel sanos. Es la fuente de hojas verdes de la dieta del astronauta.",
-      "procesado_antes_de_consumir": "ninguno",
-      "luz_minima_porcentaje": 40,
-      "luz_maxima_porcentaje": 90,
-      "agua_minima_porcentaje": 30,
-      "agua_maxima_porcentaje": 70,
-      "nota": "La CSA la recommends como cultivo de 'coger y comer' (pick and eat): se come fresca, sin procesado."
-    },
-    {
-      "id": "tomate",
-      "nombre": "Tomate",
-      "dias_hasta_cosechar": 50,
-      "dias_hasta_cosechar_rango": "50-90",
-      "nutrientes": "Carbohidratos, vitamina A, vitamina C, vitamina K, fibra",
-      "beneficio_nutricional": "Da carbohidratos para la energia y vitaminas A, C y K. La fibra ayuda al sistema digestivo, que en microgravedad es un problema para los astronautas.",
-      "procesado_antes_de_consumir": "ninguno",
-      "luz_minima_porcentaje": 50,
-      "luz_maxima_porcentaje": 95,
-      "agua_minima_porcentaje": 40,
-      "agua_maxima_porcentaje": 80,
-      "nota": "Crecimiento lento: hasta 90 dias en las condiciones menos favorables."
-    },
-    {
-      "id": "albahaca",
-      "nombre": "Albahaca",
-      "dias_hasta_cosechar": 75,
-      "dias_hasta_cosechar_rango": "75",
-      "nutrientes": "Vitamina K y vitamina A",
-      "beneficio_nutricional": "Fuente de vitaminas K y A. Aporta sabor a las comidas del astronauta, algo importante para que la tripulacion siga comiendo con gusto en el espacio.",
-      "procesado_antes_de_consumir": "ninguno",
-      "luz_minima_porcentaje": 45,
-      "luz_maxima_porcentaje": 85,
-      "agua_minima_porcentaje": 35,
-      "agua_maxima_porcentaje": 75,
-      "nota": "Hierba aromatica de un solo metro: cabe bien en un compartimento pequeno de la estación."
-    },
-    {
-      "id": "eneldo",
-      "nombre": "Eneldo",
-      "dias_hasta_cosechar": 90,
-      "dias_hasta_cosechar_rango": "90",
-      "nutrientes": "Vitamina A, vitamina C, manganeso, fibra",
-      "beneficio_nutricional": "Aporta vitaminas A y C, manganeso y fibra. El manganeso ayuda al cuerpo a usar el hierro de los alimentos.",
-      "procesado_antes_de_consumir": "ninguno",
-      "luz_minima_porcentaje": 40,
-      "luz_maxima_porcentaje": 80,
-      "agua_minima_porcentaje": 25,
-      "agua_maxima_porcentaje": 65,
-      "nota": "La CSA lo incluye como ejemplo de cultivo de hoja verde aromatico."
-    }
-  ],
-  "desafios_espacio": [
-    {
-      "factor": "Agua",
-      "descripcion": "El agua liquida no se puede conseguir con facilidad. En los polos de la Luna hay agua, pero puede hacer falta aportarla."
-    },
-    {
-      "factor": "Luz",
-      "descripcion": "En el ecuador lunar un dia lunar dura 28 dias terrestres, con unos 14 dias de luz y 14 de oscuridad. En el polo Sur hay luz casi constante. Se necesitan sistemas de luz artificial."
-    },
-    {
-      "factor": "Radiacion",
-      "descripcion": "La Luna no tiene campo magnetico, asi que esta expuesta a la radiacion espacial. Las plantas deben cultivarse en una zona cerrada y blindada."
-    },
-    {
-      "factor": "Atmosfera",
-      "descripcion": "La Luna no tiene atmosfera. Los gases que necesitan las plantas para crecer tienen que aportarse."
-    },
-    {
-      "factor": "Temperatura",
-      "descripcion": "En el ecuador lunar las temperaturas pueden alcanzar 120 grados de dia y 130 de noche. Se necesitan sistemas de regulation termica."
-    },
-    {
-      "factor": "Suelo",
-      "descripcion": "El regolito lunar no tiene los nutrientes necesarios para que las plantas crezcan. Se pueden usar sistemas hidropónicos o aeropónicos."
-    }
-  ],
-  "sistemas_iss": {
-    "veggie": "El sistema de cultivo Veggie de la NASA usa almohadillas de planta con una cantidad precisa de arcilla, fertilizante y semillas preparadas en la Tierra.",
-    "aph": "El Advanced Plant Habitat (APH) de la ISS cultiva una variedad de plantas en una camara de crecimiento con control de temperatura, oxigeno y dioxido de carbono. Sus LEDs blanca, roja, azul y verde permiten adaptar la luz a cada planta."
+ "descripcion": "Cultivos reales probados en el huerto Veggie de la ISS y en el programa Tomatosphere de la Agencia Espacial Canadiense. Solo se guardan datos publicados; lo que no está publicado se marca como no disponible.",
+ "fecha_descarga": "2026-11-15",
+ "fuentes": [
+  "https://osdr.nasa.gov/bio/repo/data/studies/OSD-745",
+  "https://osdr.nasa.gov/bio/repo/data/studies/OSD-780",
+  "https://osdr.nasa.gov/bio/repo/data/studies/OSD-655",
+  "https://www.asc-csa.gc.ca/eng/youth-educators/toolkits/food-production/",
+  "https://www.asc-csa.gc.ca/eng/sciences/food-production/growing-healthy-food-in-space-and-remote-areas.asp",
+  "https://www.asc-csa.gc.ca/eng/youth-educators/tomatosphere.asp"
+ ],
+ "cultivos": [
+  {
+   "id": "lechuga",
+   "nombre": "Lechuga romana roja 'Outredgeous'",
+   "nombre_cientifico": "Lactuca sativa cv. 'Outredgeous'",
+   "dias_hasta_cosecha": 33,
+   "dias_dato": "VEG-01A y B se cosecharon a los 33 días; VEG-03A se cosechó a los 33 días y luego 3 veces más, una por semana.",
+   "donde": "Huerto Veggie de la ISS (VEG-01A, VEG-01B, VEG-03A; 2014 y 2016)",
+   "luz": "no publicado en el estudio OSD-745",
+   "agua": "Almohadillas con arcilla porosa y fertilizante de liberación lenta; mechas de germinación",
+   "nutricion": "Comida fresca y segura: no se encontraron patógenos humanos. Comparada con la de Tierra, tuvo distinto hierro, potasio, sodio, fósforo, azufre, zinc y fenoles, pero igual antocianinas y antioxidantes (ORAC).",
+   "dato_curioso": "Los astronautas se comieron parte de las cosechas.",
+   "fuente": "https://osdr.nasa.gov/bio/repo/data/studies/OSD-745",
+   "estudio": "OSD-745"
+  },
+  {
+   "id": "mizuna",
+   "nombre": "Mizuna (mostaza japonesa)",
+   "nombre_cientifico": "Brassica rapa var. japonica",
+   "dias_hasta_cosecha": 35,
+   "dias_dato": "VEG-04A: planta entera a los 35 días. VEG-04B: hojas externas a los 29 y 43 días y cosecha final a los 58 días.",
+   "donde": "Huerto Veggie de la ISS (VEG-04A y VEG-04B, 2019)",
+   "luz": {
+    "rica_en_rojo": "90 % rojo : 10 % azul",
+    "rica_en_azul": "50 % rojo : 50 % azul",
+    "nota": "La luz rica en azul aportó cerca de 15 % más energía (calor) con el mismo flujo de fotones."
+   },
+   "agua": "El riego se hizo más frecuente a medida que las plantas crecían; el equipo decidía el agua de cada día mirando las fotos.",
+   "error_real": "En VEG-04A el fertilizante fue demasiado fuerte: las plantas sufrieron estrés por sales y algunas murieron. Para VEG-04B se bajó 47 % el fertilizante rápido.",
+   "nutricion": "Verdura fresca y nutritiva para misiones largas; el rendimiento y la química cambiaron según el tipo de luz.",
+   "fuente": "https://osdr.nasa.gov/bio/repo/data/studies/OSD-780",
+   "estudio": "OSD-780 y OSD-655"
+  },
+  {
+   "id": "tomate",
+   "nombre": "Tomate (Tomatosphere)",
+   "nombre_cientifico": "Solanum lycopersicum",
+   "dias_hasta_cosecha": null,
+   "dias_dato": "no disponible en la página de la CSA",
+   "donde": "Programa escolar Tomatosphere (CSA y Let's Talk Science): semillas que estuvieron en el espacio o en condiciones parecidas, sembradas en aulas",
+   "luz": "no disponible",
+   "agua": "Las hojas devuelven agua al aire por transpiración.",
+   "nutricion": "Mucha vitamina A y C y licopeno. Con la fotosíntesis convierte la luz y el dióxido de carbono que exhalan los astronautas en oxígeno.",
+   "fuente": "https://www.asc-csa.gc.ca/eng/youth-educators/tomatosphere.asp",
+   "estudio": "CSA Tomatosphere"
   }
+ ],
+ "datos_csa": {
+  "calorias_por_dia": "Los menús de los astronautas tienen entre 1900 y 3200 calorías al día, según cada tripulante.",
+  "reabastecimiento": "La ISS recibe comida fresca cada pocos meses; en la Luna o Marte los astronautas tendrán que cultivar la suya.",
+  "fuente": "https://www.asc-csa.gc.ca/eng/sciences/food-production/growing-healthy-food-in-space-and-remote-areas.asp"
+ },
+ "uso_en_juego": {
+  "nota": "aproximado (juego): los días reales hasta la cosecha se comprimen en unos segundos de minijuego (1 día = 0,5 s).",
+  "segundos_por_dia": 0.5,
+  "agua_por_riego": 3.0,
+  "energia_luz_roja_por_segundo": 0.35,
+  "energia_luz_azul_por_segundo": 0.4,
+  "nota_energia": "La luz azul gasta 15 % más energía que la roja, como en VEG-04 (dato real); la cantidad base por segundo es aproximada (juego)."
+ }
 }

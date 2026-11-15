@@ -16,8 +16,7 @@ signal book_closed
 const CATALOG_PATH: String = "res://resources/biblioteca/catalogo.json"
 const MENU_SCENE: String = "res://scenes/main_menu.tscn"
 ## Columnas y filas de la estantería (esquina superior izquierda de cada libro).
-## Hay cuatro columnas por nivel: la estantería del fondo tiene sitio para
-## cuatro libros en cada balda sin taparse entre si.
+## Cuatro columnas: la cuarta (x 942) entra en el mismo estante sin tapar otros libros.
 const SHELF_COLUMNS: Array[int] = [454, 616, 779, 942]
 const SHELF_ROWS: Dictionary = {"Básico": 165, "Intermedio": 316, "Avanzado": 470}
 ## Cuánto crece un libro al pasar el ratón.

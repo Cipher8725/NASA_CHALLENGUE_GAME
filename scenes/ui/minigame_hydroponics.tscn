@@ -1,61 +1,74 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene load_steps=8 format=3]
 
-; Minijuego de producción de alimentos en la hidroponía.
+; Minijuego de la hidroponía: cultivar comida fresca como en el huerto Veggie de la ISS.
 ;
-; El jugador ajusta la LUZ (arriba/abajo) y el AGUA (izquierda/derecha) para
-; mantener la planta dentro del rango que necesita el cultivo. Los rangos
-; salen de `resources/hidroponia/cultivos.json` (datos de la CSA).
-; Regar consume agua y la luz consume energía de la misión real.
+; El jugador elige la luz (roja 90:10 o azul 50:50, como en VEG-04), riega con ESPACIO
+; y mantiene la humedad en la zona verde hasta los días reales de cosecha.
+; Datos: resources/hidroponia/cultivos.json (NASA OSDR y Agencia Espacial Canadiense).
 
 [ext_resource type="Script" path="res://scripts/minigame_hydroponics.gd" id="1_hydro"]
-[ext_resource type="Script" path="res://scripts/repair_gauge.gd" id="2_gauge"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
-bg_color = Color(0.04, 0.09, 0.05, 0.94)
+bg_color = Color(0.04, 0.06, 0.11, 0.94)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.45, 0.8, 0.4, 0.75)
+border_color = Color(0.35, 0.55, 0.8, 0.75)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar_bg"]
-bg_color = Color(0.12, 0.16, 0.13, 0.9)
+bg_color = Color(0.12, 0.14, 0.2, 0.9)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar_fill"]
-bg_color = Color(0.95, 0.85, 0.35, 1)
+bg_color = Color(0.45, 0.85, 0.35, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar_fill_water"]
-bg_color = Color(0.35, 0.72, 0.95, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button"]
+bg_color = Color(0.2, 0.55, 0.85, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.75, 0.9, 1, 0.9)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_zone"]
-bg_color = Color(0.4, 0.9, 0.45, 0.35)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_hover"]
+bg_color = Color(0.3, 0.68, 0.98, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 0.95)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_soil"]
-bg_color = Color(0.29, 0.2, 0.12, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_pressed"]
+bg_color = Color(0.14, 0.4, 0.65, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.75, 0.9, 1, 0.9)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="HydroponicsMinigame" type="Control"]
 layout_mode = 3
@@ -65,6 +78,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hydro")
+time_limit = 30.0
 
 [node name="Dim" type="ColorRect" parent="."]
 layout_mode = 1
@@ -83,9 +97,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -380.0
+offset_left = -360.0
 offset_top = -250.0
-offset_right = 380.0
+offset_right = 360.0
 offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -93,129 +107,83 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
 [node name="Body" type="VBoxContainer" parent="Panel"]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 12
 
 [node name="TitleLabel" type="Label" parent="Panel/Body"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "HIDROPONÍA"
+text = "HUERTO HIDROPÓNICO"
 horizontal_alignment = 1
 
 [node name="CropLabel" type="Label" parent="Panel/Body"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0.75, 0.95, 0.7, 1)
-theme_override_font_sizes/font_size = 19
-text = "Lechuga  ·  21 días hasta cosechar (CSA)"
-horizontal_alignment = 1
-
-[node name="HintLabel" type="Label" parent="Panel/Body"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.72, 0.9, 0.75, 1)
-text = "FLECHAS: arriba/abajo = luz, izquierda/derecha = agua. Regar gasta agua y la luz gasta energía."
+theme_override_colors/font_color = Color(0.72, 0.95, 0.6, 1)
+text = "Cultivo"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="TrayRow" type="HBoxContainer" parent="Panel/Body"]
+[node name="LightRow" type="HBoxContainer" parent="Panel/Body"]
 layout_mode = 2
-theme_override_constants/separation = 14
+alignment = 1
+theme_override_constants/separation = 16
 
-[node name="Tray" type="PanelContainer" parent="Panel/Body/TrayRow"]
-custom_minimum_size = Vector2(90, 150)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_soil")
-
-[node name="Plant" type="ColorRect" parent="Panel/Body/TrayRow/Tray"]
+[node name="RedLightButton" type="Button" parent="Panel/Body/LightRow"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(70, 8)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -35.0
-offset_top = -8.0
-offset_right = 35.0
-offset_bottom = 0.0
-grow_horizontal = 2
-grow_vertical = 0
-mouse_filter = 2
-color = Color(0.35, 0.75, 0.35, 1)
-
-[node name="Controls" type="VBoxContainer" parent="Panel/Body/TrayRow"]
+custom_minimum_size = Vector2(250, 46)
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 8
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 0.85, 0.85, 1)
+text = "1 · LUZ ROJA (90:10)"
 
-[node name="LightRow" type="HBoxContainer" parent="Panel/Body/TrayRow/Controls"]
+[node name="BlueLightButton" type="Button" parent="Panel/Body/LightRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 46)
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0.8, 0.88, 1, 1)
+text = "2 · LUZ AZUL (50:50)"
+
+[node name="MoistureRow" type="HBoxContainer" parent="Panel/Body"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Name" type="Label" parent="Panel/Body/TrayRow/Controls/LightRow"]
-custom_minimum_size = Vector2(70, 0)
+[node name="Name" type="Label" parent="Panel/Body/MoistureRow"]
+custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
-text = "LUZ"
+text = "HUMEDAD"
 
-[node name="LightBar" type="ProgressBar" parent="Panel/Body/TrayRow/Controls/LightRow"]
+[node name="MoistureBar" type="ProgressBar" parent="Panel/Body/MoistureRow"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 24)
+custom_minimum_size = Vector2(0, 26)
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 4
 max_value = 1.0
-value = 0.5
+value = 0.55
 show_percentage = false
 theme_override_styles/background = SubResource("StyleBoxFlat_bar_bg")
 theme_override_styles/fill = SubResource("StyleBoxFlat_bar_fill")
 
-[node name="LightZone" type="ColorRect" parent="Panel/Body/TrayRow/Controls/LightRow/LightBar"]
-unique_name_in_owner = true
-layout_mode = 1
-mouse_filter = 2
-color = Color(0.4, 0.9, 0.45, 0.35)
-
-[node name="LightValue" type="Label" parent="Panel/Body/TrayRow/Controls/LightRow"]
+[node name="MoistureLabel" type="Label" parent="Panel/Body/MoistureRow"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
-text = "50%"
+text = "55%"
 horizontal_alignment = 2
 
-[node name="WaterRow" type="HBoxContainer" parent="Panel/Body/TrayRow/Controls"]
+[node name="ZoneHint" type="Label" parent="Panel/Body"]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_colors/font_color = Color(0.72, 0.84, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "Zona buena: entre 35 % y 80 %. Cada riego gasta agua de la base; la luz gasta energía."
+horizontal_alignment = 1
 
-[node name="Name" type="Label" parent="Panel/Body/TrayRow/Controls/WaterRow"]
-custom_minimum_size = Vector2(70, 0)
-layout_mode = 2
-text = "AGUA"
-
-[node name="WaterBar" type="ProgressBar" parent="Panel/Body/TrayRow/Controls/WaterRow"]
+[node name="DayLabel" type="Label" parent="Panel/Body"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-max_value = 1.0
-value = 0.5
-show_percentage = false
-theme_override_styles/background = SubResource("StyleBoxFlat_bar_bg")
-theme_override_styles/fill = SubResource("StyleBoxFlat_bar_fill_water")
-
-[node name="WaterZone" type="ColorRect" parent="Panel/Body/TrayRow/Controls/WaterRow/WaterBar"]
-unique_name_in_owner = true
-layout_mode = 1
-mouse_filter = 2
-color = Color(0.4, 0.9, 0.45, 0.35)
-
-[node name="WaterValue" type="Label" parent="Panel/Body/TrayRow/Controls/WaterRow"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(70, 0)
-layout_mode = 2
-text = "50%"
-horizontal_alignment = 2
+text = "Día 0"
+horizontal_alignment = 1
 
 [node name="GrowthRow" type="HBoxContainer" parent="Panel/Body"]
 layout_mode = 2
@@ -224,7 +192,7 @@ theme_override_constants/separation = 10
 [node name="Name" type="Label" parent="Panel/Body/GrowthRow"]
 custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
-text = "CRECIMIENTO"
+text = "COSECHA"
 
 [node name="ProgressBar" type="ProgressBar" parent="Panel/Body/GrowthRow"]
 unique_name_in_owner = true
@@ -258,8 +226,8 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 size_flags_horizontal = 3
-max_value = 20.0
-value = 20.0
+max_value = 30.0
+value = 30.0
 show_percentage = false
 theme_override_styles/background = SubResource("StyleBoxFlat_bar_bg")
 theme_override_styles/fill = SubResource("StyleBoxFlat_bar_fill")
@@ -268,16 +236,29 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_bar_fill")
 unique_name_in_owner = true
 custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
-text = "20.0 s"
+text = "30.0 s"
 horizontal_alignment = 2
 
 [node name="StatusLabel" type="Label" parent="Panel/Body"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
-text = "Ajusta la luz y el agua para que la planta crezca."
+text = "Elige la luz del huerto."
 horizontal_alignment = 1
-autowrap_mode = 3
+
+[node name="WaterButton" type="Button" parent="Panel/Body"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 58)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_colors/font_color = Color(0.95, 0.99, 1, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
+theme_override_styles/focus = SubResource("StyleBoxFlat_button_hover")
+text = "REGAR (ESPACIO)"
 
 [node name="ResultPanel" type="Control" parent="."]
 unique_name_in_owner = true
@@ -324,6 +305,6 @@ horizontal_alignment = 1
 [node name="ResultDetail" type="Label" parent="ResultPanel/Box"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0.8, 0.95, 0.85, 1)
+theme_override_colors/font_color = Color(0.8, 0.88, 1, 1)
 text = "Cosecha lista."
 horizontal_alignment = 1
